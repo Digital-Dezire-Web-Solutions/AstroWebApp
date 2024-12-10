@@ -262,9 +262,7 @@ Our main Comp CSS code
   .swiper-slide {
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
   }
 
 
@@ -490,6 +488,12 @@ Our main Comp CSS code
         color: #474747; 
         font-weight: 400; 
     }
+
+  
+    .swiper-slide a{
+        display: block;
+        width: 100% !important  ;
+    }
     
 
     .blog-vid-card{
@@ -584,6 +588,7 @@ Our main Comp CSS code
         position: relative;
         width: 100%;
         padding: 1.2rem 1.6rem;
+        background-color: #fafafa;
     }
 
     .cust-comp{
@@ -1083,4 +1088,294 @@ Our main Comp CSS code
 
     #calendarInput:focus {
       border-color: #007bff;
+    }
+
+    .menu-bar-btn{
+        display: none;
+    }
+
+
+    /* ______________________________
+    Our kundali Form Comp css codes
+    ------------------- */
+
+    .kundali-form-comp{
+        position: relative;
+        width: 100%;
+        margin-block: 5rem;
+        padding-inline: 1.78rem;
+
+    }
+
+    .kundali-form-main{
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .kundali-form-bx{
+        position: relative;
+        width: 54rem;
+        background-color: #fafafa;
+        border-radius: 1.4rem;
+        
+    }
+    
+    .kundali-form-bx > h4{
+        text-align: center;
+        padding: 1rem 1rem;
+        font-size: 2.2rem;
+        color: #474747;
+        border-bottom: .15rem solid #ebebeb;
+    }
+    
+    .kundali_form{
+        position: relative;
+        width: 100%;
+        padding: 1.5rem 1.87rem;
+    }
+    
+    .kundali_form h6{
+        font-size: 1.65rem;
+        color: #5a5858;
+        margin-bottom: 1.5rem;
+    }
+
+    .kundaliform  .inpt-bx .inpt{
+        border-radius: 1rem;
+    }
+
+    .kundaliform  .inpt-bx:nth-child(2) .inpt{
+        padding-inline: 1rem;
+    }
+
+    .inpt select{
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+        outline: none;
+    }
+    
+    .kundali-birth-flex{
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 2rem;
+        row-gap: 2rem;
+    }
+
+    .kundli-btn{
+        border-radius: 1.2rem;
+        margin-bottom: 1.4rem;
+    }
+    
+    /* __________________
+    our kundali comp
+    --------------------------- */
+
+    .kundali-comp{
+        position: relative;
+        width: 100%;
+        margin-block: 5rem;
+        padding-inline: 1.78rem;
+
+    }
+
+    .kundali-table{
+        position: relative;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-collapse: collapse;
+    }
+
+    
+    .kundali-table::-webkit-scrollbar{
+        height: .345rem;
+    }
+
+    .kundali-table table{
+        width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+        white-space: nowrap;
+    }
+
+    .kundali-table table thead tr th{
+        padding-block: 1.5rem;
+        padding-inline: 1rem;
+        background-color: #fff7f1;
+        font-size: 1.4rem;
+        color: #656463;
+        font-weight: 500;
+    }
+
+    
+    .kundali-table tbody tr{
+        background-color: #f0f0f0;
+    }
+
+    .kundali-table tbody tr td{
+        padding-block: 1.5rem;
+        padding-inline: 1rem;
+        text-align: center;
+    }
+
+    .kundali-table tbody tr td span{
+        font-size: 1.35rem;
+        color: #5b5b5b;
+    }
+
+    .kundali-table tbody tr:nth-child(2n + 2){
+        background-color: #fafafa;
+    }
+
+    .kundali-img-grid-bx{
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+        row-gap: 2rem;
+        margin-bottom: 5rem;
+    }
+    
+    .kundli-img{
+        position: relative;
+        width: 100%;
+    }
+
+    .kundli-img img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    @media all and (min-width: 1025px) and (max-width : 1125px){
+        html{
+            font-size: 56.2%;
+        }
+
+     
+    }
+
+
+    
+    @media all and (min-width: 768px) and (max-width : 1024px){
+        html{
+            font-size: 56%;
+        }
+
+     
+    }
+    
+    @media all and (min-width: 320px) and (max-width : 767px){
+        html{
+            font-size: 56.2%;
+        }
+
+        .kundali-form-bx{
+            width: 100%;
+        }
+
+        .navbar , .headr-btn{
+            display: none;
+        }
+
+        .kundali-img-grid-bx{
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .menu-bar-btn{
+            position: relative;
+            width: max-content;
+            background-color: transparent;
+            border: none;
+            font-size: 2.2rem;
+            color: #5a5858;
+            cursor: pointer;
+            display: block;
+        }
+
+        .faq-bx h6{
+            font-size: 1.6rem;
+            padding-right: 1rem;
+        }
+
+        .footer-flex-bx{
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4rem;
+        }
+        .right-footer-bx{
+            width: 100%;
+            column-gap: 2rem;
+        }
+
+        .faq-bx p{
+            font-size: 1.4rem;
+        }
+
+        .vide-btn-flex{
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .swiper-button-next{
+            margin-right: -5rem;
+        }
+      
+
+        .cust-comp , .blog-comp{
+            padding-bottom: 10rem;
+        }
+
+        .cards-grid{
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 1.5rem;
+            row-gap: 1.5rem;
+        }
+        
+
+        .card-bx h6{font-size: 1.45rem;}
+
+        .home-banner-card{
+            grid-template-columns: repeat(1, 1fr);
+            padding-inline: 1.87rem;
+        }
+
+        .right-banner-info h3{
+            font-size: 2.4rem;
+        }
+     
+
+        .right-banner-info h1{
+            font-size: 3.2rem;
+        }
+        .banner-img{
+            display: none;
+        }
+
+       .blogvideoSwiper .swiper-slide , 
+       .videoSlider .swiper-slide{
+            padding-inline: 2rem;
+        }
     }

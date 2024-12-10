@@ -67,6 +67,10 @@
                     </a>
                     
                 </div>
+
+                <button class="menu-bar-btn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
                 
                 </div>
                 
@@ -311,6 +315,7 @@
 
                 </div>
 
+                <a href="./kundaliform.html">
                 <div class="card-bx card1">
                     <div class="icon icon2">
                         <img src="./images/icon-2.png" alt="">
@@ -318,6 +323,7 @@
                         <h6>Kundali</h6>
 
                 </div>
+            </a>
 
                 <div class="card-bx card1">
                     <div class="icon icon3">
@@ -515,8 +521,10 @@
                 <!-- <div class="swiper-pagination"></div> -->
               </div>
 
+              <div class="vide-btn-flex">
               <div class="swiper-button-next blog-next"></div>
               <div class="swiper-button-prev blog-prev"></div>
+            </div>
             </div>
         </div>
       </section>
@@ -632,8 +640,11 @@
                 </div>
            
                 <!-- <div class="swiper-pagination"></div> -->
-                <div class="swiper-button-next video-next"></div>
+                 <div class="vide-btn-flex">
                 <div class="swiper-button-prev video-prev"></div>
+                <div class="swiper-button-next video-next"></div>
+
+            </div>
               </div>
 
          
@@ -896,7 +907,7 @@
 
 
                     <div class="footer-bx">
-                        <h6>Corporate Info</h6>
+                        <h6>Contact Info</h6>
                         <div class="footer-li">
                             <li><a href="#"> We are available 24x7 on chat support</a></li>
                             <li><a href="#">Email ID: contact@astrotalk.com</a></li>
@@ -955,6 +966,23 @@
       slidesPerView: 3,
       spaceBetween: 30,
       freeMode: true,
+      breakpoints: {
+    // When the viewport is ≥ 480px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0,
+    },
+    // When the viewport is ≥ 768px
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    // When the viewport is ≥ 1024px
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+  },
       navigation: {
         nextEl: ".blog-next",
         prevEl: ".blog-prev",
@@ -963,12 +991,30 @@
         delay: 3500,
         disableOnInteraction: false,
       },
+
     });
 
     var swiper2 = new Swiper(".videoSlider", {
       slidesPerView: 3,
       spaceBetween: 30,
       freeMode: true,
+      breakpoints: {
+    // When the viewport is ≥ 480px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0,
+    },
+    // When the viewport is ≥ 768px
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    // When the viewport is ≥ 1024px
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+  },
       navigation: {
         nextEl: ".video-next",
         prevEl: ".video-prev",
@@ -999,38 +1045,6 @@
       enableTime: false,   // Disable time selection
     });
 
-    const newAcntBtn =  document.querySelector('#newAcnt');
-const formBx =  document.querySelector('.login-bx');
-const haveAnAcnt =  document.querySelector('#signInBtn');
-const formComp = document.querySelector('.login-reg-comp');
-const closeForm = document.querySelector('.close-form-btn');
-const loginBtn =  document.querySelector('#login_btn');
-
-newAcntBtn.addEventListener("click", () => {
-    formBx.classList.add('registeractive');
-})
-
-
-haveAnAcnt.addEventListener("click", () => {
-    formBx.classList.remove('registeractive');
-    formBx.scrollTop = 0
-})
-
-formBx.addEventListener("click", (e) => {
-    e.stopPropagation();
-})
-
-formComp.addEventListener("click", () => {
-    formComp.classList.remove('formactive');
-})
-
-closeForm.addEventListener("click", () => {
-    formComp.classList.remove('formactive');
-})
-
-loginBtn.addEventListener("click", () => {
-    formComp.classList.add('formactive')
-})
  </script>
 
 

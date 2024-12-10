@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Astro Market Web App</title>
+    <!-- swiper slider css CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+
+      <!-- __________________________________ 
+     Our header Comp 
+     ------------------------ -->
+
+     <header class="header-comp">
+        <div class="common-container3">
+
+            <div class="header-flex-bx flex item-between">
+
+                <div class="left-header-logo flex item-start gap">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astroyogi</h6>
+                    
+                </div>
+
+                <div class="right-navbar class-rel flex item-start gap">
+                    <div class="navbar class-rel">
+                    <nav class="nav class-rel">
+                        <div class="nav-lists flex item-start">
+                            <li><a href="#">Calendar</a></li>
+                            <li><a href="#">Market</a></li>
+                            <li><a href="#">Kundali</a></li>
+                            <li><a href="#">Affirmations</a></li>
+                            <li><a href="#">Runes</a></li>
+                            <li><a href="#">Healing</a></li>
+                            <li><a href="#">Wisdom</a></li>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="header-icons-flex-bx class-rel flex gap">
+
+                    <a href="#">
+                        <button class="headr-btn">
+                            <ion-icon name="cart-outline"></ion-icon>
+                            <span>Store</span>
+                        </button>
+                    </a>
+
+                    <a href="#">
+                        <button id="login_btn" class="headr-btn headr-btn2">
+                            <ion-icon name="person"></ion-icon>
+                            <span>Login</span>
+                        </button>
+                    </a>
+                    
+                </div>
+
+                <button class="menu-bar-btn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+                
+                </div>
+                
+            </div>
+            
+        </div>
+     </header>
+    
+       <!-- _______________________
+       Our Login Reg Comp 
+       ------------------ -->
+
+       <section class="login-reg-comp">
+
+        <div class="login-bx ">
+
+            <button class="close-form-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="login-info">
+
+            <div class="login-logo">
+                <img src="./images/astrology.png" alt="">
+            </div>
+
+         
+
+            <div class="comn-heading">
+                <h4>Sign In to Astrology </h4>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+            </div>
+
+            <div class="login-form">
+                <form action="#">
+
+                    <div class="inpt-bx">
+                        <label for="email">Email Address</label>
+                        <div class="inpt">
+                            <input type="email" name="email" placeholder="Enter your email address..." autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="inpt-bx">
+                        <label for="email">Password</label>
+                        <div class="inpt">
+                            <input type="password" name="password" placeholder="Enter your password..." autocomplete="off" required>
+                        </div>
+                    </div>
+
+
+                 
+                    
+                </form>
+
+                <div class="form-btns-flex">
+
+                    <button class="form-btn" >
+                        Sign In
+                    </button>
+
+                    <button class="form-btn form-btn2" id="newAcnt">
+                        Create Account
+                    </button>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="reg-info">
+
+            <div class="login-logo">
+                <img src="./images/astrology.png" alt="">
+            </div>
+
+            <div class="comn-heading">
+                <h4>Sign Up to Astrology </h4>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+            </div>
+
+            <div class="login-form">
+                <form action="#">
+
+                    <div class="inpt-bx">
+                        <label for="name">Name</label>
+                        <div class="inpt">
+                            <input type="text" name="name" placeholder="Enter your Name" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="inpt-bx">
+                        <label for="name">Email</label>
+                        <div class="inpt">
+                            <input type="email" name="email" placeholder="Enter your email address..." autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="inpt-bx">
+                        <label for="password">Create Password</label>
+                        <div class="inpt">
+                            <input type="text" name="createpassword" placeholder="Create your password..." autocomplete="off" required>
+                        </div>
+                    </div>
+
+
+                    <div class="inpt-bx">
+                        <label for="password">Date Of Birth</label>
+                        <div class="inpt">
+                            <input type="text" id="calendarInput" placeholder="Choose a date" />
+                        </div>
+                    </div>
+
+                    <div class="inpt-bx">
+                        <label for="password">Birth Time</label>
+                        <div class="inpt"  >
+                            <input type="text" id="timePicker" class="time-picker" placeholder="Select Time">
+                        </div>
+                    </div>
+                    <div class="inpt-bx">
+                        <label for="birthplace"> Birth Place</label>
+                        <div class="inpt">
+                            <input type="text" name="birthplace" placeholder="Enter your birth place..." autocomplete="off" required>
+                        </div>
+                    </div>
+
+
+                </form>
+
+                <div class="form-btns-flex">
+
+                    <button class="form-btn">
+                        Create Account
+                    </button>
+
+                    <button class="form-btn  form-btn3" id="signInBtn">
+                        I  Already Have Account
+                    </button>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+            
+        </div>
+        
+       </section>
+    
+       <!-- ______________________________
+        Our kundali comp 
+        ----------------- -->
+
+ 
+       <section class="kundali-comp">
+        <div class="common-container3">
+
+            <div class="kundali-img-grid-bx">
+
+                <div class="kundli-img">
+                    <img src="./images/kundali-img-1.jpg" alt="">
+                </div>
+
+                <div class="kundli-img">
+                    <img src="./images/kundali-img-2.jpg" alt="">
+                </div>
+                
+            </div>
+
+            <div class="kundali-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planets</th>
+                            <th>C</th>
+                            <th>R</th>
+                            <th>Rashi</th>
+                            <th>Longitude</th>
+                            <th>Nakshatra</th>
+                            <th>Pada</th>
+                            <th>Relation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Asc</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <td>
+                                <span>Pisces</span>
+                            </td>
+                            <td>
+                                <span>14-49-07</span>
+                            </td>
+                            <td>
+                                <span>Uttarabhadra</span>
+                            </td>
+                            <td>
+                                <span>4</span>
+                                
+                            </td>
+                            <td></td>
+
+                        </tr>
+
+
+
+
+
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+       </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Swiper Js file -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- script file -->
+    <script src="./js/index.js"></script>
+
+
+
+</body>
+
+</html>
