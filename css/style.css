@@ -1254,10 +1254,341 @@ Our main Comp CSS code
         height: auto;
         object-fit: cover;
     }
+
+    /* --------------- our leo comp */
+
+    .leo-comp{
+        position: relative;
+        width: 100%;
+        padding-block: 6rem;
+        padding-inline: 1.78rem;
+        background-color: #efeeee;
+    }
+
+    .left-leo-info h3{
+        font-size: 3.8rem;
+        font-weight: 500;
+    }
+
+    .left-leo-info span{
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
     
+    .forecast{
+        position: relative;
+        width: 26rem;
+    }
+
+    .forecast img{
+        width: 100%;
+        height: auto;
+        filter: invert(100%);
+    }
     
+    .leo-det-comp{
+        position: relative;
+        width: 100%;
+        padding-block: 5rem;
+        padding-inline: 1.78rem;
+
+    }
+
+    .le-det-grid{
+        position: relative;
+        width: 100%;
+        grid-template-columns: 1fr .65fr;
+        column-gap: 18rem;
+
+    }
+
+    .left-det-progress-main{
+        position: relative;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 1.5rem 1.5rem;
+        border-radius: 1rem;
+    }
+
+    .progress-lists{
+        position: relative;
+        width: 100%;
+    }
+
+    .progress-main{
+        position: relative;
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2.5rem;
+    }
     
+
+    .prog-title-bx{
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .p-icon{
+        position: relative;
+        top: .2rem;
+
+    }
+
+    .p-icon ion-icon{
+        font-size: 2rem;
+        color: #0e0d0d;
+    }
+
+    .prog-title-bx h6{
+        font-size: 1.55rem;
+        font-weight: 500;
+    }
+
+    .progress-leo{
+        position: relative;
+        width: 100%;
+        height: .55rem;
+        background-color: #ffffff;
+    }
+
+    .leo-progrss-bar{
+        position: relative;
+        width: 0%;
+        height: 100%;
+        background-color: #fe7000;
+        animation: progress 700ms ease forwards;
+    }
+
+    .leo-progrss-bar2{
+        animation: progress2 700ms ease forwards;
+        animation-delay: 200ms;
+
+    }
+
+    .leo-progrss-bar3{
+        animation: progress3 700ms ease forwards;
+        animation-delay: 300ms;
+
+
+    }
+
+    .leo-progrss-bar4{
+        animation: progress4 700ms ease forwards;
+        animation-delay: 400ms;
+
+
+    }
+
+    @keyframes progress {
+        0%{
+            width: 0%;
+        }
+
+        100%{
+            width: 70%;
+        }
+    }
+
+    @keyframes progress2 {
+        0%{
+            width: 0%;
+        }
+
+        100%{
+            width: 85%;
+        }
+    }
+
+    @keyframes progress3 {
+        0%{
+            width: 0%;
+        }
+
+        100%{
+            width: 65%;
+        }
+    }
+
+    @keyframes progress4 {
+        0%{
+            width: 0%;
+        }
+
+        100%{
+            width: 50%;
+        }
+    }
+
+    .progress-leo span{
+        position: absolute;
+        bottom: 210%;
+     
+        background-color: #fff;
+        padding-inline: .55rem;
+        padding-block: .2rem;
+        border-radius: .55rem;
+        color: #fe7000;
+        font-weight: 500;
+        animation: progressspan 700ms ease forwards;
+
+    }
+
+    .progress-leo2 span{
+        animation: progressspan2 700ms ease forwards;
+        animation-delay: 200ms;
+
+
+    }
+    .progress-leo3 span{
+        animation: progressspan3 700ms ease forwards;
+        animation-delay: 300ms;
+
+
+    }
+    .progress-leo4 span{
+        animation: progressspan4 700ms ease forwards;
+        animation-delay: 400ms;
+
+
+    }
+
+    @keyframes progressspan {
+        0%{
+            left: 0%;
+        }
+
+        100%{
+            left:calc(70% -  1.5rem);
+        }
+    }
+
+    @keyframes progressspan2 {
+        0%{
+            left: 0%;
+        }
+
+        100%{
+            left:calc(85% -  1.5rem);
+        }
+    }
+
+    @keyframes progressspan3 {
+        0%{
+            left: 0%;
+        }
+
+        100%{
+            left:calc(65% -  1.5rem);
+        }
+    }
+
+
+    @keyframes progressspan4 {
+        0%{
+            left: 0%;
+        }
+
+        100%{
+            left:calc(50% -  1.5rem);
+        }
+    }
+
+    .progress-leo span:before{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border: .67rem solid transparent;
+        border-top-color: #fff;
+    }
+
+    .leo-det{
+        position: relative;
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    .leo-det h6{
+        font-size: 1.55rem;
+        text-transform: uppercase;
+        letter-spacing: .55px;
+        font-weight: 600;
+        color: #2a2828;
+        margin-bottom: 1rem;
+    }
+
+    .leo-det p{
+        font-size: 1.4rem;
+        color: #3f3f3f;
+        font-weight: 400;
+    }
+
+    .right-links-leo-lists-bx{
+        position: relative;
+        width: 100%;
+    }
+
+    .right-links-leo-lists-bx a{
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+    .right-links-leo-lists-bx a li{
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-block: .55rem;
+        border-bottom: .1rem solid #eee;
+    }
+
+    .linkname{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    .link-icon{
+        position: relative;
+        width: 2.2rem;
+    }
+
+    .link-icon img{
+        width: 100%;
+        height: auto;
+    }
+
+    .linkname span{
+        font-size: 1.6rem;
+        color: #333;
+    }
     
+    .arrow-icon{
+        position: relative;
+        width: 4rem;
+    }
+
+    .arrow-icon img{
+        width: 100%;
+        height: auto;
+        transition: 500ms ease;
+    }
+
+    .right-links-leo-lists-bx li:hover .arrow-icon img{
+        transform: scale(1.05) translateX(10px);
+    }
     
     
     
@@ -1288,6 +1619,18 @@ Our main Comp CSS code
     @media all and (min-width: 320px) and (max-width : 767px){
         html{
             font-size: 56.2%;
+        }
+
+        .leo-flex-bx{
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6rem;
+            justify-content: center;
+        }
+
+        .le-det-grid{
+            grid-template-columns: repeat(1, 1fr);
         }
 
         .kundali-form-bx{
