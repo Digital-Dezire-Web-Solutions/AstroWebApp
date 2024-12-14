@@ -1630,6 +1630,7 @@ Our main Comp CSS code
         width: 100%;
         background-color: #fe7000;
         height: 6rem;
+        padding-inline:1.78rem;
     }
     
     .header-flex{
@@ -1758,6 +1759,116 @@ Our main Comp CSS code
     }
     
     
+    .menu-bar-btn{
+        position: relative;
+        width: max-content;
+        background-color: transparent;
+        border: none;
+        font-size: 2.2rem;
+        color: #5a5858;
+        cursor: pointer;
+        display: none;
+    }
+
+    .mob-logo{
+        display: none;
+    }
+
+    .astrology-cont-info , .apnt-btn-mob{
+        display: none;
+    }
+
+    .close-nav-btn , .search-inpt-bx-mob , .cart-bx2,.nav-overlay{
+        display: none;
+    }
+
+
+    .cart-bx:hover .cart-lists-bx{
+        height: 29rem;
+    }
+
+    .cart-lists-bx{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 28rem;
+        height: 0;
+        overflow-y: auto;
+        background-color: #fff7f2;
+        z-index: 30;
+        overflow-x: hidden;
+        transition: 300ms ease;
+
+    }
+
+    .cart-lists-bx::-webkit-scrollbar{
+        width: .345rem;
+    }
+
+    .cart-lists-bx li{
+        position: relative;
+        width: 100%;
+        padding-inline: 1.87rem;
+        padding-block: 1.65rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1rem;
+        border-bottom: .1rem solid #ddd;
+        transition: 500ms ease;
+    }
+
+    .cart-lists-bx li:hover{
+        background-color: #ffddcc;
+    }
+
+    .item-img{
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .item-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: .55rem;
+    }
+
+    .item-info h6{
+        font-size: 1.4rem;
+        color: #262626;
+    }
+
+    .item-info p{
+        font-size: 1.2rem;
+    }
+
+    .item-info h5{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5rem;
+        font-size: 1.67rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .delet-item-btn{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 1.5rem;
+        font-size: 1.56rem;
+        color: #ff7e3e;
+        cursor: pointer;
+    }
+
+    .chckout-btn{
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
 
 
     @media all and (min-width: 1025px) and (max-width : 1125px){
@@ -1775,12 +1886,475 @@ Our main Comp CSS code
             font-size: 56%;
         }
 
+
+        .cart-lists-bx-mob{
+            top: 230%;
+        }
+
+        .nav-overlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #1e1d1d;
+            opacity: 0.65;
+            z-index: 99;
+            display: block;
+            transition: 600ms ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .nav-overlay.navactive{
+            opacity: 0.65;
+            visibility: visible;
+        }
+
+        .close-nav-btn{
+            position: absolute;
+            top: 2rem;
+            right: 1.5rem;
+            font-size: 3.5rem;
+            color: #fe7000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .cart-bx2{
+            display: flex !important;
+        }
+        
+        .search-inpt-bx-mob{
+            height: 6rem;
+            background-color: #fafafa;
+            width: 100%;
+            padding-inline: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .header{
+            background-color: transparent;
+            height: 0;
+        }
+
+        
+
+        .right-top-header-flex-bx{
+            gap: 1.5rem;
+        }
+
+        .cart-bx{
+            display: none;
+        }
+
+        .cart-btn2{
+            color: #fe7000;
+        }
+
+        .cart-btn2 span{
+            top: -.4rem;
+            color: #fe7000;
+            border-color: #fe8b33;
+        }
+
+        .search-inpt-bx-mob input{
+            color: #242424;
+            font-weight: 500;
+
+        }
+
+        
+       .cart-lists-bx .chckout-btn{
+            display: block !important;
+        }
+        
+
+        .search-inpt-bx-mob .search-btn{
+            color: #fe7000;
+            font-size: 2rem;
+        }
+
+        .search-inpt-bx-mob input::placeholder{
+            color: #605f5f;
+            font-weight: 500;
+        }
+
+        .top-hedr-bx , .apnt-btn{
+            display: none;
+        }
+
+        .astrology-cont-info{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-inline: 2rem;
+        }
+
+        .astrology-cont-info .top-hedr-bx{
+            display: flex;
+        }
+
+        .apnt-btn-mob{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 93%;
+            margin: 2.5rem auto 2rem auto;
+        }
+
+        .menu-bar-btn{
+            color: #fe7000;
+            font-size:3rem;
+            width: 5rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mob-logo{
+            display: flex;
+            margin-bottom: 3rem;
+            padding-inline: 1.78rem;
+        }
+
+        .mob-logo img{
+            width: 4.67rem;
+            height: 4.67rem;
+        }
+
+        .mob-logo h6{
+            font-size: 2.2rem !important;
+        }
+        
+        .navbar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 35rem;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #fff;
+            border-right: .15rem solid #ddd;
+            z-index: 1000;
+            overflow-x: hidden;
+            padding-top: 5rem;
+            transition: 600ms ease;
+            transform: translateX(-100%);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .navbar.navactive{
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .navbar::-webkit-scrollbar{
+            width: .345rem;
+        }
+
+        .nav , .nav-lists{
+            height: max-content;
+        }
+
+        .nav-lists{
+            flex-direction: column;
+
+        }
+
+        .nav-lists li{
+            width: 100%;
+            height: 6rem;
+            border-top: .1rem solid #ddd;
+            justify-content: flex-start;
+            transition: 300ms ease;
+            padding-inline: 1.87rem;
+        }
+
+        .nav-lists li a{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #282727;
+            transition: 300ms ease;
+
+
+        }
+
+        .nav-lists li:hover{
+            background-color: #fe7000;
+        }
      
+
+        .nav-lists li:hover a{
+            color: #fff;
+        }
     }
     
     @media all and (min-width: 320px) and (max-width : 767px){
         html{
             font-size: 56.2%;
+        }
+
+        .cart-lists-bx .chckout-btn{
+            display: block !important;
+        }
+
+        .cart-lists-bx-mob{
+            top: 200%;
+        }
+
+        .login-bx{
+            width: 34rem;
+            padding-inline: 3rem;
+        }
+
+        .login-info{
+            padding-inline: 3rem;
+        }
+
+        .top-header-comp{
+            padding-block: 2rem;
+        }
+        .nav-overlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #1e1d1d;
+            opacity: 0.65;
+            z-index: 99;
+            display: block;
+            transition: 600ms ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .nav-overlay.navactive{
+            opacity: 0.65;
+            visibility: visible;
+        }
+
+        .close-nav-btn{
+            position: absolute;
+            top: 2rem;
+            right: 1.5rem;
+            font-size: 3.5rem;
+            color: #fe7000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .cart-bx2{
+            display: flex !important;
+        }
+        
+        .search-inpt-bx-mob{
+            height: 6rem;
+            background-color: #fafafa;
+            width: 100%;
+            padding-inline: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .header{
+            background-color: transparent;
+            height: 0;
+        }
+
+        .right-top-header-flex-bx{
+            gap: 1.45rem;
+        }
+
+        .menu-bar-btn , .cart-bx2{
+            width: 3rem !important;
+        }
+
+        .cart-btn2 span{
+            top: -.76rem !important;
+            right: -.3rem;
+        }
+
+        .cart-bx{
+            display: none;
+        }
+
+        .cart-btn2{
+            color: #fe7000;
+        }
+
+        .cart-btn2 span{
+            top: -.4rem;
+            color: #fe7000;
+            border-color: #fe8b33;
+        }
+
+        .search-inpt-bx-mob input{
+            color: #242424;
+            font-weight: 500;
+
+        }
+
+        .search-inpt-bx-mob .search-btn{
+            color: #fe7000;
+            font-size: 2rem;
+        }
+
+        .search-inpt-bx-mob input::placeholder{
+            color: #605f5f;
+            font-weight: 500;
+        }
+
+        .top-hedr-bx , .apnt-btn{
+            display: none;
+        }
+
+        .astrology-cont-info{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-inline: 2rem;
+        }
+
+        .profile-bx{
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+
+        .astrology-cont-info .top-hedr-bx{
+            display: flex;
+        }
+
+        .apnt-btn-mob{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 93%;
+            margin: 2.5rem auto 2rem auto;
+        }
+
+        .menu-bar-btn{
+            color: #fe7000;
+            font-size:3rem;
+            width: 5rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mob-logo{
+            display: flex;
+            margin-bottom: 3rem;
+            padding-inline: 1.78rem;
+        }
+
+        .mob-logo img{
+            width: 4.67rem;
+            height: 4.67rem;
+        }
+
+        .mob-logo h6{
+            font-size: 2.2rem !important;
+        }
+        
+        .navbar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 35rem;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #fff;
+            border-right: .15rem solid #ddd;
+            z-index: 1000;
+            overflow-x: hidden;
+            padding-top: 5rem;
+            transition: 600ms ease;
+            transform: translateX(-100%);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .navbar.navactive{
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .navbar::-webkit-scrollbar{
+            width: .345rem;
+        }
+
+        .nav , .nav-lists{
+            height: max-content;
+        }
+
+        .nav-lists{
+            flex-direction: column;
+
+        }
+
+        .nav-lists li{
+            width: 100%;
+            height: 6rem;
+            border-top: .1rem solid #ddd;
+            justify-content: flex-start;
+            transition: 300ms ease;
+            padding-inline: 1.87rem;
+        }
+
+        .nav-lists li a{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #282727;
+            transition: 300ms ease;
+
+
+        }
+
+        .nav-lists li:hover{
+            background-color: #fe7000;
+        }
+     
+
+        .nav-lists li:hover a{
+            color: #fff;
         }
 
         .leo-flex-bx{
@@ -1799,24 +2373,12 @@ Our main Comp CSS code
             width: 100%;
         }
 
-        .navbar , .headr-btn{
-            display: none;
-        }
+    
 
         .kundali-img-grid-bx{
             grid-template-columns: repeat(1, 1fr);
         }
 
-        .menu-bar-btn{
-            position: relative;
-            width: max-content;
-            background-color: transparent;
-            border: none;
-            font-size: 2.2rem;
-            color: #5a5858;
-            cursor: pointer;
-            display: block;
-        }
 
         .faq-bx h6{
             font-size: 1.6rem;

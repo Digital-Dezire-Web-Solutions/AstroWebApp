@@ -1,4 +1,28 @@
 
+const navbar  =  document.querySelector('.navbar');
+const menuBtn =  document.querySelector('.menu-bar-btn');
+const closeNav =  document.querySelector('.close-nav-btn');
+const headeroverlay =  document.querySelector('.nav-overlay');
+
+
+menuBtn.addEventListener("click", () => {
+    headeroverlay.classList.add('navactive');
+    navbar.classList.add('navactive')
+})
+
+closeNav.addEventListener("click", () => {
+    headeroverlay.classList.remove('navactive');
+    navbar.classList.remove('navactive')
+})
+
+headeroverlay.addEventListener("click", (e) => {
+    e.stopPropagation()
+    headeroverlay.classList.remove('navactive');
+    navbar.classList.remove('navactive');
+})
+
+
+// -------------------------------------------------------------
 const newAcntBtn =  document.querySelector('#newAcnt');
 const formBx =  document.querySelector('.login-bx');
 const haveAnAcnt =  document.querySelector('#signInBtn');
@@ -32,6 +56,6 @@ loginBtn.addEventListener("click", () => {
     formComp.classList.add('formactive')
 })
 
-
+// ---------------------------
 
 
