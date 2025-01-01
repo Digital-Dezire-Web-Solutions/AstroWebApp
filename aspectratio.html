@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Astro Market Web App</title>
+    <!-- swiper slider css CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- __________________________________ 
+     Our header Comp 
+     ------------------------ -->
+
+    <header class="header-comp">
+        <div class="common-container3">
+
+            <div class="header-flex-bx flex item-between">
+
+                <div class="left-header-logo flex item-start gap">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astroyogi</h6>
+
+                </div>
+
+                <div class="right-navbar class-rel flex item-start gap">
+                    <div class="navbar class-rel">
+                        <nav class="nav class-rel">
+                            <div class="nav-lists flex item-start">
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Market</a></li>
+                                <li><a href="#">Kundali</a></li>
+                                <li><a href="#">Affirmations</a></li>
+                                <li><a href="#">Runes</a></li>
+                                <li><a href="#">Healing</a></li>
+                                <li><a href="#">Wisdom</a></li>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="header-icons-flex-bx class-rel flex gap">
+
+                        <a href="#">
+                            <button class="headr-btn">
+                                <ion-icon name="cart-outline"></ion-icon>
+                                <span>Store</span>
+                            </button>
+                        </a>
+
+                        <a href="#">
+                            <button id="login_btn" class="headr-btn headr-btn2">
+                                <ion-icon name="person"></ion-icon>
+                                <span>Login</span>
+                            </button>
+                        </a>
+
+                    </div>
+
+                    <button class="menu-bar-btn">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+    <!-- _______________________
+       Our Login Reg Comp 
+       ------------------ -->
+
+    <section class="login-reg-comp">
+
+        <div class="login-bx ">
+
+            <button class="close-form-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="login-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+
+
+                <div class="comn-heading">
+                    <h4>Sign In to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form action="#">
+
+                        <div class="inpt-bx">
+                            <label for="email">Email Address</label>
+                            <div class="inpt">
+                                <input type="email" name="email" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="email">Password</label>
+                            <div class="inpt">
+                                <input type="password" name="password" placeholder="Enter your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+
+                    <div class="form-btns-flex">
+
+                        <button class="form-btn">
+                            Sign In
+                        </button>
+
+                        <button class="form-btn form-btn2" id="newAcnt">
+                            Create Account
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reg-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+                <div class="comn-heading">
+                    <h4>Sign Up to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form action="#">
+
+                        <div class="inpt-bx">
+                            <label for="name">Name</label>
+                            <div class="inpt">
+                                <input type="text" name="name" placeholder="Enter your Name" autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="name">Email</label>
+                            <div class="inpt">
+                                <input type="email" name="email" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Create Password</label>
+                            <div class="inpt">
+                                <input type="text" name="createpassword" placeholder="Create your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                        <div class="inpt-bx">
+                            <label for="password">Date Of Birth</label>
+                            <div class="inpt">
+                                <input type="text" id="calendarInput" placeholder="Choose a date" />
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Birth Time</label>
+                            <div class="inpt">
+                                <input type="text" id="timePicker" class="time-picker" placeholder="Select Time">
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="birthplace"> Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" name="birthplace" placeholder="Enter your birth place..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                    <div class="form-btns-flex">
+
+                        <button class="form-btn">
+                            Create Account
+                        </button>
+
+                        <button class="form-btn  form-btn3" id="signInBtn">
+                            I Already Have Account
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ______________________________
+        Our kundali comp 
+        ----------------- -->
+
+
+    <section class="kundali-comp">
+        <div class="common-container3">
+            <div class="kundali-table">
+                <!-- Planet Data Table -->
+                <h5>Planet Data Table</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>House 1</th>
+                            <th>House 2</th>
+                            <th>House 3</th>
+                            <th>House 4</th>
+                            <th>House 5</th>
+                            <th>House 6</th>
+                            <th>House 7</th>
+                            <th>House 8</th>
+                            <th>House 9</th>
+                            <th>House 10</th>
+                            <th>House 11</th>
+                            <th>House 12</th>
+                        </tr>
+                    </thead>
+                    <tbody id="planet-data"></tbody>
+                </table>
+
+                <!-- Dropdown to select the house -->
+                <div>
+                    <h6>Select House for Ascendant Comparison</h6>
+                    <select id="house-selector">
+                        <option value="1">House 1</option>
+                        <option value="2">House 2</option>
+                        <option value="3">House 3</option>
+                        <option value="4">House 4</option>
+                        <option value="5">House 5</option>
+                        <option value="6">House 6</option>
+                        <option value="7">House 7</option>
+                        <option value="8">House 8</option>
+                        <option value="9">House 9</option>
+                        <option value="10">House 10</option>
+                        <option value="11">House 11</option>
+                        <option value="12">House 12</option>
+                    </select>
+                </div>
+
+                <!-- Ascendant Data Section -->
+                <div id="ascendant-data-container" class="ascendant-data">
+                    <!-- <h6>Ascendant Data</h6> -->
+                    <p id="ascendant-info"></p>
+                </div>
+
+                <!-- Comparison Table -->
+                <table>
+                    <thead>
+                        <!-- <h6>Comparison Table</h6> -->
+                        <tr>
+                            <th>Planet</th>
+                            <th>Sitting</th>
+                            <th>100%</th>
+                            <th>75%</th>
+                            <th>50%</th>
+                            <th>25%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-data"></tbody>
+                </table>
+            </div>
+
+            <script>
+                const params = JSON.parse(localStorage.getItem("params"));
+                const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+                const ApiUrl = "https://vedastroapi.azurewebsites.net/api/Calculate";
+
+                if (horoscopeData && horoscopeData.response) {
+                    const planetDatas = horoscopeData.response;
+
+                    const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+                    const zodiacMap = {
+                        Aries: 1,
+                        Taurus: 2,
+                        Gemini: 3,
+                        Cancer: 4,
+                        Leo: 5,
+                        Virgo: 6,
+                        Libra: 7,
+                        Scorpio: 8,
+                        Sagittarius: 9,
+                        Capricorn: 10,
+                        Aquarius: 11,
+                        Pisces: 12,
+                    };
+
+                    const createHouses = (startZodiacNumber) => {
+                        const houses = [];
+                        let currentNumber = startZodiacNumber;
+                        for (let i = 0; i < 12; i++) {
+                            houses.push(currentNumber);
+                            currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
+                        }
+                        return houses;
+                    };
+
+                    const mapPlanetData = (data) => {
+                        if (Array.isArray(data)) {
+                            return data.map((planet) => ({
+                                name: planet.full_name,
+                                zodiac: planet.zodiac,
+                                zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                                houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                            }));
+                        } else if (typeof data === "object" && data !== null) {
+                            return Object.values(data).map((planet) => ({
+                                name: planet.full_name,
+                                zodiac: planet.zodiac,
+                                zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                                houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                            }));
+                        } else {
+                            console.error("Unexpected data format for planets:", data);
+                            return [];
+                        }
+                    };
+
+                    const fetchHouseAspectData = async (house) => {
+                        const houseAspectUrl = `${ApiUrl}/IsHouseAspectedByPlanet/HouseName/${house}/PlanetName/All9WithUpagrahas/Location/${params.location}/Time/${params.tob}/${params.dob}/+05:30`;
+
+                        try {
+                            const response = await fetch(houseAspectUrl);
+                            const data = await response.json();
+                            const datas = data.Payload.IsHouseAspectedByPlanet.slice(0, 9);
+
+                            const houseAspectData = {};
+                            datas.forEach((aspect) => {
+                                const planet = Object.keys(aspect)[0];
+                                const isAspected = aspect[planet] === "True" ? "True" : "False";
+                                houseAspectData[planet] = isAspected;
+                            });
+                            return houseAspectData;
+                        } catch (error) {
+                            console.error(`Error fetching data for house ${house}:`, error);
+                            return null;
+                        }
+                    };
+
+                    const populatePlanetDataTable = (planets) => {
+                        const planetDataElement = document.getElementById("planet-data");
+                        planetDataElement.innerHTML = "";
+
+                        planets.forEach((planet) => {
+                            const row = document.createElement("tr");
+
+                            row.innerHTML = `
+                                <td>${planet.name}</td>
+                                ${planet.houses.map((house) => `<td>${house}</td>`).join("")}
+                            `;
+                            planetDataElement.appendChild(row);
+                        });
+                    };
+
+                    const displayAscendantData = (planets, selectedHouse) => {
+                        const ascendant = planets[0];
+                        const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
+
+                        const ascendantInfoElement = document.getElementById("ascendant-info");
+                        ascendantInfoElement.textContent = `The Ascendant (${ascendant.name}) is in House ${selectedHouse} with value ${ascendantHouseValue}.`;
+                    };
+
+                    const populateComparisonTable = async (planets, selectedHouse) => {
+                        const comparisonTableElement = document.getElementById("comparison-data");
+                        comparisonTableElement.innerHTML = "";
+
+                        const aspectData = await fetchHouseAspectData(selectedHouse);
+
+                        if (!aspectData) {
+                            console.error("Failed to fetch house aspect data.");
+                            return;
+                        }
+
+                        const ascendant = planets[0];
+                        const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
+
+                        planets.forEach((planet) => {
+                            const row = document.createElement("tr");
+
+                            // Determine Sitting
+                            const sitting = planet.houses[0] === ascendantHouseValue;
+
+                            // Determine percentage values with skip logic
+                            let oneHundredPercent = "-";
+                            let seventyFivePercent = "-";
+                            let fiftyPercent = "-";
+                            let twentyFivePercent = "-";
+
+                            if (aspectData[planet.name] === "True") {
+                                oneHundredPercent = "True";
+                            } else if (
+                                // check for House4 or House8
+                                planet.houses[3] === ascendantHouseValue ||
+                                planet.houses[7] === ascendantHouseValue
+
+                            ) {
+                                seventyFivePercent = "True";
+                            } else if (
+                                // check for House5 or House9
+                                planet.houses[4] === ascendantHouseValue ||
+                                planet.houses[8] === ascendantHouseValue
+                            ) {
+                                fiftyPercent = "True";
+                            } else if (
+                                // check for House3 or House10
+                                planet.houses[2] === ascendantHouseValue ||
+                                planet.houses[9] === ascendantHouseValue
+                            ) {
+                                twentyFivePercent = "True";
+                            }
+
+                            // Priority: Skip lower percentages if a higher one is true
+                            if (oneHundredPercent === "True") {
+                                seventyFivePercent = fiftyPercent = twentyFivePercent = "-";
+                            } else if (seventyFivePercent === "True") {
+                                fiftyPercent = twentyFivePercent = "-";
+                            } else if (fiftyPercent === "True") {
+                                twentyFivePercent = "-";
+                            }
+
+                            // Populate table row
+                            row.innerHTML = `
+            <td>${planet.name}</td>
+            <td>${sitting ? "True" : "-"}</td>
+            <td>${oneHundredPercent}</td>
+            <td>${seventyFivePercent}</td>
+            <td>${fiftyPercent}</td>
+            <td>${twentyFivePercent}</td>
+        `;
+                            comparisonTableElement.appendChild(row);
+                        });
+                    };
+
+                    const planets = mapPlanetData(horoscopeData.response).slice(0, 9);
+
+                    window.onload = async () => {
+                        populatePlanetDataTable(planets);
+
+                        const houseSelector = document.getElementById("house-selector");
+                        houseSelector.addEventListener("change", async (event) => {
+                            const selectedHouse = parseInt(event.target.value, 10);
+                            if (!isNaN(selectedHouse)) {
+                                await populateComparisonTable(planets, selectedHouse);
+                                displayAscendantData(planets, selectedHouse);
+                            }
+                        });
+
+                        displayAscendantData(planets, 1);
+                        await populateComparisonTable(planets, 1);
+                    };
+                } else {
+                    console.error("Horoscope data not found or invalid in localStorage.");
+                }
+            </script>
+        </div>
+
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <!-- Swiper Js file -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- script file -->
+        <script src="./js/index.js"></script>
+
+
+
+</body>
+
+</html>
