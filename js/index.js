@@ -58,4 +58,30 @@ loginBtn.addEventListener("click", () => {
 
 // ---------------------------
 
+const dropDwnBtn  =  document.querySelectorAll('.custom-dropdown-Btn');
+const tableBody =   document.querySelectorAll('.tableBody');
 
+for(let i = 0;  i < dropDwnBtn.length ; i++){
+    dropDwnBtn[i].addEventListener("click", () => {
+        for(let j = 0; j < dropDwnBtn.length ; j++){
+        dropDwnBtn[j].classList.remove('activedropdwn');
+
+        }
+        dropDwnBtn[i].classList.add('activedropdwn');
+
+       const dataFilter =  dropDwnBtn[i].getAttribute('data-filter');
+
+       for(let k = 0;  k < tableBody.length ; k++){
+        if(tableBody[k].getAttribute('data-table') === dataFilter){
+            tableBody[k].classList.remove('hide');
+            tableBody[k].classList.add('showtablebody');
+
+        }else{
+            tableBody[k].classList.add('hide');
+            tableBody[k].classList.remove('showtablebody');
+        }
+       }
+       
+        
+    })
+}

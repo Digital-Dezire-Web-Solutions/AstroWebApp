@@ -1868,8 +1868,265 @@ Our main Comp CSS code
         margin-bottom: 1rem;
         margin-left: 1rem;
         margin-top: 1rem;
+        
     }
 
+    /* --------------- Our Profile Details comp */
+
+    .profile-det-comp{
+        position: relative;
+        width: 100%;
+        padding: 3rem 1.87rem;
+        background-color: #fff7f5;
+
+    }
+
+    .profile-det-weilcome-bx{
+        position: relative;
+        width: 100%;
+        background-color: #fffdfb;
+        padding: 1.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: .55rem;
+    }
+
+    .prof-det-img{
+        position: relative;
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .prof-det-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .premium-text img{
+        width: 2rem;
+        height: auto;
+    }
+
+    .prof-det-info p{
+        font-size: 1.3rem;
+        margin-bottom: 0;
+        line-height: 1.4;
+    }
+
+    .prof-det-info h6{
+        font-weight: 600;
+        color: #333;
+        margin-bottom: .5rem;
+    }
+
+    .premium-text{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .76rem;
+    }
+
+    .premium-text span{
+        position: relative;
+        top: -.4rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .house-factors-selc-bx{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 3rem;
+    }
+    
+    .house-fact-sel-bx {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .house-fact-sel-bx label{
+        font-size: 1.45rem;
+        color: #585757;
+        font-weight: 400;
+    }
+    
+    .house-fact-sel-bx select{
+        width: 12rem;
+        background-color: #fff;
+        border: none;
+        border: .1rem solid #ddd;
+        height: 3rem;
+        border-radius: .55rem;
+        padding-inline: .55rem;
+        outline: none;
+    }
+
+    .house-fact-sel-bx option{
+        color: #ff7e3e;
+        background-color: #fef8f6;
+    }
+
+
+    /* ------------------ our table comp  */
+
+    .table-comp{
+        position: relative;
+        width: 100%;
+        background-color: #fff7f1;
+        padding-inline: 1.78rem;
+        padding-block-start: 1rem;
+        padding-block-end: 3rem;
+
+    }
+
+    .table-data{
+        position: relative;
+        width: 100%;
+        white-space: nowrap;
+        border-collapse: collapse;
+
+    }
+
+    .table-data table{
+        width: 100%;
+        white-space: nowrap;
+        border-collapse: collapse;
+    }
+
+    
+    .table-data table thead tr th{
+        height: 4.5rem;
+        text-align: center;
+        background-color: #f9852d;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .custom-dropdown-Btn{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #fe7000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        cursor: pointer;
+    }
+
+    .custom-dropdown-Btn span{
+        position: relative;
+        font-size: 1.6rem;
+        top: .3rem;        
+    }
+
+    .custom-dropdown-Btn.activedropdwn span{
+        transform: rotate(180deg);
+        top: -.3rem;
+    }
+
+    .table-data table tbody tr{
+        border-bottom: .1rem solid #ffc599;
+    }
+    
+      
+    .table-data table tbody tr td{
+        text-align: center;
+        height: 4.5rem;
+        background-color: #ffe9dd;
+    
+    }
+
+    .table-data table .tableBody.hide , .table-data table .tableBody{
+        display: none;
+    }
+
+    
+    .table-data table .tableBody.showtablebody{
+     display: contents;
+    }
+
+    .td-span span{
+        font-size: 1.4rem;
+        color: #212121;
+        font-weight: 500;
+    }
+    
+    .pie-img{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+    }
+
+    .pie-img img{
+        width: 4rem;
+        height: auto;
+    }
+    
+    .color-bx{
+        position: relative;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    .color-bx1{
+        background-color: green;
+    }
+    .color-bx2{
+        background-color: #0b5f0b;
+    }
+    .color-bx3{
+        background-color: #f10000;
+    }
+    .color-bx4{
+        background-color: #fe7000;
+    }
+
+    .ref-icon{
+        position: relative;
+        top: .3rem;
+        color: #1e1e1e;
+    }
+
+    .ref-icon ion-icon{
+        font-size: 1.6rem;
+    }
+    
+
+    .flexible-layout{
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+    }
+
+    .table-data-fix-size{
+        width: 26rem;
+    }
+
+    .table-data-fix-size2{
+        width: 20rem;
+    }
+    
+    
+    
+    
+    
+    
 
     @media all and (min-width: 1025px) and (max-width : 1125px){
         html{
@@ -1880,7 +2137,6 @@ Our main Comp CSS code
     }
 
 
-    
     @media all and (min-width: 768px) and (max-width : 1024px){
         html{
             font-size: 56%;
@@ -2112,6 +2368,11 @@ Our main Comp CSS code
     @media all and (min-width: 320px) and (max-width : 767px){
         html{
             font-size: 56.2%;
+        }
+
+        .table-data-fix-size{
+            width: 100%;
+            margin-bottom: 2.6rem;
         }
 
         .cart-lists-bx .chckout-btn{
