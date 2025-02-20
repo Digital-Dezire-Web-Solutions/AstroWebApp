@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakshatra and Tithi Vedh Finder</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script>
+        // const planetPositions = {
+        //     'Sun': { nakshatra: 'Ashvini', pada: 1 },
+        //     'Moon': { nakshatra: 'Bharani', pada: 2 },
+        //     'Mars': { nakshatra: 'Krittika', pada: 3 },
+        //     'Mercury': { nakshatra: 'Rohini', pada: 4 },
+        //     'Jupiter': { nakshatra: 'Mrigashira', pada: 1 },
+        //     'Venus': { nakshatra: 'Ardra', pada: 2 },
+        //     'Saturn': { nakshatra: 'Punarvasu', pada: 3 },
+        //     'Rahu': { nakshatra: 'Pushya', pada: 4 },
+        //     'Ketu': { nakshatra: 'Ashlesha', pada: 1 }
+        // };
+
+        // function showTithiVedh() {
+        //     const nakshatra = document.getElementById('nakshatraSelect').value;
+        //     const vedh = tithiVedhTable[nakshatra] || { front: 'No Vedh', right: 'No Vedh', left: 'No Vedh' };
+
+        //     document.getElementById('tithiVedhResult').innerHTML = `
+        //         <b>Tithi Vedh for Nakshatra: ${nakshatra}</b><br>
+        //         Front Vedh Tithis: ${vedh.front}<br>
+        //         Right Vedh Tithis: ${vedh.right}<br>
+        //         Left Vedh Tithis: ${vedh.left}
+        //     `;
+        // }
+
+        // function showPlanetTithiVedh() {
+        //     const planet = document.getElementById('planetSelect').value;
+        //     const position = planetPositions[planet];
+
+        //     if (!position) {
+        //         document.getElementById('planetTithiVedhResult').innerText = 'Planet position not found';
+        //         return;
+        //     }
+
+        //     const { nakshatra, pada } = position;
+        //     const vedh = tithiVedhTable[nakshatra] || { front: 'No Vedh', right: 'No Vedh', left: 'No Vedh' };
+
+        //     document.getElementById('planetTithiVedhResult').innerHTML = `
+        //         <b>Tithi Vedh for Planet: ${planet}</b><br>
+        //         Nakshatra: ${nakshatra}, Pada: ${pada}<br>
+        //         Front Vedh Tithis: ${vedh.front}<br>
+        //         Right Vedh Tithis: ${vedh.right}<br>
+        //         Left Vedh Tithis: ${vedh.left}
+        //     `;
+        // }
+    </script>
+</head>
+
+<body>
+
+    <!-- <h1>Nakshatra and Tithi Vedh Finder</h1>
+
+    <h2>Tithi Vedh Finder</h2>
+    <label for="nakshatraSelect">Select Nakshatra:</label>
+    <select id="nakshatraSelect">
+        <option value="Ashvini">Ashvini</option>
+        <option value="Bharani">Bharani</option>
+        <option value="Krittika">Krittika</option>
+        <option value="Rohini">Rohini</option>
+        <option value="Mrigashira">Mrigashira</option>
+        <option value="Ardra">Ardra</option>
+        <option value="Punarvasu">Punarvasu</option>
+        <option value="Pushya">Pushya</option>
+        <option value="Ashlesha">Ashlesha</option>
+        <option value="Magha">Magha</option>
+        <option value="PurvaPhalguni">Purva Phalguni</option>
+        <option value="UttaraPhalguni">UttaraPhalguni</option>
+        <option value="Hasta">Hasta</option>
+        <option value="Chitra">Chitra</option>
+        <option value="Svati">Svati</option>
+        <option value="Vishakha">Vishakha</option>
+        <option value="Anuradha">Anuradha</option>
+        <option value="Jyeshtha">Jyeshtha</option>
+        <option value="Mula">Mula</option>
+        <option value="PurvaShadha">PurvaShadha</option>
+        <option value="Uttara Ashadha">Uttara Ashadha</option>
+        <option value="Sravana">Sravana</option>
+        <option value="Dhanista">Dhanista</option>
+        <option value="Shatabhisaj">Shatabhisaj</option>
+        <option value="Purva Bhadrapada">Purva Bhadrapada</option>
+        <option value="Uttara Bhadrapada">Uttara Bhadrapada</option>
+        <option value="Revati">Revati</option>
+    </select>
+
+    <button onclick="showTithiVedh()">Get Tithi Vedh</button>
+    <p id="tithiVedhResult"></p>
+
+    <h2>Planetary Tithi Vedh Finder</h2>
+    <label for="planetSelect">Select Planet:</label>
+    <select id="planetSelect">
+        <option value="Sun">Sun</option>
+        <option value="Moon">Moon</option>
+        <option value="Mars">Mars</option>
+        <option value="Mercury">Mercury</option>
+        <option value="Jupiter">Jupiter</option>
+        <option value="Venus">Venus</option>
+        <option value="Saturn">Saturn</option>
+        <option value="Rahu">Rahu</option>
+        <option value="Ketu">Ketu</option>
+    </select>
+
+    <button onclick="showPlanetTithiVedh()">Get Planetary Tithi Vedh</button>
+    <p id="planetTithiVedhResult"></p> -->
+
+
+    <h1>Planet Tithi Vedh</h1>
+    <table id="planetTithiVedhTable">
+        <thead>
+            <tr>
+                <th>Planet</th>
+                <th>Nakshatra</th>
+                <th>Pada</th>
+                <th>Front Vedh</th>
+                <th>Right Vedh</th>
+                <th>Left Vedh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+        const tithiVedhTable = {
+            'Ashvini': { front: '-', right: '-', left: '-' },
+            'Bharani': { front: '-', right: '3,4,8,9,13,14', left: '-' },
+            'Krittika': { front: '-', right: '1,2,6,7,11,12', left: '-' },
+            'Rohini': { front: '-', right: '-', left: '-' },
+            'Mrigashira': { front: '4,9,14', right: '-', left: '-' },
+            'Ardra': { front: '1,6,11,5,10,15,3,8,13', right: '-', left: '-' },
+            'Punarvasu': { front: '2,7,12', right: '-', left: '-' },
+            'Pushya': { front: '-', right: '-', left: '-' },
+            'Ashlesha': { front: '-', right: '1,6,11,4,9,14', left: '-' },
+            'Magha': { front: '-', right: '-', left: '2,7,12,3,8,13' },
+            'PurvaPhalguni': { front: '-', right: '-', left: '-' },
+            'UttaraPhalguni': { front: '1,6,11', right: '-', left: '-' },
+            'Hasta': { front: '4,9,14,5,10,15,2,7,12', right: '-', left: '-' },
+            'Chitra': { front: '3,8,13', right: '-', left: '-' },
+            'Svati': { front: '-', right: '-', left: '-' },
+            'Vishakha': { front: '-', right: '1,6,11,2,7,12', left: '-' },
+            'Anuradha': { front: '-', right: '-', left: '3,4,8,9,13,14' },
+            'Jyeshtha': { front: '-', right: '-', left: '-' },
+            'Mula': { front: '2,7,12', right: '-', left: '-' },
+            'PurvaShadha': { front: '1,6,11,5,10,15,3,8,13', right: '-', left: '-' },
+            'Uttara Ashadha': { front: '4,9,14', right: '-', left: '-' },
+            'Sravana': { front: '-', right: '2,7,12,3,8,13', left: '-' },
+            'Dhanista': { front: '-', right: '-', left: '1,6,11,4,9,14' },
+            'Shatabhisaj': { front: '-', right: '-', left: '-' },
+            'Purva Bhadrapada': { front: '3,8,13', right: '-', left: '-' },
+            'Uttara Bhadrapada': { front: '4,9,14,5,10,15,2,7,12', right: '-', left: '-' },
+            'Revati': { front: '1,6,11', right: '-', left: '-' }
+        };
+        if (horoscopeData && horoscopeData.response) {
+            const planetDatas = horoscopeData.response;
+
+            // Function to check if a value is defined
+            const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+            // Map Planet Data
+            const mapPlanetData = (data) => {
+                if (Array.isArray(data)) {
+                    return data.map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                        pada: planet.nakshatra_pada,
+                    }));
+                } else if (typeof data === "object" && data !== null) {
+                    return Object.values(data).map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                        pada: planet.nakshatra_pada,
+                    }));
+                } else {
+                    console.error("Unexpected data format for planets:", data);
+                    return [];
+                }
+            };
+
+            // Extract planet data from horoscope response
+            const planets = mapPlanetData(planetDatas).slice(0,10);
+
+            // Populate Table
+            // Populate the table with planets, nakshatras, and tithi vedh
+            function populateTable() {
+                const tableBody = document.getElementById('planetTithiVedhTable').querySelector('tbody');
+                tableBody.innerHTML = '';  // Clear any existing rows
+
+                planets.forEach(({ name, nakshatra, pada }) => {
+                    const vedh = tithiVedhTable[nakshatra] || { front: 'No Vedh', right: 'No Vedh', left: 'No Vedh' };
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${name}</td>
+                        <td>${nakshatra}</td>
+                        <td>${pada}</td>
+                        <td>${vedh.front}</td>
+                        <td>${vedh.right}</td>
+                        <td>${vedh.left}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // Populate the table on page load
+            document.addEventListener('DOMContentLoaded', populateTable);
+
+        } else {
+            console.error("Horoscope data not found or invalid in localStorage.");
+        }
+
+
+    </script>
+    <h1 style="text-align: center;">Tithi Table</h1>
+    <table id="tithiTable">
+      <thead>
+        <tr>
+          <th>Tithi</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be populated dynamically -->
+      </tbody>
+    </table>
+  
+    <script>
+      // JavaScript Code
+      const tithis = [
+        { tithi: "Pratipada", number: 1 },
+        { tithi: "Dvitiya", number: 2 },
+        { tithi: "Tritiya", number: 3 },
+        { tithi: "Chaturthi", number: 4 },
+        { tithi: "Panchami", number: 5 },
+        { tithi: "Shashti", number: 6 },
+        { tithi: "Saptami", number: 7 },
+        { tithi: "Ashtami", number: 8 },
+        { tithi: "Navami", number: 9 },
+        { tithi: "Dashami", number: 10 },
+        { tithi: "Ekadashi", number: 11 },
+        { tithi: "Dwadashi", number: 12 },
+        { tithi: "Trayodashi", number: 13 },
+        { tithi: "Chaturdashi", number: 14 },
+        { tithi: "Purnima", number: 15 },
+        { tithi: "Amavasya", number: 0 },
+      ];
+  
+      // Function to populate the table
+      function populateTithiTable() {
+        const tableBody = document.querySelector("#tithiTable tbody");
+        tithis.forEach(tithi => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${tithi.tithi}</td><td>${tithi.number}</td>`;
+          tableBody.appendChild(row);
+        });
+      }
+  
+      // Call the function on page load
+      populateTithiTable();
+    </script>
+</body>
+
+</html>

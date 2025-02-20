@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakshatra Trading Days</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        } */
+    </style>
+</head>
+
+<body>
+    <h2>Planet Data Viewer</h2>
+    <label for="planetSelect">Select Planet:</label>
+    <select id="planetSelect">
+        <option value="">--Select a Planet--</option>
+        <!-- Planets will be dynamically added here -->
+    </select>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Planet</th>
+                <th>Nakshatra</th>
+                <th>Tradeable Days</th>
+            </tr>
+        </thead>
+        <tbody id="nakshatraTableBody">
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+        if (horoscopeData && horoscopeData.response) {
+            const planetDatas = horoscopeData.response;
+
+            // Function to check if a value is defined
+            const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+            // Map Planet Data
+            const mapPlanetData = (data) => {
+                if (Array.isArray(data)) {
+                    return data.map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                    }));
+                } else if (typeof data === "object" && data !== null) {
+                    return Object.values(data).map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                    }));
+                } else {
+                    console.error("Unexpected data format for planets:", data);
+                    return [];
+                }
+            };
+
+            // Extract planet data from horoscope response
+            const planets = mapPlanetData(planetDatas).slice(0, 10);
+            // Array of Nakshatras (Headers)
+            const headers = [
+                'Ashvini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra', 'Punarvasu', 'Pushya', 'Ashlesha', 'Magha',
+                'PurvaPhalguni', 'UttaraPhalguni', 'Hasta', 'Chitra', 'Svati', 'Vishakha', 'Anuradha', 'Jyeshtha', 'Mula', 'PurvaShadha',
+                'Uttara Ashadha', 'Sravana', 'Dhanista', 'Shatabhisaj', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati'
+            ];
+            const nakshatraTable = {
+                'Ashvini': [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                'Bharani': [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Krittika': [1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Rohini': [0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Mrigashira': [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                'Ardra': [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Punarvasu': [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Pushya': [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                'Ashlesha': [1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1],
+                'Magha': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                'PurvaPhalguni': [1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+                'UttaraPhalguni': [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0],
+                'Hasta': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1],
+                'Chitra': [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0],
+                'Svati': [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Vishakha': [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+                'Anuradha': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1],
+                'Jyeshtha': [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
+                'Mula': [0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0],
+                'PurvaShadha': [1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+                'Uttara Ashadha': [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1],
+                'Sravana': [1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+                'Dhanista': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1],
+                'Shatabhisaj': [1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0],
+                'Purva Bhadrapada': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1],
+                'Uttara Bhadrapada': [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+                'Revati': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1],
+            };
+
+            // Function to get tradeable days for a Nakshatra
+            const getTradeableDays = (personNakshatra) => {
+                const tradeableDays = [];
+                if (personNakshatra in nakshatraTable) {
+                    nakshatraTable[personNakshatra].forEach((value, index) => {
+                        if (value === 1) {
+                            tradeableDays.push(headers[index]);
+                        }
+                    });
+                } else {
+                    alert('Nakshatra not found!');
+                }
+                return tradeableDays;
+            };
+
+            // Populate the planet select dropdown
+            const planetSelect = document.getElementById('planetSelect');
+            planets.forEach(planet => {
+                const option = document.createElement('option');
+                option.value = planet.name;
+                option.textContent = planet.name;
+                planetSelect.appendChild(option);
+            });
+
+            // Set Moon as the default planet
+            const moonPlanet = planets.find(planet => planet.name === 'Moon');
+            if (moonPlanet) {
+                planetSelect.value = 'Moon'; // Set the value of the select to 'Moon'
+            }
+
+            // Handle planet selection
+            planetSelect.addEventListener('change', (event) => {
+                const selectedPlanetName = event.target.value;
+                const selectedPlanet = planets.find(planet => planet.name === selectedPlanetName);
+
+                if (selectedPlanet) {
+                    const nakshatra = selectedPlanet.nakshatra;
+                    const tradeableDays = getTradeableDays(nakshatra);
+
+                    // Populate the table with the selected planet's data
+                    const tableBody = document.getElementById('nakshatraTableBody');
+                    tableBody.innerHTML = '';  // Clear previous data
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td>${selectedPlanet.name}</td>
+                <td>${nakshatra}</td>
+                <td>${tradeableDays.join(', ')}</td>
+            `;
+                    tableBody.appendChild(row);
+                }
+            });
+
+            // Trigger the change event for the default planet (Moon)
+            if (moonPlanet) {
+                const event = new Event('change');
+                planetSelect.dispatchEvent(event);
+            }
+        } else {
+            console.error("Horoscope data is not available or malformed.");
+        }
+    </script>
+</body>
+
+</html>

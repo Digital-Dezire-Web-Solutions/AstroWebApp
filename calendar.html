@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-Month Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .calendar-container {
+            width: 400px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .month-year {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn {
+            padding: 5px 15px;
+            font-size: 16px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:disabled {
+            background: #ddd;
+            cursor: not-allowed;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+
+        .day,
+        .date {
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .day {
+            background: #007BFF;
+            color: white;
+        }
+
+        .current-date {
+            background: #007BFF;
+            color: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button class="btn" id="prevBtn">&lt; Previous</button>
+            <div class="month-year" id="monthYear"></div>
+            <button class="btn" id="nextBtn">Next &gt;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Days and dates will be dynamically generated -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const monthYear = document.getElementById("monthYear");
+            const calendarGrid = document.getElementById("calendarGrid");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            // Array of month names
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+
+            // Get the current date
+            let currentMonth = new Date().getMonth();
+            let currentYear = new Date().getFullYear();
+            const today = new Date();
+
+            // Function to render the calendar
+            function renderCalendar(month, year) {
+                // Update the header
+                monthYear.textContent = `${monthNames[month]} ${year}`;
+
+                // Clear the calendar grid
+                calendarGrid.innerHTML = "";
+
+                // Add the days of the week
+                const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                daysOfWeek.forEach(day => {
+                    const dayDiv = document.createElement("div");
+                    dayDiv.classList.add("day");
+                    dayDiv.textContent = day;
+                    calendarGrid.appendChild(dayDiv);
+                });
+
+                // Get the first and last day of the month
+                const firstDay = new Date(year, month, 1).getDay();
+                const lastDate = new Date(year, month + 1, 0).getDate();
+
+                // Add empty spaces for days before the 1st of the month
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDiv = document.createElement("div");
+                    emptyDiv.classList.add("date");
+                    calendarGrid.appendChild(emptyDiv);
+                }
+
+                // Add days of the month
+                for (let date = 1; date <= lastDate; date++) {
+                    const dateDiv = document.createElement("div");
+                    dateDiv.classList.add("date");
+                    if (date === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                        dateDiv.classList.add("current-date");
+                    }
+                    dateDiv.textContent = date;
+                    calendarGrid.appendChild(dateDiv);
+                }
+
+                // Disable buttons at the boundaries
+                prevBtn.disabled = month === 0 && year === today.getFullYear() - 10;
+                nextBtn.disabled = month === 11 && year === today.getFullYear() + 10;
+            }
+
+            // Event listeners for navigation buttons
+            prevBtn.addEventListener("click", function () {
+                if (currentMonth === 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                } else {
+                    currentMonth--;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            nextBtn.addEventListener("click", function () {
+                if (currentMonth === 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                } else {
+                    currentMonth++;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            // Render the initial calendar
+            renderCalendar(currentMonth, currentYear);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nakshatra Pada List</h2>
+    <table id="resultbody">
+        <thead>
+            <tr>
+                <th>House</th>
+                <th>Nakshatra (Pada)</th>
+                <th>Rashi</th>
+                <th>Planet</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const nakshatraPadas = [];
+        const nakshatras = [
+            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
+            "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni", "Hasta",
+            "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista", "Shatabhisaj",
+            "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
+        ];
+
+        const rashis = [
+            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
+            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+        ];
+    </script>
+    <script>
+        nakshatras.forEach((nakshatra, index) => {
+            for (let pada = 1; pada <= 4; pada++) {
+                const rashiIndex = Math.floor((index * 4 + (pada - 1)) / 9) % 12;
+                nakshatraPadas.push({ nakshatra, pada, rashi: rashis[rashiIndex] });
+            }
+        });
+
+        // Function to populate the table
+        const populateTable = () => {
+            const resultTable = document.getElementById("resultbody").querySelector("tbody");
+            resultTable.innerHTML = "";
+
+            // Get horoscopeData from localStorage
+            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+            let planets = [];
+
+            if (horoscopeData && horoscopeData.response) {
+                const planetDatas = horoscopeData.response;
+
+                // Map Planet Data
+                const mapPlanetData = (data) => {
+                    if (Array.isArray(data)) {
+                        return data.map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                        }));
+                    } else if (typeof data === "object" && data !== null) {
+                        return Object.values(data).map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                        }));
+                    } else {
+                        console.error("Unexpected data format for planets:", data);
+                        return [];
+                    }
+                };
+
+                planets = mapPlanetData(planetDatas);
+            }
+
+            // Default nakshatra and pada (use first planet's data if available, else Ashvini Pada 1)
+            const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
+            const defaultPada = planets[0]?.pada || 1;
+
+            let currentIndex = nakshatraPadas.findIndex(
+                (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+            );
+
+            for (let house = 1; house <= 12; house++) {
+                for (let i = 0; i < 9; i++) {
+                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                    const pada = nakshatraPadas[padaIndex];
+
+                    // Find the matching planet
+                    const matchingPlanet = planets.find(
+                        (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+                    );
+
+                    const planetName = matchingPlanet ? matchingPlanet.name : "";
+                    const row = `
+                        <tr>
+                            <td>House ${house}</td>
+                            <td>${pada.nakshatra}  (${pada.pada})</td>
+                            <td>${pada.rashi}</td>
+                            <td>${planetName || "-"}</td>
+                        </tr>`;
+                    resultTable.innerHTML += row;
+                    // if (!planetName == '') {
+                    // }
+                }
+                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+            }
+        };
+
+        // Run populateTable on window load
+        window.onload = populateTable;
+    </script>
+</body>
+
+</html>

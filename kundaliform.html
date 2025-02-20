@@ -246,7 +246,7 @@
                                 <label for="fullname">Full Name</label>
                                 <div class="inpt">
                                     <input type="text" name="fullname" id="fullname" placeholder="Enter your name..."
-                                        autocomplete="off" required />
+                                        autocomplete="off" required value="rahul"/>
                                 </div>
                             </div>
 
@@ -264,21 +264,21 @@
                                 <div class="inpt-bx">
                                     <label for="day">Day</label>
                                     <div class="inpt">
-                                        <input type="number" id="day" class="day" min="1" max="31" required />
+                                        <input type="number" id="day" class="day" min="1" max="31" required value="10"/>
                                     </div>
                                 </div>
 
                                 <div class="inpt-bx">
                                     <label for="month">Month</label>
                                     <div class="inpt">
-                                        <input type="number" id="month" class="month" min="1" max="12" required />
+                                        <input type="number" id="month" class="month" min="1" max="12" required value="10"/>
                                     </div>
                                 </div>
 
                                 <div class="inpt-bx">
                                     <label for="year">Year</label>
                                     <div class="inpt">
-                                        <input type="number" id="year" class="year" min="1900" max="2100" required />
+                                        <input type="number" id="year" class="year" min="1900" max="2100" required value="2002"/>
                                     </div>
                                 </div>
                             </div>
@@ -287,21 +287,21 @@
                                 <div class="inpt-bx">
                                     <label for="hours">Hours</label>
                                     <div class="inpt">
-                                        <input type="number" id="hours" class="hours" min="0" max="23" required />
+                                        <input type="number" id="hours" class="hours" min="0" max="23" required value="10"/>
                                     </div>
                                 </div>
 
                                 <div class="inpt-bx">
                                     <label for="minutes">Minutes</label>
                                     <div class="inpt">
-                                        <input type="number" id="minutes" class="minutes" min="0" max="59" required />
+                                        <input type="number" id="minutes" class="minutes" min="0" max="59" required value="10"/>
                                     </div>
                                 </div>
 
                                 <div class="inpt-bx">
                                     <label for="seconds">Seconds</label>
                                     <div class="inpt">
-                                        <input type="number" id="seconds" class="seconds" min="0" max="59" />
+                                        <input type="number" id="seconds" class="seconds" min="0" max="59" value="10"/>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
                                 <label for="birthplace">Birth Place</label>
                                 <div class="inpt">
                                     <input type="text" id="birthplace" class="birthplace"
-                                        placeholder="Enter birth place..." required />
+                                        placeholder="Enter birth place..." required value="delhi"/>
                                 </div>
                             </div>
 
@@ -349,25 +349,32 @@
             const time = `${hours}:${minutes}`;
             const location = document.getElementById('birthplace').value;
 
+
+            console.log(location, "birthplace")
+            console.log(time, "time of birth")
+            console.log(date, "dob")
+            console.log(gender, "gender")
+            console.log(textInput, "fullname")
             // const loading = document.getElementById('loading');
             // const error = document.getElementById('error');
             // loading.style.display = 'block';
 
             try {
                 const formattedDate = date.split('-').reverse().join('/');
-
+                
+                const apiKey = "b50683e7-4262-5dc0-b52e-820c47295f8a"
+                const baseUrl = "https://api.vedicastroapi.com/v3-json";
                 // Fetch location coordinates
-                const altitudeUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/AddressToGeoLocation/Address/${encodeURIComponent(
-                    location
-                )}/Ayanamsa/Raman`;
+                const altitudeUrl = `${baseUrl}/utilities/geo-search?city=${location}&api_key=${apiKey}`;
                 const response1 = await fetch(altitudeUrl);
                 if (!response1.ok) throw new Error("Failed to fetch location data.");
                 const data1 = await response1.json();
-                const lat = data1.Payload.AddressToGeoLocation.Latitude;
-                const lon = data1.Payload.AddressToGeoLocation.Longitude;
+                const data = data1.response;
+                const lat = data[0].coordinates[0];
+                const lon = data[0].coordinates[1];
 
                 const params = {
-                    api_key: "740c3002-e2c8-579c-af20-d71510bdbd4c",
+                    api_key: apiKey,
                     dob: formattedDate,
                     tob: time,
                     lat,
@@ -379,37 +386,40 @@
                     D9: "D9",
                 };
 
-                const strengthUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/PlanetStrength/PlanetName/All/Location/${location}/Time/${params.tob}/${params.dob}/+05:30`
-                const response4 = await fetch(strengthUrl);
-                if (!response4.ok) throw new Error("Failed to fetch horoscope data.");
-                const strengthData = await response4.json();
+                // const strengthUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/PlanetStrength/PlanetName/All/Location/${location}/Time/${params.tob}/${params.dob}/+05:30`
+                // const response4 = await fetch(strengthUrl);
+                // if (!response4.ok) throw new Error("Failed to fetch horoscope data.");
+                // const strengthData = await response4.json();
 
-                const natureUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/IsPlanetBenefic/PlanetName/All/Location/${location}/Time/${params.tob}/${params.dob}/+05:30`
-                const response5 = await fetch(natureUrl);
-                if (!response5.ok) throw new Error("Failed to fetch nature data.");
-                const natureData = await response5.json();
+                // const natureUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/IsPlanetBenefic/PlanetName/All/Location/${location}/Time/${params.tob}/${params.dob}/+05:30`
+                // const response5 = await fetch(natureUrl);
+                // if (!response5.ok) throw new Error("Failed to fetch nature data.");
+                // const natureData = await response5.json();
 
-                const benificAspectUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/IsPlanetAspectedByBeneficPlanets/PlanetName/All9WithUpagrahas/Location/${location}/Time/${params.tob}/${params.dob}/+05:30`
-                const response6 = await fetch(benificAspectUrl);
-                if (!response6.ok) throw new Error("Failed to fetch aspect by planet data.");
-                const benificAspectData = await response6.json();
+                // const benificAspectUrl = `https://vedastroapi.azurewebsites.net/api/Calculate/IsPlanetAspectedByBeneficPlanets/PlanetName/All9WithUpagrahas/Location/${location}/Time/${params.tob}/${params.dob}/+05:30`
+                // const response6 = await fetch(benificAspectUrl);
+                // if (!response6.ok) throw new Error("Failed to fetch aspect by planet data.");
+                // const benificAspectData = await response6.json();
 
                 // Fetch horoscope data
-                const baseUrl = "https://api.vedicastroapi.com/v3-json/horoscope/";
-                const horoscopeUrl = `${baseUrl}planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
                 const response2 = await fetch(horoscopeUrl);
                 if (!response2.ok) throw new Error("Failed to fetch horoscope data.");
                 const horoscopeData = await response2.json();
 
                 // Fetch charts
-                const chart1Url = `${baseUrl}chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-                const chart2Url = `${baseUrl}chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                const chart1Url = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                const chart2Url = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
 
                 // Save data to localStorage
                 localStorage.setItem('horoscopeData', JSON.stringify(horoscopeData));
-                localStorage.setItem('strengthData', JSON.stringify(strengthData));
-                localStorage.setItem('natureData', JSON.stringify(natureData));
+                // localStorage.setItem('strengthData', JSON.stringify(strengthData));
+                // localStorage.setItem('natureData', JSON.stringify(natureData));
                 localStorage.setItem('params', JSON.stringify(params));
+                console.log(horoscopeData,"horoscope")
+                console.log(chart1Url,"chart1")
+                console.log(chart2Url,"chart2")
+                console.log("params",params)
                 try {
                     // Fetch the chart data
                     const response3 = await fetch(chart1Url);
@@ -428,11 +438,12 @@
                 }
 
                 // Redirect to kundali.html
-                window.location.href = './kundali.html';
+                // window.location.href = './kundali.html';
             } catch (err) {
-                error.textContent = err.message;
+                // error.textContent = err.message;
+                console.log("error")
             } finally {
-                loading.style.display = 'none';
+                // loading.style.display = 'none';
             }
         });
     </script>

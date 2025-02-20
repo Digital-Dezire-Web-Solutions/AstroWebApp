@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Status in Rashis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Planetary Status in Rashis</h1>
+        <label for="planetSelect">Select a Planet:</label>
+        <select id="planetSelect">
+            <option value="Sun">Sun</option>
+            <option value="Moon">Moon</option>
+            <option value="Mars">Mars</option>
+            <option value="Mercury">Mercury</option>
+            <option value="Jupiter">Jupiter</option>
+            <option value="Venus">Venus</option>
+            <option value="Saturn">Saturn</option>
+            <option value="Rahu">Rahu</option>
+            <option value="Ketu">Ketu</option>
+        </select>
+        <button onclick="displayStatus()">Show Status</button>
+
+        <table id="statusTable">
+            <thead>
+                <tr>
+                    <th>Rashi</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        const rashis = [
+            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+            "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+        ];
+
+        const ucchaNeechaData = {
+            "Sun": { exalted: "Aries", debilitated: "Libra" },
+            "Moon": { exalted: "Taurus", debilitated: "Scorpio" },
+            "Mars": { exalted: "Capricorn", debilitated: "Cancer" },
+            "Mercury": { exalted: "Virgo", debilitated: "Pisces" },
+            "Jupiter": { exalted: "Cancer", debilitated: "Capricorn" },
+            "Venus": { exalted: "Pisces", debilitated: "Virgo" },
+            "Saturn": { exalted: "Libra", debilitated: "Aries" },
+            "Rahu": { exalted: "Gemini", debilitated: "Sagittarius" },
+            "Ketu": { exalted: "Sagittarius", debilitated: "Gemini" }
+        };
+
+        const planetaryRelations = {
+            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Ketu": { friends: ["Saturn"], enemies: ["Sun", "Moon"] }
+        };
+
+        const rashiLords = {
+            "Aries": "Mars", "Taurus": "Venus", "Gemini": "Mercury", "Cancer": "Moon",
+            "Leo": "Sun", "Virgo": "Mercury", "Libra": "Venus", "Scorpio": "Mars",
+            "Sagittarius": "Jupiter", "Capricorn": "Saturn", "Aquarius": "Saturn", "Pisces": "Jupiter"
+        };
+
+        function getStatus(planet, rashi) {
+            const exaltedSign = ucchaNeechaData[planet]?.exalted;
+            const debilitatedSign = ucchaNeechaData[planet]?.debilitated;
+
+            if (rashi === exaltedSign) return "Uccha (Exalted)";
+            if (rashi === debilitatedSign) return "Neecha (Debilitated)";
+
+            const rashiLord = rashiLords[rashi];
+            const friends = planetaryRelations[planet]?.friends || [];
+            const enemies = planetaryRelations[planet]?.enemies || [];
+
+            if (rashiLord === planet) return "Own";
+            if (friends.includes(rashiLord)) return "Mitra (Friend)";
+            if (enemies.includes(rashiLord)) return "Shatru (Enemy)";
+
+            return "Neutral";
+        }
+
+        function displayStatus() {
+            const planet = document.getElementById("planetSelect").value;
+            const tableBody = document.querySelector("#statusTable tbody");
+            tableBody.innerHTML = "";
+
+            rashis.forEach(rashi => {
+                const status = getStatus(planet, rashi);
+                const row = `<tr><td>${rashi}</td><td>${status}</td></tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+
+</html>
