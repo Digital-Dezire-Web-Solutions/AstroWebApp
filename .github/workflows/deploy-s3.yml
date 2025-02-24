@@ -34,4 +34,4 @@ jobs:
       # Step 4: Sync only the specific folder to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ./ s3://astronic --delete --exclude ".git/*" --exclude ".github/*" --exclude "aws/*" --exclude "awscliv2.zip" --exclude "README.md"
+          aws s3 sync ./ s3://astronivesh.com --delete --exclude ".git/*" --exclude ".github/*" --exclude "aws/*" --exclude "awscliv2.zip" --exclude "README.md"
