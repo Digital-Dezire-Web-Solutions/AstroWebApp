@@ -107,7 +107,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-123456789</span>
+                        <span>+91-8800209988</span>
                     </div>
                 </div>
 
@@ -182,19 +182,55 @@
 
                 </div> -->
 
-                <button class="apnt-btn">
+                <button class="apnt-btn coming-soon">
                     Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </button>
 
                 <div class="profile-bx" id="login_btn">
                     <ion-icon name="person-circle-outline" size="large" color="#fe7000"></ion-icon>
-                    <p>LogIn / Reg.</p>
+                    <p id="profile-name">LogIn / Reg.</p>
                 </div>
 
             </div>
 
         </div>
     </section>
+    <style>
+        .coming-soon {
+            filter: grayscale(5);
+        }
+
+        .coming-soon .card-info {
+            color: #ffffff;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            border-radius: .7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: #dcdcdc;
+            transition: ease-in-out
+        }
+
+        .coming-soon:hover .card-info {
+            color: white;
+            transition: color 1s;
+            display: flex;
+            transition: ease-in-out;
+        }
+
+        .coming-soon .card-info p {
+            color: white;
+        }
+    </style>
 
 
     <header class="header">
@@ -223,13 +259,10 @@
 
                 <nav class="nav">
                     <div class="nav-lists flex item-start">
-                        <li><a href="#">Calendar</a></li>
-                        <li><a href="#">Market</a></li>
-                        <li><a href="#">Kundali</a></li>
-                        <li><a href="#">Affirmations</a></li>
-                        <li><a href="#">Runes</a></li>
-                        <li><a href="#">Healing</a></li>
-                        <li><a href="#">Wisdom</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="kundali.html">Kundali</a></li>
+                        <li><a href="market.html">Market</a></li>
+                        <li><a href="https://wa.me/8800209988">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
@@ -251,15 +284,18 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-123456789</span>
+                            <span>+91-8800209988</span>
                         </div>
                     </div>
 
                 </div>
 
 
-                <button class="apnt-btn apnt-btn-mob">
+                <button class="apnt-btn apnt-btn-mob coming-soon">
                     Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </button>
 
             </div>
@@ -935,7 +971,7 @@
 
     </footer>
     <script>
-        const host = "https://astroweb-backend.onrender.com";
+        const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
         async function fetchAllData() {
             try {
@@ -954,6 +990,7 @@
                 const data = await response.json();
                 // console.log(data, "data")
                 populatePTable(data)
+                populateName(data)
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
@@ -969,6 +1006,15 @@
             <div class="profile-desc">
                 <h4>${data.name}</h4>
             </div>
+             
+            `
+        }
+        function populateName(data) {
+            const tableBody = document.getElementById("profile-name");
+            tableBody.innerHTML = "";
+
+            tableBody.innerHTML = `
+            <p>${data.name}</p>
              
             `
         }
@@ -995,12 +1041,8 @@
             if (logoutBox) {
                 logoutBox.addEventListener("click", function () {
                     localStorage.removeItem("token");
+                    window.location.href = "./index.html";
                     location.reload();
-                    localStorage.removeItem('horoscopeData');
-                    localStorage.removeItem('params');
-                    localStorage.removeItem("chart1Data");
-                    localStorage.removeItem("chart2Data");
-                    window.location.href = "./kundali.html";
                 });
             }
         });
@@ -1094,8 +1136,8 @@
             "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
             "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni", "Hasta",
             "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista", "Shatabhisaj",
-            "Purva Bhadrapada", "UttaraBhadra", "Revati"
+            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+            "PurvaBhadra", "UttaraBhadra", "Revati"
         ];
 
         const rashis = [
@@ -1156,8 +1198,8 @@
             "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
             "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
             "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
-            "Uttara Ashadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisaj": "Rahu",
-            "Purva Bhadrapada": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
+            "UttraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
+            "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
         };
 
         const ucchaNeechaDegrees = {
@@ -1185,9 +1227,30 @@
         };
     </script>
     <script>
-        const params = JSON.parse(localStorage.getItem('params'));
-        const horoscopeData = JSON.parse(localStorage.getItem('horoscopeData'));
-        const dashas = JSON.parse(localStorage.getItem("dashas"));
+        async function fetchUserData() {
+            try {
+                const response = await fetch(`${host}/api/detail/fetchalldetail`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const datass = await response.json();
+                // console.log(datass, "data")
+                initializeData(datass)
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        fetchUserData()
+
+
         nakshatras.forEach((nakshatra, index) => {
             for (let pada = 1; pada <= 4; pada++) {
                 const rashiIndex = Math.floor((index * 4 + (pada - 1)) / 9) % 12;
@@ -1266,348 +1329,350 @@
             })
         }
         displayStatus();
-        // console.log(nakshatraPosition, "nakshatraPosition");
 
+        async function initializeData(datass, selectedHouse = "1") {
+            let horoscopeData = datass[0]?.horoscopeData || [];
+            let dashas = datass[0]?.dashas || [];
+            let rashiData = datass[0]?.rashiData || [];
+            let chart1Url = datass[0]?.chart1Url || [];
+            let chart2Url = datass[0]?.chart2Url || [];
+            // Function to populate the table
+            const populateHouseTable = (selectedHouse = "1") => {
+                // const resultTable = document.getElementById("resultbody").querySelector("tbody");
+                // resultTable.innerHTML = "";
 
-        // Function to populate the table
-        const populateHouseTable = (selectedHouse = "1") => {
-            // const resultTable = document.getElementById("resultbody").querySelector("tbody");
-            // resultTable.innerHTML = "";
+                // Get horoscopeData from localStorage
 
-            // Get horoscopeData from localStorage
-            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
-            const rashiData = JSON.parse(localStorage.getItem("rashiData"));
+                let planets = [];
 
-            let planets = [];
+                if (horoscopeData && horoscopeData.response) {
+                    const planetDatas = horoscopeData.response;
 
-            if (horoscopeData && horoscopeData.response) {
-                const planetDatas = horoscopeData.response;
-
-                const createHouses = (startZodiacNumber) => {
-                    const houses = [];
-                    let currentNumber = startZodiacNumber;
-                    for (let i = 0; i < 12; i++) {
-                        houses.push(currentNumber);
-                        currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
-                    }
-                    return houses;
-                };
-
-                // Map Planet Data
-                const mapHPlanetData = (data) => {
-                    if (Array.isArray(data)) {
-                        return data.map((planet) => ({
-                            name: planet.full_name,
-                            nakshatra: planet.nakshatra,
-                            pada: planet.nakshatra_pada,
-                            retro: planet.retro,
-                            is_combust: planet.is_combust,
-                            zodiac: planet.zodiac,
-                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
-                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
-                        }));
-                    } else if (typeof data === "object" && data !== null) {
-                        return Object.values(data).map((planet) => ({
-                            name: planet.full_name,
-                            nakshatra: planet.nakshatra,
-                            pada: planet.nakshatra_pada,
-                            retro: planet.retro,
-                            is_combust: planet.is_combust,
-                            zodiac: planet.zodiac,
-                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
-                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
-                        }));
-                    } else {
-                        console.error("Unexpected data format for planets:", data);
-                        return [];
-                    }
-                };
-
-                planets = mapHPlanetData(planetDatas).slice(0, 10);
-            }
-
-            const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
-            const defaultPada = planets[0]?.pada || 1;
-
-            let currentIndex = nakshatraPadas.findIndex(
-                (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
-            );
-
-            let storedPadas = [];
-            let comparisonData = []; // Store comparison data for use in resultTable
-
-
-            for (let house = 1; house <= 12; house++) {
-                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
-
-                for (let i = 0; i < 10; i++) {
-                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
-                    const pada = nakshatraPadas[padaIndex];
-                    storedPadas.push(nakshatraPadas[padaIndex]);
-                }
-            }
-            for (let house = 1; house <= 12; house++) {
-                if (selectedHouse !== "all" && house !== parseInt(selectedHouse, 10)) {
-                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
-                    continue;
-                }
-
-                const ascendant = planets[0];
-                const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
-                // console.log(ascendant)
-
-
-                planets.forEach((planet) => {
-                    let oneHundredPercent = "-";
-                    let seventyFivePercent = "-";
-                    let fiftyPercent = "-";
-                    let twentyFivePercent = "-";
-
-                    if (selectedHouse === "5" || selectedHouse === "9") {
-                        let matchingPlanets = ["Jupiter", "Rahu", "Ketu"].filter(name => name === planet.name);
-                        if (matchingPlanets.length > 0) {
-                            oneHundredPercent = matchingPlanets.join(", ");
+                    const createHouses = (startZodiacNumber) => {
+                        const houses = [];
+                        let currentNumber = startZodiacNumber;
+                        for (let i = 0; i < 12; i++) {
+                            houses.push(currentNumber);
+                            currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
                         }
-                    }
-                    if (selectedHouse === "4" || selectedHouse === "8") {
-                        let matchingPlanets = ["Mars"].filter(name => name === planet.name);
-                        if (matchingPlanets.length > 0) {
-                            oneHundredPercent = matchingPlanets.join(", ");
-                        }
-                    }
-                    if (selectedHouse === "3" || selectedHouse === "10") {
-                        let matchingPlanets = ["Saturn"].filter(name => name === planet.name);
-                        if (matchingPlanets.length > 0) {
-                            oneHundredPercent = matchingPlanets.join(", ");
-                        }
-                    }
-                    if (planet.houses[0] === ascendantHouseValue) {
-                        oneHundredPercent = planet.name;
-                    }
-                    if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
-                        seventyFivePercent = planet.name;
-                    }
-                    if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
-                        fiftyPercent = planet.name;
-                    }
-                    if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
-                        twentyFivePercent = planet.name;
-                    }
+                        return houses;
+                    };
 
-                    // Save comparison data
-                    comparisonData.push({
-                        name: planet.name,
-                        oneHundredPercent,
-                        seventyFivePercent,
-                        fiftyPercent,
-                        twentyFivePercent,
-                    });
-                });
-
-
-                for (let i = 0; i < 10; i++) {
-                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
-                    const pada = nakshatraPadas[padaIndex];
-                    // console.log(pada,"pada")
-
-                    // Find all matching planets
-                    const matchingPlanets = planets.filter(
-                        (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
-                    );
-
-                    let planetNames = matchingPlanets.length > 0 ? matchingPlanets.map((planet) => planet.name).join(", ") : "-";
-                    let dashakeys = [];
-
-                    matchingPlanets.forEach((planet) => {
-                        Object.entries(dashas).forEach(([key, value]) => {
-                            if (value.name === planet.name) {
-                                dashakeys.push(key);
-                            }
-                        });
-                    });
-
-                    const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
-
-                    // Find planets with percentage matches
-                    let oneHundredPercentNames = comparisonData
-                        .filter((data) => data.oneHundredPercent !== "-")
-                        .map((data) => data.oneHundredPercent);
-                    let seventyFivePercentNames = comparisonData
-                        .filter((data) => data.seventyFivePercent !== "-")
-                        .map((data) => data.seventyFivePercent);
-                    let fiftyPercentNames = comparisonData
-                        .filter((data) => data.fiftyPercent !== "-")
-                        .map((data) => data.fiftyPercent);
-                    let twentyFivePercentNames = comparisonData
-                        .filter((data) => data.twentyFivePercent !== "-")
-                        .map((data) => data.twentyFivePercent);
-
-                    const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map(() => "R").join(", ");
-                    const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map(() => "C").join(", ");
-                    comparisonData.push({
-                        pada: pada,
-                    });
-                }
-
-                let planetTable = document.getElementById("planetTable");
-                let selectedDivisional = document.getElementById("divisionalSelect").value;
-                let selectedRasNak = document.getElementById("rashiNakSelect").value;
-
-                updateTable(comparisonData, storedPadas, position, nakshatraPosition);
-                function updateTable(comparisonData, padas, position, nakshatraPosition) {
-                    let divisionalData = rashiData[selectedDivisional];
-                    // console.log(rashiData, "rashiData")
-                    // console.log(position, "position")
-                    // console.log(nakshatraPosition, "nakshatraPosition")
-                    // console.log(selectedRasNak, "selectedRasNak")
-                    // console.log(comparisonData, "comparisonData")
-
-                    planetTable.innerHTML = ``;
-
-                    let allMatchingPlanets = [];
-
-                    if (padas && Array.isArray(padas)) {
-                        padas.forEach((pada) => {
-                            let matchingPlanets = planets.filter(
-                                (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
-                            );
-
-                            if (matchingPlanets.length > 0) {
-                                allMatchingPlanets.push(...matchingPlanets);
-                            }
-                        });
-                    }
-
-                    // Sorting function
-                    comparisonData.sort((a, b) => {
-                        let getValue = (data) => {
-                            if (data.oneHundredPercent && data.oneHundredPercent !== "-") return 100;
-                            if (data.seventyFivePercent && data.seventyFivePercent !== "-") return 75;
-                            if (data.fiftyPercent && data.fiftyPercent !== "-") return 50;
-                            if (data.twentyFivePercent && data.twentyFivePercent !== "-") return 25;
-                            return 0;
-                        };
-
-                        // Sort by Nakshatra first (alphabetically)
-                        let nakshatraA = a.nakshatra || "";
-                        let nakshatraB = b.nakshatra || "";
-                        let nakshatraDiff = nakshatraA.localeCompare(nakshatraB);
-                        if (nakshatraDiff !== 0) return nakshatraDiff;
-
-                        // Sort by Pada (ascending order)
-                        let padaA = a.pada ? parseInt(a.pada) : 0;
-                        let padaB = b.pada ? parseInt(b.pada) : 0;
-                        if (padaA !== padaB) return padaA - padaB;
-
-                        // Sort by percentage (descending order)
-                        return getValue(b) - getValue(a);
-                    });
-
-                    comparisonData.forEach((data) => {
-                        // console.log(data, "data");
-                        let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
-
-                        let hundred = data.oneHundredPercent && data.oneHundredPercent !== "-" ? data.oneHundredPercent : "";
-                        let seventyFive = data.seventyFivePercent && data.seventyFivePercent !== "-" ? data.seventyFivePercent : "";
-                        let fifty = data.fiftyPercent && data.fiftyPercent !== "-" ? data.fiftyPercent : "";
-                        let twentyFive = data.twentyFivePercent && data.twentyFivePercent !== "-" ? data.twentyFivePercent : "";
-
-                        let percentageText = "";
-                        if (!planetName) {
-                            if (hundred) {
-                                planetName = hundred;
-                                percentageText = " ";
-                            } else if (seventyFive) {
-                                planetName = seventyFive;
-                                percentageText = " 75%";
-                            } else if (fifty) {
-                                planetName = fifty;
-                                percentageText = " 50%";
-                            } else if (twentyFive) {
-                                planetName = twentyFive;
-                                percentageText = " 25%";
-                            } else {
-                                planetName = null;
-                            }
+                    // Map Planet Data
+                    const mapHPlanetData = (data) => {
+                        if (Array.isArray(data)) {
+                            return data.map((planet) => ({
+                                name: planet.full_name,
+                                nakshatra: planet.nakshatra,
+                                pada: planet.nakshatra_pada,
+                                retro: planet.retro,
+                                is_combust: planet.is_combust,
+                                zodiac: planet.zodiac,
+                                zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                                houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                            }));
+                        } else if (typeof data === "object" && data !== null) {
+                            return Object.values(data).map((planet) => ({
+                                name: planet.full_name,
+                                nakshatra: planet.nakshatra,
+                                pada: planet.nakshatra_pada,
+                                retro: planet.retro,
+                                is_combust: planet.is_combust,
+                                zodiac: planet.zodiac,
+                                zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                                houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                            }));
                         } else {
-                            if (hundred === planetName) {
-                                percentageText = " ";
-                            } else if (seventyFive === planetName) {
-                                percentageText = " 75%";
-                            } else if (fifty === planetName) {
-                                percentageText = " 50%";
-                            } else if (twentyFive === planetName) {
-                                percentageText = " 25%";
+                            console.error("Unexpected data format for planets:", data);
+                            return [];
+                        }
+                    };
+
+                    planets = mapHPlanetData(planetDatas).slice(0, 10);
+                }
+
+                const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
+                const defaultPada = planets[0]?.pada || 1;
+
+                let currentIndex = nakshatraPadas.findIndex(
+                    (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+                );
+
+                let storedPadas = [];
+                let comparisonData = []; // Store comparison data for use in resultTable
+
+
+                for (let house = 1; house <= 12; house++) {
+                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+
+                    for (let i = 0; i < 10; i++) {
+                        const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                        const pada = nakshatraPadas[padaIndex];
+                        storedPadas.push(nakshatraPadas[padaIndex]);
+                    }
+                }
+                for (let house = 1; house <= 12; house++) {
+                    if (selectedHouse !== "all" && house !== parseInt(selectedHouse, 10)) {
+                        currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+                        continue;
+                    }
+
+                    const ascendant = planets[0];
+                    const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
+                    // console.log(ascendant)
+
+
+                    planets.forEach((planet) => {
+                        let oneHundredPercent = "-";
+                        let seventyFivePercent = "-";
+                        let fiftyPercent = "-";
+                        let twentyFivePercent = "-";
+
+                        if (selectedHouse === "5" || selectedHouse === "9") {
+                            let matchingPlanets = ["Jupiter", "Rahu", "Ketu"].filter(name => name === planet.name);
+                            if (matchingPlanets.length > 0) {
+                                oneHundredPercent = matchingPlanets.join(", ");
                             }
                         }
-
-                        if (planetName) {
-                            if (planetName === "Ascendant" && selectedHouse !== "1") {
-                                return;
+                        if (selectedHouse === "4" || selectedHouse === "8") {
+                            let matchingPlanets = ["Mars"].filter(name => name === planet.name);
+                            if (matchingPlanets.length > 0) {
+                                oneHundredPercent = matchingPlanets.join(", ");
                             }
-
-                            const matchedPlanet = allMatchingPlanets.find((p) => p.name === planetName);
-                            const retro = matchedPlanet?.retro;
-                            const combust = matchedPlanet?.is_combust;
-
-                            let retroPlanet = retro ? '&#128293;' : "";
-                            let combustPlanet = combust ? '&#8634;' : "";
-
-                            let matchedNakshatra = matchedPlanet?.nakshatra || "";
-                            let matchedPada = matchedPlanet?.pada || "";
-
-                            let matchedD = [];
-                            if (divisionalData) {
-                                matchedD = divisionalData.find((i) => i.name === planetName);
+                        }
+                        if (selectedHouse === "3" || selectedHouse === "10") {
+                            let matchingPlanets = ["Saturn"].filter(name => name === planet.name);
+                            if (matchingPlanets.length > 0) {
+                                oneHundredPercent = matchingPlanets.join(", ");
                             }
-                            let matchedRashis = matchedD?.zodiac || "";
+                        }
+                        if (planet.houses[0] === ascendantHouseValue) {
+                            oneHundredPercent = planet.name;
+                        }
+                        if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
+                            seventyFivePercent = planet.name;
+                        }
+                        if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
+                            fiftyPercent = planet.name;
+                        }
+                        if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
+                            twentyFivePercent = planet.name;
+                        }
 
-                            let positionValue = [];
-                            let status = [];
+                        // Save comparison data
+                        comparisonData.push({
+                            name: planet.name,
+                            oneHundredPercent,
+                            seventyFivePercent,
+                            fiftyPercent,
+                            twentyFivePercent,
+                        });
+                    });
 
-                            if (selectedRasNak === "Rashi") {
-                                positionValue = position.find((i) => i.planet === planetName && i.rashi === matchedRashis);
 
-                                if (positionValue?.status === "Uccha (Exalted)") {
-                                    status = 'color-pos-bx1';
-                                } else if (positionValue?.status === "Own") {
-                                    status = 'color-pos-bx2';
-                                } else if (positionValue?.status === "Mitra (Friend)") {
-                                    status = 'color-pos-bx3';
-                                } else if (positionValue?.status === "Neutral") {
-                                    status = 'color-pos-bx4';
-                                } else if (positionValue?.status === "Shatru (Enemy)") {
-                                    status = 'color-pos-bx5';
-                                } else if (positionValue?.status === "Neecha (Debilitated)") {
-                                    status = 'color-pos-bx6';
-                                }
-                            } else {
-                                positionValue = nakshatraPosition.find((i) => i.planet === planetName && i.nakshatra === matchedNakshatra && i.pada === matchedPada);
+                    for (let i = 0; i < 10; i++) {
+                        const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                        const pada = nakshatraPadas[padaIndex];
+                        // console.log(pada,"pada")
 
-                                if (positionValue?.status === "Uccha (Exalted)") {
-                                    status = 'color-pos-bx1';
-                                } else if (positionValue?.status === "Mitra (Friend)") {
-                                    status = 'color-pos-bx3';
-                                } else if (positionValue?.status === "Neutral") {
-                                    status = 'color-pos-bx4';
-                                } else if (positionValue?.status === "Shatru (Enemy)") {
-                                    status = 'color-pos-bx5';
-                                } else if (positionValue?.status === "Neecha (Debilitated)") {
-                                    status = 'color-pos-bx6';
-                                }
-                            }
+                        // Find all matching planets
+                        const matchingPlanets = planets.filter(
+                            (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+                        );
 
-                            let dashakeys = [];
+                        let planetNames = matchingPlanets.length > 0 ? matchingPlanets.map((planet) => planet.name).join(", ") : "-";
+                        let dashakeys = [];
+
+                        matchingPlanets.forEach((planet) => {
                             Object.entries(dashas).forEach(([key, value]) => {
-                                if (value.name === planetName) {
+                                if (value.name === planet.name) {
                                     dashakeys.push(key);
                                 }
                             });
+                        });
 
-                            let dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "-";
+                        const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
 
-                            // Append planet data row
-                            const row = `
+                        // Find planets with percentage matches
+                        let oneHundredPercentNames = comparisonData
+                            .filter((data) => data.oneHundredPercent !== "-")
+                            .map((data) => data.oneHundredPercent);
+                        let seventyFivePercentNames = comparisonData
+                            .filter((data) => data.seventyFivePercent !== "-")
+                            .map((data) => data.seventyFivePercent);
+                        let fiftyPercentNames = comparisonData
+                            .filter((data) => data.fiftyPercent !== "-")
+                            .map((data) => data.fiftyPercent);
+                        let twentyFivePercentNames = comparisonData
+                            .filter((data) => data.twentyFivePercent !== "-")
+                            .map((data) => data.twentyFivePercent);
+
+                        const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map(() => "R").join(", ");
+                        const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map(() => "C").join(", ");
+                        comparisonData.push({
+                            pada: pada,
+                        });
+                    }
+
+                    let planetTable = document.getElementById("planetTable");
+                    let selectedDivisional = document.getElementById("divisionalSelect").value;
+                    let selectedRasNak = document.getElementById("rashiNakSelect").value;
+
+                    updateTable(comparisonData, storedPadas, position, nakshatraPosition);
+                    function updateTable(comparisonData, padas, position, nakshatraPosition) {
+                        let divisionalData = rashiData[selectedDivisional];
+                        // console.log(rashiData, "rashiData")
+                        // console.log(position, "position")
+                        // console.log(nakshatraPosition, "nakshatraPosition")
+                        // console.log(selectedRasNak, "selectedRasNak")
+                        // console.log(comparisonData, "comparisonData")
+
+                        planetTable.innerHTML = ``;
+
+                        let allMatchingPlanets = [];
+
+                        if (padas && Array.isArray(padas)) {
+                            padas.forEach((pada) => {
+                                let matchingPlanets = planets.filter(
+                                    (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+                                );
+
+                                if (matchingPlanets.length > 0) {
+                                    allMatchingPlanets.push(...matchingPlanets);
+                                }
+                            });
+                        }
+
+                        // Sorting function
+                        comparisonData.sort((a, b) => {
+                            let getValue = (data) => {
+                                if (data.oneHundredPercent && data.oneHundredPercent !== "-") return 100;
+                                if (data.seventyFivePercent && data.seventyFivePercent !== "-") return 75;
+                                if (data.fiftyPercent && data.fiftyPercent !== "-") return 50;
+                                if (data.twentyFivePercent && data.twentyFivePercent !== "-") return 25;
+                                return 0;
+                            };
+
+                            // Sort by Nakshatra first (alphabetically)
+                            let nakshatraA = a.nakshatra || "";
+                            let nakshatraB = b.nakshatra || "";
+                            let nakshatraDiff = nakshatraA.localeCompare(nakshatraB);
+                            if (nakshatraDiff !== 0) return nakshatraDiff;
+
+                            // Sort by Pada (ascending order)
+                            let padaA = a.pada ? parseInt(a.pada) : 0;
+                            let padaB = b.pada ? parseInt(b.pada) : 0;
+                            if (padaA !== padaB) return padaA - padaB;
+
+                            // Sort by percentage (descending order)
+                            return getValue(b) - getValue(a);
+                        });
+
+                        comparisonData.forEach((data) => {
+                            // console.log(data, "data");
+                            let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
+
+                            let hundred = data.oneHundredPercent && data.oneHundredPercent !== "-" ? data.oneHundredPercent : "";
+                            let seventyFive = data.seventyFivePercent && data.seventyFivePercent !== "-" ? data.seventyFivePercent : "";
+                            let fifty = data.fiftyPercent && data.fiftyPercent !== "-" ? data.fiftyPercent : "";
+                            let twentyFive = data.twentyFivePercent && data.twentyFivePercent !== "-" ? data.twentyFivePercent : "";
+
+                            let percentageText = "";
+                            if (!planetName) {
+                                if (hundred) {
+                                    planetName = hundred;
+                                    percentageText = " ";
+                                } else if (seventyFive) {
+                                    planetName = seventyFive;
+                                    percentageText = " 75%";
+                                } else if (fifty) {
+                                    planetName = fifty;
+                                    percentageText = " 50%";
+                                } else if (twentyFive) {
+                                    planetName = twentyFive;
+                                    percentageText = " 25%";
+                                } else {
+                                    planetName = null;
+                                }
+                            } else {
+                                if (hundred === planetName) {
+                                    percentageText = " ";
+                                } else if (seventyFive === planetName) {
+                                    percentageText = " 75%";
+                                } else if (fifty === planetName) {
+                                    percentageText = " 50%";
+                                } else if (twentyFive === planetName) {
+                                    percentageText = " 25%";
+                                }
+                            }
+
+                            if (planetName) {
+                                if (planetName === "Ascendant" && selectedHouse !== "1") {
+                                    return;
+                                }
+
+                                const matchedPlanet = allMatchingPlanets.find((p) => p.name === planetName);
+                                const retro = matchedPlanet?.retro;
+                                const combust = matchedPlanet?.is_combust;
+
+                                let retroPlanet = retro ? '&#128293;' : "";
+                                let combustPlanet = combust ? '&#8634;' : "";
+
+                                let matchedNakshatra = matchedPlanet?.nakshatra || "";
+                                let matchedPada = matchedPlanet?.pada || "";
+
+                                let matchedD = [];
+                                if (divisionalData) {
+                                    matchedD = divisionalData.find((i) => i.name === planetName);
+                                }
+                                let matchedRashis = matchedD?.zodiac || "";
+
+                                let positionValue = [];
+                                let status = [];
+
+                                if (selectedRasNak === "Rashi") {
+                                    positionValue = position.find((i) => i.planet === planetName && i.rashi === matchedRashis);
+
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        status = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Own") {
+                                        status = 'color-pos-bx2';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        status = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        status = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        status = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        status = 'color-pos-bx6';
+                                    }
+                                } else {
+                                    positionValue = nakshatraPosition.find((i) => i.planet === planetName && i.nakshatra === matchedNakshatra && i.pada === matchedPada);
+
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        status = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        status = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        status = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        status = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        status = 'color-pos-bx6';
+                                    }
+                                }
+
+                                let dashakeys = [];
+                                Object.entries(dashas).forEach(([key, value]) => {
+                                    if (value.name === planetName) {
+                                        dashakeys.push(key);
+                                    }
+                                });
+
+                                let dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "-";
+
+                                // Append planet data row
+                                const row = `
         <tr>
             <td class="td-span">
                 <span>${matchedNakshatra}(${matchedPada})</span>
@@ -1627,21 +1692,21 @@
         </tr>
     `;
 
-                            planetTable.innerHTML += row;
-                        }
-                    });
+                                planetTable.innerHTML += row;
+                            }
+                        });
 
-                    // ADD PADA DETAILS EVEN IF NO PLANETS MATCH
-                    comparisonData.forEach((data) => {
-                        // console.log(data, "data");
+                        // ADD PADA DETAILS EVEN IF NO PLANETS MATCH
+                        comparisonData.forEach((data) => {
+                            // console.log(data, "data");
 
-                        let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
+                            let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
 
-                        let matchedPadas = data.pada?.pada || "";
-                        let matchedNakshatras = data.pada?.nakshatra || "";
-                        let matchedRashi = data.pada?.rashi || "";
-                        if (matchedPadas) {
-                            const row = `
+                            let matchedPadas = data.pada?.pada || "";
+                            let matchedNakshatras = data.pada?.nakshatra || "";
+                            let matchedRashi = data.pada?.rashi || "";
+                            if (matchedPadas) {
+                                const row = `
 <tr>
 <td class="td-span"><span>${matchedNakshatras}(${matchedPadas})</span></td>
 <td class="td-span"><span>${matchedRashi}</span></td>
@@ -1651,172 +1716,164 @@
 </tr>
 `;
 
-                            planetTable.innerHTML += row;
+                                planetTable.innerHTML += row;
+                            }
+
+                        });
+                    }
+
+                    // Event listener for divisional chart selection
+                    document.getElementById("rashiNakSelect").addEventListener("change", (event) => {
+                        selectedRasNak = event.target.value;
+
+                        // Disable divisional chart selection if Nakshatra is selected
+                        const divisionalSelect = document.getElementById("divisionalSelect");
+                        if (selectedRasNak === "Nakshatra") {
+                            divisionalSelect.disabled = true;
+                        } else {
+                            divisionalSelect.disabled = false;
                         }
 
+                        updateTable(comparisonData, storedPadas, position, nakshatraPosition);
                     });
-                }
 
-                // Event listener for divisional chart selection
-                document.getElementById("rashiNakSelect").addEventListener("change", (event) => {
-    selectedRasNak = event.target.value;
-    
-    // Disable divisional chart selection if Nakshatra is selected
-    const divisionalSelect = document.getElementById("divisionalSelect");
-    if (selectedRasNak === "Nakshatra") {
-        divisionalSelect.disabled = true;
-    } else {
-        divisionalSelect.disabled = false;
-    }
+                    // Event listener for divisional chart selection
+                    document.getElementById("divisionalSelect").addEventListener("change", (event) => {
+                        selectedDivisional = event.target.value;
+                        updateTable(comparisonData, storedPadas, position, nakshatraPosition);
+                    });
 
-    updateTable(comparisonData, storedPadas, position, nakshatraPosition);
-});
-
-// Event listener for divisional chart selection
-document.getElementById("divisionalSelect").addEventListener("change", (event) => {
-    selectedDivisional = event.target.value;
-    updateTable(comparisonData, storedPadas, position, nakshatraPosition);
-});
-
-                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
-            }
-        };
-
-        // Event listener for house selection
-        document.getElementById("houseDropdown").addEventListener("change", (event) => {
-            const selectedHouse = event.target.value;
-            populateHouseTable(selectedHouse);
-        });
-    </script>
-
-
-    <script>
-        // Retrieve data from localStorage
-        const chart1Url = localStorage.getItem('chart1Data');
-        const chart2Url = localStorage.getItem('chart2Data');
-        // console.log(horoscopeData)
-        // console.log(params, "params")
-        const chartContainer1 = document.getElementById("horoscope-chart1");
-        chartContainer1.innerHTML = chart1Url;
-        const chartContainer2 = document.getElementById("horoscope-chart2");
-        chartContainer2.innerHTML = chart2Url;
-
-        if (horoscopeData && horoscopeData.response) {
-            const planetDatas = horoscopeData.response;
-
-            // Function to check if a value is defined
-            const isDefined = (value) => value !== undefined && value !== null && value !== "";
-
-            // Map Planet Data
-            const mapPlanetData = (data) => {
-                if (Array.isArray(data)) {
-                    // If data is an array, map directly
-                    return data.map((planet) => ({
-                        name: planet.full_name,
-                        zodiac: planet.zodiac,
-                        house: planet.house,
-                        nakshatra: planet.nakshatra,
-                        nakshatra_lord: planet.nakshatra_lord,
-                        zodiac_lord: planet.zodiac_lord,
-                        latitude: planet.local_degree,
-                        rishi: planet.nakshatra_lord,
-                        nakshatra_pada: planet.nakshatra_pada,
-                        relation: planet.zodiac_lord,
-                        retro: planet.retro,
-                        is_combust: planet.is_combust,
-                    }));
-                } else if (typeof data === "object" && data !== null) {
-                    // If data is an object, map its values
-                    return Object.values(data).map((planet) => ({
-                        name: planet.full_name,
-                        zodiac: planet.zodiac,
-                        house: planet.house,
-                        nakshatra: planet.nakshatra,
-                        nakshatra_lord: planet.nakshatra_lord,
-                        zodiac_lord: planet.zodiac_lord,
-                        latitude: planet.local_degree,
-                        rishi: planet.nakshatra_lord,
-                        nakshatra_pada: planet.nakshatra_pada,
-                        relation: planet.zodiac_lord,
-                        retro: planet.retro,
-                        is_combust: planet.is_combust,
-                    }));
-                } else {
-                    console.error("Unexpected data format for planets:", data);
-                    return [];
+                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
                 }
             };
 
-            // Map Dasa Details
-            const mapDasaDetails = (data) => {
-                return {
-                    birth_dasa: planetDatas.birth_dasa,
-                    current_dasa: planetDatas.current_dasa,
-                    lucky_gem: planetDatas.lucky_gem,
-                    lucky_num: planetDatas.lucky_num,
-                    lucky_colors: planetDatas.lucky_colors,
-                    lucky_name_start: planetDatas.lucky_name_start,
-                    lucky_letters: planetDatas.lucky_letters,
-                    rasi: planetDatas.rasi,
+            // Event listener for house selection
+            document.getElementById("houseDropdown").addEventListener("change", (event) => {
+                const selectedHouse = event.target.value;
+                populateHouseTable(selectedHouse);
+            });
+
+            const chartContainer1 = document.getElementById("horoscope-chart1");
+            chartContainer1.innerHTML = chart1Url;
+            const chartContainer2 = document.getElementById("horoscope-chart2");
+            chartContainer2.innerHTML = chart2Url;
+
+
+            if (horoscopeData && horoscopeData.response) {
+                const planetDatas = horoscopeData.response;
+                // Function to check if a value is defined
+                const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+                // Map Planet Data
+                const mapPlanetData = (data) => {
+                    if (Array.isArray(data)) {
+                        // If data is an array, map directly
+                        return data.map((planet) => ({
+                            name: planet.full_name,
+                            zodiac: planet.zodiac,
+                            house: planet.house,
+                            nakshatra: planet.nakshatra,
+                            nakshatra_lord: planet.nakshatra_lord,
+                            zodiac_lord: planet.zodiac_lord,
+                            latitude: planet.local_degree,
+                            rishi: planet.nakshatra_lord,
+                            nakshatra_pada: planet.nakshatra_pada,
+                            relation: planet.zodiac_lord,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                        }));
+                    } else if (typeof data === "object" && data !== null) {
+                        // If data is an object, map its values
+                        return Object.values(data).map((planet) => ({
+                            name: planet.full_name,
+                            zodiac: planet.zodiac,
+                            house: planet.house,
+                            nakshatra: planet.nakshatra,
+                            nakshatra_lord: planet.nakshatra_lord,
+                            zodiac_lord: planet.zodiac_lord,
+                            latitude: planet.local_degree,
+                            rishi: planet.nakshatra_lord,
+                            nakshatra_pada: planet.nakshatra_pada,
+                            relation: planet.zodiac_lord,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                        }));
+                    } else {
+                        console.error("Unexpected data format for planets:", data);
+                        return [];
+                    }
                 };
-            };
 
-            // Map Dasa Details
-            const mapPanchangDetails = (data) => {
-                return {
-                    ayanamsa: planetDatas.panchang.ayanamsa,
-                    ayanamsa_name: planetDatas.panchang.ayanamsa_name,
-                    karana: planetDatas.panchang.karana,
-                    yoga: planetDatas.panchang.yoga,
-                    day_of_birth: planetDatas.panchang.day_of_birth,
-                    day_lord: planetDatas.panchang.day_lord,
-                    hora_lord: planetDatas.panchang.hora_lord,
-                    sunrise_at_birth: planetDatas.panchang.sunrise_at_birth,
-                    sunset_at_birth: planetDatas.panchang.sunset_at_birth,
-                    tithi: planetDatas.panchang.tithi,
+                // Map Dasa Details
+                const mapDasaDetails = (data) => {
+                    return {
+                        birth_dasa: planetDatas.birth_dasa,
+                        current_dasa: planetDatas.current_dasa,
+                        lucky_gem: planetDatas.lucky_gem,
+                        lucky_num: planetDatas.lucky_num,
+                        lucky_colors: planetDatas.lucky_colors,
+                        lucky_name_start: planetDatas.lucky_name_start,
+                        lucky_letters: planetDatas.lucky_letters,
+                        rasi: planetDatas.rasi,
+                    };
                 };
-            };
 
-            // Populate Table
-            const populateTable = () => {
-                const planetDataElement = document.getElementById("planet-data");
-                const dasaDataElement = document.getElementById("dasa-data");
-                const panchangDataElement = document.getElementById("panchang-data");
+                // Map Dasa Details
+                const mapPanchangDetails = (data) => {
+                    return {
+                        ayanamsa: planetDatas.panchang.ayanamsa,
+                        ayanamsa_name: planetDatas.panchang.ayanamsa_name,
+                        karana: planetDatas.panchang.karana,
+                        yoga: planetDatas.panchang.yoga,
+                        day_of_birth: planetDatas.panchang.day_of_birth,
+                        day_lord: planetDatas.panchang.day_lord,
+                        hora_lord: planetDatas.panchang.hora_lord,
+                        sunrise_at_birth: planetDatas.panchang.sunrise_at_birth,
+                        sunset_at_birth: planetDatas.panchang.sunset_at_birth,
+                        tithi: planetDatas.panchang.tithi,
+                    };
+                };
 
-                if (!horoscopeData || !horoscopeData.response) {
-                    console.error("Horoscope data is invalid or missing.");
-                    return;
-                }
+                // Populate Table
+                const populateTable = async () => {
+                    const planetDataElement = document.getElementById("planet-data");
+                    const dasaDataElement = document.getElementById("dasa-data");
+                    const panchangDataElement = document.getElementById("panchang-data");
 
-                // Map Data
-                const planets = mapPlanetData(horoscopeData.response);
-                const dasaDetails = mapDasaDetails(horoscopeData);
-                const panchangDetails = mapPanchangDetails(horoscopeData);
+                    if (!horoscopeData || !horoscopeData.response) {
+                        console.error("Horoscope data is invalid or missing.");
+                        return;
+                    }
 
-                // Add Planets Data to Table
-                planets.forEach((planet) => {
-                    // Create the table row
-                    const row = document.createElement("tr");
+                    // Map Data
+                    const planets = mapPlanetData(horoscopeData.response);
+                    const dasaDetails = mapDasaDetails(horoscopeData);
+                    const panchangDetails = mapPanchangDetails(horoscopeData);
 
-                    // Check if at least one field has valid data
-                    const hasValidData = [
-                        planet.name,
-                        planet.zodiac,
-                        planet.house,
-                        planet.nakshatra,
-                        planet.nakshatra_lord,
-                        planet.zodiac_lord,
-                        planet.latitude,
-                        planet.rishi,
-                        planet.nakshatra_pada,
-                        planet.relation,
-                        planet.is_combust,
-                        planet.retro
-                    ].some((value) => isDefined(value));
+                    // Add Planets Data to Table
+                    await planets.forEach((planet) => {
+                        // Create the table row
+                        const row = document.createElement("tr");
 
-                    // If the row has valid data, populate the row
-                    if (hasValidData) {
-                        row.innerHTML = `
+                        // Check if at least one field has valid data
+                        const hasValidData = [
+                            planet.name,
+                            planet.zodiac,
+                            planet.house,
+                            planet.nakshatra,
+                            planet.nakshatra_lord,
+                            planet.zodiac_lord,
+                            planet.latitude,
+                            planet.rishi,
+                            planet.nakshatra_pada,
+                            planet.relation,
+                            planet.is_combust,
+                            planet.retro
+                        ].some((value) => isDefined(value));
+
+                        // If the row has valid data, populate the row
+                        if (hasValidData) {
+                            row.innerHTML = `
             <td>${isDefined(planet.name) ? planet.name : "-"}</td>
             <td>${planet.retro ? "R" : " "}</td>
             <td>${planet.is_combust ? "C" : " "}</td>
@@ -1829,17 +1886,17 @@ document.getElementById("divisionalSelect").addEventListener("change", (event) =
             <td>${isDefined(planet.latitude) ? planet.latitude : "-"}</td>
         `;
 
-                        planetDataElement.appendChild(row);
+                            planetDataElement.appendChild(row);
+                        }
+                    });
+
+                    // Utility function to check if a value is defined and not blank
+                    function isDefined(value) {
+                        return value !== undefined && value !== null && value !== "";
                     }
-                });
 
-                // Utility function to check if a value is defined and not blank
-                function isDefined(value) {
-                    return value !== undefined && value !== null && value !== "";
-                }
-
-                // Add Dasa Details to Table
-                dasaDataElement.innerHTML = `
+                    // Add Dasa Details to Table
+                    dasaDataElement.innerHTML = `
 <tr>
           <td colspan="2"><strong>Birth Dasa:</strong></td>
           <td colspan="8">${dasaDetails.birth_dasa || ""}</td>
@@ -1873,8 +1930,8 @@ document.getElementById("divisionalSelect").addEventListener("change", (event) =
           <td colspan="8">${dasaDetails.rasi || ""}</td>
         </tr>
   `;
-                // Add Dasa Details to Table
-                panchangDataElement.innerHTML = `
+                    // Add Dasa Details to Table
+                    panchangDataElement.innerHTML = `
 <tr>
           <td colspan="2"><strong>Ayanamsa:</strong></td>
           <td colspan="8">${panchangDetails.ayanamsa || ""}</td>
@@ -1916,19 +1973,18 @@ document.getElementById("divisionalSelect").addEventListener("change", (event) =
           <td colspan="8">${panchangDetails.tithi || ""}</td>
         </tr>
   `;
-            };
+                };
 
-
-            // Populate table on page load
-            window.onload = async () => {
                 populateHouseTable("1");
                 populateTable()
-                fetchAllData()
-                // console.log("Window Loaded");
-            };
-        } else {
-            console.error("Horoscope data not found or invalid in localStorage.");
+
+            } else {
+                console.error("Horoscope data not found or invalid in localStorage.");
+            }
         }
+        window.onload = async function () {
+            await fetchAllData()
+        };
     </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

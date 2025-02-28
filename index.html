@@ -107,7 +107,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-123456789</span>
+                        <span>+91-8800209988</span>
                     </div>
                 </div>
 
@@ -182,13 +182,16 @@
 
                 </div> -->
 
-                <button class="apnt-btn">
+                <button class="apnt-btn coming-soon">
                     Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </button>
 
                 <div class="profile-bx" id="login_btn">
                     <ion-icon name="person-circle-outline" size="large" color="#fe7000"></ion-icon>
-                    <p>LogIn / Reg.</p>
+                    <p id="profile-name">LogIn / Reg.</p>
                 </div>
 
             </div>
@@ -223,13 +226,10 @@
 
                 <nav class="nav">
                     <div class="nav-lists flex item-start">
-                        <li><a href="#">Calendar</a></li>
-                        <li><a href="#">Market</a></li>
-                        <li><a href="#">Kundali</a></li>
-                        <li><a href="#">Affirmations</a></li>
-                        <li><a href="#">Runes</a></li>
-                        <li><a href="#">Healing</a></li>
-                        <li><a href="#">Wisdom</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="kundali.html">Kundali</a></li>
+                        <li><a href="market.html">Market</a></li>
+                        <li><a href="https://wa.me/8800209988">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
@@ -251,15 +251,18 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-123456789</span>
+                            <span>+91-8800209988</span>
                         </div>
                     </div>
 
                 </div>
 
 
-                <button class="apnt-btn apnt-btn-mob">
+                <button class="apnt-btn apnt-btn-mob coming-soon">
                     Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </button>
 
             </div>
@@ -358,19 +361,52 @@
                     <div class="swiper-slide">
                         <div class="home-banner-card grid grid-gap">
                             <div class="banner-img">
-                                <img src="./images/astrologer_baba.webp" alt="">
+                                <img src="./images/bull.png" alt="">
+
                             </div>
                             <div class="right-banner-info">
-                                <h3> <span>200+ Celebs</span> recommends <strong>Astro Nivesh</strong> </h3>
-                                <h1>Chat With Astrologer</h1>
+                                <h3> <span>200+ Investors</span> recommends <strong>Astro Nivesh</strong> for Financial
+                                    Growth</h3>
+                                <!-- <h1>Chat With Astrologer</h1>
                                 <button class="comn-btn">
                                     Chat Now
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
 
                     <div class="swiper-slide">
+                        <div class="home-banner-card grid grid-gap">
+                            <div class="banner-img">
+                                <img src="./images/zodiac.png" alt="">
+                            </div>
+                            <div class="right-banner-info">
+                                <h3> <span></span>Align your stars for <strong>Life & Wealth</strong> success </h3>
+                                <!-- <h1>Chat With Astrologer</h1>
+                                <button class="comn-btn">
+                                    Chat Now
+                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="home-banner-card grid grid-gap">
+                            <div class="banner-img">
+                                <img src="./images/astronivesh logo.png" alt="">
+
+                            </div>
+                            <div class="right-banner-info">
+                                <h3> <span>Celestial Guidance</span> meets <strong>Financial Strategy</strong> </h3>
+                                <!-- <h1>Chat With Astrologer</h1>
+                                <button class="comn-btn">
+                                    Chat Now
+                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="swiper-slide">
                         <div class="home-banner-card grid grid-gap">
                             <div class="banner-img">
                                 <img src="./images/astrologer_baba.webp" alt="">
@@ -383,37 +419,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="home-banner-card grid grid-gap">
-                            <div class="banner-img">
-                                <img src="./images/astrologer_baba.webp" alt="">
-                            </div>
-                            <div class="right-banner-info">
-                                <h3> <span>200+ Celebs</span> recommends <strong>Astro Nivesh</strong> </h3>
-                                <h1>Chat With Astrologer</h1>
-                                <button class="comn-btn">
-                                    Chat Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="home-banner-card grid grid-gap">
-                            <div class="banner-img">
-                                <img src="./images/astrologer_baba.webp" alt="">
-                            </div>
-                            <div class="right-banner-info">
-                                <h3> <span>200+ Celebs</span> recommends <strong>Astro Nivesh</strong> </h3>
-                                <h1>Chat With Astrologer</h1>
-                                <button class="comn-btn">
-                                    Chat Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="swiper-pagination"></div>
@@ -605,19 +611,44 @@
     <!-- _______________________
       Our cards comp 
       ------------------------ -->
+    <style>
+        .coming-soon {
+            filter: grayscale(5);
+        }
+
+        .coming-soon .card-info {
+            color: #ffffff;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            border-radius: .7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: #dcdcdc;
+            transition: ease-in-out
+        }
+
+        .coming-soon:hover .card-info {
+            color: white;
+            transition: color 1s;
+            display: flex;
+            transition: ease-in-out;
+        }
+
+        .coming-soon .card-info p {
+            color: white;
+        }
+    </style>
 
     <section class="our-cards-comp">
         <div class="common-container3">
 
             <div class="cards-grid grid grid-four-col grid-gap">
-
-                <div class="card-bx card1">
-                    <div class="icon icon1">
-                        <img src="./images/icon-1.png" alt="">
-                    </div>
-                    <h6>Market</h6>
-
-                </div>
 
                 <a href="javascript:void(0);" id="kundaliLink">
                     <div class="card-bx card1">
@@ -628,56 +659,78 @@
 
                     </div>
                 </a>
+                <a href="javascript:void(0);" id="marketLink">
+                    <div class="card-bx card1">
+                        <div class="icon icon1">
+                            <img src="./images/icon-1.png" alt="">
+                        </div>
+                        <h6>Market</h6>
 
-                <div class="card-bx card1">
+                    </div>
+                </a>
+                <a href="https://wa.me/8800209988">
+                    <div class="card-bx card1">
+                        <div class="icon icon7">
+                            <img src="./images/iconwhats.png" alt="">
+                        </div>
+                        <h6>Talk to Astrologer</h6>
+                    </div>
+                </a>
+
+
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon3">
                         <img src="./images/icon-3.png" alt="">
                     </div>
                     <h6>Chat with Astrologer</h6>
-
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
 
-                <div class="card-bx card1">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon4">
                         <img src="./images/icon-4.png" alt="">
                     </div>
                     <h6>Kundali Birth</h6>
-
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
 
-                <div class="card-bx card1">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon5">
                         <img src="./images/icon-5.png" alt="">
                     </div>
                     <h6>Astromall Shop</h6>
-
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
-                <div class="card-bx card1">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon6">
                         <img src="./images/icon-6.png" alt="">
                     </div>
                     <h6>Profile</h6>
-
-                </div>
-
-
-                <div class="card-bx card1">
-                    <div class="icon icon7">
-                        <img src="./images/icon-7.png" alt="">
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
                     </div>
-                    <h6>Talk to Astrologer</h6>
-
                 </div>
 
-                <div class="card-bx card1">
+
+
+
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon8">
                         <img src="./images/icon-8.png" alt="">
                     </div>
                     <h6>Book Pooja</h6>
-
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
 
@@ -690,7 +743,7 @@
       Our blogs comp 
       ------------------------ -->
 
-    <section class="blog-comp">
+    <!-- <section class="blog-comp">
         <div class="blog-cont">
 
             <div class="comn-heading">
@@ -822,7 +875,6 @@
 
                 </div>
 
-                <!-- <div class="swiper-pagination"></div> -->
             </div>
 
             <div class="vide-btn-flex">
@@ -831,14 +883,14 @@
             </div>
         </div>
         </div>
-    </section>
+    </section> -->
 
 
     <!-- ______________________________
        Our Customer comp 
        ----------------------- -->
 
-    <section class="blog-comp cust-comp">
+    <!-- <section class="blog-comp cust-comp">
         <div class="blog-cont">
 
             <div class="comn-heading">
@@ -942,8 +994,6 @@
 
 
                 </div>
-
-                <!-- <div class="swiper-pagination"></div> -->
                 <div class="vide-btn-flex">
                     <div class="swiper-button-prev video-prev"></div>
                     <div class="swiper-button-next video-next"></div>
@@ -954,7 +1004,7 @@
 
         </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- ______________________________
        Our why-astrologer comp 
@@ -971,145 +1021,151 @@
             <div class="para-info">
 
                 <p>
-                    Astrology is a predictive science with its own sets of methods, claims and findings that have
-                    forever inspired and allowed people with insights into different aspects of their life. Astrology,
-                    with its wows and hows, is contentful and approving enough to make people a believer of the same.
-                    And thankfully, it continues to do so despite the world shifting bases from what they believe in and
-                    what they don’t.
+                    At Astro Nivesh, we view astrology as a time-honored predictive science that has long provided
+                    profound insights into various aspects of life. Its blend of ancient wisdom and precise methods
+                    continues to inspire and guide believers, even as modern perspectives evolve.
                 </p>
 
-                <p>If one has to go into the technicalities of astrology, it is the study of different cosmic objects,
-                    which are usually stars and planets, that have an effect on the lives of the people. You must be
-                    aware that there are as many as 8 planets in the solar system. However, If I ask an online
-                    astrologer near me about the planets in astrology, they will tell me that there are as many as 9
-                    planets in astrology also called Navagrahas. And surprisingly, the planet Earth, in astrology, is
-                    not counted among the nine planets. </p>
+                <p>At its core, astrology is the study of cosmic influences—examining how stars and planets shape our
+                    lives. While modern astronomy identifies eight planets, traditional astrology recognizes nine key
+                    celestial bodies known as the Navagrahas. Intriguingly, Earth is not included in this celestial
+                    lineup. </p>
 
                 <p>
-                    The 9 planets in astrology are Sun (Surya), Moon (Chandra), Mars (Mangala), Mercury (Budha), Jupiter
-                    (Brihaspati), Venus (Shukra), Saturn (Shani), Rahu (north node of the moon), and Ketu (south node of
-                    the moon).
-                </p>
+                    The Navagrahas are:
+                    •⁠ ⁠Sun (Surya)
+                    •⁠ ⁠Moon (Chandra)
+                    •⁠ ⁠Mars (Mangala)
+                    •⁠ ⁠Mercury (Budha)
+                    •⁠ ⁠Jupiter (Brihaspati)
+                    •⁠ ⁠Venus (Shukra)
+                    •⁠ ⁠Saturn (Shani)
+                    •⁠ ⁠Rahu (North Lunar Node)
+                    •⁠ ⁠Ketu (South Lunar Node)
 
-                <p>
-                    Among these planets, some planets are called friendly planets, meaning the presence of them brings
-                    positivity to your life. And then, there are also planets that have a negative influence on humans.
-                    The latter would be planets like Rahu and Ketu. Their presence in one’s Kundli is said to bring pain
-                    and misery. However, there is another aspect one needs to be aware of. It’s the fact that the
-                    presence of Ketu in one’s horoscope is not always bad and similarly, the presence of Jupiter in
-                    one’s Kundli might not be the best every time.
                 </p>
 
                 <p>
-                    It all depends on which houses these planets are sitting in. If you ever had the opportunity to talk
-                    to an astrologer online, then s/he must have told you about houses in astrology and the movements of
-                    planets in the same. There are as many as 12 houses in Kundli. And all of these houses represent one
-                    thing or the other. You can check your free kundali online.
+                    Each of these planets plays a distinct role in your life. Some are considered benevolent, bestowing
+                    positive energies and opportunities, while others, like Rahu and Ketu, can sometimes signal
+                    challenges. However, the influence of any planet is never absolute—it depends greatly on its
+                    placement within the twelve houses of your Kundli.
+
                 </p>
 
                 <p>
-                    For example, the first house, which any online astrology consultation would tell you is also the
-                    ascendant of the person, is the house of self. It represents a person’s personality and physical
-                    traits. Similarly, the fifth house in the Vedic horoscope, also known as Putra Bhava is the house of
-                    creativity, playfulness, joy, pleasure, and romance. If, for example, a good planet, like Jupiter,
-                    is camping in the fifth house, your love life will excel. Likewise, if Rahu is camping in the same
-                    house, then you might feel the need for online astrology consultation to deal with the woes.
+                    For instance, the first house, or ascendant, represents your personality and physical traits,
+                    setting the tone for your entire life. Similarly, the fifth house, known as Putra Bhava, governs
+                    creativity, joy, romance, and playfulness. A favorable planet like Jupiter in the fifth house can
+                    enhance your love life and creative pursuits, whereas an adverse influence from Rahu might prompt
+                    the need for deeper insight and guidance.
+
                 </p>
-                <p>Then there are other things in astrology like elements, the Moon sign of an individual, numerology,
-                    tarot and so much more that is impossible to wind up here.</p>
+
+                <p>
+                    Beyond these basics, astrology encompasses a rich array of elements—from Moon signs and numerology
+                    to tarot and more. At Astro Nivesh, we integrate these diverse aspects to offer you comprehensive,
+                    personalized insights that empower your financial growth and personal well-being.
+
+                </p>
+                <p>Explore your free Kundli online with Astro Nivesh and let the stars guide your journey to holistic
+                    success.</p>
 
                 <Strong>Online Astrology Consultation & Services</Strong>
 
                 <p>
-                    The online footprint of things and people has grown over the years. And Astrotalk, as a brand, is
-                    using the best of it to cater online astrology services to anyone and everyone across the length and
-                    breadth of the globe. Astrotalk, over the years, has nurtured as a community of the best astrologers
-                    who have their expertise in Vedic Astrology, tarot card reading, Vastu Shastra, numerology, Reiki
-                    healing, Palmistry, and many more subjects.
+                    The digital age has transformed how we connect, and Astro Nivesh is at the forefront of this
+                    evolution—offering comprehensive online astrology services to individuals around the globe. Over the
+                    years, we have built a vibrant community of top astrologers specializing in Vedic Astrology, tarot
+                    card reading, Vastu Shastra, numerology, Reiki healing, Palmistry, and much more.
+
                 </p>
 
                 <p>
-                    The motive behind providing astrology predictions online is simply helping people save time, money,
-                    and pain to find astrologers in the hustle and bustle of the city lights. Besides, to ensure
-                    credibility, Astrotalk has, over the years, worked extensively to add value to customer service. And
-                    a good chunk of credit for this goes to the astrologers who work for 100% customer satisfaction
-                    using their knowledge to deliver impeccable astrology consultancy.
+                    Our mission is simple: to help you save time, money, and the hassle of searching through crowded
+                    city streets for reliable astrologers. We ensure credibility by dedicating ourselves to stellar
+                    customer service, and our expert astrologers work tirelessly to deliver insights that guarantee 100%
+                    satisfaction.
+
                 </p>
 
                 <p>
-                    Surely, not everything in life should revolve around money, so we at Astrotalk, besides online
-                    astrology, also organize various events that help one get a better understanding of online astrology
-                    prediction and more related themes. These events range from free astrology predictions sessions to
-                    live events involving Aartis and Pujas that happen across India at some of the most renowned
-                    temples. It's a way for us to connect with people.
+                    At Astro Nivesh, we believe life isn’t solely about monetary gain. That’s why we also host a range
+                    of events designed to deepen your understanding of astrology and related themes. From free astrology
+                    prediction sessions to live events featuring Aartis and Pujas at some of India’s most renowned
+                    temples, these gatherings are our way of forging genuine connections and enriching your spiritual
+                    journey.
                 </p>
 
                 <strong>Online Astrologer</strong>
 
-                <p>A huge chunk of credit for what we are today goes to the force of online astrologers we have got on
-                    board. Astrologers come from different walks of life and only the best, who has a piece of extensive
-                    knowledge in their field, make it to this platform for your convenience. As the Astrologers work
-                    with us, they are scrutinized in the form of ratings that the customers give them. The better the
-                    rating, the better the service. Talking about service, there are multiple ways to avail the same.
-                    Either you can talk to the astrologer over a call or simply chat with them at your convenience. And
-                    guess what, the first chat with an astrologer can be availed at a 50% discount.</p>
+                <p>A huge part of our success is thanks to the exceptional team of online astrologers we’ve brought on
+                    board. Drawn from diverse backgrounds, only the most knowledgeable experts make it to our
+                    platform—ensuring that you receive top-notch advice at your convenience. Our astrologers are
+                    continually evaluated through customer ratings, so the higher the rating, the better the service you
+                    can expect. Plus, you can choose to consult them via call or chat, and your very first chat comes at
+                    a 50% discount.
+                </p>
 
                 <p>
-                    The astrologers, we have on board, understand the essence of the 5000-year old science and try their
-                    best to do justice with it. Besides sharing their knowledge with you, they also share videos, write
-                    up and other rich content with us that is available across our social media pages and in the blog
-                    section of our website. These writings on Muhurats, upcoming festivals, online astrology prediction
-                    will quench the thirst of your pious soul for online astrology knowledge.
+                    These seasoned professionals honor the 5000-year-old legacy of astrology by diligently applying
+                    their wisdom in every session. Beyond personal consultations, they enrich our platform with engaging
+                    videos, in-depth articles, and other insightful content available on our social media channels and
+                    blog. Whether it’s guidance on Muhurats, insights on upcoming festivals, or online astrology
+                    predictions, our content is designed to quench your spiritual curiosity and deepen your
+                    understanding of this timeless science.
                 </p>
 
                 <strong>Stay Updated With Daily Horoscope Predictions & Zodiac Signs</strong>
 
                 <p>
-                    We as a brand are new in the online astrology consultation arena but, at the same time, also
-                    empowered to offer our visitors the best invariably. So within a short span of time, we have created
-                    a space to offer even the minutest details on astrological elements like transits, astrology daily
-                    horoscope for different zodiac signs, updates on upcoming auspicious dates, and much more.
+                    Though we may be newcomers to online astrology consultations, our commitment to excellence shines
+                    through. In a short time, we’ve built a platform that offers even the finest details on astrological
+                    elements—from tracking planetary transits and delivering daily horoscopes for every zodiac sign, to
+                    providing timely updates on auspicious dates and more.
+
                 </p>
 
                 <p>
-                    While astrology's daily horoscope allows one an opportunity to realign their day as per what the
-                    stars have for them in the box, having knowledge of muhurats, among other astrology services, on the
-                    other hand, ensures you are well updated on the best times of the day. So much information under one
-                    roof? Well, that’s what our purpose has been over the years and we continue to refine it.
+                    Our daily horoscopes give you the chance to align your day with the celestial energies at play,
+                    while our comprehensive muhurat insights ensure you always know the best moments to act. With a
+                    wealth of astrological wisdom gathered under one roof, our mission remains steadfast: to empower you
+                    with accurate, insightful guidance—and we’re constantly refining our offerings to serve you better.
                 </p>
 
                 <strong>Why Choose Our Astrology Experts?</strong>
                 <p>
-                    In a nutshell, Astrotalk and our experts could be your partner and guide when it comes to astrology.
-                    Be it a question on horoscope or numerology, tarot card reading or even connecting you with a
-                    foreign astrologer, we have practitioners to answer all your starry queries.
+                    In a nutshell, *Astro Nivesh* and our expert team can be your trusted partner and guide when it
+                    comes to astrology. Whether you have questions about your horoscope, numerology, tarot card
+                    readings, or even need to connect with an international astrologer, we have knowledgeable
+                    practitioners ready to answer all your starry queries.
+
                 </p>
 
                 <p>
-                    At last, what do you need to do to get in touch with our astrologers? Simply, login to the Astrotalk
-                    app, and guess what? There is a free astrology online session waiting for you. Once you have
-                    finished your free astrology predictions session, and you want to stay with us for longer (which you
-                    would) then you can recharge your wallet, and connect with live astrologers to receive instant
-                    astrology consultation.
+                    So, how do you get in touch with our astrologers? Simply log in to the *Astro Nivesh* app, and a
+                    free online astrology session awaits you. Once you’ve experienced your complimentary session and
+                    decide to explore further (which we’re sure you will), you can easily recharge your wallet and
+                    connect with live astrologers for instant consultations.
+
                 </p>
 
                 <p>
-                    The best way to choose the best astrologers is to select the category and choose the top astrologers
-                    as per the ratings given to them by people like you. One can completely trust our service to be of
-                    supreme quality. And just in case you bump into a nag during astrology online consultation, you will
-                    be heard by our customer service team invariably.
+                    Choosing the perfect astrologer is easy—just select your desired category and pick from the
+                    top-rated experts as reviewed by users like you. Our service stands for supreme quality, and should
+                    you ever encounter any issues during your consultation, our dedicated customer service team is
+                    always here to help.
+
                 </p>
 
                 <p>
-                    Astrotalk connects you with the best astrologer in India. If want to get the best astrological
-                    consultation from one of the best Indian astrologers online, search for the phrase “best astrologer
-                    near me” on Google, and you will find Indian astrologers online. Astrotalk connects you with the
-                    best astrologers in India, the USA, Canada, Australia or we can say that you can connect with the
-                    best astrologers in the world by using the Astrotalk website and App. If you are looking for the
-                    best astrologers in Noida, Delhi/NCR, Gurgaon, etc., Astrotalk is the best online platform for you.
-                    We have the best astrologers online for marriage, career, health, etc. Astrotalk is your ultimate
-                    destination if you want to talk to astrologer online, chat with astrologers, check free kundali,
-                    match making, daily horoscopes, gems, and rudraksha shopping, etc.
+                    *Astro Nivesh* connects you with the best astrologers in India. If you’re looking for the finest
+                    astrological consultation from top Indian experts, simply search for “best astrologer near me” on
+                    Google, and you’ll find us leading the way. We link you with the best astrologers not only in India
+                    but also in the USA, Canada, Australia, and across the globe through our website and app. Whether
+                    you need guidance on marriage, career, health, or other life matters, *Astro Nivesh* is your
+                    ultimate destination for online consultations, free Kundli checks, matchmaking services, daily
+                    horoscopes, and even gems and rudraksha shopping.
                 </p>
 
             </div>
@@ -1121,7 +1177,7 @@
          Our FAQ Comp
          ----------------- -->
 
-    <section class="faq-comp why-astrologer-comp">
+    <!-- <section class="faq-comp why-astrologer-comp">
         <div class="common-container3">
             <div class="comn-heading">
                 <h3>FAQ'S About Astrology </h3>
@@ -1336,7 +1392,7 @@
             </div>
 
         </div>
-    </section>
+    </section> -->
 
 
     <!-- ____________________________
@@ -1362,7 +1418,8 @@
 
 
                     <p>
-                        Astro Nivesh is the best astrology website for online Astrology predictions. Talk to Astrologer on
+                        Astro Nivesh is the best astrology website for online Astrology predictions. Talk to Astrologer
+                        on
                         call and get answers to all your worries by seeing the future life through Astrology Kundli
                         Predictions from the best Astrologers from India. Get best future predictions related to
                         Marriage, love life, Career or Health over call, chat, query or report.
@@ -1417,7 +1474,8 @@
             </div>
 
             <div class="copyright-bx">
-                <p>Copyright 2025 Astro Market Private Limited | All Rights Reserved | Dev. By: <a href="https://digitaldezire.com/">Dezire
+                <p>Copyright 2025 Astro Nivesh | All Rights Reserved | Dev. By: <a
+                        href="https://digitaldezire.com/">Dezire
                         Dezire</a></p>
             </div>
             <div style="display: none;">
@@ -1450,6 +1508,9 @@
     <script>
         const host = "https://astroweb-backend.onrender.com";
         const token = localStorage.getItem("token");
+        const params = JSON.parse(localStorage.getItem('params'));
+        // console.log(token, "token")
+        // console.log(params, "params")
         async function fetchAllData() {
             try {
                 const response = await fetch(`${host}/api/auth/getuser`, {
@@ -1460,22 +1521,18 @@
                     }
                 });
 
-                if (!response.ok == true) {
+                if (!response.ok) {
                     throw new Error("Failed to fetch data");
                 }
 
                 const data = await response.json();
-                // console.log(data, "data")
-                populateTable(data)
+                populateTable(data);
+                populateName(data);
                 collectData(data)
-                // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
-                console.error(error);
-                // alert("Error fetching data: " + error.message);
+                console.error("Error fetching data:", error);
             }
         }
-
-        window.onload = fetchAllData;
 
         function populateTable(data) {
             const tableBody = document.getElementById("profile-body");
@@ -1488,9 +1545,16 @@
              
             `
         }
-    </script>
+        function populateName(data) {
+            const tableBody = document.getElementById("profile-name");
+            tableBody.innerHTML = "";
 
-    <script>
+            tableBody.innerHTML = `
+            <p>${data.name}</p>
+             
+            `
+        }
+
         function showAlert(message, type) {
             // Function to display alerts
             const alertBox = document.getElementById("alert");
@@ -1520,6 +1584,7 @@
             console.log(json);
 
             if (json.success) {
+
                 showAlert("Logged in successfully", "success");
                 // Save the auth token and redirect
                 localStorage.setItem("token", json.authToken);
@@ -1553,7 +1618,7 @@
                 vowel: formData.get("vowel"),
             };
 
-            console.log(customerData, "customerData");
+            // console.log(customerData, "customerData");
 
             const response = await fetch(`${host}/api/auth/createuser`, {
                 method: "POST",
@@ -1567,96 +1632,50 @@
             console.log(json);
 
             if (json.success) {
-                showAlert("Logged in successfully", "success");
+                showAlert("Account Created successfully", "success");
                 // Save the auth token and redirect
                 localStorage.setItem("token", json.authToken);
-                document.querySelector(".login-reg-comp").classList.remove("formactive");
-                // window.location.href = "/index.html";
-                const loginForm = document.querySelector(".login-info");
-                const regInfo = document.querySelector(".reg-info");
-                const profileInfo = document.querySelector(".profile-info");
-                loginForm.style.display = "none";
-                regInfo.style.display = "none";
-                profileInfo.style.display = "block";
-                location.reload();
-            } else {
-                showAlert("Invalid Details", "danger");
-            }
-        }
+                const data = customerData;
 
-        document.addEventListener("DOMContentLoaded", function () {
-            // console.log(token, "token")
-            const loginForm = document.querySelector(".login-info");
-            const regInfo = document.querySelector(".reg-info");
-            const profileInfo = document.querySelector(".profile-info");
-
-            if (token) {
-                // User is logged in, show profile and hide login/signup forms
-                loginForm.style.display = "none";
-                regInfo.style.display = "none";
-                profileInfo.style.display = "block";
-            } else {
-                // User is not logged in, show login/signup forms
-                loginForm.style.display = "block";
-                regInfo.style.display = "block";
-                profileInfo.style.display = "none";
-            }
-
-            // Logout functionality
-            const logoutBox = document.getElementById("logoutBox");
-            if (logoutBox) {
-                logoutBox.addEventListener("click", function () {
-                    localStorage.removeItem("token");
-                    location.reload();
-                    localStorage.removeItem('horoscopeData');
-                    localStorage.removeItem('params');
-                    localStorage.removeItem("chart1Data");
-                    localStorage.removeItem("chart2Data");
-                });
-            }
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const kundaliLink = document.getElementById("kundaliLink");
-            const loginModal = document.getElementById("login_btn");
-
-            kundaliLink.addEventListener("click", function (event) {
-                if (token) {
-                    // Redirect to Kundali Form if token is present
-                    window.location.href = "./kundali.html";
-                } else {
-                    // Open login modal if no token
-                    loginModal.click();
-                }
-            });
-        });
-
-        async function collectData(data) {
-            const token = localStorage.getItem("token");
-            const params = JSON.parse(localStorage.getItem('params'));
-
-            if (token) {
+                // api
+                let api = [];
                 try {
+                    const response = await fetch(`${host}/api/admindetail/all`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch API data");
+                    }
+
+                    const data = await response.json();
+                    api = data[0]?.apiKey || []; // Store fetched API key
+                    // console.log(api, "Fetched API key");
+                } catch (error) {
+                    console.error("Error fetching API key:", error);
+                }
+                console.log(api[0]?.apiKey, "api[0]?.apiKey")
+
+                try {
+                    // console.log(data, "data")
                     const birthtime = data.birthtime;
                     const location = data.birthplace;
                     const date = new Date(`1970-01-01 ${birthtime}`);
                     const time24 = date.toLocaleTimeString("en-GB", { hour12: false }).slice(0, 5);
                     const formattedDate = data.dob.split('-').reverse().join('/');
-                    // console.log(formattedDate,"formattedDate")
-                    // console.log(time24, "time24")
-                    const apiKey = "43eaf2f4-90d4-5abe-8407-33418a4e0c1d"
+                    // console.log(api[0]?.apiKey, "api")
+                    const apiKey = api[0]?.apiKey;
                     const baseUrl = "https://api.vedicastroapi.com/v3-json";
-                    // Fetch location coordinates
-                    // console.log(location, "location")
                     const altitudeUrl = `${baseUrl}/utilities/geo-search?city=${location}&api_key=${apiKey}`;
-                    // console.log(altitudeUrl, "altitudeUrl")
                     const response1 = await fetch(altitudeUrl);
                     if (!response1.ok) throw new Error("Failed to fetch location data.");
                     const data1 = await response1.json();
                     const data2 = data1.response;
                     const lat = data2[0].coordinates[0];
                     const lon = data2[0].coordinates[1];
-                    // console.log(data2, "data2")
 
                     const params = {
                         api_key: apiKey,
@@ -1670,8 +1689,6 @@
                         D1: "D1",
                         D9: "D9",
                     };
-                    // console.log(params, "params")
-                    // Fetch horoscope data
                     const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
                     const response2 = await fetch(horoscopeUrl);
                     if (!response2.ok) throw new Error("Failed to fetch horoscope data.");
@@ -1687,35 +1704,13 @@
                     const DashaData = await responseAll.json();
                     const dashas = DashaData.response.order_of_dashas || [];
 
-                    // Fetch charts
-                    const chart1Url = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-                    const chart2Url = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                    const chart1 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                    const response3 = await fetch(chart1);
+                    const chart1Url = await response3.text();
+                    const chart2 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                    const response4 = await fetch(chart2);
+                    const chart2Url = await response4.text();
 
-                    // Save data to localStorage
-                    localStorage.setItem('horoscopeData', JSON.stringify(horoscopeData));
-                    localStorage.setItem('params', JSON.stringify(params));
-                    localStorage.setItem('dashas', JSON.stringify(dashas));
-                    // console.log(dashas,"dashas")
-                    // console.log(horoscopeData, "horoscope")
-                    // console.log(chart1Url, "chart1")
-                    // console.log(chart2Url, "chart2")
-                    // console.log("params", params)
-                    try {
-                        // Fetch the chart data
-                        const response3 = await fetch(chart1Url);
-                        const chart1Data = await response3.text();
-
-                        const response4 = await fetch(chart2Url);
-                        const chart2Data = await response4.text();
-
-                        // Save data to localStorage
-                        localStorage.setItem("chart1Data", chart1Data);
-                        localStorage.setItem("chart2Data", chart2Data);
-
-                        // alert("Charts have been fetched and saved to localStorage!");
-                    } catch (error) {
-                        console.error("Error fetching charts:", error);
-                    }
 
                     let rashiData = {};
 
@@ -1771,16 +1766,154 @@
                     } catch (error) {
                         console.log("error")
                     }
-                    console.log(rashiData)
-                    localStorage.setItem('rashiData', JSON.stringify(rashiData));
+                    const response = await fetch(`${host}/api/detail/adddetail`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": json.authToken
+                        },
+                        body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url })
+                    });
+
+                    const result = await response.json();
+                    // console.log(result);
+                }
+                catch {
+                    console.log("error")
+                }
+
+                document.querySelector(".login-reg-comp").classList.remove("formactive");
+                // window.location.href = "/index.html";
+                const loginForm = document.querySelector(".login-info");
+                const regInfo = document.querySelector(".reg-info");
+                const profileInfo = document.querySelector(".profile-info");
+                loginForm.style.display = "none";
+                regInfo.style.display = "none";
+                profileInfo.style.display = "block";
+                location.reload();
+
+            } else {
+                showAlert("Invalid Details", "danger");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // console.log(token, "token")
+            const loginForm = document.querySelector(".login-info");
+            const regInfo = document.querySelector(".reg-info");
+            const profileInfo = document.querySelector(".profile-info");
+
+            if (token) {
+                // User is logged in, show profile and hide login/signup forms
+                loginForm.style.display = "none";
+                regInfo.style.display = "none";
+                profileInfo.style.display = "block";
+            } else {
+                // User is not logged in, show login/signup forms
+                loginForm.style.display = "block";
+                regInfo.style.display = "block";
+                profileInfo.style.display = "none";
+            }
+
+            // Logout functionality
+            const logoutBox = document.getElementById("logoutBox");
+            if (logoutBox) {
+                logoutBox.addEventListener("click", function () {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem('params');
+                    location.reload();
+                });
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const kundaliLink = document.getElementById("kundaliLink");
+            const marketLink = document.getElementById("marketLink");
+            const loginModal = document.getElementById("login_btn");
+
+            kundaliLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./kundali.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+            marketLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./market.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+        });
+
+        async function collectData(data) {
+            const token = localStorage.getItem("token");
+            const params = JSON.parse(localStorage.getItem('params'));
+
+            if (token) {
+                // api
+                let api = [];
+                try {
+                    const response = await fetch(`${host}/api/admindetail/all`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch API data");
+                    }
+
+                    const data = await response.json();
+                    api = data[0]?.apiKey || []; 
+                } catch (error) {
+                    console.error("Error fetching API key:", error);
+                }
+                try {
+                    const birthtime = data.birthtime;
+                    const location = data.birthplace;
+                    const date = new Date(`1970-01-01 ${birthtime}`);
+                    const time24 = date.toLocaleTimeString("en-GB", { hour12: false }).slice(0, 5);
+                    const formattedDate = data.dob.split('-').reverse().join('/');
+                    const apiKey = api[0]?.apiKey;
+                    const baseUrl = "https://api.vedicastroapi.com/v3-json";
+                    const altitudeUrl = `${baseUrl}/utilities/geo-search?city=${location}&api_key=${apiKey}`;
+                    const response1 = await fetch(altitudeUrl);
+                    if (!response1.ok) throw new Error("Failed to fetch location data.");
+                    const data1 = await response1.json();
+                    const data2 = data1.response;
+                    const lat = data2[0].coordinates[0];
+                    const lon = data2[0].coordinates[1];
+
+                    const params = {
+                        api_key: apiKey,
+                        dob: formattedDate,
+                        tob: time24,
+                        lat,
+                        lon,
+                        location,
+                        tz: 5.5,
+                        lang: "en",
+                        D1: "D1",
+                        D9: "D9",
+                    };
+                    localStorage.setItem('params', JSON.stringify(params));
                 }
                 catch {
                     console.log("error")
                 }
             }
         }
-
-        // rashi Data
+        // Populate table on page load
+        window.onload = async () => {
+            fetchAllData()
+        };
 
     </script>
 

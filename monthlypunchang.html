@@ -67,7 +67,7 @@
                 const response = await fetch(monthlyPanchang);
                 if (!response.ok) throw new Error("Failed to fetch location data.");
                 const data = await response.json();
-                populateTable(data.response);
+                populatePunchang(data.response);
             } catch (error) {
                 document.getElementById("#dataTable tbody").innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
             }
@@ -75,7 +75,7 @@
         fetchMonthlyPunchang();
 
         // Function to populate the table
-        function populateTable(data) {
+        function populatePunchang(data) {
             const tableBody = document.querySelector("#dataTable tbody");
             tableBody.innerHTML = ""; // Clear previous data
 
@@ -115,7 +115,7 @@
         }
 
         // Call the function with API data
-        populateTable();
+        populatePunchang();
     </script>
 </body>
 
