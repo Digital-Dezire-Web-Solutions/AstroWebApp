@@ -1512,7 +1512,8 @@
             // console.log("its api key", response?.headers?.get("X_API_KEY"))
             return response?.headers?.get(name)
         }
-        const host = "https://astroweb-backend.onrender.com";
+        const host = "https://api.astronivesh.com";
+        // const host = "https://astroweb-backend.onrender.com";
         const token = localStorage.getItem("token");
         const params = JSON.parse(localStorage.getItem('params'));
         // console.log(token, "token")
@@ -1782,10 +1783,10 @@
                     });
 
                     const result = await response.json();
-                    // console.log(result);
+                    console.log(result);
                 }
-                catch {
-                    console.log("error")
+                catch (error) {
+                    console.log(error,"error")
                 }
 
                 document.querySelector(".login-reg-comp").classList.remove("formactive");
@@ -1796,7 +1797,7 @@
                 loginForm.style.display = "none";
                 regInfo.style.display = "none";
                 profileInfo.style.display = "block";
-                location.reload();
+                // location.reload();
 
             } else {
                 showAlert("Invalid Details", "danger");
