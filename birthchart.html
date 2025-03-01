@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Astro Market Web App</title>
+    <!-- swiper slider css CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- __________________________________ 
+     Our header Comp 
+     ------------------------ -->
+
+    <header class="header-comp">
+        <div class="common-container3">
+
+            <div class="header-flex-bx flex item-between">
+
+                <div class="left-header-logo flex item-start gap">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astroyogi</h6>
+
+                </div>
+
+                <div class="right-navbar class-rel flex item-start gap">
+                    <div class="navbar class-rel">
+                        <nav class="nav class-rel">
+                            <div class="nav-lists flex item-start">
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Market</a></li>
+                                <li><a href="#">Kundali</a></li>
+                                <li><a href="#">Affirmations</a></li>
+                                <li><a href="#">Runes</a></li>
+                                <li><a href="#">Healing</a></li>
+                                <li><a href="#">Wisdom</a></li>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="header-icons-flex-bx class-rel flex gap">
+
+                        <a href="#">
+                            <button class="headr-btn">
+                                <ion-icon name="cart-outline"></ion-icon>
+                                <span>Store</span>
+                            </button>
+                        </a>
+
+                        <a href="#">
+                            <button id="login_btn" class="headr-btn headr-btn2">
+                                <ion-icon name="person"></ion-icon>
+                                <span>Login</span>
+                            </button>
+                        </a>
+
+                    </div>
+
+                    <button class="menu-bar-btn">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+    <!-- _______________________
+       Our Login Reg Comp 
+       ------------------ -->
+
+    <section class="login-reg-comp">
+
+        <div class="login-bx ">
+
+            <button class="close-form-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="login-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+
+
+                <div class="comn-heading">
+                    <h4>Sign In to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form action="#">
+
+                        <div class="inpt-bx">
+                            <label for="email">Email Address</label>
+                            <div class="inpt">
+                                <input type="email" name="email" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="email">Password</label>
+                            <div class="inpt">
+                                <input type="password" name="password" placeholder="Enter your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+
+                    <div class="form-btns-flex">
+
+                        <button class="form-btn">
+                            Sign In
+                        </button>
+
+                        <button class="form-btn form-btn2" id="newAcnt">
+                            Create Account
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reg-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+                <div class="comn-heading">
+                    <h4>Sign Up to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form action="#">
+
+                        <div class="inpt-bx">
+                            <label for="name">Name</label>
+                            <div class="inpt">
+                                <input type="text" name="name" placeholder="Enter your Name" autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="name">Email</label>
+                            <div class="inpt">
+                                <input type="email" name="email" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Create Password</label>
+                            <div class="inpt">
+                                <input type="text" name="createpassword" placeholder="Create your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                        <div class="inpt-bx">
+                            <label for="password">Date Of Birth</label>
+                            <div class="inpt">
+                                <input type="text" id="calendarInput" placeholder="Choose a date" />
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Birth Time</label>
+                            <div class="inpt">
+                                <input type="text" id="timePicker" class="time-picker" placeholder="Select Time">
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="birthplace"> Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" name="birthplace" placeholder="Enter your birth place..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                    <div class="form-btns-flex">
+
+                        <button class="form-btn">
+                            Create Account
+                        </button>
+
+                        <button class="form-btn  form-btn3" id="signInBtn">
+                            I Already Have Account
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ______________________________
+        Our kundali comp 
+        ----------------- -->
+
+
+    <section class="kundali-comp">
+        <div class="common-container3">
+            <div class="kundali-table">
+                <h5>Horoscope Divisional Chart</h5>
+                <label for="divisional-select">Choose Divisional Chart:</label>
+                <select id="divisional-select">
+                    <option value="D1" selected>D1 - Lagna</option>
+                    <option value="D2">D2</option>
+                    <option value="D3">D3</option>
+                    <option value="D3-s">D3-s</option>
+                    <option value="D4">D4</option>
+                    <option value="D5">D5</option>
+                    <option value="D7">D7</option>
+                    <option value="D8">D8</option>
+                    <option value="D9">D9</option>
+                    <option value="D10">D10</option>
+                    <option value="D10-R">D10-R</option>
+                    <option value="D12">D12</option>
+                    <option value="D16">D16</option>
+                    <option value="D20">D20</option>
+                    <option value="D24">D24</option>
+                    <option value="D24-R">D24-R</option>
+                    <option value="D27">D27</option>
+                    <option value="D30">D30</option>
+                    <option value="D40">D40</option>
+                    <option value="D45">D45</option>
+                    <option value="D60">D60</option>
+                    <option value="chalit">Chalit</option>
+                    <option value="sun">Sun</option>
+                    <option value="moon">Moon</option>
+                    <option value="kp_chalit">KP Chalit</option>
+                </select>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>R</th>
+                            <th>Zodiac</th>
+                            <th>House</th>
+                            <th>Rashi No.</th>
+                            <th>Local Degree</th>
+                        </tr>
+                    </thead>
+                    <tbody id="planet-data"></tbody>
+                </table>
+                <h5>Bhavabal</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>House</th>
+                            <th>BhavaAdhipathiBala</th>
+                            <th>BhavaDrishtiBala</th>
+                            <th>BhavaDigBala</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bhava-data"></tbody>
+                </table>
+                </table>
+                <h5>Ashtakvarga</h5>
+                <table id="ashtakavargaTable">
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>1st House</th>
+                            <th>2nd House</th>
+                            <th>3rd House</th>
+                            <th>4th House</th>
+                            <th>5th House</th>
+                            <th>6th House</th>
+                            <th>7th House</th>
+                            <th>8th House</th>
+                            <th>9th House</th>
+                            <th>10th House</th>
+                            <th>11th House</th>
+                            <th>12th House</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be appended here -->
+                    </tbody>
+                </table>
+
+                <h5>Sarvashtakavarga</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>Rows</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Sarvashtakavarga-data">
+                        <!-- Sarvashtakavarga data will be dynamically inserted here -->
+                    </tbody>
+                </table>
+
+                <h5>Predictions</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prediction-data">
+                        <!-- Predictions will be dynamically inserted here -->
+                    </tbody>
+                </table>
+                <h5>Bio Rhythm</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bio Rhythm</th>
+                            <th>Score</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody id="biorhythm-data">
+                        <!-- Predictions will be dynamically inserted here -->
+                    </tbody>
+                </table>
+                <h5>Dasha</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dasha</th>
+                            <th>Planet</th>
+                            <th>Start</th>
+                            <th>end</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dasha-data">
+                        <!-- Predictions will be dynamically inserted here -->
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const params = JSON.parse(localStorage.getItem("params"));
+        const ApiUrl = "https://vedastroapi.azurewebsites.net/api/Calculate";
+        const baseUrl = "https://api.vedicastroapi.com/v3-json/";
+
+
+        // Fetch Bhava Data
+        const fetchBhavaData = async () => {
+            try {
+                // API URLs
+                const BhavaAdhipathiBalaUrl = `${ApiUrl}/BhavaAdhipathiBala/Location/${params.location}/Time/${params.tob}/${params.dob}/+05:30`;
+                const BhavaDrishtiBalaUrl = `${ApiUrl}/BhavaDrishtiBala/Location/${params.location}/Time/${params.tob}/${params.dob}/+05:30`;
+                const BhavaDigBalaUrl = `${ApiUrl}/BhavaDigBala/Location/${params.location}/Time/${params.tob}/${params.dob}/+05:30`;
+
+                // Fetch data concurrently
+                const [adhipathiRes, drishtiRes, digRes] = await Promise.all([
+                    fetch(BhavaAdhipathiBalaUrl),
+                    fetch(BhavaDrishtiBalaUrl),
+                    fetch(BhavaDigBalaUrl),
+                ]);
+
+                // Parse JSON responses
+                const adhipathiData = await adhipathiRes.json();
+                const drishtiData = await drishtiRes.json();
+                const digData = await digRes.json();
+
+                // Extract payloads
+                const adhipathi = adhipathiData.Payload.BhavaAdhipathiBala.BhavaAdhipathiBala;
+                const drishti = drishtiData.Payload.BhavaDrishtiBala.BhavaDrishtiBala;
+                const dig = digData.Payload.BhavaDigBala.BhavaDigBala;
+
+                // Combine data into rows
+                const bhavaData = adhipathi.map((item, index) => ({
+                    House: item.House,
+                    BhavaAdhipathiBala: item.Strength || "N/A",
+                    BhavaDrishtiBala: drishti[index]?.Strength || "N/A",
+                    BhavaDigBala: dig[index]?.Strength || "N/A",
+                }));
+
+                // Populate the table
+                const tableBody = document.getElementById("bhava-data");
+                tableBody.innerHTML = ""; // Clear any existing rows
+
+                bhavaData.forEach((data) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                <td>${data.House}</td>
+                <td>${data.BhavaAdhipathiBala}</td>
+                <td>${data.BhavaDrishtiBala}</td>
+                <td>${data.BhavaDigBala}</td>
+                <td>${data.BhavaAdhipathiBala + data.BhavaDrishtiBala + data.BhavaDigBala}</td>
+              `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching Bhava data:", error);
+            }
+        };
+
+        // Fetch and display the data
+        fetchBhavaData();
+
+
+        // Fetch All Time Data
+        const fetchAllTimeData = async () => {
+            try {
+                // Construct the API URL
+                const AllTimeUrl = `${ApiUrl}/AllTimeData/Location/${params.location}/Time/${params.tob}/${params.dob}/+05:30`;
+                const responseAll = await fetch(AllTimeUrl);
+
+                // Handle response errors
+                if (!responseAll.ok) {
+                    throw new Error("Failed to fetch AllTime data.");
+                }
+
+                const AllTimeData = await responseAll.json();
+                const AllTime = AllTimeData.Payload.AllTimeData;
+                const prediction = AllTime.HoroscopePredictionNames; // Comma-separated prediction list
+                const Sarvashtakavarga = AllTime.SarvashtakavargaChart;
+
+                // Populate the Prediction table
+                const predictionTableBody = document.getElementById("prediction-data");
+                predictionTableBody.innerHTML = "";
+
+                // Split the comma-separated predictions into an array and iterate over it
+                const predictionArray = prediction.split(", ");
+                predictionArray.forEach((item) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${item}</td>`;
+                    predictionTableBody.appendChild(row);
+                });
+
+                // Populate the Sarvashtakavarga table
+                const sarvashtakavargaTableBody = document.getElementById("Sarvashtakavarga-data");
+                sarvashtakavargaTableBody.innerHTML = "";
+
+                // Iterate over Sarvashtakavarga data
+                Object.entries(Sarvashtakavarga).forEach(([key, value]) => {
+                    const row = document.createElement("tr");
+                    const rowsData = value.Rows.join(", "); // Convert array to a comma-separated string
+                    row.innerHTML = `
+                        <td>${key}</td>
+                        <td>${rowsData}</td>
+                        <td>${value.Total}</td>
+                    `;
+                    sarvashtakavargaTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching AllTime data:", error);
+            }
+        };
+
+        // Fetch and display the data
+        fetchAllTimeData();
+
+        // Fetch All Time Data
+        const fetchBioRhythmData = async () => {
+            try {
+                // Construct the API URL
+                const BioRhythmUrl = `${baseUrl}prediction/biorhythm?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                const responseAll = await fetch(BioRhythmUrl);
+
+                // Handle response errors
+                if (!responseAll.ok) {
+                    throw new Error("Failed to fetch Biorhythm data.");
+                }
+
+                const BioRhythmData = await responseAll.json();
+                const BioRhythm = BioRhythmData.response;
+
+                // Populate the Prediction table
+                const predictionTableBody = document.getElementById("biorhythm-data");
+                predictionTableBody.innerHTML = ""; // Clear previous data
+
+                Object.entries(BioRhythm).forEach(([key, value]) => {
+                    const row = document.createElement("tr");
+
+                    // Extract score and trend values
+                    const score = value.score || "N/A";
+                    const trend = value.trend || "N/A";
+
+                    row.innerHTML = `
+                <td>${key}</td>
+                <td>${score}</td>
+                <td>${trend}</td>
+            `;
+
+                    predictionTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching Biorhythm data:", error);
+            }
+        };
+
+        // Fetch and display the data
+        fetchBioRhythmData();
+
+        // Fetch dasha Data
+        const fetchDashaData = async () => {
+            try {
+                // Construct the API URL
+                const DashaUrl = `${baseUrl}dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                const responseAll = await fetch(DashaUrl);
+
+                // Handle response errors
+                if (!responseAll.ok) {
+                    throw new Error("Failed to fetch Biorhythm data.");
+                }
+
+                const DashaData = await responseAll.json();
+                const Dasha = DashaData.response.order_of_dashas;
+                // console.log(Dasha, "Dasha")
+
+                // Populate the Prediction table
+                const predictionTableBody = document.getElementById("dasha-data");
+                predictionTableBody.innerHTML = ""; // Clear previous data
+
+                Object.entries(Dasha).forEach(([key, value]) => {
+                    const row = document.createElement("tr");
+
+                    // Extract score and trend values
+                    const name = value.name || "N/A";
+                    const start = value.start || "N/A";
+                    const end = value.end || "N/A";
+
+                    row.innerHTML = `
+                <td>${key}</td>
+                <td>${name}</td>
+                <td>${start}</td>
+                <td>${end}</td>
+            `;
+
+                    predictionTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching Biorhythm data:", error);
+            }
+        };
+
+        // Fetch and display the data
+        fetchDashaData();
+
+        // Fetch Ashtakavarga Data and Display in Table
+        const fetchAshtakaData = async () => {
+            try {
+                const ashtakvargaUrl = `${baseUrl}horoscope/ashtakvarga?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                const response = await fetch(ashtakvargaUrl);
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch Ashtakavarga data.");
+                }
+
+                const { response: ashtakvargaData } = await response.json();
+                const { ashtakvarga_order, ashtakvarga_points } = ashtakvargaData;
+
+                // Populate the table
+                const tableBody = document.querySelector("#ashtakavargaTable tbody");
+                tableBody.innerHTML = ""; // Clear any existing rows
+
+                ashtakvarga_order.forEach((planet, index) => {
+                    const row = document.createElement("tr");
+                    const planetCell = document.createElement("td");
+                    planetCell.textContent = planet;
+                    row.appendChild(planetCell);
+
+                    ashtakvarga_points[index].forEach((point) => {
+                        const cell = document.createElement("td");
+                        cell.textContent = point;
+                        row.appendChild(cell);
+                    });
+
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching Ashtakavarga data:", error);
+            }
+        };
+
+        // Fetch and display the data
+        fetchAshtakaData();
+    </script>
+
+    <script>
+
+        // Function to fetch and populate data
+        let rashiData = {}; // Store planetary data for all divisions
+
+        async function fetchAndStoreAllDivisions() {
+            try {
+                const params = JSON.parse(localStorage.getItem('params'));
+                if (!params) {
+                    throw new Error("Parameters not found in localStorage.");
+                }
+
+                // Get all division values from the select dropdown
+                const divisionalSelect = document.getElementById("divisional-select");
+                const divisions = Array.from(divisionalSelect.options).map(opt => opt.value);
+
+                for (const div of divisions) {
+                    const divisionalUrl = `${baseUrl}horoscope/divisional-charts?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${div}&api_key=${params.api_key}&lang=${params.lang}&response_type=planet_object`;
+
+                    try {
+                        const response = await fetch(divisionalUrl);
+                        if (!response.ok) {
+                            console.warn(`Failed to fetch data for ${div}`);
+                            continue; // Skip this division if there's an error
+                        }
+
+                        const horoscopeData = await response.json();
+                        if (horoscopeData && horoscopeData.response) {
+                            const mapPlanetData = (data) => {
+                                if (Array.isArray(data)) {
+                                    return data.map((planet) => ({
+                                        name: planet.full_name,
+                                        zodiac: planet.zodiac,
+                                        house: planet.house,
+                                        retro: planet.retro,
+                                        rasi_no: planet.rasi_no,
+                                        local_degree: planet.local_degree,
+                                    }));
+                                } else if (typeof data === "object" && data !== null) {
+                                    return Object.values(data).map((planet) => ({
+                                        name: planet.full_name,
+                                        zodiac: planet.zodiac,
+                                        house: planet.house,
+                                        retro: planet.retro,
+                                        rasi_no: planet.rasi_no,
+                                        local_degree: planet.local_degree,
+                                    }));
+                                } else {
+                                    console.error(`Unexpected data format for ${div}:`, data);
+                                    return [];
+                                }
+                            };
+
+                            rashiData[div] = mapPlanetData(horoscopeData.response);
+                        } else {
+                            console.warn(`Invalid or missing data for ${div}`);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching horoscope data for ${div}:`, error);
+                    }
+                }
+
+                console.log("All rashi data stored:", rashiData);
+
+                // Populate table with default selection (D1)
+                populateTable("D1");
+
+            } catch (error) {
+                console.error("Error fetching all divisional charts:", error);
+            }
+        }
+
+        function populateTable(div) {
+            const planets = rashiData[div] || [];
+            const planetDataElement = document.getElementById("planet-data");
+            planetDataElement.innerHTML = ""; // Clear existing data
+
+            planets.slice(0, 10).forEach((planet) => {
+                const row = document.createElement("tr");
+
+                const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+                row.innerHTML = `
+            <td>${isDefined(planet.name) ? planet.name : "-"}</td>
+            <td>${planet.retro ? "R" : "-"}</td>
+            <td>${isDefined(planet.zodiac) ? planet.zodiac : "-"}</td>
+            <td>${isDefined(planet.house) ? planet.house : "-"}</td>
+            <td>${isDefined(planet.rasi_no) ? planet.rasi_no : "-"}</td>
+            <td>${isDefined(planet.local_degree) ? planet.local_degree : "-"}</td>
+        `;
+
+                planetDataElement.appendChild(row);
+            });
+        }
+
+        // Event listener for divisional chart selection
+        document.getElementById("divisional-select").addEventListener("change", (event) => {
+            const selectedDiv = event.target.value;
+            populateTable(selectedDiv);
+        });
+
+        // Fetch all divisions on page load
+        window.onload = fetchAndStoreAllDivisions;
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Swiper Js file -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- script file -->
+    <script src="./js/index.js"></script>
+
+
+
+</body>
+
+</html>

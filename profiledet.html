@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Astro Market Web App</title>
+    <!-- swiper slider css CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- __________________________________ 
+     Our header Comp 
+     ------------------------ -->
+
+    <section class="top-header-comp">
+        <div class="common-container3 top-header-flex flex item-between">
+            <div class="left-header-logo flex item-start gap">
+                <img src="./images/astrology.png" alt="">
+
+                <h6>Astroyogi</h6>
+
+            </div>
+
+            <div class="right-top-header-flex-bx flex item-start gap">
+
+                <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="home"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Reach Us</h6>
+                        <span>601 , Ram Nagar Dewas</span>
+                    </div>
+                </div>
+
+                <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="call"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Talk to Us</h6>
+                        <span>+91-123456789</span>
+                    </div>
+                </div>
+
+
+                <button class="menu-bar-btn">
+                    <ion-icon name="menu"></ion-icon>
+                </button>
+
+
+                <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2">
+                        <span class="qty">4</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+
+                    <div class="cart-lists-bx cart-lists-bx-mob">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button class="apnt-btn">
+                    Appointments
+                </button>
+
+                <div class="profile-bx" id="login_btn">
+                    <img src="./images/user-3.png" alt="">
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <header class="header">
+        <div class="common-container3 header-flex flex item-between gap">
+
+            <div class="nav-overlay"></div>
+            <div class="navbar">
+
+                <button class="close-nav-btn">
+                    <ion-icon name="close-circle"></ion-icon>
+                </button>
+
+                <div class="left-header-logo flex item-start gap mob-logo">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astroyogi</h6>
+
+                </div>
+
+                <div class="search-inpt-bx search-inpt-bx-mob">
+                    <input type="text" name="search" placeholder="Search here...">
+                    <button class="search-btn">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
+
+                <nav class="nav">
+                    <div class="nav-lists flex item-start">
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Market</a></li>
+                        <li><a href="#">Kundali</a></li>
+                        <li><a href="#">Affirmations</a></li>
+                        <li><a href="#">Runes</a></li>
+                        <li><a href="#">Healing</a></li>
+                        <li><a href="#">Wisdom</a></li>
+                    </div>
+                </nav>
+
+                <div class="astrology-cont-info">
+
+                    <div class="top-hedr-bx flex item-center">
+                        <div class="left-hedr-icon">
+                            <ion-icon name="home"></ion-icon>
+                        </div>
+                        <div class="right-hedr-inof">
+                            <h6>Reach Us</h6>
+                            <span>601 , Ram Nagar Dewas</span>
+                        </div>
+                    </div>
+
+                    <div class="top-hedr-bx flex item-center">
+                        <div class="left-hedr-icon">
+                            <ion-icon name="call"></ion-icon>
+                        </div>
+                        <div class="right-hedr-inof">
+                            <h6>Talk to Us</h6>
+                            <span>+91-123456789</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button class="apnt-btn apnt-btn-mob">
+                    Appointments
+                </button>
+
+            </div>
+
+            <div class="right-header-flex flex item-start ">
+                <div class="search-inpt-bx">
+                    <input type="text" name="search" placeholder="Search here...">
+                    <button class="search-btn">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
+
+
+
+                <div class="cart-bx">
+                    <button class="cart-btn">
+                        <span class="qty">4</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+
+                    <div class="cart-lists-bx">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </header>
+
+    <!-- _______________________
+       Our Login Reg Comp 
+       ------------------ -->
+
+    <section class="login-reg-comp">
+
+        <div class="login-bx ">
+
+            <button class="close-form-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="login-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+
+
+                <div class="comn-heading">
+                    <h4>Sign In to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form action="#">
+
+                        <div class="inpt-bx">
+                            <label for="email">Email Address</label>
+                            <div class="inpt">
+                                <input type="email" name="email" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="email">Password</label>
+                            <div class="inpt">
+                                <input type="password" name="password" placeholder="Enter your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+
+                    <div class="form-btns-flex">
+
+                        <button class="form-btn">
+                            Sign In
+                        </button>
+
+                        <button class="form-btn form-btn2" id="newAcnt">
+                            Create Account
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reg-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+                <div class="comn-heading">
+                    <h4>Sign Up to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form action="#">
+
+                        <div class="inpt-bx">
+                            <label for="name">Name</label>
+                            <div class="inpt">
+                                <input type="text" name="name" placeholder="Enter your Name" autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="name">Email</label>
+                            <div class="inpt">
+                                <input type="email" name="email" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Create Password</label>
+                            <div class="inpt">
+                                <input type="text" name="createpassword" placeholder="Create your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                        <div class="inpt-bx">
+                            <label for="password">Date Of Birth</label>
+                            <div class="inpt">
+                                <input type="text" id="calendarInput" placeholder="Choose a date" />
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Birth Time</label>
+                            <div class="inpt">
+                                <input type="text" id="timePicker" class="time-picker" placeholder="Select Time">
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="birthplace"> Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" name="birthplace" placeholder="Enter your birth place..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                    <div class="form-btns-flex">
+
+                        <button class="form-btn">
+                            Create Account
+                        </button>
+
+                        <button class="form-btn  form-btn3" id="signInBtn">
+                            I Already Have Account
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ______________________________
+        Our Profile Det 
+        ----------------- -->
+
+    <section class="profile-det-comp">
+        <div class="common-container3">
+
+            <div id="profile-body"></div>
+
+            <div class="house-factors-selc-bx">
+
+                <div class="house-fact-sel-bx">
+                    <label for="houses">Houses</label>
+                    <select id="houseDropdown">
+                        <option value="1" selected>House 1</option>
+                        <option value="2">House 2</option>
+                        <option value="3">House 3</option>
+                        <option value="4">House 4</option>
+                        <option value="5">House 5</option>
+                        <option value="6">House 6</option>
+                        <option value="7">House 7</option>
+                        <option value="8">House 8</option>
+                        <option value="9">House 9</option>
+                        <option value="10">House 10</option>
+                        <option value="11">House 11</option>
+                        <option value="12">House 12</option>
+                    </select>
+                </div>
+
+                <div class="house-fact-sel-bx">
+                    <label for="factors">Nature</label>
+                    <select id="rashiNakSelect">
+                        <option value="Rashi" selected>Rashi</option>
+                        <option value="Nakshatra">Nakshatra</option>
+                    </select>
+                </div>
+                <div class="house-fact-sel-bx">
+                    <label for="factors">Divisional Chart</label>
+                    <select id="divisionalSelect">
+                        <option value="D1" selected>D1 - Lagna</option>
+                        <option value="D2">D2</option>
+                        <option value="D3">D3</option>
+                        <option value="D3-s">D3-s</option>
+                        <option value="D4">D4</option>
+                        <option value="D5">D5</option>
+                        <option value="D7">D7</option>
+                        <option value="D8">D8</option>
+                        <option value="D9">D9</option>
+                        <option value="D10">D10</option>
+                        <option value="D10-R">D10-R</option>
+                        <option value="D12">D12</option>
+                        <option value="D16">D16</option>
+                        <option value="D20">D20</option>
+                        <option value="D24">D24</option>
+                        <option value="D24-R">D24-R</option>
+                        <option value="D27">D27</option>
+                        <option value="D30">D30</option>
+                        <option value="D40">D40</option>
+                        <option value="D45">D45</option>
+                        <option value="D60">D60</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ______________________________
+        Our table Data 
+        ----------------- -->
+
+    <section class="table-comp">
+        <div class="common-container3">
+
+            <div class="table-data">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nakshatra(Pada)</th>
+                            <th>Rashi</th>
+                            <th>
+                                <div data-filter="positive" class="custom-dropdown-Btn">
+                                    Planets
+                                    <!-- <span>
+                                        <ion-icon name="chevron-down-outline"></ion-icon>
+                                    </span> -->
+                                </div>
+                            </th>
+                            <th>Nature</th>
+                            <th>Dasha</th>
+                        </tr>
+                    </thead>
+                    <tbody data-table="positive" class="tableBody showtablebody" id="planetTable">
+                        <!-- <tr>
+                            <td class="td-span">
+                                <span>Aswini</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Libra</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Jupiter</span>
+                            </td>
+                            <td class="td-span">
+                                <div class="color-bx color-bx1"></div>
+                            </td>
+                            <td class="td-span">
+                                <span>MD</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-span">
+                                <span>Aswini</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Libra</span>
+                            </td>
+                            <td class="td-span">
+                                <div class="pie-img">
+                                    <img src="./images/chart.png" alt="">
+                                    <span> Venus (A) </span>
+
+                                </div>
+                            </td>
+                            <td class="td-span">
+                                <div class="color-bx color-bx2"></div>
+                            </td>
+                            <td class="td-span">
+                                <span>MD</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-span">
+                                <span>Aswini</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Libra</span>
+                            </td>
+                            <td class="td-span">
+                                <span>25% (Aspect table)</span>
+                            </td>
+                            <td class="td-span">
+                                <div class="color-bx color-bx3"></div>
+                            </td>
+                            <td class="td-span">
+                                <span>AD</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-span">
+                                <span>Aswini</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Libra</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Moon (A) 25% Own</span>
+                                <span class="ref-icon">
+                                    <ion-icon name="refresh-outline"></ion-icon>
+                                </span>
+                            </td>
+                            <td class="td-span">
+                                <div class="color-bx color-bx4"></div>
+                            </td>
+                            <td class="td-span">
+                                <span>AD</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-span">
+                                <span>Aswini</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Libra</span>
+                            </td>
+                            <td class="td-span">
+                                <span>Mars</span>
+
+                            </td>
+                            <td class="td-span">
+                                <div class="color-bx color-bx3"></div>
+                            </td>
+                            <td class="td-span">
+                                <span>MD</span>
+                            </td>
+                        </tr> -->
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flexible-layout">
+
+                <!-- <div class="table-data table-data-fix-size">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div data-filter="negative" class="custom-dropdown-Btn">
+                                        Negative
+                                        <span>
+                                            <ion-icon name="chevron-down-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th>Value</th>
+
+                            </tr>
+                        </thead>
+                        <tbody data-table="negative" class="tableBody">
+                            <tr>
+                                <td class="td-span">
+                                    <span>Sun</span>
+                                </td>
+
+                                <td class="td-span">
+                                    <span>6</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-span">
+                                    <span>Rahu</span>
+                                </td>
+
+                                <td class="td-span">
+                                    <span>100%</span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="table-data table-data-fix-size table-data-fix-size2">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div data-filter="upgrah" class="custom-dropdown-Btn">
+                                        Upgrah
+                                        <span>
+                                            <ion-icon name="chevron-down-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody data-table="upgrah" class="tableBody">
+                            <tr>
+                                <td class="td-span">
+                                    <span>Gulllika</span>
+                                </td>
+
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="td-span">
+                                    <span>Mandi</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-data table-data-fix-size">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div data-filter="house" class="custom-dropdown-Btn">
+                                        House strength
+                                        <span>
+                                            <ion-icon name="chevron-down-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th>Value</th>
+
+                            </tr>
+                        </thead>
+                        <tbody data-table="house" class="tableBody">
+                            <tr>
+                                <td class="td-span">
+                                    <span>AShtavarga</span>
+                                </td>
+
+                                <td class="td-span">
+                                    <span>26</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-span">
+                                    <span>Bhav Bal</span>
+                                </td>
+
+                                <td class="td-span">
+                                    <span>10</span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-data table-data-fix-size">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div data-filter="gochar" class="custom-dropdown-Btn">
+                                        Gochar
+                                        <span>
+                                            <ion-icon name="chevron-down-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th>Condition</th>
+
+                            </tr>
+                        </thead>
+                        <tbody data-table="gochar" class="tableBody">
+                            <tr>
+                                <td class="td-span">
+                                    <span>Saturn</span>
+                                </td>
+
+                                <td class="td-span">
+                                    <span>Transit/Aspect</span>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div> -->
+
+            </div>
+
+        </div>
+    </section>
+    <!-- <select id="houseDropdown">
+        <option value="1" selected>House 1</option>
+        <option value="2">House 2</option>
+        <option value="3">House 3</option>
+        <option value="4">House 4</option>
+        <option value="5">House 5</option>
+        <option value="6">House 6</option>
+        <option value="7">House 7</option>
+        <option value="8">House 8</option>
+        <option value="9">House 9</option>
+        <option value="10">House 10</option>
+        <option value="11">House 11</option>
+        <option value="12">House 12</option>
+    </select> -->
+    <!-- <section class="table-comp">
+        <div class="common-container3">
+
+            <div class="table-data">
+                <table id="resultbody">
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>Nakshatra (Pada)</th>
+                            <th>Rashi</th>
+                            <th>R</th>
+                            <th>C</th>
+                            <th>100%</th>
+                            <th>75%</th>
+                            <th>50%</th>
+                            <th>25%</th>
+                        </tr>
+                    </thead>
+                    <tbody data-table="positive" class="tableBody showtablebody">
+                    </tbody>
+                </table>
+                <table id="planetTable">
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>position</th>
+                            <th>dasha</th>
+                        </tr>
+                    </thead>
+                    <tbody data-table="positive" class="tableBody showtablebody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section> -->
+
+
+    <script>
+        const nakshatraPadas = [];
+        const nakshatras = [
+            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
+            "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni", "Hasta",
+            "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista", "Shatabhisaj",
+            "Purva Bhadrapada", "UttaraBhadra", "Revati"
+        ];
+
+        const rashis = [
+            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
+            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+        ];
+
+        const zodiacMap = {
+            Aries: 1,
+            Taurus: 2,
+            Gemini: 3,
+            Cancer: 4,
+            Leo: 5,
+            Virgo: 6,
+            Libra: 7,
+            Scorpio: 8,
+            Sagittarius: 9,
+            Capricorn: 10,
+            Aquarius: 11,
+            Pisces: 12,
+        };
+    </script>
+    <script>
+        const planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
+        const ucchaNeechaData = {
+            "Sun": { exalted: "Aries", debilitated: "Libra" },
+            "Moon": { exalted: "Taurus", debilitated: "Scorpio" },
+            "Mars": { exalted: "Capricorn", debilitated: "Cancer" },
+            "Mercury": { exalted: "Virgo", debilitated: "Pisces" },
+            "Jupiter": { exalted: "Cancer", debilitated: "Capricorn" },
+            "Venus": { exalted: "Pisces", debilitated: "Virgo" },
+            "Saturn": { exalted: "Libra", debilitated: "Aries" },
+            "Rahu": { exalted: "Gemini", debilitated: "Sagittarius" },
+            "Ketu": { exalted: "Sagittarius", debilitated: "Gemini" }
+        };
+
+        const planetaryRelations = {
+            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Ketu": { friends: ["Saturn"], enemies: ["Sun", "Moon"] }
+        };
+
+        const rashiLords = {
+            "Aries": "Mars", "Taurus": "Venus", "Gemini": "Mercury", "Cancer": "Moon",
+            "Leo": "Sun", "Virgo": "Mercury", "Libra": "Venus", "Scorpio": "Mars",
+            "Sagittarius": "Jupiter", "Capricorn": "Saturn", "Aquarius": "Saturn", "Pisces": "Jupiter"
+        };
+
+        const nakshatraLords = {
+            "Ashvini": "Ketu", "Bharani": "Venus", "Krittika": "Sun", "Rohini": "Moon",
+            "Mrigashira": "Mars", "Ardra": "Rahu", "Punarvasu": "Jupiter", "Pushya": "Saturn",
+            "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
+            "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
+            "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
+            "Uttara Ashadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisaj": "Rahu",
+            "Purva Bhadrapada": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
+        };
+
+        const ucchaNeechaDegrees = {
+            "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } },
+            "Moon": { exalted: { nakshatra: "Krittika", pada: 1 }, debilitated: { nakshatra: "Anuradha", pada: 4 } },
+            "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } },
+            "Mercury": { exalted: { nakshatra: "UttaraPhalguni", pada: 4 }, debilitated: { nakshatra: "UttaraBhadra", pada: 2 } },
+            "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "Dhanista", pada: 2 } },
+            "Venus": { exalted: { nakshatra: "UttaraBhadra", pada: 4 }, debilitated: { nakshatra: "UttaraPhalguni", pada: 2 } },
+            "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } },
+            "Rahu": { exalted: { nakshatra: "Rohini", pada: 2 }, debilitated: { nakshatra: "Jyeshtha", pada: 1 } },
+            "Ketu": { exalted: { nakshatra: "Jyeshtha", pada: 4 }, debilitated: { nakshatra: "Rohini", pada: 3 } }
+        };
+
+        const planetaryRelations2 = {
+            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon"] },
+            "Ketu": { friends: ["Mars", "Venus", "Saturn"], enemies: ["Sun", "Moon"] }
+        };
+    </script>
+    <script>
+        // Fetch dasha Data
+        const baseUrl = "https://api.vedicastroapi.com/v3-json/";
+        const params = JSON.parse(localStorage.getItem("params"));
+        const dashas = JSON.parse(localStorage.getItem("dashas"));
+
+        // // Fetch and display the data
+        // fetchDashaData();
+        nakshatras.forEach((nakshatra, index) => {
+            for (let pada = 1; pada <= 4; pada++) {
+                const rashiIndex = Math.floor((index * 4 + (pada - 1)) / 9) % 12;
+                nakshatraPadas.push({ nakshatra, pada, rashi: rashis[rashiIndex] });
+            }
+        });
+
+        function getStatus(planet, rashi) {
+            const exaltedSign = ucchaNeechaData[planet]?.exalted;
+            const debilitatedSign = ucchaNeechaData[planet]?.debilitated;
+
+            if (rashi === exaltedSign) return "Uccha (Exalted)";
+            if (rashi === debilitatedSign) return "Neecha (Debilitated)";
+
+            const rashiLord = rashiLords[rashi];
+            const friends = planetaryRelations[planet]?.friends || [];
+            const enemies = planetaryRelations[planet]?.enemies || [];
+
+            if (rashiLord === planet) return "Own";
+            if (friends.includes(rashiLord)) return "Mitra (Friend)";
+            if (enemies.includes(rashiLord)) return "Shatru (Enemy)";
+
+            return "Neutral";
+        }
+
+        const position = []; // Store objects in an array
+        function displayAllStatuses() {
+            planets.forEach(planet => {
+                console.log(planet,"planete")
+                rashis.forEach(rashi => {
+                    const status = getStatus(planet, rashi);
+                    position.push({
+                        planet: planet,
+                        rashi: rashi,
+                        status: status
+                    });
+                });
+            });
+        }
+
+        console.log(position,"position")
+        // Nakshatra status
+        function getStatusNak(planet, nakshatra, pada) {
+            const exalted = ucchaNeechaDegrees[planet].exalted;
+            const debilitated = ucchaNeechaDegrees[planet].debilitated;
+
+            if (nakshatra === exalted.nakshatra && pada === exalted.pada) return "Uccha (Exalted)";
+            if (nakshatra === debilitated.nakshatra && pada === debilitated.pada) return "Neecha (Debilitated)";
+
+            const nakshatraLord = nakshatraLords[nakshatra];
+            const friends = planetaryRelations2[planet].friends;
+            const enemies = planetaryRelations2[planet].enemies;
+
+            if (friends.includes(nakshatraLord)) return "Mitra (Friend)";
+            if (enemies.includes(nakshatraLord)) return "Shatru (Enemy)";
+
+            return "Neutral";
+        }
+        const nakshatraPosition = [];
+        function displayStatus() {
+            planets.forEach(planet => {
+                nakshatras.forEach(nakshatra => {
+                    for (let pada = 1; pada <= 4; pada++) {
+                        const status = getStatusNak(planet, nakshatra, pada);
+
+                        nakshatraPosition.push({
+                            planet: planet,
+                            nakshatra: nakshatra,
+                            pada: pada,
+                            status: status
+                        });
+                    }
+                });
+            })
+        }
+
+
+        // Function to populate the table
+        const populateTable = (selectedHouse = "1") => {
+            // const resultTable = document.getElementById("resultbody").querySelector("tbody");
+            // resultTable.innerHTML = "";
+
+            // Get horoscopeData from localStorage
+            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+            const rashiData = JSON.parse(localStorage.getItem("rashiData"));
+
+            let planets = [];
+
+            if (horoscopeData && horoscopeData.response) {
+                const planetDatas = horoscopeData.response;
+
+                const createHouses = (startZodiacNumber) => {
+                    const houses = [];
+                    let currentNumber = startZodiacNumber;
+                    for (let i = 0; i < 12; i++) {
+                        houses.push(currentNumber);
+                        currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
+                    }
+                    return houses;
+                };
+
+                // Map Planet Data
+                const mapPlanetData = (data) => {
+                    if (Array.isArray(data)) {
+                        return data.map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                            zodiac: planet.zodiac,
+                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                        }));
+                    } else if (typeof data === "object" && data !== null) {
+                        return Object.values(data).map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                            zodiac: planet.zodiac,
+                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                        }));
+                    } else {
+                        console.error("Unexpected data format for planets:", data);
+                        return [];
+                    }
+                };
+
+                planets = mapPlanetData(planetDatas).slice(0, 10);
+            }
+
+            const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
+            const defaultPada = planets[0]?.pada || 1;
+
+            let currentIndex = nakshatraPadas.findIndex(
+                (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+            );
+
+            let storedPadas = [];
+            let comparisonData = []; // Store comparison data for use in resultTable
+
+
+            for (let house = 1; house <= 12; house++) {
+                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+
+                for (let i = 0; i < 10; i++) {
+                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                    const pada = nakshatraPadas[padaIndex];
+                    storedPadas.push(nakshatraPadas[padaIndex]);
+                }
+            }
+            for (let house = 1; house <= 12; house++) {
+                if (selectedHouse !== "all" && house !== parseInt(selectedHouse, 10)) {
+                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+                    continue;
+                }
+
+                const ascendant = planets[0];
+                const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
+                // console.log(ascendant)
+
+
+                planets.forEach((planet) => {
+                    let oneHundredPercent = "-";
+                    let seventyFivePercent = "-";
+                    let fiftyPercent = "-";
+                    let twentyFivePercent = "-";
+
+                    if (selectedHouse === "5" || selectedHouse === "9") {
+                        let matchingPlanets = ["Jupiter", "Rahu", "Ketu"].filter(name => name === planet.name);
+                        if (matchingPlanets.length > 0) {
+                            oneHundredPercent = matchingPlanets.join(", ");
+                        }
+                    }
+                    if (selectedHouse === "4" || selectedHouse === "8") {
+                        let matchingPlanets = ["Mars"].filter(name => name === planet.name);
+                        if (matchingPlanets.length > 0) {
+                            oneHundredPercent = matchingPlanets.join(", ");
+                        }
+                    }
+                    if (selectedHouse === "3" || selectedHouse === "10") {
+                        let matchingPlanets = ["Saturn"].filter(name => name === planet.name);
+                        if (matchingPlanets.length > 0) {
+                            oneHundredPercent = matchingPlanets.join(", ");
+                        }
+                    }
+                    if (planet.houses[0] === ascendantHouseValue) {
+                        oneHundredPercent = planet.name;
+                    }
+                    if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
+                        seventyFivePercent = planet.name;
+                    }
+                    if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
+                        fiftyPercent = planet.name;
+                    }
+                    if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
+                        twentyFivePercent = planet.name;
+                    }
+
+                    // Save comparison data
+                    comparisonData.push({
+                        name: planet.name,
+                        oneHundredPercent,
+                        seventyFivePercent,
+                        fiftyPercent,
+                        twentyFivePercent,
+                    });
+                });
+
+
+                for (let i = 0; i < 10; i++) {
+                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                    const pada = nakshatraPadas[padaIndex];
+                    // console.log(pada,"pada")
+
+                    // Find all matching planets
+                    const matchingPlanets = planets.filter(
+                        (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+                    );
+
+                    let planetNames = matchingPlanets.length > 0 ? matchingPlanets.map((planet) => planet.name).join(", ") : "-";
+                    let dashakeys = [];
+
+                    matchingPlanets.forEach((planet) => {
+                        Object.entries(dashas).forEach(([key, value]) => {
+                            if (value.name === planet.name) {
+                                dashakeys.push(key);
+                            }
+                        });
+                    });
+
+                    const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
+
+                    // Find planets with percentage matches
+                    let oneHundredPercentNames = comparisonData
+                        .filter((data) => data.oneHundredPercent !== "-")
+                        .map((data) => data.oneHundredPercent);
+                    let seventyFivePercentNames = comparisonData
+                        .filter((data) => data.seventyFivePercent !== "-")
+                        .map((data) => data.seventyFivePercent);
+                    let fiftyPercentNames = comparisonData
+                        .filter((data) => data.fiftyPercent !== "-")
+                        .map((data) => data.fiftyPercent);
+                    let twentyFivePercentNames = comparisonData
+                        .filter((data) => data.twentyFivePercent !== "-")
+                        .map((data) => data.twentyFivePercent);
+
+                    const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map(() => "R").join(", ");
+                    const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map(() => "C").join(", ");
+                    comparisonData.push({
+                        pada: pada,
+                    });
+
+                    //             // Function to generate colored dots
+                    //             const getColoredDot = (color) => `<span style="font-size: 20px;">${color}</span>`;
+                    //             if (planetNames) {
+                    //                 const row = `
+                    // <tr>
+                    //     <td>${planetNames} ${dashaText}</td>
+                    //     <td>${pada.nakshatra} (${pada.pada})</td>
+                    //     <td>${pada.rashi}</td>
+                    //     <td>${retroPlanets || ""}</td>
+                    //     <td>${combustPlanets || ""}</td>
+                    //     <td>
+                    //         ${oneHundredPercentNames.length > 0 ? oneHundredPercentNames.join(", ") + " " + getColoredDot("🟢") : "-"}
+                    //     </td>
+                    //     <td>
+                    //         ${seventyFivePercentNames.length > 0 ? seventyFivePercentNames.join(", ") + " " + getColoredDot("🟡") : "-"}
+                    //     </td>
+                    //     <td>
+                    //         ${fiftyPercentNames.length > 0 ? fiftyPercentNames.join(", ") + " " + getColoredDot("🟤") : "-"}
+                    //     </td>                
+                    //     <td>
+                    //         ${twentyFivePercentNames.length > 0 ? twentyFivePercentNames.join(", ") + " " + getColoredDot("🔴") : "-"}
+                    //     </td>             
+                    // </tr>`;
+
+                    //                 resultTable.innerHTML += row;
+                    //             }
+                }
+
+                // console.log(storedPadas, "padas");
+                let planetTable = document.getElementById("planetTable");
+                let selectedDivisional = document.getElementById("divisionalSelect").value;
+                let selectedRasNak = document.getElementById("rashiNakSelect").value;
+
+                // Call this function whenever the house selection changes
+
+                updateTable(comparisonData, storedPadas, position, nakshatraPosition);
+                function updateTable(comparisonData, padas, position, nakshatraPosition) {
+                    let divisionalData = rashiData[selectedDivisional];
+                    // console.log(rashiData, "rashiData")
+                    // console.log(position, "position")
+                    // console.log(nakshatraPosition, "nakshatraPosition")
+                    // console.log(selectedRasNak, "selectedRasNak")
+                    // console.log(comparisonData,"comparisonData")
+
+                    planetTable.innerHTML = ``;
+
+                    let allMatchingPlanets = [];
+
+                    if (padas && Array.isArray(padas)) {
+                        padas.forEach((pada) => {
+                            let matchingPlanets = planets.filter(
+                                (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+                            );
+
+                            if (matchingPlanets.length > 0) {
+                                allMatchingPlanets.push(...matchingPlanets);
+                            }
+                        });
+                    }
+
+                    // Sorting function
+                    comparisonData.sort((a, b) => {
+                        let getValue = (data) => {
+                            if (data.oneHundredPercent && data.oneHundredPercent !== "-") return 100;
+                            if (data.seventyFivePercent && data.seventyFivePercent !== "-") return 75;
+                            if (data.fiftyPercent && data.fiftyPercent !== "-") return 50;
+                            if (data.twentyFivePercent && data.twentyFivePercent !== "-") return 25;
+                            return 0;
+                        };
+
+                        // Sort by Nakshatra first (alphabetically)
+                        let nakshatraA = a.nakshatra || "";
+                        let nakshatraB = b.nakshatra || "";
+                        let nakshatraDiff = nakshatraA.localeCompare(nakshatraB);
+                        if (nakshatraDiff !== 0) return nakshatraDiff;
+
+                        // Sort by Pada (ascending order)
+                        let padaA = a.pada ? parseInt(a.pada) : 0;
+                        let padaB = b.pada ? parseInt(b.pada) : 0;
+                        if (padaA !== padaB) return padaA - padaB;
+
+                        // Sort by percentage (descending order)
+                        return getValue(b) - getValue(a);
+                    });
+
+                    comparisonData.forEach((data) => {
+                        // console.log(data, "data");
+                        let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
+
+                        let hundred = data.oneHundredPercent && data.oneHundredPercent !== "-" ? data.oneHundredPercent : "";
+                        let seventyFive = data.seventyFivePercent && data.seventyFivePercent !== "-" ? data.seventyFivePercent : "";
+                        let fifty = data.fiftyPercent && data.fiftyPercent !== "-" ? data.fiftyPercent : "";
+                        let twentyFive = data.twentyFivePercent && data.twentyFivePercent !== "-" ? data.twentyFivePercent : "";
+
+                        let percentageText = "";
+                        if (!planetName) {
+                            if (hundred) {
+                                planetName = hundred;
+                                percentageText = " ";
+                            } else if (seventyFive) {
+                                planetName = seventyFive;
+                                percentageText = " 75%";
+                            } else if (fifty) {
+                                planetName = fifty;
+                                percentageText = " 50%";
+                            } else if (twentyFive) {
+                                planetName = twentyFive;
+                                percentageText = " 25%";
+                            } else {
+                                planetName = null;
+                            }
+                        } else {
+                            if (hundred === planetName) {
+                                percentageText = " ";
+                            } else if (seventyFive === planetName) {
+                                percentageText = " 75%";
+                            } else if (fifty === planetName) {
+                                percentageText = " 50%";
+                            } else if (twentyFive === planetName) {
+                                percentageText = " 25%";
+                            }
+                        }
+
+                        if (planetName) {
+                            if (planetName === "Ascendant" && selectedHouse !== "1") {
+                                return;
+                            }
+
+                            const matchedPlanet = allMatchingPlanets.find((p) => p.name === planetName);
+                            const retro = matchedPlanet?.retro;
+                            const combust = matchedPlanet?.is_combust;
+
+                            let retroPlanet = retro ? '&#128293;' : "";
+                            let combustPlanet = combust ? '&#8634;' : "";
+
+                            let matchedNakshatra = matchedPlanet?.nakshatra || "";
+                            let matchedPada = matchedPlanet?.pada || "";
+
+                            let matchedD = [];
+                            if (divisionalData) {
+                                matchedD = divisionalData.find((i) => i.name === planetName);
+                            }
+                            let matchedRashis = matchedD?.zodiac || "";
+
+                            let positionValue = [];
+                            let status = [];
+
+                            if (selectedRasNak === "Rashi") {
+                                positionValue = position.find((i) => i.planet === planetName && i.rashi === matchedRashis);
+
+                                if (positionValue?.status === "Uccha (Exalted)") {
+                                    status = 'color-pos-bx1';
+                                } else if (positionValue?.status === "Own") {
+                                    status = 'color-pos-bx2';
+                                } else if (positionValue?.status === "Mitra (Friend)") {
+                                    status = 'color-pos-bx3';
+                                } else if (positionValue?.status === "Neutral") {
+                                    status = 'color-pos-bx4';
+                                } else if (positionValue?.status === "Shatru (Enemy)") {
+                                    status = 'color-pos-bx5';
+                                } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                    status = 'color-pos-bx6';
+                                }
+                            } else {
+                                positionValue = nakshatraPosition.find((i) => i.planet === planetName && i.nakshatra === matchedNakshatra && i.pada === matchedPada);
+
+                                if (positionValue?.status === "Uccha (Exalted)") {
+                                    status = 'color-pos-bx1';
+                                } else if (positionValue?.status === "Mitra (Friend)") {
+                                    status = 'color-pos-bx3';
+                                } else if (positionValue?.status === "Neutral") {
+                                    status = 'color-pos-bx4';
+                                } else if (positionValue?.status === "Shatru (Enemy)") {
+                                    status = 'color-pos-bx5';
+                                } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                    status = 'color-pos-bx6';
+                                }
+                            }
+
+                            let dashakeys = [];
+                            Object.entries(dashas).forEach(([key, value]) => {
+                                if (value.name === planetName) {
+                                    dashakeys.push(key);
+                                }
+                            });
+
+                            let dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "-";
+
+                            // Append planet data row
+                            const row = `
+            <tr>
+                <td class="td-span">
+                    <span>${matchedNakshatra}(${matchedPada})</span>
+                </td>
+                <td class="td-span">
+                    <span>${matchedRashis}</span>
+                </td>
+                <td class="td-span">
+                    <span>${planetName} ${percentageText} ${retroPlanet} ${combustPlanet}</span>
+                </td>
+                <td class="td-span">
+                    <div class="color-bx ${status}" data-tooltip="${positionValue?.status ? positionValue.status : ''}"></div>
+                </td>
+                <td class="td-span">
+                    <span>${dashaText}</span>
+                </td>
+            </tr>
+        `;
+
+                            planetTable.innerHTML += row;
+                        }
+                    });
+
+                    // ADD PADA DETAILS EVEN IF NO PLANETS MATCH
+                    comparisonData.forEach((data) => {
+                        // console.log(data, "data");
+
+                        let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
+
+                        let matchedPadas = data.pada?.pada || "";
+                        let matchedNakshatras = data.pada?.nakshatra || "";
+                        let matchedRashi = data.pada?.rashi || "";
+                        if (matchedPadas) {
+                            const row = `
+<tr>
+<td class="td-span"><span>${matchedNakshatras}(${matchedPadas})</span></td>
+<td class="td-span"><span>${matchedRashi}</span></td>
+<td class="td-span"><span>${planetName || "-"}</span></td>
+<td class="td-span"><span>-</span></td>
+<td class="td-span"><span>-</span></td>
+</tr>
+`;
+
+                            planetTable.innerHTML += row;
+                        }
+
+                    });
+                }
+
+                // Event listener for divisional chart selection
+                document.getElementById("divisionalSelect").addEventListener("change", (event) => {
+                    selectedDivisional = event.target.value;
+                    updateTable(comparisonData, storedPadas, position, nakshatraPosition);
+                });
+                // Event listener for divisional chart selection
+                document.getElementById("rashiNakSelect").addEventListener("change", (event) => {
+                    selectedRasNak = event.target.value;
+                    updateTable(comparisonData, storedPadas, position, nakshatraPosition);
+                });
+
+                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+            }
+        };
+
+        // Event listener for house selection
+        document.getElementById("houseDropdown").addEventListener("change", (event) => {
+            const selectedHouse = event.target.value;
+            populateTable(selectedHouse);
+        });
+
+        // Run populateTable on window load
+        window.onload = async () => {
+            await fetchDashaData();
+            populateTable("1");
+            console.log("Window Loaded");
+        };
+    </script>
+
+    <script>
+        const host = "https://astroweb-backend.onrender.com";
+        const token = localStorage.getItem("token");
+        async function fetchAllData() {
+            try {
+                const response = await fetch(`${host}/api/auth/getuser`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    }
+                });
+
+                if (!response.ok == true) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+                // console.log(data, "data")
+                populateProfile(data)
+                // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
+            } catch (error) {
+                console.error(error);
+                // alert("Error fetching data: " + error.message);
+            }
+        }
+        window.onload = async () => {
+            await displayAllStatuses();
+            await populateTable("1");
+            await fetchAllData()
+            await displayStatus();
+        };
+
+        function populateProfile(data) {
+            const tableBody = document.getElementById("profile-body");
+            tableBody.innerHTML = "";
+
+            tableBody.innerHTML = `
+                <div class="profile-det-weilcome-bx" id="profile-body">
+                    <div class="prof-det-info">
+                        <p>Welcome back</p>
+                        <h6>${data.name}</h6>
+                        <div class="premium-text">
+                            <img src="./images/crown.png" alt="">
+                            <span>Premium</span>
+                        </div>
+                    </div>
+                    <div class="prof-det-img">
+                        <img src="./images/user-3.png" alt="">
+                    </div>
+                </div>
+                 
+                `
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Swiper Js file -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- script file -->
+    <script src="./js/index.js"></script>
+
+
+
+</body>
+
+</html>

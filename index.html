@@ -1,20 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Astro Market Web App</title>
     <!-- swiper slider css CDN -->
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-  />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Tempus Dominus CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    
+
 </head>
 
 <body>
@@ -22,7 +24,7 @@
     <!-- __________________________________ 
      Our header Comp 
      ------------------------ -->
-<!-- 
+    <!-- 
      <header class="header-comp">
         <div class="common-container3">
 
@@ -31,7 +33,7 @@
                 <div class="left-header-logo flex item-start gap">
                     <img src="./images/astrology.png" alt="">
 
-                    <h6>Astroyogi</h6>
+                    <h6>Astro Nivesh</h6>
                     
                 </div>
 
@@ -79,159 +81,160 @@
         </div>
      </header> -->
 
-     <section class="top-header-comp">
+    <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
-        <div class="left-header-logo flex item-start gap">
-            <img src="./images/astrology.png" alt="">
+            <div class="left-header-logo flex item-start gap">
+                <img src="./images/astrology.png" alt="">
 
-            <h6>Astroyogi</h6>
-            
-        </div>
+                <h6>Astro Nivesh</h6>
 
-        <div class="right-top-header-flex-bx flex item-start gap">
-
-            <div class="top-hedr-bx flex item-center">
-                <div class="left-hedr-icon">
-                    <ion-icon name="home"></ion-icon>
-                </div>
-                <div class="right-hedr-inof">
-                    <h6>Reach Us</h6>
-                    <span>601 , Ram Nagar Dewas</span>
-                </div>
             </div>
 
-            <div class="top-hedr-bx flex item-center">
-                <div class="left-hedr-icon">
-                    <ion-icon name="call"></ion-icon>
+            <div class="right-top-header-flex-bx flex item-start gap">
+
+                <!-- <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="home"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Reach Us</h6>
+                        <span>601 , Ram Nagar Dewas</span>
+                    </div>
+                </div> -->
+
+                <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="call"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Talk to Us</h6>
+                        <span>+91-8800209988</span>
+                    </div>
                 </div>
-                <div class="right-hedr-inof">
-                    <h6>Talk to Us</h6>
-                    <span>+91-123456789</span>
-                </div>
-            </div>
 
 
-            <button class="menu-bar-btn">
-                <ion-icon name="menu"></ion-icon>
-            </button>
-
-            
-            <div class="cart-bx cart-bx2">
-                <button class="cart-btn cart-btn2">
-                    <span class="qty">4</span>
-                    <ion-icon name="bag"></ion-icon>
+                <button class="menu-bar-btn">
+                    <ion-icon name="menu"></ion-icon>
                 </button>
 
-                <div class="cart-lists-bx cart-lists-bx-mob">
 
-                    <li>
-                        <div class="item-img">
-                            <img src="./images/astro-book.jpg" alt="">
-                        </div>
-                        <div class="item-info">
-                            <h6>Astro Book</h6>
-                            <p>Quantity : 2 x $45</p>
-
-                            <h5>$90</h5>
-                        </div>
-                        <div class="delet-item-btn">
-                            <ion-icon name="trash"></ion-icon>
-                        </div>
-                    </li>
-                    
-
-                    <li>
-                        <div class="item-img">
-                            <img src="./images/astro-book.jpg" alt="">
-                        </div>
-                        <div class="item-info">
-                            <h6>Astro Book</h6>
-                            <p>Quantity : 2 x $45</p>
-
-                            <h5>$90</h5>
-                        </div>
-
-                        <div class="delet-item-btn">
-                            <ion-icon name="trash"></ion-icon>
-                        </div>
-                        
-                    </li>
-                    
-
-                    <li>
-                        <div class="item-img">
-                            <img src="./images/astro-book.jpg" alt="">
-                        </div>
-                        <div class="item-info">
-                            <h6>Astro Book</h6>
-                            <p>Quantity : 2 x $45</p>
-
-                            <h5>$90</h5>
-                        </div>
-                        <div class="delet-item-btn">
-                            <ion-icon name="trash"></ion-icon>
-                        </div>
-                    </li>
-
-                    <button class="apnt-btn chckout-btn">
-                        Check Out
+                <!-- <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2">
+                        <span class="qty">4</span>
+                        <ion-icon name="bag"></ion-icon>
                     </button>
-                    
+
+                    <div class="cart-lists-bx cart-lists-bx-mob">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div> -->
+
+                <button class="apnt-btn coming-soon">
+                    Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
+                </button>
+
+                <div class="profile-bx" id="login_btn">
+                    <ion-icon name="person-circle-outline" size="large" color="#fe7000"></ion-icon>
+                    <p id="profile-name">LogIn / Reg.</p>
                 </div>
-                
+
             </div>
 
-            <button class="apnt-btn">
-                Appointments
-            </button>
-
-            <div class="profile-bx" id="login_btn">
-                <img src="./images/user-3.png" alt="">
-            </div>
-            
         </div>
-
-    </div>        
-     </section>
+    </section>
 
 
-     <header class="header">
+    <header class="header">
         <div class="common-container3 header-flex flex item-between gap">
 
-     <div class="nav-overlay"></div>
-                <div class="navbar">
+            <div class="nav-overlay"></div>
+            <div class="navbar">
 
-                    <button class="close-nav-btn">
-                        <ion-icon name="close-circle"></ion-icon>
+                <button class="close-nav-btn">
+                    <ion-icon name="close-circle"></ion-icon>
+                </button>
+
+                <div class="left-header-logo flex item-start gap mob-logo">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astro Nivesh</h6>
+
+                </div>
+
+                <div class="search-inpt-bx search-inpt-bx-mob">
+                    <input type="text" name="search" id="search" placeholder="Search here...">
+                    <button class="search-btn">
+                        <ion-icon name="search"></ion-icon>
                     </button>
+                </div>
 
-                    <div class="left-header-logo flex item-start gap mob-logo">
-                        <img src="./images/astrology.png" alt="">
-            
-                        <h6>Astroyogi</h6>
-                        
+                <nav class="nav">
+                    <div class="nav-lists flex item-start">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="kundali.html">Kundali</a></li>
+                        <li><a href="market.html">Market</a></li>
+                        <li><a href="https://wa.me/8800209988">Talk to Astrologer</a></li>
                     </div>
+                </nav>
 
-                    <div class="search-inpt-bx search-inpt-bx-mob">
-                        <input type="text" name="search" id="search" placeholder="Search here...">
-                        <button class="search-btn">
-                            <ion-icon name="search"></ion-icon>
-                        </button>
-                    </div>
-                    
-                    <nav class="nav">
-                        <div class="nav-lists flex item-start">
-                            <li><a href="#">Calendar</a></li>
-                            <li><a href="#">Market</a></li>
-                            <li><a href="#">Kundali</a></li>
-                            <li><a href="#">Affirmations</a></li>
-                            <li><a href="#">Runes</a></li>
-                            <li><a href="#">Healing</a></li>
-                            <li><a href="#">Wisdom</a></li>
-                        </div>
-                    </nav>
-
-                    <div class="astrology-cont-info">
+                <div class="astrology-cont-info">
 
                     <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
@@ -242,191 +245,196 @@
                             <span>601 , Ram Nagar Dewas</span>
                         </div>
                     </div>
-        
+
                     <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
                             <ion-icon name="call"></ion-icon>
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-123456789</span>
+                            <span>+91-8800209988</span>
                         </div>
                     </div>
-                    
-                </div>
-
-                
-            <button class="apnt-btn apnt-btn-mob">
-                Appointments
-            </button>
 
                 </div>
 
-                <div class="right-header-flex flex item-start ">
-                        <div class="search-inpt-bx">
-                            <input type="text" name="search" id="search" placeholder="Search here...">
-                            <button class="search-btn">
-                                <ion-icon name="search"></ion-icon>
-                            </button>
-                        </div>
 
-                    
+                <button class="apnt-btn apnt-btn-mob coming-soon">
+                    Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
+                </button>
 
-                        <div class="cart-bx">
-                            <button class="cart-btn">
-                                <span class="qty">4</span>
-                                <ion-icon name="bag"></ion-icon>
-                            </button>
-
-                            <div class="cart-lists-bx">
-
-                                <li>
-                                    <div class="item-img">
-                                        <img src="./images/astro-book.jpg" alt="">
-                                    </div>
-                                    <div class="item-info">
-                                        <h6>Astro Book</h6>
-                                        <p>Quantity : 2 x $45</p>
-
-                                        <h5>$90</h5>
-                                    </div>
-                                    <div class="delet-item-btn">
-                                        <ion-icon name="trash"></ion-icon>
-                                    </div>
-                                </li>
-                                
-
-                                <li>
-                                    <div class="item-img">
-                                        <img src="./images/astro-book.jpg" alt="">
-                                    </div>
-                                    <div class="item-info">
-                                        <h6>Astro Book</h6>
-                                        <p>Quantity : 2 x $45</p>
-
-                                        <h5>$90</h5>
-                                    </div>
-
-                                    <div class="delet-item-btn">
-                                        <ion-icon name="trash"></ion-icon>
-                                    </div>
-                                    
-                                </li>
-                                
-
-                                <li>
-                                    <div class="item-img">
-                                        <img src="./images/astro-book.jpg" alt="">
-                                    </div>
-                                    <div class="item-info">
-                                        <h6>Astro Book</h6>
-                                        <p>Quantity : 2 x $45</p>
-
-                                        <h5>$90</h5>
-                                    </div>
-                                    <div class="delet-item-btn">
-                                        <ion-icon name="trash"></ion-icon>
-                                    </div>
-                                </li>
-
-                                <button class="apnt-btn chckout-btn">
-                                    Check Out
-                                </button>
-                                
-                            </div>
-                            
-                        </div>
-
-                       
-                        
-                </div>
-                
             </div>
-     </header>
-     
-    
-      <!-- __________________________________ 
+
+            <div class="right-header-flex flex item-start ">
+                <div class="search-inpt-bx">
+                    <input type="text" name="search" id="search" placeholder="Search here...">
+                    <button class="search-btn">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
+
+
+                <!-- <div class="cart-bx">
+                    <button class="cart-btn">
+                        <span class="qty">4</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+
+                    <div class="cart-lists-bx">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div> -->
+
+
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- __________________________________ 
      Our Home Comp 
      ------------------------ -->
-    
-     <main class="main">
+
+    <main class="main">
         <div class="common-container3">
 
             <div class="swiper homeSwiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="home-banner-card grid grid-gap">
-                        <div class="banner-img">
-                            <img src="./images/astrologer_baba.webp" alt="">
-                        </div>
-                        <div class="right-banner-info">
-                            <h3> <span>200+ Celebs</span> recommends <strong>Astroyogi</strong> </h3>
-                            <h1>Chat With Astrologer</h1>
-                            <button class="comn-btn">
-                                Chat Now
-                            </button>
-                        </div>
-                    </div>
-                  </div>
+                    <div class="swiper-slide">
+                        <div class="home-banner-card grid grid-gap">
+                            <div class="banner-img">
+                                <img src="./images/bull.png" alt="">
 
-                  <div class="swiper-slide">
-                    <div class="home-banner-card grid grid-gap">
-                        <div class="banner-img">
-                            <img src="./images/astrologer_baba.webp" alt="">
-                        </div>
-                        <div class="right-banner-info">
-                            <h3> <span>200+ Celebs</span> recommends <strong>Astroyogi</strong> </h3>
-                            <h1>Chat With Astrologer</h1>
-                            <button class="comn-btn">
-                                Chat Now
-                            </button>
+                            </div>
+                            <div class="right-banner-info">
+                                <h3> <span>200+ Investors</span> recommends <strong>Astro Nivesh</strong> for Financial
+                                    Growth</h3>
+                                <!-- <h1>Chat With Astrologer</h1>
+                                <button class="comn-btn">
+                                    Chat Now
+                                </button> -->
+                            </div>
                         </div>
                     </div>
-                  </div>
 
-                  <div class="swiper-slide">
-                    <div class="home-banner-card grid grid-gap">
-                        <div class="banner-img">
-                            <img src="./images/astrologer_baba.webp" alt="">
-                        </div>
-                        <div class="right-banner-info">
-                            <h3> <span>200+ Celebs</span> recommends <strong>Astroyogi</strong> </h3>
-                            <h1>Chat With Astrologer</h1>
-                            <button class="comn-btn">
-                                Chat Now
-                            </button>
+                    <div class="swiper-slide">
+                        <div class="home-banner-card grid grid-gap">
+                            <div class="banner-img">
+                                <img src="./images/zodiac.png" alt="">
+                            </div>
+                            <div class="right-banner-info">
+                                <h3> <span></span>Align your stars for <strong>Life & Wealth</strong> success </h3>
+                                <!-- <h1>Chat With Astrologer</h1>
+                                <button class="comn-btn">
+                                    Chat Now
+                                </button> -->
+                            </div>
                         </div>
                     </div>
-                  </div>
 
-                  <div class="swiper-slide">
-                    <div class="home-banner-card grid grid-gap">
-                        <div class="banner-img">
-                            <img src="./images/astrologer_baba.webp" alt="">
-                        </div>
-                        <div class="right-banner-info">
-                            <h3> <span>200+ Celebs</span> recommends <strong>Astroyogi</strong> </h3>
-                            <h1>Chat With Astrologer</h1>
-                            <button class="comn-btn">
-                                Chat Now
-                            </button>
+                    <div class="swiper-slide">
+                        <div class="home-banner-card grid grid-gap">
+                            <div class="banner-img">
+                                <img src="./images/astronivesh logo.png" alt="">
+
+                            </div>
+                            <div class="right-banner-info">
+                                <h3> <span>Celestial Guidance</span> meets <strong>Financial Strategy</strong> </h3>
+                                <!-- <h1>Chat With Astrologer</h1>
+                                <button class="comn-btn">
+                                    Chat Now
+                                </button> -->
+                            </div>
                         </div>
                     </div>
-                  </div>
-                 
+
+                    <!-- <div class="swiper-slide">
+                        <div class="home-banner-card grid grid-gap">
+                            <div class="banner-img">
+                                <img src="./images/astrologer_baba.webp" alt="">
+                            </div>
+                            <div class="right-banner-info">
+                                <h3> <span>200+ Celebs</span> recommends <strong>Astro Nivesh</strong> </h3>
+                                <h1>Chat With Astrologer</h1>
+                                <button class="comn-btn">
+                                    Chat Now
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+
                 </div>
                 <div class="swiper-pagination"></div>
-              </div>
+            </div>
 
-            
+
         </div>
-     </main>
+    </main>
 
-     <!-- _______________________
+    <!-- _______________________
        Our Login Reg Comp 
        ------------------ -->
 
-       <section class="login-reg-comp">
+    <section class="login-reg-comp">
 
         <div class="login-bx ">
 
@@ -436,223 +444,307 @@
 
             <div class="login-info">
 
-            <div class="login-logo">
-                <img src="./images/astrology.png" alt="">
-            </div>
-
-         
-
-            <div class="comn-heading">
-                <h4>Sign In to Astrology </h4>
-                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
-            </div>
-
-            <div class="login-form">
-                <form action="#">
-
-                    <div class="inpt-bx">
-                        <label for="email">Email Address</label>
-                        <div class="inpt">
-                            <input type="email" name="email" placeholder="Enter your email address..." autocomplete="off" required>
-                        </div>
-                    </div>
-
-                    <div class="inpt-bx">
-                        <label for="email">Password</label>
-                        <div class="inpt">
-                            <input type="password" name="password" placeholder="Enter your password..." autocomplete="off" required>
-                        </div>
-                    </div>
-
-
-                 
-                    
-                </form>
-
-                <div class="form-btns-flex">
-
-                    <button class="form-btn" >
-                        Sign In
-                    </button>
-
-                    <button class="form-btn form-btn2" id="newAcnt">
-                        Create Account
-                    </button>
-                    
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
                 </div>
-                
-            </div>
-        </div>
-
-        <div class="reg-info">
-
-            <div class="login-logo">
-                <img src="./images/astrology.png" alt="">
-            </div>
-
-            <div class="comn-heading">
-                <h4>Sign Up to Astrology </h4>
-                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
-            </div>
-
-            <div class="login-form">
-                <form action="#">
-
-                    <div class="inpt-bx">
-                        <label for="name">Name</label>
-                        <div class="inpt">
-                            <input type="text" name="name" placeholder="Enter your Name" autocomplete="off" required>
-                        </div>
-                    </div>
-
-                    <div class="inpt-bx">
-                        <label for="name">Email</label>
-                        <div class="inpt">
-                            <input type="email" name="email" placeholder="Enter your email address..." autocomplete="off" required>
-                        </div>
-                    </div>
-
-                    <div class="inpt-bx">
-                        <label for="password">Create Password</label>
-                        <div class="inpt">
-                            <input type="text" name="createpassword" placeholder="Create your password..." autocomplete="off" required>
-                        </div>
-                    </div>
 
 
-                    <div class="inpt-bx">
-                        <label for="password">Date Of Birth</label>
-                        <div class="inpt">
-                            <input type="text" id="calendarInput" placeholder="Choose a date" />
-                        </div>
-                    </div>
 
-                    <div class="inpt-bx">
-                        <label for="password">Birth Time</label>
-                        <div class="inpt"  >
-                            <input type="text" id="timePicker" class="time-picker" placeholder="Select Time">
-                        </div>
-                    </div>
-                    <div class="inpt-bx">
-                        <label for="birthplace"> Birth Place</label>
-                        <div class="inpt">
-                            <input type="text" name="birthplace" placeholder="Enter your birth place..." autocomplete="off" required>
-                        </div>
-                    </div>
-
-
-                </form>
-
-                <div class="form-btns-flex">
-
-                    <button class="form-btn">
-                        Create Account
-                    </button>
-
-                    <button class="form-btn  form-btn3" id="signInBtn">
-                        I  Already Have Account
-                    </button>
-                    
+                <div class="comn-heading">
+                    <h4>Sign In to Astro Nivesh </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
                 </div>
-                
-            </div>
-            
-        </div>
-            
-        </div>
-        
-       </section>
-    
 
-     <!-- _______________________
+                <div class="login-form">
+
+                    <form onsubmit="handleSubmit(event)">
+
+                        <div class="inpt-bx">
+                            <label for="email">Email Address</label>
+                            <div class="inpt">
+                                <input type="email" id="email" name="email" placeholder="Enter your Email..."
+                                    autocomplete="off" required>
+
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="email">Password</label>
+                            <div class="inpt">
+                                <input type="password" id="password" name="password"
+                                    placeholder="Enter your password..." autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="form-btns-flex">
+
+                            <button class="form-btn" type="submit">
+                                Sign In
+                            </button>
+
+                            <button type="button" class="form-btn form-btn2" id="newAcnt">
+                                Create Account
+                            </button>
+
+                        </div>
+                        <div id="alert" class="alert"></div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="reg-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+                <div class="comn-heading">
+                    <h4>Sign Up to Astro Nivesh </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form onsubmit="handleCreate(event)">
+
+                        <div class="inpt-bx">
+                            <label for="name">Name</label>
+                            <div class="inpt">
+                                <input type="text" name="cname" placeholder="Enter your Name" autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="name">Email</label>
+                            <div class="inpt">
+                                <input type="email" name="cemail" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Create Password</label>
+                            <div class="inpt">
+                                <input type="text" name="ccreatepassword" placeholder="Create your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                        <div class="inpt-bx">
+                            <label for="password">Date Of Birth</label>
+                            <div class="inpt">
+                                <input type="text" id="calendarInput" name="calendarInput"
+                                    placeholder="Choose a date" />
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Birth Time</label>
+                            <div class="inpt">
+                                <input type="text" id="timePicker" name="timePicker" class="time-picker"
+                                    placeholder="Select Time">
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="birthplace">Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" name="birthplace" placeholder="Enter your Birth Place..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="consonent">Consonent of your name</label>
+                            <div class="inpt">
+                                <input type="text" name="consonent" placeholder="Enter your Consonent..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="vowel">Vowel of your name</label>
+                            <div class="inpt">
+                                <input type="text" name="vowel" placeholder="Enter your Vowel..." autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-btns-flex">
+
+                            <button class="form-btn" type="submit">
+                                Create Account
+                            </button>
+
+                            <button class="form-btn  form-btn3" type="button" id="signInBtn">
+                                I Already Have Account
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+
+            </div>
+            <div class="profile-info">
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+                <div class="comn-heading">
+                    <h4>Astro Nivesh</h4>
+                </div>
+
+                <div id="profile-body"></div>
+                <div class="logout-bx" id="logoutBox">
+                    <p><ion-icon name="log-out"></ion-icon>Log Out</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- _______________________
       Our cards comp 
       ------------------------ -->
-    
-     <section class="our-cards-comp">
+    <style>
+        .coming-soon {
+            filter: grayscale(5);
+        }
+
+        .coming-soon .card-info {
+            color: #ffffff;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            border-radius: .7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: #dcdcdc;
+            transition: ease-in-out
+        }
+
+        .coming-soon:hover .card-info {
+            color: white;
+            transition: color 1s;
+            display: flex;
+            transition: ease-in-out;
+        }
+
+        .coming-soon .card-info p {
+            color: white;
+        }
+    </style>
+
+    <section class="our-cards-comp">
         <div class="common-container3">
 
             <div class="cards-grid grid grid-four-col grid-gap">
 
-                <div class="card-bx card1">
-                    <div class="icon icon1">
-                        <img src="./images/icon-1.png" alt="">
-                    </div>
-                        <h6>Market</h6>
-
-                </div>
-
-                <a href="./kundaliform.html">
-                <div class="card-bx card1">
-                    <div class="icon icon2">
-                        <img src="./images/icon-2.png" alt="">
-                    </div>
+                <a href="javascript:void(0);" id="kundaliLink">
+                    <div class="card-bx card1">
+                        <div class="icon icon2">
+                            <img src="./images/icon-2.png" alt="">
+                        </div>
                         <h6>Kundali</h6>
 
-                </div>
-            </a>
+                    </div>
+                </a>
+                <a href="javascript:void(0);" id="marketLink">
+                    <div class="card-bx card1">
+                        <div class="icon icon1">
+                            <img src="./images/icon-1.png" alt="">
+                        </div>
+                        <h6>Market</h6>
 
-                <div class="card-bx card1">
+                    </div>
+                </a>
+                <a href="https://wa.me/8800209988">
+                    <div class="card-bx card1">
+                        <div class="icon icon7">
+                            <img src="./images/iconwhats.png" alt="">
+                        </div>
+                        <h6>Talk to Astrologer</h6>
+                    </div>
+                </a>
+
+
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon3">
                         <img src="./images/icon-3.png" alt="">
                     </div>
-                        <h6>Chat with Astrologer</h6>
-
+                    <h6>Chat with Astrologer</h6>
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
 
-                <div class="card-bx card1">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon4">
                         <img src="./images/icon-4.png" alt="">
                     </div>
-                        <h6>Kundali Birth</h6>
-
+                    <h6>Kundali Birth</h6>
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
 
-                <div class="card-bx card1">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon5">
                         <img src="./images/icon-5.png" alt="">
                     </div>
-                        <h6>Astromall Shop</h6>
-
+                    <h6>Astromall Shop</h6>
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
 
-                <div class="card-bx card1">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon6">
                         <img src="./images/icon-6.png" alt="">
                     </div>
-                        <h6>Profile</h6>
-
-                </div>
-
-
-                <div class="card-bx card1">
-                    <div class="icon icon7">
-                        <img src="./images/icon-7.png" alt="">
+                    <h6>Profile</h6>
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
                     </div>
-                        <h6>Talk to Astrologer</h6>
-
                 </div>
 
-                <div class="card-bx card1">
+
+
+
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon8">
                         <img src="./images/icon-8.png" alt="">
                     </div>
-                        <h6>Book Pooja</h6>
-
+                    <h6>Book Pooja</h6>
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
                 </div>
-                
-                    
+
+
             </div>
-                        
+
         </div>
-     </section>
-    
-      <!-- _______________________
+    </section>
+
+    <!-- _______________________
       Our blogs comp 
       ------------------------ -->
-    
-      <section class="blog-comp">
+
+    <!-- <section class="blog-comp">
         <div class="blog-cont">
 
             <div class="comn-heading">
@@ -661,146 +753,145 @@
             </div>
 
             <div class="card-slider">
-            <div class="swiper blogvideoSwiper">
-                <div class="swiper-wrapper swiper-wrapper2">
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img">
-                            <img src="./images/blog-img-1.jpg" alt="">
-                        </div>
-                        <div class="det-info">
-                            <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
+                <div class="swiper blogvideoSwiper">
+                    <div class="swiper-wrapper swiper-wrapper2">
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img">
+                                        <img src="./images/blog-img-1.jpg" alt="">
+                                    </div>
+                                    <div class="det-info">
+                                        <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
 
-                            <div class="name-date-flex flex item-between ">
+                                        <div class="name-date-flex flex item-between ">
 
-                                <span>Jyoti</span>
-                                <span>June 19, 2024</span>
-                                
-                            </div>
-                            
+                                            <span>Jyoti</span>
+                                            <span>June 19, 2024</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img">
+                                        <img src="./images/blog-img-2.png" alt="">
+                                    </div>
+
+                                    <div class="det-info">
+                                        <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
+
+                                        <div class="name-date-flex flex item-between">
+
+                                            <span>Jyoti</span>
+                                            <span>June 19, 2024</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img">
+                                        <img src="./images/blog-img-3.jpg" alt="">
+                                    </div>
+
+                                    <div class="det-info">
+                                        <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
+
+                                        <div class="name-date-flex flex item-between">
+
+                                            <span>Jyoti</span>
+                                            <span>June 19, 2024</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img">
+                                        <img src="./images/blog-img-4.jpg" alt="">
+                                    </div>
+
+                                    <div class="det-info">
+                                        <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
+
+                                        <div class="name-date-flex flex item-between">
+
+                                            <span>Jyoti</span>
+                                            <span>June 19, 2024</span>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </a>
+
+                        </div>
+
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img">
+                                        <img src="./images/blog-img-5.jpg" alt="">
+                                    </div>
+                                    <div class="det-info">
+                                        <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
+
+                                        <div class="name-date-flex flex item-between">
+
+                                            <span>Jyoti</span>
+                                            <span>June 19, 2024</span>
+
+                                        </div>
+
+                                    </div>
+                            </a>
+                        </div>
+
                     </div>
-                </a>
-                    
-                  </div>
-
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img">
-                            <img src="./images/blog-img-2.png" alt="">
-                        </div>
-                        
-                        <div class="det-info">
-                            <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
-
-                            <div class="name-date-flex flex item-between">
-
-                                <span>Jyoti</span>
-                                <span>June 19, 2024</span>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                </a>
-                    
-                  </div>
-
-                  
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img">
-                            <img src="./images/blog-img-3.jpg" alt="">
-                        </div>
-                        
-                        <div class="det-info">
-                            <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
-
-                            <div class="name-date-flex flex item-between">
-
-                                <span>Jyoti</span>
-                                <span>June 19, 2024</span>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                </a>
-                    
-                  </div>
-
-
-                  
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img">
-                            <img src="./images/blog-img-4.jpg" alt="">
-                        </div>
-                        
-                        <div class="det-info">
-                            <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
-
-                            <div class="name-date-flex flex item-between">
-
-                                <span>Jyoti</span>
-                                <span>June 19, 2024</span>
-                                
-                            </div>
-                            
-                           
-                        </div>
-                  
-                    </div>
-                </a>
-                    
-                  </div>
-
-                  
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img">
-                            <img src="./images/blog-img-5.jpg" alt="">
-                        </div>
-                        <div class="det-info">
-                            <h6>4 Zodiac Signs That Radiate Positive Vibes</h6>
-
-                            <div class="name-date-flex flex item-between">
-
-                                <span>Jyoti</span>
-                                <span>June 19, 2024</span>
-                                
-                            </div>
-                            
-                        </div>
-                        </a>
-                    </div>
-
-                  </div>
 
                 </div>
-           
-                <!-- <div class="swiper-pagination"></div> -->
-              </div>
 
-              <div class="vide-btn-flex">
-              <div class="swiper-button-next blog-next"></div>
-              <div class="swiper-button-prev blog-prev"></div>
             </div>
+
+            <div class="vide-btn-flex">
+                <div class="swiper-button-next blog-next"></div>
+                <div class="swiper-button-prev blog-prev"></div>
             </div>
         </div>
-      </section>
+        </div>
+    </section> -->
 
 
-      <!-- ______________________________
+    <!-- ______________________________
        Our Customer comp 
        ----------------------- -->
 
-       <section class="blog-comp cust-comp">
+    <!-- <section class="blog-comp cust-comp">
         <div class="blog-cont">
 
             <div class="comn-heading">
@@ -808,121 +899,119 @@
             </div>
 
             <div class="card-slider">
-            <div class="swiper videoSlider">
-                <div class="swiper-wrapper swiper-wrapper2">
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img bv-img2">
-                            <img src="./images/cust-img-1.jpg" alt="">
-                            <div class="yt-icon">
-                           <i class="fa-brands fa-youtube"></i>
-                            </div>
-                        </div>
-                        <div class="det-info">
-                            <h6>Our customer has a message for you. Tap to watch 👆</h6>
+                <div class="swiper videoSlider">
+                    <div class="swiper-wrapper swiper-wrapper2">
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img bv-img2">
+                                        <img src="./images/cust-img-1.jpg" alt="">
+                                        <div class="yt-icon">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </div>
+                                    </div>
+                                    <div class="det-info">
+                                        <h6>Our customer has a message for you. Tap to watch 👆</h6>
 
-                            
+
+                                    </div>
+
+                                </div>
+                            </a>
+
                         </div>
-                       
+
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img bv-img2">
+                                        <img src="./images/cust-img-2.jpg" alt="">
+                                        <div class="yt-icon">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </div>
+                                    </div>
+                                    <div class="det-info">
+                                        <h6>Our customer has a message for you. Tap to watch 👆</h6>
+
+
+                                    </div>
+
+                                </div>
+                            </a>
+
+                        </div>
+
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img bv-img2">
+                                        <img src="./images/cust-img-3.jpg" alt="">
+                                        <div class="yt-icon">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </div>
+                                    </div>
+                                    <div class="det-info">
+                                        <h6>Our customer has a message for you. Tap to watch 👆</h6>
+
+
+                                    </div>
+
+                                </div>
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="blog-vid-card">
+                                    <div class="bv-img bv-img2">
+                                        <img src="./images/cust-img-4.jpg" alt="">
+                                        <div class="yt-icon">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </div>
+                                    </div>
+                                    <div class="det-info">
+                                        <h6>Our customer has a message for you. Tap to watch 👆</h6>
+
+
+                                    </div>
+
+                                </div>
+                            </a>
+
+                        </div>
+
+
+
                     </div>
-                </a>
-                    
-                  </div>
-
-
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img bv-img2">
-                            <img src="./images/cust-img-2.jpg" alt="">
-                            <div class="yt-icon">
-                           <i class="fa-brands fa-youtube"></i>
-                            </div>
-                        </div>
-                        <div class="det-info">
-                            <h6>Our customer has a message for you. Tap to watch 👆</h6>
-
-                            
-                        </div>
-                       
-                    </div>
-                </a>
-                    
-                  </div>
-
-
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img bv-img2">
-                            <img src="./images/cust-img-3.jpg" alt="">
-                            <div class="yt-icon">
-                           <i class="fa-brands fa-youtube"></i>
-                            </div>
-                        </div>
-                        <div class="det-info">
-                            <h6>Our customer has a message for you. Tap to watch 👆</h6>
-
-                            
-                        </div>
-                       
-                    </div>
-                </a>
-                    
-                  </div>
 
 
 
-                  <div class="swiper-slide">
-                    <a href="#">
-                    <div class="blog-vid-card">
-                        <div class="bv-img bv-img2">
-                            <img src="./images/cust-img-4.jpg" alt="">
-                            <div class="yt-icon">
-                           <i class="fa-brands fa-youtube"></i>
-                            </div>
-                        </div>
-                        <div class="det-info">
-                            <h6>Our customer has a message for you. Tap to watch 👆</h6>
 
-                            
-                        </div>
-                       
-                    </div>
-                </a>
-                    
-                  </div>
-
-
-                    
-                  </div>
-
-
-
-            
 
 
                 </div>
-           
-                <!-- <div class="swiper-pagination"></div> -->
-                 <div class="vide-btn-flex">
-                <div class="swiper-button-prev video-prev"></div>
-                <div class="swiper-button-next video-next"></div>
+                <div class="vide-btn-flex">
+                    <div class="swiper-button-prev video-prev"></div>
+                    <div class="swiper-button-next video-next"></div>
 
+                </div>
             </div>
-              </div>
 
-         
-            </div>
+
         </div>
-      </section>
-    
-     <!-- ______________________________
+        </div>
+    </section> -->
+
+    <!-- ______________________________
        Our why-astrologer comp 
        ----------------------- -->
 
-       <section class="why-astrologer-comp">
+    <section class="why-astrologer-comp">
         <div class="common-container3">
 
             <div class="comn-heading">
@@ -933,95 +1022,181 @@
             <div class="para-info">
 
                 <p>
-                    Astrology is a predictive science with its own sets of methods, claims and findings that have forever inspired and allowed people with insights into different aspects of their life. Astrology, with its wows and hows, is contentful and approving enough to make people a believer of the same. And thankfully, it continues to do so despite the world shifting bases from what they believe in and what they don’t.
+                    At Astro Nivesh, we view astrology as a time-honored predictive science that has long provided
+                    profound insights into various aspects of life. Its blend of ancient wisdom and precise methods
+                    continues to inspire and guide believers, even as modern perspectives evolve.
                 </p>
 
-                <p>If one has to go into the technicalities of astrology, it is the study of different cosmic objects, which are usually stars and planets, that have an effect on the lives of the people. You must be aware that there are as many as 8 planets in the solar system. However, If I ask an online astrologer near me about the planets in astrology, they will tell me that there are as many as 9 planets in astrology also called Navagrahas. And surprisingly, the planet Earth, in astrology, is not counted among the nine planets. </p>
-
-                <p>
-                    The 9 planets in astrology are Sun (Surya), Moon (Chandra), Mars (Mangala), Mercury (Budha), Jupiter (Brihaspati), Venus (Shukra), Saturn (Shani), Rahu (north node of the moon), and Ketu (south node of the moon).
-                </p>
-
-                <p>
-                    Among these planets, some planets are called friendly planets, meaning the presence of them brings positivity to your life. And then, there are also planets that have a negative influence on humans. The latter would be planets like Rahu and Ketu. Their presence in one’s Kundli is said to bring pain and misery. However, there is another aspect one needs to be aware of. It’s the fact that the presence of Ketu in one’s horoscope is not always bad and similarly, the presence of Jupiter in one’s Kundli might not be the best every time.
-                </p>
+                <p>At its core, astrology is the study of cosmic influences—examining how stars and planets shape our
+                    lives. While modern astronomy identifies eight planets, traditional astrology recognizes nine key
+                    celestial bodies known as the Navagrahas. Intriguingly, Earth is not included in this celestial
+                    lineup. </p>
 
                 <p>
-                    It all depends on which houses these planets are sitting in. If you ever had the opportunity to talk to an astrologer online, then s/he must have told you about houses in astrology and the movements of planets in the same. There are as many as 12 houses in Kundli. And all of these houses represent one thing or the other. You can check your free kundali online.
+                    The Navagrahas are:
+                    •⁠ ⁠Sun (Surya)
+                    •⁠ ⁠Moon (Chandra)
+                    •⁠ ⁠Mars (Mangala)
+                    •⁠ ⁠Mercury (Budha)
+                    •⁠ ⁠Jupiter (Brihaspati)
+                    •⁠ ⁠Venus (Shukra)
+                    •⁠ ⁠Saturn (Shani)
+                    •⁠ ⁠Rahu (North Lunar Node)
+                    •⁠ ⁠Ketu (South Lunar Node)
+
                 </p>
 
                 <p>
-                    For example, the first house, which any online astrology consultation would tell you is also the ascendant of the person, is the house of self. It represents a person’s personality and physical traits. Similarly, the fifth house in the Vedic horoscope, also known as Putra Bhava is the house of creativity, playfulness, joy, pleasure, and romance. If, for example, a good planet, like Jupiter, is camping in the fifth house, your love life will excel. Likewise, if Rahu is camping in the same house, then you might feel the need for online astrology consultation to deal with the woes.
+                    Each of these planets plays a distinct role in your life. Some are considered benevolent, bestowing
+                    positive energies and opportunities, while others, like Rahu and Ketu, can sometimes signal
+                    challenges. However, the influence of any planet is never absolute—it depends greatly on its
+                    placement within the twelve houses of your Kundli.
+
                 </p>
-                <p>Then there are other things in astrology like elements, the Moon sign of an individual, numerology, tarot and so much more that is impossible to wind up here.</p>
-                
+
+                <p>
+                    For instance, the first house, or ascendant, represents your personality and physical traits,
+                    setting the tone for your entire life. Similarly, the fifth house, known as Putra Bhava, governs
+                    creativity, joy, romance, and playfulness. A favorable planet like Jupiter in the fifth house can
+                    enhance your love life and creative pursuits, whereas an adverse influence from Rahu might prompt
+                    the need for deeper insight and guidance.
+
+                </p>
+
+                <p>
+                    Beyond these basics, astrology encompasses a rich array of elements—from Moon signs and numerology
+                    to tarot and more. At Astro Nivesh, we integrate these diverse aspects to offer you comprehensive,
+                    personalized insights that empower your financial growth and personal well-being.
+
+                </p>
+                <p>Explore your free Kundli online with Astro Nivesh and let the stars guide your journey to holistic
+                    success.</p>
+
                 <Strong>Online Astrology Consultation & Services</Strong>
-                
+
                 <p>
-                    The online footprint of things and people has grown over the years. And Astrotalk, as a brand, is using the best of it to cater online astrology services to anyone and everyone across the length and breadth of the globe. Astrotalk, over the years, has nurtured as a community of the best astrologers who have their expertise in Vedic Astrology, tarot card reading, Vastu Shastra, numerology, Reiki healing, Palmistry, and many more subjects.
+                    The digital age has transformed how we connect, and Astro Nivesh is at the forefront of this
+                    evolution—offering comprehensive online astrology services to individuals around the globe. Over the
+                    years, we have built a vibrant community of top astrologers specializing in Vedic Astrology, tarot
+                    card reading, Vastu Shastra, numerology, Reiki healing, Palmistry, and much more.
+
                 </p>
 
                 <p>
-                    The motive behind providing astrology predictions online is simply helping people save time, money, and pain to find astrologers in the hustle and bustle of the city lights. Besides, to ensure credibility, Astrotalk has, over the years, worked extensively to add value to customer service. And a good chunk of credit for this goes to the astrologers who work for 100% customer satisfaction using their knowledge to deliver impeccable astrology consultancy.
+                    Our mission is simple: to help you save time, money, and the hassle of searching through crowded
+                    city streets for reliable astrologers. We ensure credibility by dedicating ourselves to stellar
+                    customer service, and our expert astrologers work tirelessly to deliver insights that guarantee 100%
+                    satisfaction.
+
                 </p>
 
                 <p>
-                    Surely, not everything in life should revolve around money, so we at Astrotalk, besides online astrology, also organize various events that help one get a better understanding of online astrology prediction and more related themes. These events range from free astrology predictions sessions to live events involving Aartis and Pujas that happen across India at some of the most renowned temples. It's a way for us to connect with people.
+                    At Astro Nivesh, we believe life isn’t solely about monetary gain. That’s why we also host a range
+                    of events designed to deepen your understanding of astrology and related themes. From free astrology
+                    prediction sessions to live events featuring Aartis and Pujas at some of India’s most renowned
+                    temples, these gatherings are our way of forging genuine connections and enriching your spiritual
+                    journey.
                 </p>
 
                 <strong>Online Astrologer</strong>
 
-                <p>A huge chunk of credit for what we are today goes to the force of online astrologers we have got on board. Astrologers come from different walks of life and only the best, who has a piece of extensive knowledge in their field, make it to this platform for your convenience. As the Astrologers work with us, they are scrutinized in the form of ratings that the customers give them. The better the rating, the better the service. Talking about service, there are multiple ways to avail the same. Either you can talk to the astrologer over a call or simply chat with them at your convenience. And guess what, the first chat with an astrologer can be availed at a 50% discount.</p>
-                
+                <p>A huge part of our success is thanks to the exceptional team of online astrologers we’ve brought on
+                    board. Drawn from diverse backgrounds, only the most knowledgeable experts make it to our
+                    platform—ensuring that you receive top-notch advice at your convenience. Our astrologers are
+                    continually evaluated through customer ratings, so the higher the rating, the better the service you
+                    can expect. Plus, you can choose to consult them via call or chat, and your very first chat comes at
+                    a 50% discount.
+                </p>
+
                 <p>
-                    The astrologers, we have on board, understand the essence of the 5000-year old science and try their best to do justice with it. Besides sharing their knowledge with you, they also share videos, write up and other rich content with us that is available across our social media pages and in the blog section of our website. These writings on Muhurats, upcoming festivals, online astrology prediction will quench the thirst of your pious soul for online astrology knowledge.
+                    These seasoned professionals honor the 5000-year-old legacy of astrology by diligently applying
+                    their wisdom in every session. Beyond personal consultations, they enrich our platform with engaging
+                    videos, in-depth articles, and other insightful content available on our social media channels and
+                    blog. Whether it’s guidance on Muhurats, insights on upcoming festivals, or online astrology
+                    predictions, our content is designed to quench your spiritual curiosity and deepen your
+                    understanding of this timeless science.
                 </p>
 
                 <strong>Stay Updated With Daily Horoscope Predictions & Zodiac Signs</strong>
 
                 <p>
-                    We as a brand are new in the online astrology consultation arena but, at the same time, also empowered to offer our visitors the best invariably. So within a short span of time, we have created a space to offer even the minutest details on astrological elements like transits, astrology daily horoscope for different zodiac signs, updates on upcoming auspicious dates, and much more.
+                    Though we may be newcomers to online astrology consultations, our commitment to excellence shines
+                    through. In a short time, we’ve built a platform that offers even the finest details on astrological
+                    elements—from tracking planetary transits and delivering daily horoscopes for every zodiac sign, to
+                    providing timely updates on auspicious dates and more.
+
                 </p>
 
                 <p>
-                    While astrology's daily horoscope allows one an opportunity to realign their day as per what the stars have for them in the box, having knowledge of muhurats, among other astrology services, on the other hand, ensures you are well updated on the best times of the day. So much information under one roof? Well, that’s what our purpose has been over the years and we continue to refine it.
+                    Our daily horoscopes give you the chance to align your day with the celestial energies at play,
+                    while our comprehensive muhurat insights ensure you always know the best moments to act. With a
+                    wealth of astrological wisdom gathered under one roof, our mission remains steadfast: to empower you
+                    with accurate, insightful guidance—and we’re constantly refining our offerings to serve you better.
                 </p>
 
                 <strong>Why Choose Our Astrology Experts?</strong>
                 <p>
-                    In a nutshell, Astrotalk and our experts could be your partner and guide when it comes to astrology. Be it a question on horoscope or numerology, tarot card reading or even connecting you with a foreign astrologer, we have practitioners to answer all your starry queries.
+                    In a nutshell, *Astro Nivesh* and our expert team can be your trusted partner and guide when it
+                    comes to astrology. Whether you have questions about your horoscope, numerology, tarot card
+                    readings, or even need to connect with an international astrologer, we have knowledgeable
+                    practitioners ready to answer all your starry queries.
+
                 </p>
 
                 <p>
-                    At last, what do you need to do to get in touch with our astrologers? Simply, login to the Astrotalk app, and guess what? There is a free astrology online session waiting for you. Once you have finished your free astrology predictions session, and you want to stay with us for longer (which you would) then you can recharge your wallet, and connect with live astrologers to receive instant astrology consultation.
+                    So, how do you get in touch with our astrologers? Simply log in to the *Astro Nivesh* app, and a
+                    free online astrology session awaits you. Once you’ve experienced your complimentary session and
+                    decide to explore further (which we’re sure you will), you can easily recharge your wallet and
+                    connect with live astrologers for instant consultations.
+
                 </p>
 
                 <p>
-                    The best way to choose the best astrologers is to select the category and choose the top astrologers as per the ratings given to them by people like you. One can completely trust our service to be of supreme quality. And just in case you bump into a nag during astrology online consultation, you will be heard by our customer service team invariably.
+                    Choosing the perfect astrologer is easy—just select your desired category and pick from the
+                    top-rated experts as reviewed by users like you. Our service stands for supreme quality, and should
+                    you ever encounter any issues during your consultation, our dedicated customer service team is
+                    always here to help.
+
                 </p>
 
                 <p>
-                    Astrotalk connects you with the best astrologer in India. If want to get the best astrological consultation from one of the best Indian astrologers online, search for the phrase “best astrologer near me” on Google, and you will find Indian astrologers online. Astrotalk connects you with the best astrologers in India, the USA, Canada, Australia or we can say that you can connect with the best astrologers in the world by using the Astrotalk website and App. If you are looking for the best astrologers in Noida, Delhi/NCR, Gurgaon, etc., Astrotalk is the best online platform for you. We have the best astrologers online for marriage, career, health, etc. Astrotalk is your ultimate destination if you want to talk to astrologer online, chat with astrologers, check free kundali, match making, daily horoscopes, gems, and rudraksha shopping, etc.
+                    *Astro Nivesh* connects you with the best astrologers in India. If you’re looking for the finest
+                    astrological consultation from top Indian experts, simply search for “best astrologer near me” on
+                    Google, and you’ll find us leading the way. We link you with the best astrologers not only in India
+                    but also in the USA, Canada, Australia, and across the globe through our website and app. Whether
+                    you need guidance on marriage, career, health, or other life matters, *Astro Nivesh* is your
+                    ultimate destination for online consultations, free Kundli checks, matchmaking services, daily
+                    horoscopes, and even gems and rudraksha shopping.
                 </p>
-                
+
             </div>
-            
-        </div>
-       </section>
 
-       <!-- -----------------------
+        </div>
+    </section>
+
+    <!-- -----------------------
          Our FAQ Comp
          ----------------- -->
 
-         <section class="faq-comp why-astrologer-comp">
-            <div class="common-container3">
+    <!-- <section class="faq-comp why-astrologer-comp">
+        <div class="common-container3">
             <div class="comn-heading">
                 <h3>FAQ'S About Astrology </h3>
                 <p>Why Is Astrology So Accurate?</p>
             </div>
 
             <div class="para-info">
-                <p>First of all, the credit for astrology and the predictions we make here being so accurate goes to the 100s of learned and astrologically-versed astrologers we have on board. And to answer what makes astrology so accurate, then it is the pure knowledge of our astrologers about the planets, planetary configurations, constellations and learning of how they influence human life and behaviour as they move, shift or even stay still. Astrology is not some random guesswork but science that entails scientific principles that were sketched by learned Gurus 1000s of years ago and have not changed to date. These gurus studied the movement of planets and how their aura influences the life of people on earth. The antiquity of astrology is revealed from the fact that millions of people continue to stay connected with it due to the accuracy it has to offer. Astrology has changed the lives of millions of people through us and many other astrologers who continue to share their knowledge of astrology one prediction at a time.</p>
+                <p>First of all, the credit for astrology and the predictions we make here being so accurate goes to the
+                    100s of learned and astrologically-versed astrologers we have on board. And to answer what makes
+                    astrology so accurate, then it is the pure knowledge of our astrologers about the planets, planetary
+                    configurations, constellations and learning of how they influence human life and behaviour as they
+                    move, shift or even stay still. Astrology is not some random guesswork but science that entails
+                    scientific principles that were sketched by learned Gurus 1000s of years ago and have not changed to
+                    date. These gurus studied the movement of planets and how their aura influences the life of people
+                    on earth. The antiquity of astrology is revealed from the fact that millions of people continue to
+                    stay connected with it due to the accuracy it has to offer. Astrology has changed the lives of
+                    millions of people through us and many other astrologers who continue to share their knowledge of
+                    astrology one prediction at a time.</p>
             </div>
 
             <div class="faq-main">
@@ -1030,64 +1205,122 @@
                     <h6>Why Should You Choose Astrotalk For An Astrology Horoscope?</h6>
 
                     <p>
-                        From 4.8/5 Google Rating, 5/5 Facebook Rating to appreciation across various other platforms, Astrotalk, over the years, has garnered a wide user base that is nothing but satisfied with all the astrology related material we have to offer. The process of recruiting the astrologers on the Astrotalk platform is really stringent and only the best astrologers can make it to the platform only to ensure you're getting the best service each and every time you get along with us.
+                        From 4.8/5 Google Rating, 5/5 Facebook Rating to appreciation across various other platforms,
+                        Astrotalk, over the years, has garnered a wide user base that is nothing but satisfied with all
+                        the astrology related material we have to offer. The process of recruiting the astrologers on
+                        the Astrotalk platform is really stringent and only the best astrologers can make it to the
+                        platform only to ensure you're getting the best service each and every time you get along with
+                        us.
                     </p>
 
                     <p>
-                        The services we are talking about range across online Kundli matching, horoscope predictions, daily horoscope, weekly horoscope, numerology, tarot reading, shopping, free blogs, and many more services.
+                        The services we are talking about range across online Kundli matching, horoscope predictions,
+                        daily horoscope, weekly horoscope, numerology, tarot reading, shopping, free blogs, and many
+                        more services.
                     </p>
                     <p>
-                        Moreover, in case you bump into any sort of problem, you can directly connect with the CEO to register the same with us. Providing exceptional service is our main motto and we ensure that is achieved whatsoever.
+                        Moreover, in case you bump into any sort of problem, you can directly connect with the CEO to
+                        register the same with us. Providing exceptional service is our main motto and we ensure that is
+                        achieved whatsoever.
                     </p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>Is Astrology Prediction True?</h6>
                     <p>
-                        Many people have misconceptions that an astrologer can tell them what exactly is going to happen with them in the future or next moment, which is a wrong way to think about astrology. Astrology predictions are based on planetary movements. A planet moves from one house to another, one zodiac sign to another, etc. These moments by plantes can either be good or unfavourable for the native. For example, if say the planet Mercury is camping in a friendly zodiac sign, the outcomes are to be good for the native. Meanwhile, if the mercury is camping in an unfriendly zodiac sign, the outcome can be critical. An astrologer, based on calculations, notes down such shifts and traits and based on the same share with you if your upcoming time would be good or tough. If you think this way, astrology predictions ought to be true. Accurate predictions are possible when you seek to know about things like upcoming shubh muhurats, whether you are manglik or not?, etc.
+                        Many people have misconceptions that an astrologer can tell them what exactly is going to happen
+                        with them in the future or next moment, which is a wrong way to think about astrology. Astrology
+                        predictions are based on planetary movements. A planet moves from one house to another, one
+                        zodiac sign to another, etc. These moments by plantes can either be good or unfavourable for the
+                        native. For example, if say the planet Mercury is camping in a friendly zodiac sign, the
+                        outcomes are to be good for the native. Meanwhile, if the mercury is camping in an unfriendly
+                        zodiac sign, the outcome can be critical. An astrologer, based on calculations, notes down such
+                        shifts and traits and based on the same share with you if your upcoming time would be good or
+                        tough. If you think this way, astrology predictions ought to be true. Accurate predictions are
+                        possible when you seek to know about things like upcoming shubh muhurats, whether you are
+                        manglik or not?, etc.
                     </p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>How Can Online Astrology Help Me In Predicting The Future?</h6>
-                    <p>Online astrology can be of two types. One, you can visit a website and find astrology tools available on the same. Then all you need to do is enter some details like your date of birth, time of your birth, place of birth, etc. and you will have for yourself a contentful report describing you better than anyone else ever would. Meanwhile, the other way around is to directly get in touch with the astrologers (over a call or chat) we have on board to get the same information in a much detailed manner. Online astrology may look modern but when it comes to making predictions about your future, the old school way of calculating the position of the stars and planets is used to provide you the most accurate results. Simply say, online astrology is just a change of mode of communication between an astrologer and the one who seeks to know about their past, present and future. However, the ways to come to these answers is still old school and one one of the most authentic one.</p>
+                    <p>Online astrology can be of two types. One, you can visit a website and find astrology tools
+                        available on the same. Then all you need to do is enter some details like your date of birth,
+                        time of your birth, place of birth, etc. and you will have for yourself a contentful report
+                        describing you better than anyone else ever would. Meanwhile, the other way around is to
+                        directly get in touch with the astrologers (over a call or chat) we have on board to get the
+                        same information in a much detailed manner. Online astrology may look modern but when it comes
+                        to making predictions about your future, the old school way of calculating the position of the
+                        stars and planets is used to provide you the most accurate results. Simply say, online astrology
+                        is just a change of mode of communication between an astrologer and the one who seeks to know
+                        about their past, present and future. However, the ways to come to these answers is still old
+                        school and one one of the most authentic one.</p>
                 </div>
-                
+
                 <div class="faq-bx para-info">
                     <h6>What Kind Of Questions Can I Ask To Online Astrologers?</h6>
-                    <p>Until you are being respectful and authentic about your queries, there isn't a limit to what you can chat with an astrologer and what you can’t. Astrology has an answer for literally anything and everything. Starting right from your career to your love life or health, astrology can predict endless queries. You can trust us when we say our astrologers have been inundated with some of the most difficult questions, which they have answered with ease.</p>
+                    <p>Until you are being respectful and authentic about your queries, there isn't a limit to what you
+                        can chat with an astrologer and what you can’t. Astrology has an answer for literally anything
+                        and everything. Starting right from your career to your love life or health, astrology can
+                        predict endless queries. You can trust us when we say our astrologers have been inundated with
+                        some of the most difficult questions, which they have answered with ease.</p>
 
                     <p>
-                        Are you a manglik? An astrologer can help you find that. Or what the shubh muhurat for getting married? Or what are the chances of you improving your financial position in the years to come? Our astrologers can answer all such questions by simply calculating the position of the planets and combining them with numerous factors like your nakshatra, zodiac signs, houses in astrology and more.
+                        Are you a manglik? An astrologer can help you find that. Or what the shubh muhurat for getting
+                        married? Or what are the chances of you improving your financial position in the years to come?
+                        Our astrologers can answer all such questions by simply calculating the position of the planets
+                        and combining them with numerous factors like your nakshatra, zodiac signs, houses in astrology
+                        and more.
                     </p>
-                    
+
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>What Is The Duration For Online Astrology Consultation?</h6>
-                    <p>Astrology has no limits and nor do we. We have so many astrologers on board with whom you can connect and ask questions to. They would help you with all your queries without any time limit intact.</p>
+                    <p>Astrology has no limits and nor do we. We have so many astrologers on board with whom you can
+                        connect and ask questions to. They would help you with all your queries without any time limit
+                        intact.</p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>Can Astrology Predictions Be Changed?</h6>
                     <p>Astrological predictions may change in several cases:</p>
-                    <p>The first is when an astrologer unintentionally makes a mistake in locating the position of the planets. In such a case, the predictions can go wrong.</p>
-                    <p>Secondly, if you have provided the wrong information, especially the date and time of your birth, then astrology predictions are subject to change.</p>
-                    <p>The third situation when astrology predictions can go wrong is when you try to change yourself for good or bad. Many of you must be thinking that how an astrological prediction can change when it is mostly based on the movement of planets (which does not change)? Well, there is more to it. Every planet rules some good traits and bad traits. And it’s your deeds that decides which traits of the planet will become powerful. So for example, if you are a careless person as of now with Mercury as your ruling planet, you are unable to gain the good effects of Mercury. However, if you try to change yourself with time, the good traits of Mercury will eventually reflect in your chart and personality thus changing the astrology prediction.</p>
+                    <p>The first is when an astrologer unintentionally makes a mistake in locating the position of the
+                        planets. In such a case, the predictions can go wrong.</p>
+                    <p>Secondly, if you have provided the wrong information, especially the date and time of your birth,
+                        then astrology predictions are subject to change.</p>
+                    <p>The third situation when astrology predictions can go wrong is when you try to change yourself
+                        for good or bad. Many of you must be thinking that how an astrological prediction can change
+                        when it is mostly based on the movement of planets (which does not change)? Well, there is more
+                        to it. Every planet rules some good traits and bad traits. And it’s your deeds that decides
+                        which traits of the planet will become powerful. So for example, if you are a careless person as
+                        of now with Mercury as your ruling planet, you are unable to gain the good effects of Mercury.
+                        However, if you try to change yourself with time, the good traits of Mercury will eventually
+                        reflect in your chart and personality thus changing the astrology prediction.</p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>Can Astrology Predict About Lottery Winning?</h6>
-                    <p>Astrology can’t predict if you will win a lottery today or not but it can surely help you predict what are your chances to win a lottery. Also, numerology is another form of prediction that can help you with lucky numbers prospects, which can eventually help you decide what number you can go with to get lucky with winning a lottery.
+                    <p>Astrology can’t predict if you will win a lottery today or not but it can surely help you predict
+                        what are your chances to win a lottery. Also, numerology is another form of prediction that can
+                        help you with lucky numbers prospects, which can eventually help you decide what number you can
+                        go with to get lucky with winning a lottery.
 
                     </p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>What Benefits Can I Expect If I Avail Astrology Services?</h6>
-                    <p>First of all, if you are new to our platforms, you get a flat 50% discount on your first prediction. So that’s some savings. Secondly, using the insights provided by our astrologers about your future or the present self, you can be careful in terms that will help you deal with major problems, which could be finance-related, career-related, love related etc.</p>
+                    <p>First of all, if you are new to our platforms, you get a flat 50% discount on your first
+                        prediction. So that’s some savings. Secondly, using the insights provided by our astrologers
+                        about your future or the present self, you can be careful in terms that will help you deal with
+                        major problems, which could be finance-related, career-related, love related etc.</p>
                     <p>
-                        By seeing your astrological chart, an astrologer can not only predict about you but also about your behaviour towards your family, your relatives, your colleagues and more. Learning about these behaviours can help you better present yourself in front of people that matter. This way, astrology can positively help you improve your personality among uncountable goods it can do to you. For more details about astrology and future predictions, you can talk to astrologer.
+                        By seeing your astrological chart, an astrologer can not only predict about you but also about
+                        your behaviour towards your family, your relatives, your colleagues and more. Learning about
+                        these behaviours can help you better present yourself in front of people that matter. This way,
+                        astrology can positively help you improve your personality among uncountable goods it can do to
+                        you. For more details about astrology and future predictions, you can talk to astrologer.
                     </p>
 
 
@@ -1096,63 +1329,103 @@
 
                 <div class="faq-bx para-info">
                     <h6>Which app is best for kundli?</h6>
-                    <p>Astrotalk is one of the best platforms to get an online kundli for yourself. The exhaustive and free kundli available on Astrotalk is prepared by the best and the most learned astrologers of Astrotalk and is available in multiple languages for your convenience. The online kundli of Astrotalk covers all dimensions of your life from past, present and future and based on these dimensions allow you suggestions that you can adopt into your life for a better future ahead. In the online Kundli, we have various sections that highlight the good, bad and neutral Dashas that lie ahead of you and what you must do during these Dasha periods to get the best of the different phases. The kundli also has as many as 20 charts, remedies and so much more that will allow you a 360-degree view of your life. So without a doubt, you can use Astrotalk for the most authentic kundli. </p>
+                    <p>Astrotalk is one of the best platforms to get an online kundli for yourself. The exhaustive and
+                        free kundli available on Astrotalk is prepared by the best and the most learned astrologers of
+                        Astrotalk and is available in multiple languages for your convenience. The online kundli of
+                        Astrotalk covers all dimensions of your life from past, present and future and based on these
+                        dimensions allow you suggestions that you can adopt into your life for a better future ahead. In
+                        the online Kundli, we have various sections that highlight the good, bad and neutral Dashas that
+                        lie ahead of you and what you must do during these Dasha periods to get the best of the
+                        different phases. The kundli also has as many as 20 charts, remedies and so much more that will
+                        allow you a 360-degree view of your life. So without a doubt, you can use Astrotalk for the most
+                        authentic kundli. </p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>How reliable is the Astrotalk app?</h6>
                     <p>
-                        Interestingly, the Astrotalk app is made in such a way that it helps you with all your astrology needs. Apart from the main Talk to astrologers and Call to astrologers features, where the best astrologers from across the world are at your service, the Astrotalk app also has many free features that a user can enjoy. These features include Free live sessions on the app through which you can talk to astrologers for free. Astrotalk also has daily, weekly, monthly and yearly horoscopes prepared by expert astrologers that help you decode your future in advance. Then, Astrotalk further has Free kundli, Free matchmaking and more such features that again are prepared by expert astrologers and come in handy for you any time of the day. Apart from this, if you need any kind of astrology products such as Rudraksha, Yantras, Gemstones, Reiki healing, etc. such products are too available on the app. So Astrotalk is a one-stop destination for all your astrology needs and thus very reliable. 
+                        Interestingly, the Astrotalk app is made in such a way that it helps you with all your astrology
+                        needs. Apart from the main Talk to astrologers and Call to astrologers features, where the best
+                        astrologers from across the world are at your service, the Astrotalk app also has many free
+                        features that a user can enjoy. These features include Free live sessions on the app through
+                        which you can talk to astrologers for free. Astrotalk also has daily, weekly, monthly and yearly
+                        horoscopes prepared by expert astrologers that help you decode your future in advance. Then,
+                        Astrotalk further has Free kundli, Free matchmaking and more such features that again are
+                        prepared by expert astrologers and come in handy for you any time of the day. Apart from this,
+                        if you need any kind of astrology products such as Rudraksha, Yantras, Gemstones, Reiki healing,
+                        etc. such products are too available on the app. So Astrotalk is a one-stop destination for all
+                        your astrology needs and thus very reliable.
                     </p>
-                    
+
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>How much does Astrotalk cost?</h6>
                     <p>
-                        Simply put, Astrotalk suits your budget. And if you consider the First Chat Free feature, then it will definitely suit your budget. On Astrotalk, a user can get services at as low as Rs 10 per minute to Rs 250 per minute. The astrologers on Astrotalk charge as per their experiences, both in personal life and their time on the app. So it doesn’t mean an astrologer who is charging low is not good. It could simply mean that he/she may have just started on the app and thus want to keep his/her price affordable for the user. Interestingly, some astrologers deliberately keep their consultation prices low as their prime motive is to only help others with their talent. In a nutshell, you will find both affordable and not so budget-friendly astrologers on Astrotalk but at the end of the day, all of them are best at what they do as they have been scrutinised by the expert astrologers before they make it to the app.
+                        Simply put, Astrotalk suits your budget. And if you consider the First Chat Free feature, then
+                        it will definitely suit your budget. On Astrotalk, a user can get services at as low as Rs 10
+                        per minute to Rs 250 per minute. The astrologers on Astrotalk charge as per their experiences,
+                        both in personal life and their time on the app. So it doesn’t mean an astrologer who is
+                        charging low is not good. It could simply mean that he/she may have just started on the app and
+                        thus want to keep his/her price affordable for the user. Interestingly, some astrologers
+                        deliberately keep their consultation prices low as their prime motive is to only help others
+                        with their talent. In a nutshell, you will find both affordable and not so budget-friendly
+                        astrologers on Astrotalk but at the end of the day, all of them are best at what they do as they
+                        have been scrutinised by the expert astrologers before they make it to the app.
                     </p>
                 </div>
 
                 <div class="faq-bx para-info">
                     <h6>Can I trust astrology apps?</h6>
-                    <p>Astrology apps have become increasingly popular in recent years, with Astrotalk at the helm. Used by more than 3-crore people already, Astrotalk has the top astrologers on board who you can consult for accurate predictions about marriage, career, relationship, and more. These astrologers are hired after five rounds of interviews, hence are best at what they do. Astrology apps also offer a variety of other features, such as daily horoscopes, personalized birth chart readings, etc. and all of this is 100% genuine, prepared by expert astrologers. In addition, astrology apps such as Astrotalk even offer live consultations with professional astrologers, and that too for FREE. You can ask questions to astrologers and get instant solutions to your problems.
+                    <p>Astrology apps have become increasingly popular in recent years, with Astrotalk at the helm. Used
+                        by more than 3-crore people already, Astrotalk has the top astrologers on board who you can
+                        consult for accurate predictions about marriage, career, relationship, and more. These
+                        astrologers are hired after five rounds of interviews, hence are best at what they do. Astrology
+                        apps also offer a variety of other features, such as daily horoscopes, personalized birth chart
+                        readings, etc. and all of this is 100% genuine, prepared by expert astrologers. In addition,
+                        astrology apps such as Astrotalk even offer live consultations with professional astrologers,
+                        and that too for FREE. You can ask questions to astrologers and get instant solutions to your
+                        problems.
 
                     </p>
                 </div>
-                
-            </div>
-            
-        </div>
-         </section>
-    
 
-         <!-- ____________________________
+            </div>
+
+        </div>
+    </section> -->
+
+
+    <!-- ____________________________
           Our Footer Comp 
           -------------------- -->
 
-          <footer class="footer-comp">
-            <div class="common-container3">
+    <footer class="footer-comp">
+        <div class="common-container3">
 
-                <div class="footer-flex-bx">
+            <div class="footer-flex-bx">
 
-                    <div class="left-footer-bx">
+                <div class="left-footer-bx">
 
-                        <div class="left-header-logo flex item-start gap">
-                            <img src="./images/astrology.png" alt="">
-        
-                            <h6>Astroyogi</h6>
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="">
 
-                        
+                        <h6>Astro Nivesh</h6>
+
+
                     </div>
 
-               
 
-                    
+
+
                     <p>
-                        Astrotalk is the best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
+                        Astro Nivesh is the best astrology website for online Astrology predictions. Talk to Astrologer
+                        on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
                     </p>
-                    
+
                 </div>
 
 
@@ -1176,7 +1449,7 @@
                         <h6>Contact Info</h6>
                         <div class="footer-li">
                             <li><a href="#"> We are available 24x7 on chat support</a></li>
-                            <li><a href="#">Email ID: contact@astrotalk.com</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
 
                             <div class="soc-icons-flex">
                                 <a href="#">
@@ -1196,126 +1469,567 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
-                
+
             </div>
 
             <div class="copyright-bx">
-                <p>Copyright  2024 Astro Market Private Limited | All Rights Reserved | Dev. By: <a href="#">Dezire Dezire</a></p>
+                <p>Copyright 2025 Astro Nivesh | All Rights Reserved | Dev. By: <a
+                        href="https://digitaldezire.com/">Dezire
+                        Dezire</a></p>
             </div>
-            
-          </footer>
+            <div style="display: none;">
+                <select id="divisional-select">
+                    <option value="D1" selected>D1 - Lagna</option>
+                    <option value="D2">D2</option>
+                    <option value="D3">D3</option>
+                    <option value="D3-s">D3-s</option>
+                    <option value="D4">D4</option>
+                    <option value="D5">D5</option>
+                    <option value="D7">D7</option>
+                    <option value="D8">D8</option>
+                    <option value="D9">D9</option>
+                    <option value="D10">D10</option>
+                    <option value="D10-R">D10-R</option>
+                    <option value="D12">D12</option>
+                    <option value="D16">D16</option>
+                    <option value="D20">D20</option>
+                    <option value="D24">D24</option>
+                    <option value="D24-R">D24-R</option>
+                    <option value="D27">D27</option>
+                    <option value="D30">D30</option>
+                    <option value="D40">D40</option>
+                    <option value="D45">D45</option>
+                    <option value="D60">D60</option>
+                </select>
+            </div>
+
+    </footer>
+    <script>
+        async function getEnvVariables(name = "X_API_KEY") {
+            const response = await fetch(window?.location?.href, { method: "HEAD" });
+            // console.log("its api key", response?.headers?.get("X_API_KEY"))
+            return response?.headers?.get(name)
+        }
+        const host = "https://astroweb-backend.onrender.com";
+        const token = localStorage.getItem("token");
+        const params = JSON.parse(localStorage.getItem('params'));
+        // console.log(token, "token")
+        // console.log(params, "params")
+        async function fetchAllData() {
+            try {
+                const response = await fetch(`${host}/api/auth/getuser`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+                populateTable(data);
+                populateName(data);
+                collectData(data)
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        function populateTable(data) {
+            const tableBody = document.getElementById("profile-body");
+            tableBody.innerHTML = "";
+
+            tableBody.innerHTML = `
+            <div class="profile-desc">
+                <h4>${data.name}</h4>
+            </div>
+             
+            `
+        }
+        function populateName(data) {
+            const tableBody = document.getElementById("profile-name");
+            tableBody.innerHTML = "";
+
+            tableBody.innerHTML = `
+            <p>${data.name}</p>
+             
+            `
+        }
+
+        function showAlert(message, type) {
+            // Function to display alerts
+            const alertBox = document.getElementById("alert");
+            // alertBox.textContent = message;
+            alertBox.class = `alert ${type === "success" ? "alert-success" : "alert-danger"}`;
+            alertBox.style.display = "block";
+
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 3000);
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch(`${host}/api/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const json = await response.json();
+            console.log(json);
+
+            if (json.success) {
+
+                showAlert("Logged in successfully", "success");
+                // Save the auth token and redirect
+                localStorage.setItem("token", json.authToken);
+                document.querySelector(".login-reg-comp").classList.remove("formactive");
+                // window.location.href = "/index.html";
+                const loginForm = document.querySelector(".login-info");
+                const regInfo = document.querySelector(".reg-info");
+                const profileInfo = document.querySelector(".profile-info");
+                loginForm.style.display = "none";
+                regInfo.style.display = "none";
+                profileInfo.style.display = "block";
+                location.reload();
+            } else {
+                showAlert("Invalid Details", "danger");
+            }
+        }
+
+        async function handleCreate(event) {
+            event.preventDefault();
+            // Collect form data
+            const formData = new FormData(event.target);
+
+            const customerData = {
+                name: formData.get("cname"),
+                email: formData.get("cemail"),
+                password: formData.get("ccreatepassword"),
+                dob: formData.get("calendarInput"),
+                birthtime: formData.get("timePicker"),
+                birthplace: formData.get("birthplace"),
+                consonent: formData.get("consonent"),
+                vowel: formData.get("vowel"),
+            };
+
+            // console.log(customerData, "customerData");
+
+            const response = await fetch(`${host}/api/auth/createuser`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(customerData),
+            });
+
+            const json = await response.json();
+            console.log(json);
+
+            if (json.success) {
+                showAlert("Account Created successfully", "success");
+                // Save the auth token and redirect
+                localStorage.setItem("token", json.authToken);
+                const data = customerData;
+
+                // api
+                let api = [];
+                try {
+                    const response = await fetch(`${host}/api/admindetail/all`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch API data");
+                    }
+
+                    const data = await response.json();
+                    api = data[0]?.apiKey || []; // Store fetched API key
+                    // console.log(api, "Fetched API key");
+                } catch (error) {
+                    console.error("Error fetching API key:", error);
+                }
+                console.log(api[0]?.apiKey, "api[0]?.apiKey")
+
+                try {
+                    // console.log(data, "data")
+                    const birthtime = data.birthtime;
+                    const location = data.birthplace;
+                    const date = new Date(`1970-01-01 ${birthtime}`);
+                    const time24 = date.toLocaleTimeString("en-GB", { hour12: false }).slice(0, 5);
+                    const formattedDate = data.dob.split('-').reverse().join('/');
+                    // console.log(api[0]?.apiKey, "api")
+                    const apiKey = api[0]?.apiKey;
+                    const baseUrl = "https://api.vedicastroapi.com/v3-json";
+                    const altitudeUrl = `${baseUrl}/utilities/geo-search?city=${location}&api_key=${apiKey}`;
+                    const response1 = await fetch(altitudeUrl);
+                    if (!response1.ok) throw new Error("Failed to fetch location data.");
+                    const data1 = await response1.json();
+                    const data2 = data1.response;
+                    const lat = data2[0].coordinates[0];
+                    const lon = data2[0].coordinates[1];
+
+                    const params = {
+                        api_key: apiKey,
+                        dob: formattedDate,
+                        tob: time24,
+                        lat,
+                        lon,
+                        location,
+                        tz: 5.5,
+                        lang: "en",
+                        D1: "D1",
+                        D9: "D9",
+                    };
+                    const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                    const response2 = await fetch(horoscopeUrl);
+                    if (!response2.ok) throw new Error("Failed to fetch horoscope data.");
+                    const horoscopeData = await response2.json();
+
+                    const DashaUrl = `${baseUrl}/dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                    const responseAll = await fetch(DashaUrl);
+
+                    if (!responseAll.ok) {
+                        throw new Error("Failed to fetch Dasha data.");
+                    }
+
+                    const DashaData = await responseAll.json();
+                    const dashas = DashaData.response.order_of_dashas || [];
+
+                    const chart1 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                    const response3 = await fetch(chart1);
+                    const chart1Url = await response3.text();
+                    const chart2 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+                    const response4 = await fetch(chart2);
+                    const chart2Url = await response4.text();
+
+
+                    let rashiData = {};
+
+                    try {
+                        const divisionalSelect = document.getElementById("divisional-select");
+                        const divisions = Array.from(divisionalSelect.options).map(opt => opt.value);
+
+                        for (const div of divisions) {
+                            const divisionalUrl = `${baseUrl}/horoscope/divisional-charts?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${div}&api_key=${params.api_key}&lang=${params.lang}&response_type=planet_object`;
+
+                            try {
+                                const response = await fetch(divisionalUrl);
+                                if (!response.ok) {
+                                    console.warn(`Failed to fetch data for ${div}`);
+                                    continue; // Skip this division if there's an error
+                                }
+
+                                const horoscopeData = await response.json();
+                                if (horoscopeData && horoscopeData.response) {
+                                    const mapPlanetData = (data) => {
+                                        if (Array.isArray(data)) {
+                                            return data.map((planet) => ({
+                                                name: planet.full_name,
+                                                zodiac: planet.zodiac,
+                                                house: planet.house,
+                                                retro: planet.retro,
+                                                rasi_no: planet.rasi_no,
+                                                local_degree: planet.local_degree,
+                                            }));
+                                        } else if (typeof data === "object" && data !== null) {
+                                            return Object.values(data).map((planet) => ({
+                                                name: planet.full_name,
+                                                zodiac: planet.zodiac,
+                                                house: planet.house,
+                                                retro: planet.retro,
+                                                rasi_no: planet.rasi_no,
+                                                local_degree: planet.local_degree,
+                                            }));
+                                        } else {
+                                            console.error(`Unexpected data format for ${div}:`, data);
+                                            return [];
+                                        }
+                                    };
+
+                                    rashiData[div] = mapPlanetData(horoscopeData.response).slice(0, 10);
+                                } else {
+                                    console.warn(`Invalid or missing data for ${div}`);
+                                }
+                            } catch (error) {
+                                console.error(`Error fetching horoscope data for ${div}:`, error);
+                            }
+                        }
+                    } catch (error) {
+                        console.log("error")
+                    }
+                    const response = await fetch(`${host}/api/detail/adddetail`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": json.authToken
+                        },
+                        body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url })
+                    });
+
+                    const result = await response.json();
+                    // console.log(result);
+                }
+                catch {
+                    console.log("error")
+                }
+
+                document.querySelector(".login-reg-comp").classList.remove("formactive");
+                // window.location.href = "/index.html";
+                const loginForm = document.querySelector(".login-info");
+                const regInfo = document.querySelector(".reg-info");
+                const profileInfo = document.querySelector(".profile-info");
+                loginForm.style.display = "none";
+                regInfo.style.display = "none";
+                profileInfo.style.display = "block";
+                location.reload();
+
+            } else {
+                showAlert("Invalid Details", "danger");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // console.log(token, "token")
+            const loginForm = document.querySelector(".login-info");
+            const regInfo = document.querySelector(".reg-info");
+            const profileInfo = document.querySelector(".profile-info");
+
+            if (token) {
+                // User is logged in, show profile and hide login/signup forms
+                loginForm.style.display = "none";
+                regInfo.style.display = "none";
+                profileInfo.style.display = "block";
+            } else {
+                // User is not logged in, show login/signup forms
+                loginForm.style.display = "block";
+                regInfo.style.display = "block";
+                profileInfo.style.display = "none";
+            }
+
+            // Logout functionality
+            const logoutBox = document.getElementById("logoutBox");
+            if (logoutBox) {
+                logoutBox.addEventListener("click", function () {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem('params');
+                    location.reload();
+                });
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const kundaliLink = document.getElementById("kundaliLink");
+            const marketLink = document.getElementById("marketLink");
+            const loginModal = document.getElementById("login_btn");
+
+            kundaliLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./kundali.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+            marketLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./market.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+        });
+
+        async function collectData(data) {
+            const token = localStorage.getItem("token");
+            const params = JSON.parse(localStorage.getItem('params'));
+
+            if (token) {
+                // api
+                let api = [];
+                try {
+                    const response = await fetch(`${host}/api/admindetail/all`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch API data");
+                    }
+
+                    const data = await response.json();
+                    api = data[0]?.apiKey || [];
+                } catch (error) {
+                    console.error("Error fetching API key:", error);
+                }
+                try {
+                    const birthtime = data.birthtime;
+                    const location = data.birthplace;
+                    const date = new Date(`1970-01-01 ${birthtime}`);
+                    const time24 = date.toLocaleTimeString("en-GB", { hour12: false }).slice(0, 5);
+                    const formattedDate = data.dob.split('-').reverse().join('/');
+                    const apiKey = api[0]?.apiKey;
+                    const baseUrl = "https://api.vedicastroapi.com/v3-json";
+                    const altitudeUrl = `${baseUrl}/utilities/geo-search?city=${location}&api_key=${apiKey}`;
+                    const response1 = await fetch(altitudeUrl);
+                    if (!response1.ok) throw new Error("Failed to fetch location data.");
+                    const data1 = await response1.json();
+                    const data2 = data1.response;
+                    const lat = data2[0].coordinates[0];
+                    const lon = data2[0].coordinates[1];
+
+                    const params = {
+                        api_key: apiKey,
+                        dob: formattedDate,
+                        tob: time24,
+                        lat,
+                        lon,
+                        location,
+                        tz: 5.5,
+                        lang: "en",
+                        D1: "D1",
+                        D9: "D9",
+                    };
+                    localStorage.setItem('params', JSON.stringify(params));
+                }
+                catch {
+                    console.log("error")
+                }
+            }
+        }
+        // Populate table on page load
+        window.onload = async () => {
+            fetchAllData()
+        };
+
+    </script>
 
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- Swiper Js file -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- script file -->
-     <script src="./js/index.js"></script>
-     <script src="./js/Dropdown.js"></script>
-     <script>
-            var swiper = new Swiper(".homeSwiper", {
-                autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        dynamicBullets: true,
-      },
-    });
+    <script src="./js/index.js"></script>
+    <script src="./js/Dropdown.js"></script>
+    <script>
+        var swiper = new Swiper(".homeSwiper", {
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+            },
+        });
 
-    // blog and video card swiper code
-    var swiper = new Swiper(".blogvideoSwiper", {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      freeMode: true,
-      breakpoints: {
-    // When the viewport is ≥ 480px
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 0,
-    },
-    // When the viewport is ≥ 768px
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    // When the viewport is ≥ 1024px
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-  },
-      navigation: {
-        nextEl: ".blog-next",
-        prevEl: ".blog-prev",
-      },
-      autoplay: {
-        delay: 3500,
-        disableOnInteraction: false,
-      },
+        // blog and video card swiper code
+        var swiper = new Swiper(".blogvideoSwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            freeMode: true,
+            breakpoints: {
+                // When the viewport is ≥ 480px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+                // When the viewport is ≥ 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                // When the viewport is ≥ 1024px
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+            navigation: {
+                nextEl: ".blog-next",
+                prevEl: ".blog-prev",
+            },
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
 
-    });
+        });
 
-    var swiper2 = new Swiper(".videoSlider", {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      freeMode: true,
-      breakpoints: {
-    // When the viewport is ≥ 480px
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 0,
-    },
-    // When the viewport is ≥ 768px
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    // When the viewport is ≥ 1024px
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-  },
-      navigation: {
-        nextEl: ".video-next",
-        prevEl: ".video-prev",
-      },
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-    });
-
-
-    
-     </script>
- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
- <script>
-   // Initialize the Flatpickr for time selection
-   flatpickr("#timePicker", {
-     enableTime: true,
-     noCalendar: true,
-     dateFormat: "h:i K", // Format to include AM/PM
-     time_24hr: false // Use 12-hour clock with AM/PM
-   });
-
-   flatpickr("#calendarInput", {
-      dateFormat: "Y-m-d", // Format: YYYY-MM-DD
-      minDate: "today",   // Disable past dates
-      maxDate: "2024-12-31", // Set a maximum date
-      enableTime: false,   // Disable time selection
-    });
-
- </script>
+        var swiper2 = new Swiper(".videoSlider", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            freeMode: true,
+            breakpoints: {
+                // When the viewport is ≥ 480px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+                // When the viewport is ≥ 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                // When the viewport is ≥ 1024px
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+            navigation: {
+                nextEl: ".video-next",
+                prevEl: ".video-prev",
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+        });
 
 
-    
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#timePicker", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // Format to include AM/PM
+                time_24hr: false // Use 12-hour clock with AM/PM
+            });
+
+            flatpickr("#calendarInput", {
+                dateFormat: "Y-m-d", // Format: YYYY-MM-DD
+                maxDate: "2025-12-31", // Adjust maxDate if needed
+                enableTime: false   // Disable time selection
+            });
+        });
+    </script>
+
+
+
 </body>
 
 </html>

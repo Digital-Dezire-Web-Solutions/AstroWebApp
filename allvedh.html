@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakshatra Vedh Finder</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script>
+        const rightVedhTable = {
+            'Ashvini': 'Jyeshtha',
+            'Bharani': 'Anuradha',
+            'Krittika': 'Bharani',
+            'Rohini': 'Ashvini',
+            'Mrigashira': 'Revati',
+            'Ardra': 'UttaraBhadrapada',
+            'Punarvasu': 'PurvaBhadrapada',
+            'Pushya': 'Shatabhisaj',
+            'Ashlesha': 'Dhanistha',
+            'Magha': 'Ashlesha',
+            'PurvaPhalguni': 'Pushya',
+            'UttaraPhalguni': 'Punarvasu',
+            'Hasta': 'Ardra',
+            'Chitra': 'Mrigashira',
+            'Svati': 'Rohini',
+            'Vishakha': 'Krittika',
+            'Anuradha': 'Vishakha',
+            'Jyeshtha': 'Svati',
+            'Mula': 'Chitra',
+            'PurvaShadha': 'Hasta',
+            'UttaraAshadha': 'UttaraPhalguni',
+            'Sravana': 'Magha',
+            'Dhanista': 'Sravana',
+            'Shatabhisaj': 'Abhijit',
+            'PurvaBhadrapada': 'UttaraAshadha',
+            'UttaraBhadrapada': 'PurvaShadha',
+            'Revati': 'Mula',
+            'Abhijit': 'Purva Phalguni'
+        };
+
+        const leftVedhTable = {
+            'Ashvini': 'Rohini',
+            'Bharani': 'Krittika',
+            'Krittika': 'Vishakha',
+            'Rohini': 'Svati',
+            'Mrigashira': 'Chitra',
+            'Ardra': 'Hasta',
+            'Punarvasu': 'UttaraPhalguni',
+            'Pushya': 'PurvaPhalguni',
+            'Ashlesha': 'Magha',
+            'Magha': 'Sravana',
+            'PurvaPhalguni': 'Abhijit',
+            'UttaraPhalguni': 'Uttara Ashadha',
+            'Hasta': 'PurvaShadha',
+            'Chitra': 'Mula',
+            'Svati': 'Jyeshtha',
+            'Vishakha': 'Anuradha',
+            'Anuradha': 'Bharani',
+            'Jyeshtha': 'Ashvini',
+            'Mula': 'Revati',
+            'PurvaShadha': 'UttaraBhadrapada',
+            'Uttara Ashadha': 'PurvaBhadrapada',
+            'Sravana': 'Dhanista',
+            'Dhanista': 'Ashlesha',
+            'Shatabhisaj': 'Pushya',
+            'PurvaBhadrapada': 'Punarvasu',
+            'UttaraBhadrapada': 'Ardra',
+            'Revati': 'Mrigashira',
+            'Abhijit': 'Shatabhisaj'
+        };
+
+        const frontVedhTable = {
+            'Ashvini': 'PurvaPhalguni',
+            'Bharani': 'Magha',
+            'Krittika': 'Sravana',
+            'Rohini': 'Abhijit',
+            'Mrigashira': 'Uttara Ashadha',
+            'Ardra': 'PurvaShadha',
+            'Punarvasu': 'Mula',
+            'Pushya': 'Jyeshtha',
+            'Ashlesha': 'Anuradha',
+            'Magha': 'Bharani',
+            'PurvaPhalguni': 'Ashvini',
+            'UttaraPhalguni': 'Revati',
+            'Hasta': 'UttaraBhadrapada',
+            'Chitra': 'PurvaBhadrapada',
+            'Svati': 'Shatabhisaj',
+            'Vishakha': 'Dhanista',
+            'Anuradha': 'Ashlesha',
+            'Jyeshtha': 'Pushya',
+            'Mula': 'Punarvasu',
+            'PurvaShadha': 'Ardra',
+            'UttaraAshadha': 'Mrigashira',
+            'Sravana': 'Krittika',
+            'Dhanista': 'Vishakha',
+            'Shatabhisaj': 'Svati',
+            'PurvaBhadrapada': 'Chitra',
+            'UttaraBhadrapada': 'Hasta',
+            'Revati': 'UttaraPhalguni',
+            'Abhijit': 'Rohini'
+        };
+
+        const planetPositions = {
+            'Sun': { nakshatra: 'Ardra', pada: 3 },
+            'Moon': { nakshatra: 'Uttara Bhadrapada', pada: 2 },
+            'Mars': { nakshatra: 'Shatabhisaj', pada: 3 },
+            'Mercury': { nakshatra: 'Shatabhisaj', pada: 4 },
+            'Jupiter': { nakshatra: 'Sravana', pada: 4 },
+            'Venus': { nakshatra: 'Ashlesha', pada: 2 },
+            'Saturn': { nakshatra: 'Pushya', pada: 1 },
+            'Rahu': { nakshatra: 'Hasta', pada: 4 },
+            'Ketu': { nakshatra: 'Svati', pada: 2 }
+        };
+
+        function vedhPadaMap(currentPada) {
+            switch (currentPada) {
+                case 1: return 4;
+                case 2: return 3;
+                case 3: return 2;
+                case 4: return 1;
+                default: return 'Unknown';
+            }
+        }
+
+        function getRightVedhNakshatra(personNakshatra) {
+            return rightVedhTable[personNakshatra] || 'No Right Vedh Found';
+        }
+
+        function getLeftVedhNakshatra(personNakshatra) {
+            return leftVedhTable[personNakshatra] || 'No Left Vedh Found';
+        }
+
+        function getFrontVedhNakshatra(personNakshatra) {
+            return frontVedhTable[personNakshatra] || 'No Front Vedh Found';
+        }
+
+        function showRightVedhNakshatra() {
+            const personNakshatra = document.getElementById('personNakshatra').value;
+            const rightVedhNakshatra = getRightVedhNakshatra(personNakshatra);
+            document.getElementById('rightVedhResult').innerText = `Right Vedh Nakshatra for ${personNakshatra}: ${rightVedhNakshatra}`;
+        }
+
+        function showLeftVedhNakshatra() {
+            const personNakshatra = document.getElementById('personNakshatra').value;
+            const leftVedhNakshatra = getLeftVedhNakshatra(personNakshatra);
+            document.getElementById('leftVedhResult').innerText = `Left Vedh Nakshatra for ${personNakshatra}: ${leftVedhNakshatra}`;
+        }
+
+        function showFrontVedhNakshatra() {
+            const personNakshatra = document.getElementById('personNakshatra').value;
+            const frontVedhNakshatra = getFrontVedhNakshatra(personNakshatra);
+            document.getElementById('frontVedhResult').innerText = `Front Vedh Nakshatra for ${personNakshatra}: ${frontVedhNakshatra}`;
+        }
+
+        function showPlanetVedh() {
+            const planet = document.getElementById('planetSelect').value;
+            const position = planetPositions[planet];
+
+            if (!position) {
+                document.getElementById('planetVedhResult').innerText = 'Planet position not found';
+                return;
+            }
+
+            const { nakshatra, pada } = position;
+            const frontVedh = getFrontVedhNakshatra(nakshatra);
+            const rightVedh = getRightVedhNakshatra(nakshatra);
+            const leftVedh = getLeftVedhNakshatra(nakshatra);
+
+            const frontVedhPada = vedhPadaMap(pada);
+            const rightVedhPada = vedhPadaMap(pada);
+            const leftVedhPada = vedhPadaMap(pada);
+
+            document.getElementById('planetVedhResult').innerText = `Planet ${planet} in ${nakshatra} pada ${pada} causes:
+            Front Vedh: ${frontVedh} pada ${frontVedhPada},
+            Right Vedh: ${rightVedh} pada ${rightVedhPada},
+            Left Vedh: ${leftVedh} pada ${leftVedhPada}`;
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Nakshatra Vedh Finder</h1>
+
+    <label for="personNakshatra">Select Person's Nakshatra:</label>
+    <select id="personNakshatra">
+        <option value="Ashvini">Ashvini</option>
+        <option value="Bharani">Bharani</option>
+        <option value="Krittika">Krittika</option>
+        <option value="Rohini">Rohini</option>
+        <option value="Mrigashira">Mrigashira</option>
+        <option value="Ardra">Ardra</option>
+        <option value="Punarvasu">Punarvasu</option>
+        <option value="Pushya">Pushya</option>
+        <option value="Ashlesha">Ashlesha</option>
+        <option value="Magha">Magha</option>
+        <option value="PurvaPhalguni">Purva Phalguni</option>
+        <option value="UttaraPhalguni">Uttara Phalguni</option>
+        <option value="Hasta">Hasta</option>
+        <option value="Chitra">Chitra</option>
+        <option value="Svati">Svati</option>
+        <option value="Vishakha">Vishakha</option>
+        <option value="Anuradha">Anuradha</option>
+        <option value="Jyeshtha">Jyeshtha</option>
+        <option value="Mula">Mula</option>
+        <option value="PurvaShadha">PurvaShadha</option>
+        <option value="Uttara Ashadha">Uttara Ashadha</option>
+        <option value="Sravana">Sravana</option>
+        <option value="Dhanista">Dhanista</option>
+        <option value="Shatabhisaj">Shatabhisaj</option>
+        <option value="Purva Bhadrapada">Purva Bhadrapada</option>
+        <option value="Uttara Bhadrapada">Uttara Bhadrapada</option>
+        <option value="Revati">Revati</option>
+        <option value="Abhijit">Abhijit</option>
+    </select>
+
+    <button onclick="showRightVedhNakshatra()">Get Right Vedh Nakshatra</button>
+    <p id="rightVedhResult"></p>
+
+    <button onclick="showLeftVedhNakshatra()">Get Left Vedh Nakshatra</button>
+    <p id="leftVedhResult"></p>
+
+    <button onclick="showFrontVedhNakshatra()">Get Front Vedh Nakshatra</button>
+    <p id="frontVedhResult"></p>
+
+    <h2>Planetary Vedh Finder</h2>
+
+    <label for="planetSelect">Select Planet:</label>
+    <select id="planetSelect">
+        <option value="Sun">Sun</option>
+        <option value="Moon">Moon</option>
+        <option value="Mars">Mars</option>
+        <option value="Mercury">Mercury</option>
+        <option value="Jupiter">Jupiter</option>
+        <option value="Venus">Venus</option>
+        <option value="Saturn">Saturn</option>
+        <option value="Rahu">Rahu</option>
+        <option value="Ketu">Ketu</option>
+    </select>
+
+    <button onclick="showPlanetVedh()">Get Planetary Vedh</button>
+    <p id="planetVedhResult"></p>
+
+    <h4>Planetary Vedh Finder</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Planet</th>
+                <th>Nakshatra</th>
+                <th>Pada</th>
+                <th>front Vedh Nakshatra with Pada</th>
+                <th>left Vedh Nakshatra with Pada</th>
+                <th>Right Vedh Nakshatra with Pada</th>
+            </tr>
+        </thead>
+        <tbody id="planet-data"></tbody>
+    </table>
+
+    <script>
+        const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+
+        // Mapping Padas for Vedh
+        function vedhPadaMap(currentPada) {
+            switch (currentPada) {
+                case 1: return 4;
+                case 2: return 3;
+                case 3: return 2;
+                case 4: return 1;
+                default: return 'Unknown';
+            }
+        }
+
+        function getFrontVedhNakshatra(nakshatra) {
+            return frontVedhTable[nakshatra] || 'No Front Vedh Found';
+        }
+
+        function getRightVedhNakshatra(nakshatra) {
+            return rightVedhTable[nakshatra] || 'No Right Vedh Found';
+        }
+
+        function getLeftVedhNakshatra(nakshatra) {
+            return leftVedhTable[nakshatra] || 'No Left Vedh Found';
+        }
+        if (horoscopeData && horoscopeData.response) {
+            const planetDatas = horoscopeData.response;
+
+            // Function to check if a value is defined
+            const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+            // Map Planet Data
+            const mapPlanetData = (data) => {
+                if (Array.isArray(data)) {
+                    return data.map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                        pada: planet.nakshatra_pada,
+                    }));
+                } else if (typeof data === "object" && data !== null) {
+                    return Object.values(data).map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                        pada: planet.nakshatra_pada,
+                    }));
+                } else {
+                    console.error("Unexpected data format for planets:", data);
+                    return [];
+                }
+            };
+
+            // Populate Table
+            const populateTable = () => {
+                const planetDataElement = document.getElementById("planet-data");
+
+                const planets = mapPlanetData(horoscopeData.response).slice(0, 10);
+
+                planets.forEach((planet) => {
+                    const row = document.createElement("tr");
+
+                    if (isDefined(planet.nakshatra)) {
+                        // Calculate Vedh Nakshatras
+                        const frontVedh = getFrontVedhNakshatra(planet.nakshatra);
+                        const rightVedh = getRightVedhNakshatra(planet.nakshatra);
+                        const leftVedh = getLeftVedhNakshatra(planet.nakshatra);
+
+                        // Calculate Vedh Padas
+                        const frontVedhPada = vedhPadaMap(planet.pada);
+                        const rightVedhPada = vedhPadaMap(planet.pada);
+                        const leftVedhPada = vedhPadaMap(planet.pada);
+
+                        row.innerHTML = `
+                        <td>${isDefined(planet.name) ? planet.name : "-"}</td>
+                        <td>${isDefined(planet.nakshatra) ? planet.nakshatra : "-"}</td>
+                        <td>${isDefined(planet.pada) ? planet.pada : "-"}</td>
+                        <td>${frontVedh} (${frontVedhPada})</td>
+                        <td>${leftVedh} (${leftVedhPada})</td>
+                        <td>${rightVedh} (${rightVedhPada})</td>
+                    `;
+                    } else {
+                        row.innerHTML = `
+                        < td colspan = "5" > Data not available for this planet</td >
+                    `;
+                    }
+
+                    planetDataElement.appendChild(row);
+                });
+            };
+
+            // Populate table on page load
+            window.onload = populateTable;
+        } else {
+            console.error("Horoscope data not found or invalid in localStorage.");
+        }
+
+
+    </script>
+
+</body>
+
+</html>

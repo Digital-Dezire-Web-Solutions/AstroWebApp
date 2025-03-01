@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Nakshatra Life Aspects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label,
+        select {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Moon Nakshatra Life Aspects</h1>
+    <label for="nakshatraSelect">Select Moon Nakshatra:</label>
+    <select id="nakshatraSelect" onchange="updateLifeAspects()">
+        <option value="">-- Select Nakshatra --</option>
+    </select>
+
+    <table id="outputTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Nakshatra</th>
+                <th>Life Aspect</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        // Define the list of Nakshatras in order
+        const nakshatraList = [
+            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
+            "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni",
+            "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista", "Shatabhisaj",
+            "Purva Bhadrapada", "Uttara Bhadrapada", "Revati", "Abhijit"
+        ];
+
+        // Define the life aspects corresponding to Nakshatra positions
+        const lifeAspects = [
+            "Danger to native and death",
+            "Wealth and prosperity",
+            "Accident",
+            "Happiness and prosperity",
+            "Loss of business and obstacles",
+            "Success in effort",
+            "Sudden death and loss",
+            "Financial gains & success through friends",
+            "Financial gains & success through intimate friends",
+            "Disputes, suffering, and unhappiness",
+            "Wealth & prosperity",
+            "Sickness and accident",
+            "Happiness and prosperity",
+            "Loss of business and obstacle",
+            "Success in efforts depending on effort",
+            "Financial loss & disappointment",
+            "Financial success & gain through friend",
+            "Sudden setback, malefic results, and harm",
+            "Separation and foreign travel",
+            "Wealth & prosperity",
+            "Sickness and accident",
+            "Happiness and prosperity",
+            "Disputes, suffering, and unhappiness",
+            "Success in effort",
+            "Destruction of family & community",
+            "Defeat by enemy, property divide",
+            "Imprisonment, destruction of house",
+            "Kingdom"
+        ];
+
+        // Populate the dropdown with Nakshatras
+        const nakshatraSelect = document.getElementById("nakshatraSelect");
+        nakshatraList.forEach(nakshatra => {
+            const option = document.createElement("option");
+            option.value = nakshatra;
+            option.textContent = nakshatra;
+            nakshatraSelect.appendChild(option);
+        });
+
+        // Function to update the life aspects based on selected Moon Nakshatra
+        function updateLifeAspects() {
+            const selectedNakshatra = nakshatraSelect.value;
+
+            if (!selectedNakshatra) {
+                document.getElementById("outputTable").style.display = "none";
+                return;
+            }
+
+            // Find the index of the selected Nakshatra
+            const startIndex = nakshatraList.indexOf(selectedNakshatra);
+            console.log(startIndex,"startIndex")
+
+            // Generate the sequence of Nakshatras and life aspects
+            const sequence = [];
+            for (let i = 0; i < lifeAspects.length; i++) {
+                const nakshatraIndex = (startIndex + i) % nakshatraList.length;
+                sequence.push({
+                    position: i + 1,
+                    nakshatra: nakshatraList[nakshatraIndex],
+                    lifeAspect: lifeAspects[i]
+                });
+            }
+
+            // Update the output table
+            const table = document.getElementById("outputTable");
+            const tbody = table.querySelector("tbody");
+            tbody.innerHTML = ""; // Clear previous data
+
+            sequence.forEach(({ position, nakshatra, lifeAspect }) => {
+                console.log(nakshatra)
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${position}</td>
+                    <td>${nakshatra}</td>
+                    <td>${lifeAspect}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            table.style.display = "table";
+        }
+    </script>
+
+    <h4>Moon Nakshatra Life Aspects</h4>
+    <table id="outputTableMoon" style="display: none;">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Nakshatra</th>
+                <th>Life Aspect</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Function to retrieve Moon Nakshatra and Pada from horoscope data
+        function getMoonNakshatraAndPada() {
+            // Retrieve data from localStorage
+            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+
+            if (!horoscopeData || !horoscopeData.response) {
+                console.error("Invalid horoscope data or response");
+                return { nakshatra: null, pada: null };
+            }
+            // Map Planet Data
+            const mapPlanetData = (data) => {
+                if (Array.isArray(data)) {
+                    return data.map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                    }));
+                } else if (typeof data === "object" && data !== null) {
+                    return Object.values(data).map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                    }));
+                } else {
+                    console.error("Unexpected data format for planets:", data);
+                    return [];
+                }
+            };
+
+            // Normalize the planets data using mapPlanetData
+            const planets = mapPlanetData(horoscopeData.response);
+
+            // Find Moon data
+            const moon = planets.find(planet => planet.name === "Moon");
+            if (!moon) {
+                console.error("Moon data not found");
+                return { nakshatra: null};
+            }
+
+            // Extract nakshatra and pada
+            const nakshatra = moon.nakshatra || null;
+
+            return { nakshatra };
+        }
+
+        // Function to update the life aspects table based on Moon Nakshatra and Pada
+        function updateLifeAspects1() {
+            const { nakshatra } = getMoonNakshatraAndPada();
+
+            if (!nakshatra ) {
+                console.error("Missing nakshatra or pada");
+                document.getElementById("outputTable").style.display = "none";
+                return;
+            }
+
+            // Find the index of the Moon's nakshatra
+            const startIndex = nakshatraList.indexOf(nakshatra);
+
+            if (startIndex === -1) {
+                console.error("Nakshatra not found in list");
+                document.getElementById("outputTable").style.display = "none";
+                return;
+            }
+
+            // Generate the sequence
+            const sequence = [];
+            for (let i = 0; i < lifeAspects.length; i++) {
+                const nakshatraIndex = (startIndex + i) % nakshatraList.length;
+                sequence.push({
+                    position: i + 1,
+                    nakshatra: nakshatraList[nakshatraIndex],
+                    lifeAspect: lifeAspects[i],
+                });
+            }
+
+            // Update the output table
+            const table = document.getElementById("outputTableMoon");
+            const tbody = table.querySelector("tbody");
+            tbody.innerHTML = ""; // Clear previous data
+
+            sequence.forEach(({ position, nakshatra, lifeAspect }) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+            <td>${position}</td>
+            <td>${nakshatra}</td>
+            <td>${lifeAspect}</td>
+        `;
+                tbody.appendChild(row);
+            });
+
+            table.style.display = "table";
+        }
+
+        // Automatically update the table on page load
+        window.onload = updateLifeAspects1;
+
+    </script>
+</body>
+
+</html>

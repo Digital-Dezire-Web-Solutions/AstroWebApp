@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Gochar Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Planetary Gochar Tracker</h1>
+
+        <h2>Add Transit</h2>
+        <label for="planet">Planet:</label>
+        <select id="planet">
+            <option>Sun</option>
+            <option>Moon</option>
+            <option>Mars</option>
+            <option>Mercury</option>
+            <option>Jupiter</option>
+            <option>Venus</option>
+            <option>Saturn</option>
+            <option>Rahu</option>
+            <option>Ketu</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date">
+
+        <label for="nakshatra">Nakshatra:</label>
+        <select id="nakshatra">
+            <option>Ashwini</option>
+            <option>Bharani</option>
+            <option>Krittika</option>
+            <option>Rohini</option>
+            <option>Mrigashira</option>
+            <option>Ardra</option>
+            <option>Punarvasu</option>
+            <option>Pushya</option>
+            <option>Ashlesha</option>
+            <option>Magha</option>
+            <option>Purva Phalguni</option>
+            <option>Uttara Phalguni</option>
+            <option>Hasta</option>
+            <option>Chitra</option>
+            <option>Swati</option>
+            <option>Vishakha</option>
+            <option>Anuradha</option>
+            <option>Jyeshtha</option>
+            <option>Mula</option>
+            <option>Purva Ashadha</option>
+            <option>Uttara Ashadha</option>
+            <option>Shravana</option>
+            <option>Dhanishta</option>
+            <option>Shatabhisha</option>
+            <option>Purva Bhadrapada</option>
+            <option>Uttara Bhadrapada</option>
+            <option>Revati</option>
+        </select>
+
+        <label for="pada">Nakshatra Pada:</label>
+        <select id="pada">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <label for="rashi">Rashi:</label>
+        <select id="rashi">
+            <option>Aries</option>
+            <option>Taurus</option>
+            <option>Gemini</option>
+            <option>Cancer</option>
+            <option>Leo</option>
+            <option>Virgo</option>
+            <option>Libra</option>
+            <option>Scorpio</option>
+            <option>Sagittarius</option>
+            <option>Capricorn</option>
+            <option>Aquarius</option>
+            <option>Pisces</option>
+        </select>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time">
+
+        <button onclick="addTransit()">Add Transit</button>
+
+        <h2>View Transits</h2>
+        <label for="viewPlanet">Select Planet:</label>
+        <select id="viewPlanet">
+            <option>Sun</option>
+            <option>Moon</option>
+            <option>Mars</option>
+            <option>Mercury</option>
+            <option>Jupiter</option>
+            <option>Venus</option>
+            <option>Saturn</option>
+            <option>Rahu</option>
+            <option>Ketu</option>
+        </select>
+        <button onclick="viewTransits()">View Transits</button>
+
+        <h2>View Transits by Date</h2>
+        <label for="viewDate">Select Date:</label>
+        <input type="date" id="viewDate">
+        <button onclick="viewTransitsByDate()">View Transits</button>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        let transitData = JSON.parse(localStorage.getItem('transitData')) || {
+            Sun: [], Moon: [], Mars: [], Mercury: [], Jupiter: [], Venus: [], Saturn: [], Rahu: [], Ketu: []
+        };
+
+        function addTransit() {
+            const planet = document.getElementById('planet').value;
+            const date = document.getElementById('date').value;
+            const nakshatra = document.getElementById('nakshatra').value;
+            const pada = parseInt(document.getElementById('pada').value);
+            const rashi = document.getElementById('rashi').value;
+            const time = document.getElementById('time').value;
+
+            const entry = { date, nakshatra, pada, rashi, time };
+            transitData[planet].push(entry);
+
+            localStorage.setItem('transitData', JSON.stringify(transitData));
+            alert('Transit added successfully!');
+        }
+
+        function viewTransits() {
+            const planet = document.getElementById('viewPlanet').value;
+            const transits = transitData[planet];
+            displayResults(transits, `${planet} Transits`);
+        }
+
+        function viewTransitsByDate() {
+            const date = document.getElementById('viewDate').value;
+            const results = {};
+
+            for (const planet in transitData) {
+                transitData[planet].forEach(transit => {
+                    if (transit.date === date) {
+                        results[planet] = transit;
+                    }
+                });
+            }
+
+            displayResults(Object.entries(results), `Transits on ${date}`);
+        }
+
+        function displayResults(data, title) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<h3>${title}</h3>`;
+
+            if (data.length === 0) {
+                resultsDiv.innerHTML += '<p>No transits found.</p>';
+                return;
+            }
+
+            data.forEach(item => {
+                if (Array.isArray(item)) {
+                    resultsDiv.innerHTML += `<p><strong>${item[0]}</strong>: Nakshatra - ${item[1].nakshatra}, Pada - ${item[1].pada}, Rashi - ${item[1].rashi}, Time - ${item[1].time}</p>`;
+                } else {
+                    resultsDiv.innerHTML += `<p>Nakshatra: ${item.nakshatra}, Pada: ${item.pada}, Rashi: ${item.rashi}, Time: ${item.time}</p>`;
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

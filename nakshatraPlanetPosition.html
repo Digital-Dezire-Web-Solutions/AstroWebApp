@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Status in Nakshatra Padas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Planetary Status in Nakshatra Padas</h1>
+        <label for="planetSelect">Select a Planet:</label>
+        <select id="planetSelect">
+            <option value="Sun">Sun</option>
+            <option value="Moon">Moon</option>
+            <option value="Mars">Mars</option>
+            <option value="Mercury">Mercury</option>
+            <option value="Jupiter">Jupiter</option>
+            <option value="Venus">Venus</option>
+            <option value="Saturn">Saturn</option>
+            <option value="Rahu">Rahu</option>
+            <option value="Ketu">Ketu</option>
+        </select>
+        <button onclick="displayStatus()">Show Status</button>
+
+        <table id="statusTable">
+            <thead>
+                <tr>
+                    <th>Nakshatra</th>
+                    <th>Pada</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        const planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
+
+        const nakshatras = [
+            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
+            "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni", "Hasta",
+            "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista", "Shatabhisaj",
+            "Purva Bhadrapada", "UttaraBhadra", "Revati"
+        ];
+
+
+        const nakshatraLords = {
+            "Ashvini": "Ketu", "Bharani": "Venus", "Krittika": "Sun", "Rohini": "Moon",
+            "Mrigashira": "Mars", "Ardra": "Rahu", "Punarvasu": "Jupiter", "Pushya": "Saturn",
+            "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
+            "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
+            "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
+            "Uttara Ashadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisaj": "Rahu",
+            "Purva Bhadrapada": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
+        };
+
+        const ucchaNeechaDegrees = {
+            "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } },
+            "Moon": { exalted: { nakshatra: "Krittika", pada: 1 }, debilitated: { nakshatra: "Anuradha", pada: 4 } },
+            "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } },
+            "Mercury": { exalted: { nakshatra: "UttaraPhalguni", pada: 4 }, debilitated: { nakshatra: "UttaraBhadra", pada: 2 } },
+            "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "Dhanista", pada: 2 } },
+            "Venus": { exalted: { nakshatra: "UttaraBhadra", pada: 4 }, debilitated: { nakshatra: "UttaraPhalguni", pada: 2 } },
+            "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } },
+            "Rahu": { exalted: { nakshatra: "Rohini", pada: 2 }, debilitated: { nakshatra: "Jyeshtha", pada: 1 } },
+            "Ketu": { exalted: { nakshatra: "Jyeshtha", pada: 4 }, debilitated: { nakshatra: "Rohini", pada: 3 } }
+        };
+
+        const planetaryRelations2 = {
+            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon"] },
+            "Ketu": { friends: ["Mars", "Venus", "Saturn"], enemies: ["Sun", "Moon"] }
+        };
+
+        function getStatusNak(planet, nakshatra, pada) {
+            const exalted = ucchaNeechaDegrees[planet].exalted;
+            const debilitated = ucchaNeechaDegrees[planet].debilitated;
+
+            if (nakshatra === exalted.nakshatra && pada === exalted.pada) return "Uccha (Exalted)";
+            if (nakshatra === debilitated.nakshatra && pada === debilitated.pada) return "Neecha (Debilitated)";
+
+            const nakshatraLord = nakshatraLords[nakshatra];
+            const friends = planetaryRelations2[planet].friends;
+            const enemies = planetaryRelations2[planet].enemies;
+
+            if (friends.includes(nakshatraLord)) return "Mitra Nakshatra (Friendly)";
+            if (enemies.includes(nakshatraLord)) return "Shatru Nakshatra (Enemy)";
+
+            return "Neutral Nakshatra";
+        }
+        const nakshatraPosition = [];
+        function displayStatus() {
+            const planet = document.getElementById("planetSelect").value;
+            const tableBody = document.querySelector("#statusTable tbody");
+            tableBody.innerHTML = "";
+            planets.forEach(planet => {
+                nakshatras.forEach(nakshatra => {
+                    for (let pada = 1; pada <= 4; pada++) {
+                        const status = getStatusNak(planet, nakshatra, pada);
+                        const row = `<tr><td>${nakshatra}</td><td>${pada}</td><td>${status}</td></tr>`;
+                        tableBody.innerHTML += row;
+                        nakshatraPosition.push({
+                            planet: planet,
+                            nakshatra: nakshatra,
+                            pada: pada,
+                            status: status
+                        });
+                    }
+                });
+            })
+        }
+        window.onload = async () => {
+            await displayStatus();
+        };
+        console.log(nakshatraPosition,"nakshatraPosition")
+    </script>
+</body>
+
+</html>

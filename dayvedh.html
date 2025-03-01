@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakshatra and Days Vedh Finder</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script>
+        const daysVedhTable = {
+            'Ashvini': { front: '-', right: '-', left: '-' },
+            'Bharani': { front: '-', right: 'Friday, Thursday', left: '-' },
+            'Krittika': { front: '-', right: 'Sunday, Tuesday, Monday, Wednesday', left: '-' },
+            'Rohini': { front: '-', right: '-', left: '-' },
+            'Mrigashira': { front: 'Friday', right: '-', left: '-' },
+            'Ardra': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
+            'Punarvasu': { front: 'Monday, Wednesday', right: '-', left: '-' },
+            'Pushya': { front: '-', right: '-', left: '-' },
+            'Ashlesha': { front: '-', right: 'Sunday, Tuesday, Friday', left: '-' },
+            'Magha': { front: '-', right: '-', left: 'Monday, Wednesday, Thursday' },
+            'Purva Phalguni': { front: '-', right: '-', left: '-' },
+            'UttaraPhalguni': { front: 'Sunday, Tuesday', right: '-', left: '-' },
+            'Hasta': { front: 'Monday, Wednesday, Friday, Saturday', right: '-', left: '-' },
+            'Chitra': { front: 'Thursday', right: '-', left: '-' },
+            'Svati': { front: '-', right: '-', left: '-' },
+            'Vishakha': { front: '-', right: 'Sunday, Monday, Tuesday, Wednesday', left: '-' },
+            'Anuradha': { front: '-', right: '-', left: 'Friday, Thursday' },
+            'Jyeshtha': { front: '-', right: '-', left: '-' },
+            'Mula': { front: 'Monday, Wednesday', right: '-', left: '-' },
+            'PurvaShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
+            'Uttara Ashadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
+            'Sravana': { front: '-', right: 'Monday, Wednesday, Thursday', left: '-' },
+            'Dhanista': { front: '-', right: '-', left: 'Sunday, Tuesday, Friday' },
+            'Shatabhisaj': { front: '-', right: '-', left: '-' },
+            'Purva Bhadrapada': { front: 'Thursday', right: '-', left: '-' },
+            'Uttara Bhadrapada': { front: 'Monday, Wednesday, Friday, Saturday', right: '-', left: '-' },
+            'Revati': { front: 'Sunday, Tuesday', right: '-', left: '-' }
+        };
+
+        let planetPositions = {
+            'Sun': 'Ashvini',
+            'Moon': 'Bharani',
+            'Mars': 'Krittika',
+            'Mercury': 'Rohini',
+            'Jupiter': 'Mrigashira',
+            'Venus': 'Ardra',
+            'Saturn': 'Punarvasu',
+            'Rahu': 'Pushya',
+            'Ketu': 'Ashlesha'
+        };
+
+        function updatePlanetPosition() {
+            const planet = document.getElementById('planetSelect').value;
+            const nakshatra = document.getElementById('planetNakshatraSelect').value;
+            planetPositions[planet] = nakshatra;
+            document.getElementById('planetUpdateResult').innerText = `Updated ${planet} to Nakshatra: ${nakshatra}`;
+        }
+
+        function showPlanetDaysVedh() {
+            const planet = document.getElementById('planetSelect').value;
+            const nakshatra = planetPositions[planet];
+            const vedh = daysVedhTable[nakshatra] || { front: 'No Vedh', right: 'No Vedh', left: 'No Vedh' };
+
+            document.getElementById('planetDaysVedhResult').innerHTML = `
+                <b>Days Vedh for Planet: ${planet}</b><br>
+                Nakshatra: ${nakshatra}<br>
+                Front Vedh Days: ${vedh.front}<br>
+                Right Vedh Days: ${vedh.right}<br>
+                Left Vedh Days: ${vedh.left}
+            `;
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Nakshatra and Days Vedh Finder</h1>
+
+    <h2>Update Planetary Positions</h2>
+    <label for="planetSelect">Select Planet:</label>
+    <select id="planetSelect">
+        <option value="Sun">Sun</option>
+        <option value="Moon">Moon</option>
+        <option value="Mars">Mars</option>
+        <option value="Mercury">Mercury</option>
+        <option value="Jupiter">Jupiter</option>
+        <option value="Venus">Venus</option>
+        <option value="Saturn">Saturn</option>
+        <option value="Rahu">Rahu</option>
+        <option value="Ketu">Ketu</option>
+    </select>
+
+    <label for="planetNakshatraSelect">Select Nakshatra:</label>
+    <select id="planetNakshatraSelect">
+        <option value="Ashvini">Ashvini</option>
+        <option value="Bharani">Bharani</option>
+        <option value="Krittika">Krittika</option>
+        <option value="Rohini">Rohini</option>
+        <option value="Mrigashira">Mrigashira</option>
+        <option value="Ardra">Ardra</option>
+        <option value="Punarvasu">Punarvasu</option>
+        <option value="Pushya">Pushya</option>
+        <option value="Ashlesha">Ashlesha</option>
+        <option value="Magha">Magha</option>
+        <option value="Purva Phalguni">Purva Phalguni</option>
+        <option value="UttaraPhalguni">UttaraPhalguni</option>
+        <option value="Hasta">Hasta</option>
+        <option value="Chitra">Chitra</option>
+        <option value="Svati">Svati</option>
+        <option value="Vishakha">Vishakha</option>
+        <option value="Anuradha">Anuradha</option>
+        <option value="Jyeshtha">Jyeshtha</option>
+        <option value="Mula">Mula</option>
+        <option value="PurvaShadha">PurvaShadha</option>
+        <option value="Uttara Ashadha">Uttara Ashadha</option>
+        <option value="Sravana">Sravana</option>
+        <option value="Dhanista">Dhanista</option>
+        <option value="Shatabhisaj">Shatabhisaj</option>
+        <option value="Purva Bhadrapada">Purva Bhadrapada</option>
+        <option value="Uttara Bhadrapada">Uttara Bhadrapada</option>
+        <option value="Revati">Revati</option>
+    </select>
+
+    <button onclick="updatePlanetPosition()">Update Planet Position</button>
+    <p id="planetUpdateResult"></p>
+
+    <h2>Planetary Days Vedh Finder</h2>
+    <button onclick="showPlanetDaysVedh()">Get Planetary Days Vedh</button>
+    <p id="planetDaysVedhResult"></p>
+
+
+    <h4>Nakshatra and Days Vedh Finder</h4>
+    <table id="daysVedhTable">
+        <thead>
+            <tr>
+                <th>Planet</th>
+                <th>Nakshatra</th>
+                <th>Front Vedh Days</th>
+                <th>Right Vedh Days</th>
+                <th>Left Vedh Days</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+        if (horoscopeData && horoscopeData.response) {
+            const planetDatas = horoscopeData.response;
+
+            // Function to check if a value is defined
+            const isDefined = (value) => value !== undefined && value !== null && value !== "";
+
+            // Map Planet Data
+            const mapPlanetData = (data) => {
+                if (Array.isArray(data)) {
+                    return data.map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                    }));
+                } else if (typeof data === "object" && data !== null) {
+                    return Object.values(data).map((planet) => ({
+                        name: planet.full_name,
+                        nakshatra: planet.nakshatra,
+                    }));
+                } else {
+                    console.error("Unexpected data format for planets:", data);
+                    return [];
+                }
+            };
+
+             // Extract planet data from horoscope response
+             const planets = mapPlanetData(planetDatas).slice(0,10);
+
+            // Populate Table
+            function populateDaysVedhTable() {
+            const tableBody = document.getElementById('daysVedhTable').querySelector('tbody');
+
+            // Clear existing rows (if any)
+            tableBody.innerHTML = '';
+
+            // Loop through myPlanetData and populate the table
+            planets.forEach((planetData) => {
+                const { name, nakshatra } = planetData;
+                const vedh = daysVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${nakshatra}</td>
+                    <td>${vedh.front}</td>
+                    <td>${vedh.right}</td>
+                    <td>${vedh.left}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Populate the table on page load
+        window.onload = populateDaysVedhTable;
+
+        } else {
+            console.error("Horoscope data not found or invalid in localStorage.");
+        }
+
+
+    </script>
+</body>
+
+</html>
