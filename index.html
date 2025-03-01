@@ -1506,6 +1506,11 @@
 
     </footer>
     <script>
+        async function getEnvVariables(name = "X_API_KEY") {
+            const response = await fetch(window?.location?.href, { method: "HEAD" });
+            // console.log("its api key", response?.headers?.get("X_API_KEY"))
+            return response?.headers?.get(name)
+        }
         const host = "https://astroweb-backend.onrender.com";
         const token = localStorage.getItem("token");
         const params = JSON.parse(localStorage.getItem('params'));
@@ -1871,7 +1876,7 @@
                     }
 
                     const data = await response.json();
-                    api = data[0]?.apiKey || []; 
+                    api = data[0]?.apiKey || [];
                 } catch (error) {
                     console.error("Error fetching API key:", error);
                 }
