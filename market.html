@@ -760,14 +760,14 @@
                 <div class="table-data">
 
                     <!-- Planet Selection Dropdown -->
+                    <h6>Selected Planet Details:</h6>
                     <label for="planetSelect">Select Planet:</label>
                     <select id="planetSelect">
                         <!-- Planet options will be populated dynamically -->
                     </select>
 
                     <!-- Nakshatra Data Table -->
-                    <h6>Selected Planet Details:</h6>
-                    <table>
+                    <!-- <table>
                         <thead>
                             <tr>
                                 <th>Planet Name</th>
@@ -776,11 +776,10 @@
                             </tr>
                         </thead>
                         <tbody id="nakshatraTableBody">
-                            <!-- Rows will be populated dynamically -->
                         </tbody>
-                    </table>
+                    </table> -->
                     <!-- panchang detail -->
-                    <h6>panchang detail</h6>
+                    <!-- <h6>panchang detail</h6>
                     <table>
                         <thead>
                             <tr>
@@ -790,7 +789,7 @@
                             </tr>
                         </thead>
                         <tbody id="table-container"></tbody>
-                    </table>
+                    </table> -->
 
 
                     <!-- Nakshatra Comparison Result -->
@@ -798,10 +797,10 @@
                     <p id="comparisonResult">Select two days to compare their Nakshatras.</p>
 
                     <div id="legend">
-                        <p><span style="color: green;">&#9632;</span> Result 1 (Green)</p>
-                        <p><span style="color: orange;">&#9632;</span> Result 2 (Orange)</p>
-                        <p><span style="color: purple;">&#9632;</span> Result 3 (Purple)</p>
-                        <p><span style="color: red;">&#9632;</span> Result 0 (Red)</p>
+                        <p><span style="color: green;">&#9632;</span>Full Day Trade</p>
+                        <p><span style="color: orange;">&#9632;</span> First half Trade</p>
+                        <p><span style="color: purple;">&#9632;</span>Second half Trade</p>
+                        <p><span style="color: red;">&#9632;</span>No trade</p>
                     </div>
                     <div id="calendar" class="calendar"></div>
 
@@ -1006,8 +1005,27 @@
             const formattedDate = `${day}/${month}/${year}`;
             const params = JSON.parse(localStorage.getItem('params'));
             const baseUrl = "https://api.vedicastroapi.com/v3-json";
+            let api = [];
+            try {
+                const response = await fetch(`${host}/api/admindetail/all`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch API data");
+                }
+
+                const data = await response.json();
+                api = data[0]?.apiKey || [];
+            } catch (error) {
+                console.error("Error fetching API key:", error);
+            }
+            const apiKey = api[0]?.apiKey;
             const fetchMonthlyPunchang = async () => {
-                const monthlyPanchang = `${baseUrl}/panchang/monthly-panchang?api_key=${params.api_key}&date=${formattedDate}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&lang=${params.lang}`;
+                const monthlyPanchang = `${baseUrl}/panchang/monthly-panchang?api_key=${apiKey}&date=${formattedDate}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&lang=${params.lang}`;
                 try {
                     const response = await fetch(monthlyPanchang);
                     if (!response.ok) throw new Error("Failed to fetch location data.");
@@ -1141,16 +1159,16 @@
                         const tradeableDays = getTradeableDays(nakshatra);
 
                         // Populate the table with the selected planet's data
-                        const tableBody = document.getElementById('nakshatraTableBody');
-                        tableBody.innerHTML = '';  // Clear previous data
+                    //     const tableBody = document.getElementById('nakshatraTableBody');
+                    //     tableBody.innerHTML = '';  // Clear previous data
 
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                        <td>${selectedPlanet.name}</td>
-                        <td>${nakshatra}</td>
-                        <td>${tradeableDays.join(', ')}</td>
-                    `;
-                        tableBody.appendChild(row);
+                    //     const row = document.createElement('tr');
+                    //     row.innerHTML = `
+                    //     <td>${selectedPlanet.name}</td>
+                    //     <td>${nakshatra}</td>
+                    //     <td>${tradeableDays.join(', ')}</td>
+                    // `;
+                        // tableBody.appendChild(row);
 
                         const monthlyPunchangData = JSON.parse(localStorage.getItem('monthlyPunchang'));
                         // console.log(monthlyPunchangData,"monthlyPunchangData")
@@ -1175,35 +1193,35 @@
                         });
 
                         // Function to render a table
-                        function renderTable(data1, data2) {
-                            const tableContainer = document.getElementById('table-container');
-                            const tableHTML = `
-                <table>
+            //             function renderTable(data1, data2) {
+            //                 const tableContainer = document.getElementById('table-container');
+            //                 const tableHTML = `
+            //     <table>
                     
-                    <tbody>
-                        <tr>
-                            <td>Nakshatra Name</td>
-                            <td>${data1.name || "N/A"}</td>
-                            <td>${data2.name || "N/A"}</td>
-                        </tr>
-                        <tr>
-                            <td>Start</td>
-                            <td>${data1.start || "N/A"}</td>
-                            <td>${data2.start || "N/A"}</td>
-                        </tr>
-                        <tr>
-                            <td>End</td>
-                            <td>${data1.end || "N/A"}</td>
-                            <td>${data2.end || "N/A"}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-                            tableContainer.innerHTML = tableHTML;
-                        }
+            //         <tbody>
+            //             <tr>
+            //                 <td>Nakshatra Name</td>
+            //                 <td>${data1.name || "N/A"}</td>
+            //                 <td>${data2.name || "N/A"}</td>
+            //             </tr>
+            //             <tr>
+            //                 <td>Start</td>
+            //                 <td>${data1.start || "N/A"}</td>
+            //                 <td>${data2.start || "N/A"}</td>
+            //             </tr>
+            //             <tr>
+            //                 <td>End</td>
+            //                 <td>${data1.end || "N/A"}</td>
+            //                 <td>${data2.end || "N/A"}</td>
+            //             </tr>
+            //         </tbody>
+            //     </table>
+            // `;
+            //                 tableContainer.innerHTML = tableHTML;
+            //             }
 
-                        // Call the function to render the table
-                        renderTable(data1, data2);
+            //             // Call the function to render the table
+            //             renderTable(data1, data2);
 
                         // Example usage to compare two days' nakshatras
                         const entry1 = { nakshatra: { name: data1.name } }; // First day's entry
