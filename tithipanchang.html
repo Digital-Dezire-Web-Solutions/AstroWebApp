@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tithi Database</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        tr:nth-child(even) {background-color: #f9f9f9;}
+        tr:hover {background-color: #f1f1f1;}
+    </style>
+</head>
+<body>
+    <h1>Tithi Database</h1>
+    <table id="tithiTable">
+        <thead>
+            <tr>
+                <th>Tithi Name</th>
+                <th>Paksha</th>
+                <th>Nature</th>
+                <th>Good For</th>
+                <th>Avoid</th>
+                <th>Stock Market Impact</th>
+                <th>Market Trend</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Shukla Paksha Tithis -->
+            <tr><td>Pratipada</td><td>Shukla</td><td>Medium</td><td>Starting spiritual practices, worship</td><td>Major investments, loans</td><td>Volatile market, sudden movement</td><td>Volatile</td></tr>
+            <tr><td>Dwitiya</td><td>Shukla</td><td>Auspicious</td><td>Travel, partnerships, financial planning</td><td>Legal disputes, conflicts</td><td>Market stabilizing, minor gains</td><td>Stable</td></tr>
+            <tr><td>Tritiya</td><td>Shukla</td><td>Very Auspicious</td><td>Buying gold, starting new ventures</td><td>Debt, legal cases</td><td>Positive momentum in markets</td><td>Bullish</td></tr>
+            <tr><td>Chaturthi</td><td>Shukla</td><td>Inauspicious</td><td>Worship of Ganesha, strategic planning</td><td>Arguments, risky investments</td><td>High volatility, avoid trading</td><td>Volatile</td></tr>
+            <tr><td>Panchami</td><td>Shukla</td><td>Auspicious</td><td>Education, medicine, creativity</td><td>Property-related matters</td><td>Positive for pharma & tech stocks</td><td>Bullish</td></tr>
+            <tr><td>Shashthi</td><td>Shukla</td><td>Auspicious</td><td>Travel, meeting influential people</td><td>Litigation, aggressive actions</td><td>Market sees steady upward trends</td><td>Bullish</td></tr>
+            <tr><td>Saptami</td><td>Shukla</td><td>Very Auspicious</td><td>Buying vehicles, starting medical treatments</td><td>Delaying work, arguments</td><td>Good for auto, transport stocks</td><td>Bullish</td></tr>
+            <tr><td>Ashtami</td><td>Shukla</td><td>Inauspicious</td><td>Prayers, fasting, inner reflection</td><td>Marriages, business deals</td><td>Market corrections, unpredictable</td><td>Correction</td></tr>
+            <tr><td>Navami</td><td>Shukla</td><td>Inauspicious</td><td>Spiritual work, deep learning</td><td>Major purchases, housewarming</td><td>Market slow, low volume trading</td><td>Bearish</td></tr>
+            <tr><td>Dashami</td><td>Shukla</td><td>Very Auspicious</td><td>Starting work, travel, investments</td><td>Court matters</td><td>Bullish trends, strong buying</td><td>Bullish</td></tr>
+            <tr><td>Ekadashi</td><td>Shukla</td><td>Highly Auspicious</td><td>Fasting, long-term financial planning</td><td>Luxury spending</td><td>Market stability, positive sentiment</td><td>Stable</td></tr>
+            <tr><td>Dwadashi</td><td>Shukla</td><td>Auspicious</td><td>Charity, learning, spiritual activities</td><td>Heavy spending, fights</td><td>Steady market growth, good for long-term investments</td><td>Bullish</td></tr>
+            <tr><td>Trayodashi</td><td>Shukla</td><td>Auspicious</td><td>Business, finance, wealth accumulation</td><td>Arguments, unnecessary expenses</td><td>Positive market momentum</td><td>Bullish</td></tr>
+            <tr><td>Chaturdashi</td><td>Shukla</td><td>Inauspicious</td><td>Meditation, Shiva worship</td><td>Major investments, starting projects</td><td>High volatility, sharp moves</td><td>Volatile</td></tr>
+            <tr><td>Purnima</td><td>Shukla</td><td>Very Auspicious</td><td>Financial deals, celebrations, donations</td><td>Anger, ego battles</td><td>Market tops out, reversal possible</td><td>Correction</td></tr>
+
+            <!-- Krishna Paksha Tithis -->
+            <tr><td>Pratipada</td><td>Krishna</td><td>Medium</td><td>Meditation, self-improvement</td><td>Buying assets, loans</td><td>Mixed trends, uncertain movement</td><td>Mixed</td></tr>
+            <tr><td>Dwitiya</td><td>Krishna</td><td>Auspicious</td><td>Networking, family work</td><td>Risky deals</td><td>Stability in market, neutral sentiment</td><td>Stable</td></tr>
+            <tr><td>Tritiya</td><td>Krishna</td><td>Auspicious</td><td>Learning, business expansion</td><td>Major surgeries, conflicts</td><td>Positive market sentiment</td><td>Bullish</td></tr>
+            <tr><td>Chaturthi</td><td>Krishna</td><td>Inauspicious</td><td>Prayer, personal discipline</td><td>Investments, court cases</td><td>Sharp falls, correction phase</td><td>Correction</td></tr>
+            <tr><td>Panchami</td><td>Krishna</td><td>Auspicious</td><td>Health, research, travel</td><td>Arguments, emotional decisions</td><td>Market starts recovering</td><td>Recovery</td></tr>
+            <tr><td>Shashthi</td><td>Krishna</td><td>Very Auspicious</td><td>Real estate deals, financial planning</td><td>Hasty investments</td><td>Good for real estate & banking stocks</td><td>Bullish</td></tr>
+            <tr><td>Saptami</td><td>Krishna</td><td>Auspicious</td><td>Buying land, vehicle, new initiatives</td><td>Aggressive actions</td><td>Market shows slow bullish movement</td><td>Bullish</td></tr>
+            <tr><td>Ashtami</td><td>Krishna</td><td>Inauspicious</td><td>Meditation, fasting, research</td><td>New beginnings, big purchases</td><td>Market correction, possible losses</td><td>Correction</td></tr>
+            <tr><td>Navami</td><td>Krishna</td><td>Inauspicious</td><td>Spiritual retreat, avoiding arguments</td><td>Major contracts, loans</td><td>Bearish sentiment, market cautious</td><td>Bearish</td></tr>
+            <tr><td>Dashami</td><td>Krishna</td><td>Medium</td><td>Career growth, strategic planning</td><td>Aggressive financial moves</td><td>Market recovery, positive trend</td><td>Recovery</td></tr>
+            <tr><td>Ekadashi</td><td>Krishna</td><td>Highly Auspicious</td><td>Spiritual progress, long-term investment</td><td>Luxury expenses, speculation</td><td>Good for long-term holdings</td><td>Bullish</td></tr>
+            <tr><td>Dwadashi</td><td>Krishna</td><td>Auspicious</td><td>Donations, financial discipline</td><td>Starting conflicts</td><td>Market steady, good for banking & IT</td><td>Stable</td></tr>
+            <tr><td>Trayodashi</td><td>Krishna</td><td>Auspicious</td><td>Short-term financial gains, networking</td><td>Litigation, risky investments</td><td>Mixed market, short-term gains</td><td>Mixed</td></tr>
+            <tr><td>Chaturdashi</td><td>Krishna</td><td>Inauspicious</td><td>Worship, fasting, spiritual focus</td><td>Materialistic activities</td><td>Market uncertainty, possible falls</td><td>Bearish</td></tr>
+            <tr><td>Amavasya</td><td>Krishna</td><td>Medium</td><td>Inner work, charity, debt clearance</td><td>New ventures, aggressive decisions</td><td>Weak sentiment, unpredictable market</td><td>Volatile</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Future enhancement: Add JavaScript functions for filtering and analysis
+        console.log("Tithi database loaded for analysis.");
+    </script>
+</body>
+</html>

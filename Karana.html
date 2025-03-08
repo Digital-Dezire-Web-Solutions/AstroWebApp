@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karana-Based Trading Recommendations</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {background-color: #f9f9f9;}
+        tr:hover {background-color: #f1f1f1;}
+        .trade {background-color: #e6ffe6; color: green;}
+        .avoid {background-color: #ffe6e6; color: red;}
+        .caution {background-color: #fff8e6; color: orange;}
+    </style>
+</head>
+<body>
+    <h1>Karana-Based Trading Recommendations</h1>
+    <p>Get personalized trading advice based on the <strong>current Karana</strong>.</p>
+
+    <label for="currentKarana">Select Current Karana:</label>
+    <select id="currentKarana">
+        <option value="Bava">Bava</option>
+        <option value="Balava">Balava</option>
+        <option value="Kaulava">Kaulava</option>
+        <option value="Taitila">Taitila</option>
+        <option value="Garaja">Garaja</option>
+        <option value="Vanija">Vanija</option>
+        <option value="Vishti">Vishti</option>
+        <option value="Shakuni">Shakuni</option>
+        <option value="Chatushpad">Chatushpad</option>
+        <option value="Naga">Naga</option>
+        <option value="Kimstughna">Kimstughna</option>
+    </select>
+
+    <button onclick="getKaranaRecommendation()">Get Recommendation</button>
+
+    <h2>Trading Recommendation:</h2>
+    <div id="karanaRecommendation"></div>
+
+    <script>
+        const favorableKaranas = ["Bava", "Balava", "Kaulava", "Taitila", "Vanija", "Garaja"];
+        const unfavorableKaranas = ["Vishti", "Shakuni", "Chatushpad", "Naga", "Kimstughna"];
+
+        function getKaranaRecommendation() {
+            const currentKarana = document.getElementById("currentKarana").value;
+            const recommendationDiv = document.getElementById("karanaRecommendation");
+
+            let recommendation = "";
+
+            if (favorableKaranas.includes(currentKarana)) {
+                recommendation = "✅ Favorable Karana for Trading - Good time for financial activities.";
+            } else if (unfavorableKaranas.includes(currentKarana)) {
+                recommendation = "❌ Avoid Trading - This Karana is not suitable for financial decisions.";
+            } else {
+                recommendation = "⚠️ Proceed with Caution - Results may vary, be mindful of risk factors.";
+            }
+
+            recommendationDiv.innerHTML = `<p>${recommendation}</p>`;
+        }
+    </script>
+</body>
+</html>

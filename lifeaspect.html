@@ -104,6 +104,30 @@
     </table>
 
     <script>
+        const host = "https://api.astronivesh.com";
+        const token = localStorage.getItem("token");
+        async function fetchUserData() {
+            try {
+                const response = await fetch(`${host}/api/detail/fetchalldetail`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const datass = await response.json();
+                // console.log(datass, "data")
+                initializeData(datass)
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        fetchUserData()
         // Get the dropdown element and output paragraph
         // const letterdropdown = document.getElementById('astrologyLetter');
         // const voweldropdown = document.getElementById('vowelDropdown');
@@ -129,7 +153,6 @@
         // console.log(vowelletter, "selectedVowelText")
 
 
-        const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
         const tithiVedhTable = {
             'Ashvini': { front: '-', right: '-', left: '-' },
             'Bharani': { front: '-', right: '3,4,8,9,13,14', left: '-' },
@@ -151,12 +174,12 @@
             'Jyeshtha': { front: '-', right: '-', left: '-' },
             'Mula': { front: '2,7,12', right: '-', left: '-' },
             'PurvaShadha': { front: '1,6,11,5,10,15,3,8,13', right: '-', left: '-' },
-            'Uttara Ashadha': { front: '4,9,14', right: '-', left: '-' },
+            'UttraShadha': { front: '4,9,14', right: '-', left: '-' },
             'Sravana': { front: '-', right: '2,7,12,3,8,13', left: '-' },
             'Dhanista': { front: '-', right: '-', left: '1,6,11,4,9,14' },
-            'Shatabhisaj': { front: '-', right: '-', left: '-' },
-            'Purva Bhadrapada': { front: '3,8,13', right: '-', left: '-' },
-            'Uttara Bhadrapada': { front: '4,9,14,5,10,15,2,7,12', right: '-', left: '-' },
+            'Shatabhisha': { front: '-', right: '-', left: '-' },
+            'PurvaBhadra': { front: '3,8,13', right: '-', left: '-' },
+            'UttaraBhadra': { front: '4,9,14,5,10,15,2,7,12', right: '-', left: '-' },
             'Revati': { front: '1,6,11', right: '-', left: '-' }
         };
 
@@ -181,12 +204,12 @@
             'Jyeshtha': { front: '-', right: '-', left: '-' },
             'Mula': { front: 'Monday, Wednesday', right: '-', left: '-' },
             'PurvaShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
-            'Uttara Ashadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
+            'UttraShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
             'Sravana': { front: '-', right: 'Monday, Wednesday, Thursday', left: '-' },
             'Dhanista': { front: '-', right: '-', left: 'Sunday, Tuesday, Friday' },
-            'Shatabhisaj': { front: '-', right: '-', left: '-' },
-            'Purva Bhadrapada': { front: 'Thursday', right: '-', left: '-' },
-            'Uttara Bhadrapada': { front: 'Monday, Wednesday, Friday, Saturday', right: '-', left: '-' },
+            'Shatabhisha': { front: '-', right: '-', left: '-' },
+            'PurvaBhadra': { front: 'Thursday', right: '-', left: '-' },
+            'UttaraBhadra': { front: 'Monday, Wednesday, Friday, Saturday', right: '-', left: '-' },
             'Revati': { front: 'Sunday, Tuesday', right: '-', left: '-' }
         };
 
@@ -211,12 +234,12 @@
             'Jyeshtha': { front: 'Leo, Virgo, Libra', right: '-', left: 'Pisces, Sagittarius' },
             'Mula': { front: 'Cancer, Scorpio', right: '-', left: '-' },
             'PurvaShadha': { front: 'Gemini, Sagittarius', right: '-', left: '-' },
-            'Uttara Ashadha': { front: 'Taurus, Capricorn', right: 'Libra, Scorpio', left: '-' },
+            'UttraShadha': { front: 'Taurus, Capricorn', right: 'Libra, Scorpio', left: '-' },
             'Sravana': { front: '-', right: 'Leo, Capricorn', left: '-' },
             'Dhanista': { front: '-', right: '-', left: 'Cancer, Aquarius' },
-            'Shatabhisaj': { front: 'Scorpio, Sagittarius, Capricorn', right: '-', left: 'Gemini, Pisces' },
-            'Purva Bhadrapada': { front: 'Libra, Aquarius', right: '-', left: 'Aries, Taurus' },
-            'Uttara Bhadrapada': { front: 'Virgo, Pisces', right: '-', left: '-' },
+            'Shatabhisha': { front: 'Scorpio, Sagittarius, Capricorn', right: '-', left: 'Gemini, Pisces' },
+            'PurvaBhadra': { front: 'Libra, Aquarius', right: '-', left: 'Aries, Taurus' },
+            'UttaraBhadra': { front: 'Virgo, Pisces', right: '-', left: '-' },
             'Revati': { front: 'Aries, Leo', right: '-', left: '-' }
         };
 
@@ -241,12 +264,12 @@
             'Jyeshtha': { front: 'Da, Lree, Ae, Na', right: 'Re', left: 'Cha, Aha, Ya' },
             'Mula': { front: 'Ha, Ou, Am, Ya', right: 'Tha, Na', left: 'Bha, Dha' },
             'PurvaShadha': { front: 'Ka, Bha', right: 'Ra, Ae, Ya', left: 'Sa, Aei, Ja' },
-            'Uttara Ashadha': { front: 'Va, O, Ja, Aha', right: 'Pa, Bha', left: 'Ga, Kha' },
+            'UttraShadha': { front: 'Va, O, Ja, Aha', right: 'Pa, Bha', left: 'Ga, Kha' },
             'Sravana': { front: 'oo, La, Cha, Dha, Sa, Ga, Ree', right: 'Ma, Kha', left: 'EE' },
             'Dhanista': { front: 'Ree, Kha, Ja, Bha, Ya, Na, Re', right: '-', left: 'Da, Ga' },
-            'Shatabhisaj': { front: 'Ga, Aei, Ae, Tha', right: 'Ree', left: 'Ha, O, SA' },
-            'Purva Bhadrapada': { front: 'Ra, Sa', right: '-', left: 'Ka, Dha' },
-            'Uttara Bhadrapada': { front: 'Pa, Dha', right: 'Sa, Aei, Ja', left: 'Va, Lri, Cha' },
+            'Shatabhisha': { front: 'Ga, Aei, Ae, Tha', right: 'Ree', left: 'Ha, O, SA' },
+            'PurvaBhadra': { front: 'Ra, Sa', right: '-', left: 'Ka, Dha' },
+            'UttaraBhadra': { front: 'Pa, Dha', right: 'Sa, Aei, Ja', left: 'Va, Lri, Cha' },
             'Revati': { front: 'Tau, O, Ou, Cha', right: 'Bha, Dha', left: 'A, La' }
         };
 
@@ -259,8 +282,8 @@
                 'Rohini': 'Ashvini',
                 'Mrigashira': 'Revati',
                 'Ardra': 'UttaraBhadrapada',
-                'Punarvasu': 'PurvaBhadrapada',
-                'Pushya': 'Shatabhisaj',
+                'Punarvasu': 'PurvaBhadra',
+                'Pushya': 'Shatabhisha',
                 'Ashlesha': 'Dhanistha',
                 'Magha': 'Ashlesha',
                 'PurvaPhalguni': 'Pushya',
@@ -273,11 +296,11 @@
                 'Jyeshtha': 'Svati',
                 'Mula': 'Chitra',
                 'PurvaShadha': 'Hasta',
-                'UttaraAshadha': 'UttaraPhalguni',
+                'UttraShadha': 'UttaraPhalguni',
                 'Sravana': 'Magha',
                 'Dhanista': 'Sravana',
-                'Shatabhisaj': 'Abhijit',
-                'PurvaBhadrapada': 'UttaraAshadha',
+                'Shatabhisha': 'Abhijit',
+                'PurvaBhadra': 'UttraShadha',
                 'UttaraBhadrapada': 'PurvaShadha',
                 'Revati': 'Mula',
                 'Abhijit': 'Purva Phalguni'
@@ -294,7 +317,7 @@
                 'Ashlesha': 'Magha',
                 'Magha': 'Sravana',
                 'PurvaPhalguni': 'Abhijit',
-                'UttaraPhalguni': 'UttaraAshadha',
+                'UttaraPhalguni': 'UttraShadha',
                 'Hasta': 'PurvaShadha',
                 'Chitra': 'Mula',
                 'Svati': 'Jyeshtha',
@@ -303,21 +326,21 @@
                 'Jyeshtha': 'Ashvini',
                 'Mula': 'Revati',
                 'PurvaShadha': 'UttaraBhadrapada',
-                'UttaraAshadha': 'PurvaBhadrapada',
+                'UttraShadha': 'PurvaBhadra',
                 'Sravana': 'Dhanista',
                 'Dhanista': 'Ashlesha',
-                'Shatabhisaj': 'Pushya',
-                'PurvaBhadrapada': 'Punarvasu',
+                'Shatabhisha': 'Pushya',
+                'PurvaBhadra': 'Punarvasu',
                 'UttaraBhadrapada': 'Ardra',
                 'Revati': 'Mrigashira',
-                'Abhijit': 'Shatabhisaj'
+                'Abhijit': 'Shatabhisha'
             },
             front: {
                 'Ashvini': 'PurvaPhalguni',
                 'Bharani': 'Magha',
                 'Krittika': 'Sravana',
                 'Rohini': 'Abhijit',
-                'Mrigashira': 'UttaraAshadha',
+                'Mrigashira': 'UttraShadha',
                 'Ardra': 'PurvaShadha',
                 'Punarvasu': 'Mula',
                 'Pushya': 'Jyeshtha',
@@ -326,18 +349,18 @@
                 'PurvaPhalguni': 'Ashvini',
                 'UttaraPhalguni': 'Revati',
                 'Hasta': 'UttaraBhadrapada',
-                'Chitra': 'PurvaBhadrapada',
-                'Svati': 'Shatabhisaj',
+                'Chitra': 'PurvaBhadra',
+                'Svati': 'Shatabhisha',
                 'Vishakha': 'Dhanista',
                 'Anuradha': 'Ashlesha',
                 'Jyeshtha': 'Pushya',
                 'Mula': 'Punarvasu',
                 'PurvaShadha': 'Ardra',
-                'UttaraAshadha': 'Mrigashira',
+                'UttraShadha': 'Mrigashira',
                 'Sravana': 'Krittika',
                 'Dhanista': 'Vishakha',
-                'Shatabhisaj': 'Svati',
-                'PurvaBhadrapada': 'Chitra',
+                'Shatabhisha': 'Svati',
+                'PurvaBhadra': 'Chitra',
                 'UttaraBhadrapada': 'Hasta',
                 'Revati': 'UttaraPhalguni',
                 'Abhijit': 'Rohini'
@@ -380,398 +403,403 @@
             "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
             "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
             "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "UttaraAshadha", "Sravana", "Dhanista", "Shatabhisaj",
-            "Purva Bhadrapada", "UttaraBhadrapada", "Revati", "Abhijit"
+            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+            "PurvaBhadra", "UttaraBhadrapada", "Revati", "Abhijit"
         ];
 
         const sparshPlanets = ["Jupiter", "Venus", "Moon", "Mercury"];
         const vedhPlanets = ["Sun", "Mars", "Saturn", "Rahu", "Ketu"];
 
-        if (horoscopeData && horoscopeData.response) {
-            const planetDatas = horoscopeData.response;
-            console.log(planetDatas, "planetDatas")
+        async function initializeData(datass) {
+            let horoscopeData = datass[0]?.horoscopeData || [];
 
-            // Function to map Dasa Details and extract Tithi-related information
-            const mapDasaDetails = (data) => ({
-                Tithi: data.panchang.tithi,
-                Day_of_Birth: data.panchang.day_of_birth,
-                Lucky_Letters: data.lucky_letters,
-                Lucky_Name_Start: data.lucky_name_start,
-                Rasi: data.rasi,
-                Nakshatra: data.nakshatra,
-                nakshatra_pada: data.nakshatra_pada,
-            });
+            if (horoscopeData && horoscopeData.response) {
+                const planetDatas = horoscopeData.response;
 
-            const dasaDetails = mapDasaDetails(planetDatas);
-            const tithi = dasaDetails.Tithi;
-            const Day_of_Birth = dasaDetails.Day_of_Birth;
-            const Lucky_Letters = dasaDetails.Lucky_Letters[0];
-            const Lucky_Name_Start = dasaDetails.Lucky_Name_Start;
-            const Rasi = dasaDetails.Rasi;
-            const nakshatra1 = dasaDetails.Nakshatra;
-            const nakshatra_pada = dasaDetails.nakshatra_pada;
-
-            // Function to map Planet Data
-            const mapPlanetData = (data) => {
-                if (Array.isArray(data)) {
-                    return data.map((planet) => ({
-                        name: planet.full_name,
-                        nakshatra: planet.nakshatra,
-                        pada: planet.nakshatra_pada,
-                        tithiLord: tithi,
-                    }));
-                } else if (typeof data === "object" && data !== null) {
-                    return Object.values(data).map((planet) => ({
-                        name: planet.full_name,
-                        nakshatra: planet.nakshatra,
-                        pada: planet.nakshatra_pada,
-                        tithiLord: tithi,
-                    }));
-                } else {
-                    console.error("Unexpected data format for planets:", data);
-                    return [];
-                }
-            };
-
-            const planets = mapPlanetData(planetDatas).slice(1, 10);
-            // console.log(planets,"planets")
-
-            function populateTable() {
-                const tableBody = document.getElementById('planetTithiVedhTable').querySelector('tbody');
-                tableBody.innerHTML = '';
-
-                const planetNumberMapping = {
-                    "Pratipada": 1,
-                    "Dvitiya": 2,
-                    "Tritiya": 3,
-                    "Chaturthi": 4,
-                    "Panchami": 5,
-                    "Shashti": 6,
-                    "Saptami": 7,
-                    "Ashtami": 8,
-                    "Navami": 9,
-                    "Dasami": 10,
-                    "Ekadasi": 11,
-                    "Dwadashi": 12,
-                    "Trayodashi": 13,
-                    "Chaturdashi": 14,
-                    "Purnima": 15,
-                    "Amavasya": 0
-                };
-
-                function vedhPadaMap(currentPada) {
-                    switch (currentPada) {
-                        case 1: return 4;
-                        case 2: return 3;
-                        case 3: return 2;
-                        case 4: return 1;
-                        default: return 'Unknown';
-                    }
-                }
-
-                // Array to store rashi-related data to display in one row
-                const tithiData = [];
-                const varData = [];
-                const rashiData = [];
-                const letterData = [];
-                const vowelData = [];
-                const nakshatraData = [];
-                const lifeAspect = [];
-                const sequence = [];
-                // Find the index of the Moon's nakshatra
-                const startIndex = nakshatraList.indexOf(nakshatra1);
-                // console.log(startIndex, "startIndex")
-
-                if (startIndex === -1) {
-                    console.error("Nakshatra not found in list");
-                    document.getElementById("outputTable").style.display = "none";
-                    return;
-                }
-
-                // console.log(lifeAspectsList.length, "lifeAspectsList.length")
-                // Generate the sequence
-
-                for (let i = 0; i < lifeAspectsList.length; i++) {
-                    const nakshatraIndex = (startIndex + i) % nakshatraList.length;
-                    sequence.push({
-                        position: i + 1,
-                        nakshatras: nakshatraList[nakshatraIndex],
-                        lifeAspects: lifeAspectsList[i].aspect,
-                        padaDetailss: lifeAspectsList[i].pada
-                    });
-                }
-
-                planets.forEach(({ name, nakshatra, pada, tithiLord }) => {
-                    const tithiLordNumber = planetNumberMapping[tithiLord];
-                    const vedh = tithiVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
-                    const varDay = daysVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
-                    const rashiDay = nakshatraToRashiVedh[nakshatra] || { front: '-', right: '-', left: '-' };
-                    const letterDay = letterTable[nakshatra] || { front: '-', right: '-', left: '-' };
-                    const vowelDay = letterTable[nakshatra] || { front: '-', right: '-', left: '-' };
-                    const nakshatraDay = {
-                        front: vedhTables.front[nakshatra] || '-',
-                        right: vedhTables.right[nakshatra] || '-',
-                        left: vedhTables.left[nakshatra] || '-'
-                    };
-                    // console.log(nakshatra, "nakshatra")
-                    // console.log(vedhTables.front[nakshatra],"front")
-                    // console.log(vedhTables.right[nakshatra],"right")
-                    // console.log(vedhTables.left[nakshatra],"left")
-                    // console.log(tithiVedhTable[nakshatra],"tithi")
-                    // console.log(nakshatraDay, "nakshatraDay")
-                    // console.log(letterDay,"letterDay")
-                    // Calculate Vedh Padas
-                    const frontVedhPada = vedhPadaMap(pada);
-                    const rightVedhPada = vedhPadaMap(pada);
-                    const leftVedhPada = vedhPadaMap(pada);
-
-                    const frontnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.front);
-                    const rightnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.right);
-                    const leftnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.left);
-
-                    // Get specific data based on the Vedh Pada value
-                    const getPadaDetail = (nakshatraObj, vedhPada) => {
-                        if (nakshatraObj && nakshatraObj.padaDetailss && Array.isArray(nakshatraObj.padaDetailss)) {
-                            return nakshatraObj.padaDetailss[vedhPada - 1];
-                        }
-                        return null;
-                    };
-
-                    const lifeAspectData = {
-                        planet: name,
-                        nakshatra: nakshatra,
-                        pada: pada,
-                        frontVedh: {
-                            nakshatra: nakshatraDay.front,
-                            nakshatra1: getPadaDetail(frontnakshatra, frontVedhPada),
-                            pada: frontVedhPada,
-                        },
-                        rightVedh: {
-                            nakshatra: nakshatraDay.right,
-                            nakshatra1: getPadaDetail(rightnakshatra, rightVedhPada),
-                            pada: rightVedhPada,
-                        },
-                        leftVedh: {
-                            nakshatra: nakshatraDay.left,
-                            nakshatra1: getPadaDetail(leftnakshatra, leftVedhPada),
-                            pada: leftVedhPada,
-                        },
-                    };
-
-                    if (lifeAspectData) {
-                        lifeAspect.push(lifeAspectData);
-                    }
-                    // console.log(lifeAspectData,"lifeAspectData")
-
-                    // Check which column the tithiLordNumber matches in front, right, or left
-                    let matchColumn = '';
-                    if (vedh.front.includes(tithiLordNumber)) {
-                        matchColumn = 'Front';
-                    } else if (vedh.right.includes(tithiLordNumber)) {
-                        matchColumn = 'Right';
-                    } else if (vedh.left.includes(tithiLordNumber)) {
-                        matchColumn = 'Left';
-                    }
-
-                    let matchVar = '';
-                    if (varDay.front.includes(Day_of_Birth)) {
-                        matchVar = 'Front';
-                    } else if (varDay.right.includes(Day_of_Birth)) {
-                        matchVar = 'Right';
-                    } else if (varDay.left.includes(Day_of_Birth)) {
-                        matchVar = 'Left';
-                    }
-
-                    let matchRashi = '';
-                    if (rashiDay.front.includes(Rasi)) {
-                        matchRashi = 'Front';
-                    } else if (rashiDay.right.includes(Rasi)) {
-                        matchRashi = 'Right';
-                    } else if (rashiDay.left.includes(Rasi)) {
-                        matchRashi = 'Left';
-                    }
-
-                    let matchNakshatra = '';
-                    if (nakshatraDay.front.includes(nakshatra1)) {
-                        matchNakshatra = 'Front';
-                    } else if (nakshatraDay.right.includes(nakshatra1)) {
-                        matchNakshatra = 'Right';
-                    } else if (nakshatraDay.left.includes(nakshatra1)) {
-                        matchNakshatra = 'Left';
-                    }
-
-                    let matchletter = '';
-                    if (letterDay.front.includes(Lucky_Letters)) {
-                        matchletter = 'Front';
-                    } else if (letterDay.right.includes(Lucky_Letters)) {
-                        matchletter = 'Right';
-                    } else if (letterDay.left.includes(Lucky_Letters)) {
-                        matchletter = 'Left';
-                    }
-
-                    let matchvowel = '';
-                    if (vowelDay.front.includes(Lucky_Letters)) {
-                        matchvowel = 'Front';
-                    } else if (vowelDay.right.includes(Lucky_Letters)) {
-                        matchvowel = 'Right';
-                    } else if (vowelDay.left.includes(Lucky_Letters)) {
-                        matchvowel = 'Left';
-                    }
-
-                    // Helper function to get sparsh and vedh planets as a comma-separated string
-                    const getSparshAndVedh = () => {
-                        const sparshPlanetsList = sparshPlanets.filter(planet => planet === name);
-                        const vedhPlanetsList = vedhPlanets.filter(planet => planet === name);
-                        const sparsh = sparshPlanetsList.length > 0 ? sparshPlanetsList.join(', ') : ' ';
-                        const vedh = vedhPlanetsList.length > 0 ? vedhPlanetsList.join(', ') : ' ';
-                        return { sparsh, vedh };
-                    };
-
-                    // Collect tithi data for a single row
-                    if (matchColumn) {
-                        const { sparsh, vedh } = getSparshAndVedh();
-                        tithiData.push({
-                            tithiLord,
-                            sparsh,
-                            vedh
-                        });
-                    }
-                    // Collect var data for a single row
-                    if (matchVar) {
-                        const { sparsh, vedh } = getSparshAndVedh();
-                        varData.push({
-                            Day_of_Birth,
-                            sparsh,
-                            vedh
-                        });
-                    }
-                    // Collect rashi data for a single row
-                    if (matchRashi) {
-                        const { sparsh, vedh } = getSparshAndVedh();
-                        rashiData.push({
-                            Rasi,
-                            sparsh,
-                            vedh
-                        });
-                    }
-                    // Collect nakshatra data for a single row
-                    if (matchNakshatra) {
-                        const { sparsh, vedh } = getSparshAndVedh();
-                        nakshatraData.push({
-                            nakshatra1,
-                            sparsh,
-                            vedh
-                        });
-                    }
-                    // Collect rashi data for a single row
-                    if (matchletter) {
-                        const { sparsh, vedh } = getSparshAndVedh();
-                        letterData.push({
-                            Lucky_Letters,
-                            sparsh,
-                            vedh
-                        });
-                    }
-                    // Collect rashi data for a single row
-                    if (matchvowel) {
-                        const { sparsh, vedh } = getSparshAndVedh();
-                        vowelData.push({
-                            Lucky_Name_Start,
-                            sparsh,
-                            vedh
-                        });
-                    }
+                // Function to map Dasa Details and extract Tithi-related information
+                const mapDasaDetails = (data) => ({
+                    Tithi: data.panchang.tithi,
+                    Day_of_Birth: data.panchang.day_of_birth,
+                    Lucky_Letters: data.lucky_letters,
+                    Lucky_Name_Start: data.lucky_name_start,
+                    Rasi: data.rasi,
+                    Nakshatra: data.nakshatra,
+                    nakshatra_pada: data.nakshatra_pada,
                 });
 
-                // Append a single row for rashi data
-                if (tithiData.length > 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                const dasaDetails = mapDasaDetails(planetDatas);
+                const tithi = dasaDetails.Tithi;
+                const Day_of_Birth = dasaDetails.Day_of_Birth;
+                const Lucky_Letters = dasaDetails.Lucky_Letters[0];
+                const Lucky_Name_Start = dasaDetails.Lucky_Name_Start;
+                const Rasi = dasaDetails.Rasi;
+                const nakshatra1 = dasaDetails.Nakshatra;
+                const nakshatra_pada = dasaDetails.nakshatra_pada;
+
+                // Function to map Planet Data
+                const mapPlanetData = (data) => {
+                    if (Array.isArray(data)) {
+                        return data.map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            tithiLord: tithi,
+                        }));
+                    } else if (typeof data === "object" && data !== null) {
+                        return Object.values(data).map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            tithiLord: tithi,
+                        }));
+                    } else {
+                        console.error("Unexpected data format for planets:", data);
+                        return [];
+                    }
+                };
+
+                const planets = mapPlanetData(planetDatas).slice(1, 10);
+                console.log(planets,"planets")
+
+                function populateTable() {
+                    const tableBody = document.getElementById('planetTithiVedhTable').querySelector('tbody');
+                    tableBody.innerHTML = '';
+
+                    const planetNumberMapping = {
+                        "Pratipada": 1,
+                        "Dvitiya": 2,
+                        "Tritiya": 3,
+                        "Chaturthi": 4,
+                        "Panchami": 5,
+                        "Shashti": 6,
+                        "Saptami": 7,
+                        "Ashtami": 8,
+                        "Navami": 9,
+                        "Dasami": 10,
+                        "Ekadasi": 11,
+                        "Dwadashi": 12,
+                        "Trayodashi": 13,
+                        "Chaturdashi": 14,
+                        "Purnima": 15,
+                        "Amavasya": 0
+                    };
+
+                    function vedhPadaMap(currentPada) {
+                        switch (currentPada) {
+                            case 1: return 4;
+                            case 2: return 3;
+                            case 3: return 2;
+                            case 4: return 1;
+                            default: return 'Unknown';
+                        }
+                    }
+
+                    // Array to store rashi-related data to display in one row
+                    const tithiData = [];
+                    const varData = [];
+                    const rashiData = [];
+                    const letterData = [];
+                    const vowelData = [];
+                    const nakshatraData = [];
+                    const lifeAspect = [];
+                    const sequence = [];
+                    // Find the index of the Moon's nakshatra
+                    const startIndex = nakshatraList.indexOf(nakshatra1);
+                    // console.log(startIndex, "startIndex")
+
+                    if (startIndex === -1) {
+                        console.error("Nakshatra not found in list");
+                        document.getElementById("outputTable").style.display = "none";
+                        return;
+                    }
+
+                    // console.log(lifeAspectsList.length, "lifeAspectsList.length")
+                    // Generate the sequence
+
+                    for (let i = 0; i < lifeAspectsList.length; i++) {
+                        const nakshatraIndex = (startIndex + i) % nakshatraList.length;
+                        sequence.push({
+                            position: i + 1,
+                            nakshatras: nakshatraList[nakshatraIndex],
+                            lifeAspects: lifeAspectsList[i].aspect,
+                            padaDetailss: lifeAspectsList[i].pada
+                        });
+                    }
+
+                    planets.forEach(({ name, nakshatra, pada, tithiLord }) => {
+                        const tithiLordNumber = planetNumberMapping[tithiLord];
+                        const vedh = tithiVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                        const varDay = daysVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                        const rashiDay = nakshatraToRashiVedh[nakshatra] || { front: '-', right: '-', left: '-' };
+                        const letterDay = letterTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                        const vowelDay = letterTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                        const nakshatraDay = {
+                            front: vedhTables.front[nakshatra] || '-',
+                            right: vedhTables.right[nakshatra] || '-',
+                            left: vedhTables.left[nakshatra] || '-'
+                        };
+                        // console.log(nakshatra, "nakshatra")
+                        // console.log(vedhTables.front[nakshatra],"front")
+                        // console.log(vedhTables.right[nakshatra],"right")
+                        // console.log(vedhTables.left[nakshatra],"left")
+                        // console.log(tithiVedhTable[nakshatra],"tithi")
+                        // console.log(nakshatraDay, "nakshatraDay")
+                        // console.log(letterDay,"letterDay")
+                        // Calculate Vedh Padas
+                        const frontVedhPada = vedhPadaMap(pada);
+                        const rightVedhPada = vedhPadaMap(pada);
+                        const leftVedhPada = vedhPadaMap(pada);
+
+                        const frontnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.front);
+                        const rightnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.right);
+                        const leftnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.left);
+
+                        // Get specific data based on the Vedh Pada value
+                        const getPadaDetail = (nakshatraObj, vedhPada) => {
+                            if (nakshatraObj && nakshatraObj.padaDetailss && Array.isArray(nakshatraObj.padaDetailss)) {
+                                return nakshatraObj.padaDetailss[vedhPada - 1];
+                            }
+                            return null;
+                        };
+
+                        const lifeAspectData = {
+                            planet: name,
+                            nakshatra: nakshatra,
+                            pada: pada,
+                            frontVedh: {
+                                nakshatra: nakshatraDay.front,
+                                nakshatra1: getPadaDetail(frontnakshatra, frontVedhPada),
+                                pada: frontVedhPada,
+                            },
+                            rightVedh: {
+                                nakshatra: nakshatraDay.right,
+                                nakshatra1: getPadaDetail(rightnakshatra, rightVedhPada),
+                                pada: rightVedhPada,
+                            },
+                            leftVedh: {
+                                nakshatra: nakshatraDay.left,
+                                nakshatra1: getPadaDetail(leftnakshatra, leftVedhPada),
+                                pada: leftVedhPada,
+                            },
+                        };
+
+                        if (lifeAspectData) {
+                            lifeAspect.push(lifeAspectData);
+                        }
+                        // console.log(lifeAspectData,"lifeAspectData")
+
+                        // Check which column the tithiLordNumber matches in front, right, or left
+                        let matchColumn = '';
+                        if (vedh.front.includes(tithiLordNumber)) {
+                            matchColumn = 'Front';
+                        } else if (vedh.right.includes(tithiLordNumber)) {
+                            matchColumn = 'Right';
+                        } else if (vedh.left.includes(tithiLordNumber)) {
+                            matchColumn = 'Left';
+                        }
+
+                        let matchVar = '';
+                        if (varDay.front.includes(Day_of_Birth)) {
+                            matchVar = 'Front';
+                        } else if (varDay.right.includes(Day_of_Birth)) {
+                            matchVar = 'Right';
+                        } else if (varDay.left.includes(Day_of_Birth)) {
+                            matchVar = 'Left';
+                        }
+
+                        let matchRashi = '';
+                        if (rashiDay.front.includes(Rasi)) {
+                            matchRashi = 'Front';
+                        } else if (rashiDay.right.includes(Rasi)) {
+                            matchRashi = 'Right';
+                        } else if (rashiDay.left.includes(Rasi)) {
+                            matchRashi = 'Left';
+                        }
+
+                        let matchNakshatra = '';
+                        if (nakshatraDay.front.includes(nakshatra1)) {
+                            matchNakshatra = 'Front';
+                        } else if (nakshatraDay.right.includes(nakshatra1)) {
+                            matchNakshatra = 'Right';
+                        } else if (nakshatraDay.left.includes(nakshatra1)) {
+                            matchNakshatra = 'Left';
+                        }
+
+                        let matchletter = '';
+                        if (letterDay.front.includes(Lucky_Letters)) {
+                            matchletter = 'Front';
+                        } else if (letterDay.right.includes(Lucky_Letters)) {
+                            matchletter = 'Right';
+                        } else if (letterDay.left.includes(Lucky_Letters)) {
+                            matchletter = 'Left';
+                        }
+
+                        let matchvowel = '';
+                        if (vowelDay.front.includes(Lucky_Letters)) {
+                            matchvowel = 'Front';
+                        } else if (vowelDay.right.includes(Lucky_Letters)) {
+                            matchvowel = 'Right';
+                        } else if (vowelDay.left.includes(Lucky_Letters)) {
+                            matchvowel = 'Left';
+                        }
+
+                        // Helper function to get sparsh and vedh planets as a comma-separated string
+                        const getSparshAndVedh = () => {
+                            const sparshPlanetsList = sparshPlanets.filter(planet => planet === name);
+                            const vedhPlanetsList = vedhPlanets.filter(planet => planet === name);
+                            const sparsh = sparshPlanetsList.length > 0 ? sparshPlanetsList.join(', ') : ' ';
+                            const vedh = vedhPlanetsList.length > 0 ? vedhPlanetsList.join(', ') : ' ';
+                            return { sparsh, vedh };
+                        };
+
+                        // Collect tithi data for a single row
+                        if (matchColumn) {
+                            const { sparsh, vedh } = getSparshAndVedh();
+                            tithiData.push({
+                                tithiLord,
+                                sparsh,
+                                vedh
+                            });
+                        }
+                        // Collect var data for a single row
+                        if (matchVar) {
+                            const { sparsh, vedh } = getSparshAndVedh();
+                            varData.push({
+                                Day_of_Birth,
+                                sparsh,
+                                vedh
+                            });
+                        }
+                        // Collect rashi data for a single row
+                        if (matchRashi) {
+                            const { sparsh, vedh } = getSparshAndVedh();
+                            rashiData.push({
+                                Rasi,
+                                sparsh,
+                                vedh
+                            });
+                        }
+                        // Collect nakshatra data for a single row
+                        if (matchNakshatra) {
+                            const { sparsh, vedh } = getSparshAndVedh();
+                            nakshatraData.push({
+                                nakshatra1,
+                                sparsh,
+                                vedh
+                            });
+                        }
+                        // Collect rashi data for a single row
+                        if (matchletter) {
+                            const { sparsh, vedh } = getSparshAndVedh();
+                            letterData.push({
+                                Lucky_Letters,
+                                sparsh,
+                                vedh
+                            });
+                        }
+                        // Collect rashi data for a single row
+                        if (matchvowel) {
+                            const { sparsh, vedh } = getSparshAndVedh();
+                            vowelData.push({
+                                Lucky_Name_Start,
+                                sparsh,
+                                vedh
+                            });
+                        }
+                    });
+
+                    // Append a single row for rashi data
+                    if (tithiData.length > 0) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                         <td>Tithi</td>
                         <td>${tithiData.map(data => data.tithiLord).slice(0, 1)}</td>
                         <td>${tithiData.map(data => data.sparsh).join(' ')}</td>
                         <td>${tithiData.map(data => data.vedh).join(' ')}</td>
                     `;
-                    tableBody.appendChild(row);
-                }
-                // Append a single row for rashi data
-                if (varData.length > 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                        tableBody.appendChild(row);
+                    }
+                    // Append a single row for rashi data
+                    if (varData.length > 0) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                      <td>Day_of_Birth</td>
                         <td>${varData.map(data => data.Day_of_Birth).slice(0, 1)}</td>
                         <td>${varData.map(data => data.sparsh).join(' ')}</td>
                         <td>${varData.map(data => data.vedh).join(' ')}</td>
                     `;
-                    tableBody.appendChild(row);
-                }
-                // Append a single row for rashi data
-                if (rashiData.length > 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                        tableBody.appendChild(row);
+                    }
+                    // Append a single row for rashi data
+                    if (rashiData.length > 0) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                     <td>Rashi</td>
                         <td>${rashiData.map(data => data.Rasi).slice(0, 1)}</td>
                         <td>${rashiData.map(data => data.sparsh).join(' ')}</td>
                         <td>${rashiData.map(data => data.vedh).join(' ')}</td>
                     `;
-                    tableBody.appendChild(row);
-                }
-                // Append a single row for letter data
-                if (letterData.length > 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                        tableBody.appendChild(row);
+                    }
+                    // Append a single row for letter data
+                    if (letterData.length > 0) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                     <td>letter</td>
                         <td>${letterData.map(data => data.Lucky_Letters).slice(0, 1)}</td>
                         <td>${letterData.map(data => data.sparsh).join(' ')}</td>
                         <td>${letterData.map(data => data.vedh).join('')}</td>
                     `;
-                    tableBody.appendChild(row);
-                }
-                // Append a single row for letter data
-                if (vowelData.length > 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                        tableBody.appendChild(row);
+                    }
+                    // Append a single row for letter data
+                    if (vowelData.length > 0) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                     <td>vowel</td>
                         <td>${vowelData.map(data => data.Lucky_Name_Start).slice(0, 1)}</td>
                         <td>${vowelData.map(data => data.sparsh).join(' ')}</td>
                         <td>${vowelData.map(data => data.vedh).join('')}</td>
                     `;
-                    tableBody.appendChild(row);
-                }
-                if (nakshatraData.length > 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                        tableBody.appendChild(row);
+                    }
+                    if (nakshatraData.length > 0) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                     <td>Nakshatra</td>
                         <td>${nakshatraData.map(data => data.nakshatra1).slice(0, 1)}</td>
                         <td>${nakshatraData.map(data => data.sparsh).join(' ')}</td>
                         <td>${nakshatraData.map(data => data.vedh).join('  ')}</td>
                     `;
-                    tableBody.appendChild(row);
-                }
+                        tableBody.appendChild(row);
+                    }
 
-                // Append a single row for nakshatra data
-                // console.log(lifeAspect, "lifeAspect")
-                if (lifeAspect.length > 0) {
-                    {
-                        lifeAspect.forEach((i) => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
+                    // Append a single row for nakshatra data
+                    console.log(lifeAspect, "lifeAspect")
+                    if (lifeAspect.length > 0) {
+                        {
+                            lifeAspect.forEach((i) => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
                             <td>${i.planet}</td>
                             <td>${i.nakshatra}</td>
                             <td>${i.frontVedh.nakshatra1}</td>
                             <td>${i.leftVedh.nakshatra1}</td>
                             <td>${i.rightVedh.nakshatra1}</td>
                         `;
-                            tableBody.appendChild(row);
-                        })
+                                tableBody.appendChild(row);
+                            })
+                        }
                     }
                 }
-            }
 
-            document.addEventListener('DOMContentLoaded', populateTable);
-        } else {
-            console.error("Horoscope data not found or invalid in localStorage.");
+                populateTable()
+            } else {
+                console.error("Horoscope data not found or invalid in localStorage.");
+            }
         }
+
+
     </script>
 </body>
 

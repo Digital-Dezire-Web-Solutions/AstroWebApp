@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="/images/astrology.png" />
 
 </head>
 
@@ -496,6 +496,7 @@
                 </div>
             </div>
 
+
             <div class="reg-info">
 
                 <div class="login-logo">
@@ -559,16 +560,65 @@
                         </div>
                         <div class="inpt-bx">
                             <label for="consonent">Consonent of your name</label>
+                            <span style="color: orange;">Eg:- (Rahul - Ra)</span>
                             <div class="inpt">
-                                <input type="text" name="consonent" placeholder="Enter your Consonent..."
-                                    autocomplete="off" required>
+                                <!-- <input type="text" name="consonent" placeholder="Enter your Consonent..."
+                                    autocomplete="off" required> -->
+                                <select name="consonent">
+                                    <option value="" selected>Choose Your Consonent...</option>
+                                    <option value="">Choose Later</option>
+                                    <option value="Ka">Ka</option>
+                                    <option value="Kha">Kha</option>
+                                    <option value="Ga">Ga</option>
+                                    <option value="Cha">Cha</option>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Va">Va</option>
+                                    <option value="Ha">Ha</option>
+                                    <option value="Da">Da</option>
+                                    <option value="La">La</option>
+                                    <option value="Na">Na</option>
+                                    <option value="Dha">Dha</option>
+                                    <option value="Sa">Sa</option>
+                                    <option value="Tha">Tha</option>
+                                    <option value="Kha">Kha</option>
+                                    <option value="Ra">Ra</option>
+                                    <option value="Ja">Ja</option>
+                                    <option value="Pa">Pa</option>
+                                    <option value="Bha">Bha</option>
+                                    <option value="Ta">Ta</option>
+                                    <option value="Ma">Ma</option>
+                                    <option value="SA">SA</option>
+                                    <option value="Tau">Tau</option>
+                                </select>
                             </div>
                         </div>
                         <div class="inpt-bx">
                             <label for="vowel">Vowel of your name</label>
+                            <span style="color: orange;">Eg:- (Rahul - A)</span>
                             <div class="inpt">
-                                <input type="text" name="vowel" placeholder="Enter your Vowel..." autocomplete="off"
-                                    required>
+                                <!-- <input type="text" name="vowel" placeholder="Enter your Vowel..." autocomplete="off"
+                                    required> -->
+                                <select name="vowel">
+                                    <option value="" selected>Choose Your Vowel...</option>
+                                    <option value="">Choose Later</option>
+                                    <option value="A">A</option>
+                                    <option value="AA">AA</option>
+                                    <option value="Ae">Ae</option>
+                                    <option value="Aei">Aei</option>
+                                    <option value="Da">Da</option>
+                                    <option value="E">E</option>
+                                    <option value="EE">EE</option>
+                                    <option value="O">O</option>
+                                    <option value="OO">OO</option>
+                                    <option value="Ou">Ou</option>
+                                    <option value="oo">oo</option>
+                                    <option value="Re">Re</option>
+                                    <option value="Ree">Ree</option>
+                                    <option value="Am">Am</option>
+                                    <option value="Aha">Aha</option>
+                                    <option value="Lri">Lri</option>
+                                    <option value="Lree">Lree</option>
+                                </select>
                             </div>
                         </div>
 
@@ -590,6 +640,38 @@
                 </div>
 
             </div>
+
+            <div class="signup-loader">
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+                <div class="comn-heading">
+                    <h4>Astro Nivesh</h4>
+                </div>
+                <!-- From Uiverse.io by Li-Deheng -->
+                <div class="loader">
+                    <div class="circle">
+                        <div class="dot"></div>
+                        <div class="outline"></div>
+                    </div>
+                    <div class="circle">
+                        <div class="dot"></div>
+                        <div class="outline"></div>
+                    </div>
+                    <div class="circle">
+                        <div class="dot"></div>
+                        <div class="outline"></div>
+                    </div>
+                    <div class="circle">
+                        <div class="dot"></div>
+                        <div class="outline"></div>
+                    </div>
+                </div>
+                <div class="comn-heading">
+                    <h4>Signing Up.....</h4>
+                </div>
+            </div>
+
             <div class="profile-info">
                 <div class="login-logo">
                     <img src="./images/astrology.png" alt="">
@@ -644,6 +726,148 @@
         .coming-soon .card-info p {
             color: white;
         }
+
+        /* ....loader..... */
+        /* From Uiverse.io by Li-Deheng */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            --color: hsl(0, 0%, 87%);
+            --animation: 2s ease-in-out infinite;
+        }
+
+        .loader .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border: solid 2px var(--color);
+            border-radius: 50%;
+            margin: 0 10px;
+            background-color: transparent;
+            animation: circle-keys var(--animation);
+        }
+
+        .loader .circle .dot {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--color);
+            animation: dot-keys var(--animation);
+        }
+
+        .loader .circle .outline {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: outline-keys var(--animation);
+        }
+
+        .circle:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .circle:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .circle:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        .circle:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+
+        .circle:nth-child(2) .dot {
+            animation-delay: 0.3s;
+        }
+
+        .circle:nth-child(3) .dot {
+            animation-delay: 0.6s;
+        }
+
+        .circle:nth-child(4) .dot {
+            animation-delay: 0.9s;
+        }
+
+        .circle:nth-child(5) .dot {
+            animation-delay: 1.2s;
+        }
+
+        .circle:nth-child(1) .outline {
+            animation-delay: 0.9s;
+        }
+
+        .circle:nth-child(2) .outline {
+            animation-delay: 1.2s;
+        }
+
+        .circle:nth-child(3) .outline {
+            animation-delay: 1.5s;
+        }
+
+        .circle:nth-child(4) .outline {
+            animation-delay: 1.8s;
+        }
+
+        .circle:nth-child(5) .outline {
+            animation-delay: 2.1s;
+        }
+
+        @keyframes circle-keys {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes dot-keys {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes outline-keys {
+            0% {
+                transform: scale(0);
+                outline: solid 20px var(--color);
+                outline-offset: 0;
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                outline: solid 0 transparent;
+                outline-offset: 20px;
+                opacity: 0;
+            }
+        }
     </style>
 
     <section class="our-cards-comp">
@@ -669,6 +893,14 @@
 
                     </div>
                 </a>
+                <a href="javascript:void(0);" id="sbcLink">
+                    <div class="card-bx card1">
+                        <div class="icon icon2">
+                            <img src="./images/sbc.png" alt="">
+                        </div>
+                        <h6>SBC</h6>
+                    </div>
+                </a>
                 <a href="https://wa.me/8800209988">
                     <div class="card-bx card1">
                         <div class="icon icon7">
@@ -677,19 +909,6 @@
                         <h6>Talk to Astrologer</h6>
                     </div>
                 </a>
-
-
-                <div class="card-bx card1 coming-soon">
-                    <div class="icon icon3">
-                        <img src="./images/icon-3.png" alt="">
-                    </div>
-                    <h6>Chat with Astrologer</h6>
-                    <div class="card-info">
-                        <p class="title">Coming Soon</p>
-                    </div>
-                </div>
-
-
                 <div class="card-bx card1 coming-soon">
                     <div class="icon icon4">
                         <img src="./images/icon-4.png" alt="">
@@ -1611,6 +1830,13 @@
 
         async function handleCreate(event) {
             event.preventDefault();
+
+            const regInfo = document.querySelector(".reg-info");
+            regInfo.style.display = "none";
+
+            // loader
+            const modal = document.querySelector(".signup-loader");
+            modal.style.display = "block";
             // Collect form data
             const formData = new FormData(event.target);
 
@@ -1703,7 +1929,6 @@
 
                     const DashaUrl = `${baseUrl}/dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
                     const responseAll = await fetch(DashaUrl);
-
                     if (!responseAll.ok) {
                         throw new Error("Failed to fetch Dasha data.");
                     }
@@ -1728,52 +1953,18 @@
                         for (const div of divisions) {
                             const divisionalUrl = `${baseUrl}/horoscope/divisional-charts?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${div}&api_key=${params.api_key}&lang=${params.lang}&response_type=planet_object`;
 
-                            try {
-                                const response = await fetch(divisionalUrl);
-                                if (!response.ok) {
-                                    console.warn(`Failed to fetch data for ${div}`);
-                                    continue; // Skip this division if there's an error
-                                }
+                            const response = await fetch(divisionalUrl);
+                            if (!response.ok) continue;
 
-                                const horoscopeData = await response.json();
-                                if (horoscopeData && horoscopeData.response) {
-                                    const mapPlanetData = (data) => {
-                                        if (Array.isArray(data)) {
-                                            return data.map((planet) => ({
-                                                name: planet.full_name,
-                                                zodiac: planet.zodiac,
-                                                house: planet.house,
-                                                retro: planet.retro,
-                                                rasi_no: planet.rasi_no,
-                                                local_degree: planet.local_degree,
-                                            }));
-                                        } else if (typeof data === "object" && data !== null) {
-                                            return Object.values(data).map((planet) => ({
-                                                name: planet.full_name,
-                                                zodiac: planet.zodiac,
-                                                house: planet.house,
-                                                retro: planet.retro,
-                                                rasi_no: planet.rasi_no,
-                                                local_degree: planet.local_degree,
-                                            }));
-                                        } else {
-                                            console.error(`Unexpected data format for ${div}:`, data);
-                                            return [];
-                                        }
-                                    };
-
-                                    rashiData[div] = mapPlanetData(horoscopeData.response).slice(0, 10);
-                                } else {
-                                    console.warn(`Invalid or missing data for ${div}`);
-                                }
-                            } catch (error) {
-                                console.error(`Error fetching horoscope data for ${div}:`, error);
+                            const horoscopeData = await response.json();
+                            if (horoscopeData && horoscopeData.response) {
+                                rashiData[div] = horoscopeData.response;
                             }
                         }
                     } catch (error) {
-                        console.log("error")
+                        console.error("Error fetching divisional charts:", error);
                     }
-                    const response = await fetch(`${host}/api/detail/adddetail`, {
+                    const response5 = await fetch(`${host}/api/detail/adddetail`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -1782,20 +1973,20 @@
                         body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url })
                     });
 
-                    const result = await response.json();
+                    const result = await response5.json();
                     console.log(result);
                 }
                 catch (error) {
-                    console.log(error,"error")
+                    console.log(error, "error")
                 }
 
                 document.querySelector(".login-reg-comp").classList.remove("formactive");
                 // window.location.href = "/index.html";
                 const loginForm = document.querySelector(".login-info");
-                const regInfo = document.querySelector(".reg-info");
-                const profileInfo = document.querySelector(".profile-info");
                 loginForm.style.display = "none";
-                regInfo.style.display = "none";
+                const modal = document.querySelector(".signup-loader");
+                modal.style.display = "none";
+                const profileInfo = document.querySelector(".profile-info");
                 profileInfo.style.display = "block";
                 location.reload();
 
@@ -1809,17 +2000,20 @@
             const loginForm = document.querySelector(".login-info");
             const regInfo = document.querySelector(".reg-info");
             const profileInfo = document.querySelector(".profile-info");
+            const loader = document.querySelector(".signup-loader");
 
             if (token) {
                 // User is logged in, show profile and hide login/signup forms
                 loginForm.style.display = "none";
                 regInfo.style.display = "none";
                 profileInfo.style.display = "block";
+                loader.style.display = "none";
             } else {
                 // User is not logged in, show login/signup forms
                 loginForm.style.display = "block";
                 regInfo.style.display = "block";
                 profileInfo.style.display = "none";
+                loader.style.display = "none";
             }
 
             // Logout functionality
@@ -1836,6 +2030,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const kundaliLink = document.getElementById("kundaliLink");
             const marketLink = document.getElementById("marketLink");
+            const sbcLink = document.getElementById("sbcLink");
             const loginModal = document.getElementById("login_btn");
 
             kundaliLink.addEventListener("click", function (event) {
@@ -1851,6 +2046,15 @@
                 if (token) {
                     // Redirect to Kundali Form if token is present
                     window.location.href = "./market.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+            sbcLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./sbc.html";
                 } else {
                     // Open login modal if no token
                     loginModal.click();

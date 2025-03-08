@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="/images/astrology.png" />
 
 </head>
 
@@ -197,6 +198,45 @@
 
         </div>
     </section>
+    <style>
+        .coming-soon {
+            filter: grayscale(5);
+        }
+
+        .coming-soon .card-info {
+            color: #ffffff;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            border-radius: .7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: #dcdcdc;
+            transition: ease-in-out
+        }
+
+        .coming-soon:hover .card-info {
+            color: white;
+            transition: color 1s;
+            display: flex;
+            transition: ease-in-out;
+        }
+
+        .coming-soon .card-info p {
+            color: white;
+        }
+
+        .page-title{
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+    </style>
 
 
     <header class="header">
@@ -524,290 +564,32 @@
         </div>
 
     </section>
-    <style>
-        .kundali-img-nres {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .kundali-img-res {
-            display: none !important;
-        }
-
-        .kundali-img-bx {
-
-            position: relative;
-            margin-bottom: 8rem;
-        }
-
-        .chart-toggle-buttons {
-            display: none;
-        }
-
-        .kundli-img {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            position: relative;
-            width: 100%;
-        }
-
-        .chart-toggle-buttons2 {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            width: 100%;
-            max-width: 110rem;
-            margin: 0px auto;
-            margin: 2rem 0;
-        }
-
-        .chart-toggle-buttons button,
-        .chart-toggle-buttons2 button {
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            background-color: #f0f0f0;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .chart-toggle-buttons button.active,
-        .chart-toggle-buttons2 button.active {
-            background-color: #fe7000;
-            color: white;
-        }
-
-        .kundli-img svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .gochara-house {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .gochara-house-btn {
-            margin-top: 1rem;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            background-color: #fe7000;
-            color: white;
-        }
-
-        .btn {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
-            background-color: lightgray;
-            transition: 0.3s;
-        }
-
-        .active {
-            background-color: blue;
-            color: white;
-        }
-
-        .section {
-            display: none;
-            /* Hide all sections initially */
-        }
-
-        .visible {
-            display: block;
-            /* Show active section */
-        }
-
-        .house-factors-selc-bx {
-            margin-bottom: 2rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        #legend {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        #legend span {
-            font-size: 25px;
-        }
-
-        #calendar {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-
-        .calendar-header {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            margin-bottom: 10px;
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            font-weight: bold;
-            padding: 5px;
-            background-color: #f0f0f0;
-        }
-
-        .calendar-body {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-        }
-
-        .calendar-day {
-            text-align: center;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .calendar-day.green {
-            background-color: rgb(88, 174, 88);
-            color: white;
-        }
-
-        .calendar-day.orange {
-            background-color: rgb(255, 209, 125);
-            color: white;
-        }
-
-        .calendar-day.purple {
-            background-color: rgb(163, 103, 163);
-            color: white;
-        }
-
-        .calendar-day.red {
-            background-color: rgb(234, 103, 103);
-            color: white;
-        }
-
-        .calendar-day.empty {
-            background-color: transparent;
-            border: none;
-        }
-
-        .coming-soon {
-            filter: grayscale(5);
-        }
-
-        .coming-soon .card-info {
-            color: #ffffff;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-            border-radius: .7rem;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            background: #dcdcdc;
-            transition: ease-in-out
-        }
-
-        .coming-soon:hover .card-info {
-            color: white;
-            transition: color 1s;
-            display: flex;
-            transition: ease-in-out;
-        }
-
-        .coming-soon .card-info p {
-            color: white;
-        }
-
-        .table-data .calendar-day {
-            white-space: normal;
-        }
-    </style>
-    <section class="kundali-comp">
+    <section class="our-cards-comp">
         <div class="common-container3">
+            <h5 class="page-title">Market</h5>
+            <div class="cards-grid grid grid-four-col grid-gap">
+                <a href="/calendar.html" id="marketLink">
+                    <div class="card-bx card1">
+                        <div class="icon icon1">
+                            <img src="./images/calendar.png" alt="">
+                        </div>
+                        <h6>Calendar</h6>
 
-            <div class="kundali-container">
-                <div class="table-data">
-
-                    <!-- Planet Selection Dropdown -->
-                    <h6>Selected Planet Details:</h6>
-                    <label for="planetSelect">Select Planet:</label>
-                    <select id="planetSelect">
-                        <!-- Planet options will be populated dynamically -->
-                    </select>
-
-                    <!-- Nakshatra Data Table -->
-                    <!-- <table>
-                        <thead>
-                            <tr>
-                                <th>Planet Name</th>
-                                <th>Nakshatra</th>
-                                <th>Tradeable Days</th>
-                            </tr>
-                        </thead>
-                        <tbody id="nakshatraTableBody">
-                        </tbody>
-                    </table> -->
-                    <!-- panchang detail -->
-                    <!-- <h6>panchang detail</h6>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Property</th>
-                                <th>Day 1</th>
-                                <th>Day 2</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-container"></tbody>
-                    </table> -->
-
-
-                    <!-- Nakshatra Comparison Result -->
-                    <h6>Comparison Result:</h6>
-                    <p id="comparisonResult">Select two days to compare their Nakshatras.</p>
-
-                    <div id="legend">
-                        <p><span style="color: green;">&#9632;</span>Full Day Trade</p>
-                        <p><span style="color: orange;">&#9632;</span> First half Trade</p>
-                        <p><span style="color: purple;">&#9632;</span>Second half Trade</p>
-                        <p><span style="color: red;">&#9632;</span>No trade</p>
                     </div>
-                    <div id="calendar" class="calendar"></div>
-
-                </div>
+                </a>
+                <a href="/sbcmarket.html">
+                    <div class="card-bx card1">
+                        <div class="icon icon2">
+                            <img src="./images/sbc.png" alt="">
+                        </div>
+                        <h6>SBC</h6>
+                    </div>
+                </a>
             </div>
+
         </div>
     </section>
+
     <!-- ____________________________
           Our Footer Comp 
           -------------------- -->
@@ -892,7 +674,6 @@
                         Dezire</a></p>
             </div>
     </footer>
-
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -973,368 +754,13 @@
     </script>
 
     <script>
-        async function fetchUserData() {
-            try {
-                const response = await fetch(`${host}/api/detail/fetchalldetail`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token": token
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data");
-                }
-
-                const datass = await response.json();
-                // console.log(datass, "data")
-                initializeData(datass)
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        }
-        fetchUserData()
-
-        async function initializeData(datass) {
-            let horoscopeData = datass[0]?.horoscopeData || [];
-            const currentDate = new Date();
-            const day = String(currentDate.getDate()).padStart(2, '0');
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-            const year = currentDate.getFullYear();
-            const formattedDate = `${day}/${month}/${year}`;
-            const params = JSON.parse(localStorage.getItem('params'));
-            const baseUrl = "https://api.vedicastroapi.com/v3-json";
-            let api = [];
-            try {
-                const response = await fetch(`${host}/api/admindetail/all`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch API data");
-                }
-
-                const data = await response.json();
-                api = data[0]?.apiKey || [];
-            } catch (error) {
-                console.error("Error fetching API key:", error);
-            }
-            const apiKey = api[0]?.apiKey;
-            const fetchMonthlyPunchang = async () => {
-                const monthlyPanchang = `${baseUrl}/panchang/monthly-panchang?api_key=${apiKey}&date=${formattedDate}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&lang=${params.lang}`;
-                try {
-                    const response = await fetch(monthlyPanchang);
-                    if (!response.ok) throw new Error("Failed to fetch location data.");
-                    const data = await response.json();
-                    localStorage.setItem("monthlyPunchang", JSON.stringify(data.response));
-                } catch (error) {
-                    document.getElementById("#dataTable tbody").innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-                }
-            };
-
-            fetchMonthlyPunchang();
-
-            // Horoscope data from localStorage
-            if (horoscopeData && horoscopeData.response) {
-                const planetDatas = horoscopeData.response;
-
-                // Function to check if a value is defined
-                const isDefined = (value) => value !== undefined && value !== null && value !== "";
-
-                // Map Planet Data
-                const mapPlanetData = (data) => {
-                    if (Array.isArray(data)) {
-                        return data.map((planet) => ({
-                            name: planet.full_name,
-                            nakshatra: planet.nakshatra,
-                        }));
-                    } else if (typeof data === "object" && data !== null) {
-                        return Object.values(data).map((planet) => ({
-                            name: planet.full_name,
-                            nakshatra: planet.nakshatra,
-                        }));
-                    } else {
-                        console.error("Unexpected data format for planets:", data);
-                        return [];
-                    }
-                };
-
-                // Extract planet data from horoscope response
-                const planets = mapPlanetData(planetDatas).slice(0, 10);
-                const headers = [
-                    "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
-                    "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni", "Hasta",
-                    "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-                    "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
-                    "PurvaBhadra", "UttaraBhadra", "Revati"
-                ];
-
-                const nakshatraTable = {
-                    'Ashvini': [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-                    'Bharani': [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Krittika': [1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Rohini': [0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Mrigashira': [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-                    'Ardra': [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Punarvasu': [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Pushya': [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-                    'Ashlesha': [1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1],
-                    'Magha': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-                    'Purva Phalguni': [1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
-                    'UttaraPhalguni': [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0],
-                    'Hasta': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1],
-                    'Chitra': [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0],
-                    'Svati': [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Vishakha': [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-                    'Anuradha': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1],
-                    'Jyeshtha': [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
-                    'Mula': [0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0],
-                    'PurvaShadha': [1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-                    'UttraShadha': [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1],
-                    'Sravana': [1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
-                    'Dhanista': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1],
-                    'Shatabhisha': [1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0],
-                    'PurvaBhadra': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1],
-                    'UttaraBhadra': [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
-                    'Revati': [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1],
-                };
-
-                // Function to get tradeable days for a Nakshatra
-                const getTradeableDays = (personNakshatra) => {
-                    const tradeableDays = [];
-                    if (personNakshatra in nakshatraTable) {
-                        nakshatraTable[personNakshatra].forEach((value, index) => {
-                            if (value === 1) {
-                                tradeableDays.push(headers[index]);
-                            }
-                        });
-                    } else {
-                        alert('Nakshatra not found!');
-                    }
-                    return tradeableDays;
-                };
-
-                // Function to compare nakshatra and tradeable days for two days
-                function compareNakshatraAndTradeableDays(entry1, entry2, tradeableDays) {
-                    const isEntry1InTradeableDays = tradeableDays.includes(entry1.nakshatra.name);
-                    const isEntry2InTradeableDays = tradeableDays.includes(entry2.nakshatra.name);
-
-                    if (isEntry1InTradeableDays && isEntry2InTradeableDays) {
-                        return 1;
-                    } else if (isEntry1InTradeableDays && !isEntry2InTradeableDays) {
-                        return 2;
-                    } else if (!isEntry1InTradeableDays && isEntry2InTradeableDays) {
-                        return 3;
-                    } else {
-                        return 0;
-                    }
-                }
-
-                // Populate the planet select dropdown
-                const planetSelect = document.getElementById('planetSelect');
-                planets.forEach(planet => {
-                    const option = document.createElement('option');
-                    option.value = planet.name;
-                    option.textContent = planet.name;
-                    planetSelect.appendChild(option);
-                });
-
-                // Set Moon as the default planet
-                const moonPlanet = planets.find(planet => planet.name === 'Moon');
-                if (moonPlanet) {
-                    planetSelect.value = 'Moon';
-                }
-
-                // Handle planet selection
-                planetSelect.addEventListener('change', (event) => {
-                    const selectedPlanetName = event.target.value;
-                    const selectedPlanet = planets.find(planet => planet.name === selectedPlanetName);
-
-                    if (selectedPlanet) {
-                        const nakshatra = selectedPlanet.nakshatra;
-                        const tradeableDays = getTradeableDays(nakshatra);
-
-                        // Populate the table with the selected planet's data
-                    //     const tableBody = document.getElementById('nakshatraTableBody');
-                    //     tableBody.innerHTML = '';  // Clear previous data
-
-                    //     const row = document.createElement('tr');
-                    //     row.innerHTML = `
-                    //     <td>${selectedPlanet.name}</td>
-                    //     <td>${nakshatra}</td>
-                    //     <td>${tradeableDays.join(', ')}</td>
-                    // `;
-                        // tableBody.appendChild(row);
-
-                        const monthlyPunchangData = JSON.parse(localStorage.getItem('monthlyPunchang'));
-                        // console.log(monthlyPunchangData,"monthlyPunchangData")
-                        let data1 = [];
-                        let data2 = [];
-
-                        // Extract nakshatra names for the first two days as an example
-                        monthlyPunchangData.forEach((entry, index) => {
-                            if (index === 0) {
-                                data1 = {
-                                    name: entry.nakshatra.name,
-                                    start: entry.nakshatra.start,
-                                    end: entry.nakshatra.end
-                                };
-                            } else if (index === 1) {
-                                data2 = {
-                                    name: entry.nakshatra.name,
-                                    start: entry.nakshatra.start,
-                                    end: entry.nakshatra.end
-                                };
-                            }
-                        });
-
-                        // Function to render a table
-            //             function renderTable(data1, data2) {
-            //                 const tableContainer = document.getElementById('table-container');
-            //                 const tableHTML = `
-            //     <table>
-                    
-            //         <tbody>
-            //             <tr>
-            //                 <td>Nakshatra Name</td>
-            //                 <td>${data1.name || "N/A"}</td>
-            //                 <td>${data2.name || "N/A"}</td>
-            //             </tr>
-            //             <tr>
-            //                 <td>Start</td>
-            //                 <td>${data1.start || "N/A"}</td>
-            //                 <td>${data2.start || "N/A"}</td>
-            //             </tr>
-            //             <tr>
-            //                 <td>End</td>
-            //                 <td>${data1.end || "N/A"}</td>
-            //                 <td>${data2.end || "N/A"}</td>
-            //             </tr>
-            //         </tbody>
-            //     </table>
-            // `;
-            //                 tableContainer.innerHTML = tableHTML;
-            //             }
-
-            //             // Call the function to render the table
-            //             renderTable(data1, data2);
-
-                        // Example usage to compare two days' nakshatras
-                        const entry1 = { nakshatra: { name: data1.name } }; // First day's entry
-                        const entry2 = { nakshatra: { name: data2.name } }; // Second day's entry
-
-                        // Compare the nakshatras for the two days
-                        const result = compareNakshatraAndTradeableDays(entry1, entry2, tradeableDays);
-
-                        // Show the result
-                        document.getElementById('comparisonResult').textContent = `Comparison Result: ${result}`;
-
-                        // Check if the calendar header already exists, if not, create it
-                        const calendarContainer = document.getElementById("calendar");
-
-                        // Only create the calendar header if it doesn't already exist
-                        let calendarHeader = document.querySelector(".calendar-header");
-                        if (!calendarHeader) {
-                            calendarHeader = document.createElement("div");
-                            calendarHeader.classList.add("calendar-header");
-
-                            const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                            daysOfWeek.forEach(day => {
-                                const dayElement = document.createElement("div");
-                                dayElement.classList.add("calendar-day-header");
-                                dayElement.textContent = day;
-                                calendarHeader.appendChild(dayElement);
-                            });
-                            calendarContainer.appendChild(calendarHeader);
-                        }
-
-                        // Clear previous calendar days before rendering new ones
-                        const existingDays = document.querySelectorAll('.calendar-day');
-                        existingDays.forEach(day => day.remove());
-
-                        if (monthlyPunchangData && Array.isArray(monthlyPunchangData)) {
-                            let dayOfWeek = new Date(monthlyPunchangData[0].date).getDay(); // Get the day of the week for the first entry
-
-                            // Start a new row if necessary
-                            const calendarBody = document.createElement("div");
-                            calendarBody.classList.add("calendar-body");
-                            calendarContainer.appendChild(calendarBody);
-
-                            // Add empty cells for the first row if necessary (before the first day of the month)
-                            if (dayOfWeek !== 0) {
-                                for (let i = 0; i < dayOfWeek; i++) {
-                                    const emptyElement = document.createElement("div");
-                                    emptyElement.classList.add("calendar-day", "empty");
-                                    calendarBody.appendChild(emptyElement);
-                                }
-                            }
-
-                            // Now add the days of the month
-                            monthlyPunchangData.forEach((entry, index) => {
-                                const entry1 = { nakshatra: { name: entry.nakshatra.name } };
-                                const nextIndex = index + 1;
-
-                                // Only process pairs of consecutive days
-                                if (nextIndex < monthlyPunchangData.length) {
-                                    const entry2 = { nakshatra: { name: monthlyPunchangData[nextIndex].nakshatra.name } };
-
-                                    // Compare the nakshatras for the two consecutive days
-                                    const result = compareNakshatraAndTradeableDays(entry1, entry2, tradeableDays);
-
-                                    // Create a calendar day element
-                                    const dayElement = document.createElement("div");
-                                    dayElement.classList.add("calendar-day");
-
-                                    // Apply a color class based on the result
-                                    switch (result) {
-                                        case 1:
-                                            dayElement.classList.add("green");
-                                            break;
-                                        case 2:
-                                            dayElement.classList.add("orange");
-                                            break;
-                                        case 3:
-                                            dayElement.classList.add("purple");
-                                            break;
-                                        case 0:
-                                            dayElement.classList.add("red");
-                                            break;
-                                    }
-
-                                    // Add content to the day element
-                                    dayElement.textContent = `${entry.date}`;
-                                    calendarBody.appendChild(dayElement);
-
-                                    // Update dayOfWeek for next day
-                                    dayOfWeek = (dayOfWeek + 1) % 7;
-                                }
-                            });
-                        } else {
-                            console.error("Monthly punchang data is not available or malformed.");
-                        }
-                    }
-                });
-
-                // Trigger the change event for the default planet (Moon)
-                if (moonPlanet) {
-                    const event = new Event('change');
-                    planetSelect.dispatchEvent(event);
-                }
-            } else {
-                console.error("Horoscope data is not available or malformed.");
-            }
-        }
-
-
         // Populate table on page load
         window.onload = async () => {
             fetchAllData()
         };
     </script>
+
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- Swiper Js file -->

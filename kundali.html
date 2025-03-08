@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="/images/astrology.png" />
 
 </head>
 
@@ -568,13 +569,22 @@
         <div class="common-container3">
 
             <div class="kundali-container">
+                <h5>Kundali Chart</h5>
                 <div class="kundali-img-bx">
                     <!-- Charts -->
                     <div class="kundli-img">
                         <div class="kundali-img-nres">
-                            <div id="horoscope-chart1" class="chart-container1">
+                            <div class="kundli-chart">
+                                <div id="horoscope-chart1" class="chart-container1">
+                                    <p>Lagna</p>
+                                </div>
+                                <p>Lagna</p>
                             </div>
-                            <div id="horoscope-chart2" class="chart-container2">
+                            <div class="kundli-chart">
+                                <div id="horoscope-chart2" class="chart-container2">
+                                    <p>Navamsa</p>
+                                </div>
+                                <p>Navamsa</p>
                             </div>
                         </div>
                         <div class="kundali-img-res">
@@ -625,6 +635,15 @@
                         display: none !important;
                     }
                 } */
+
+                .kundali-container h5 {
+                    margin-bottom: 1rem;
+                    text-align: center;
+                }
+
+                .kundli-chart p {
+                    text-align: center;
+                }
 
                 .kundali-img-nres {
                     display: flex;
@@ -828,6 +847,7 @@
                                         <th>Planets </th>
                                         <th>Nature</th>
                                         <th>Dasha</th>
+                                        <!-- <th>Gochar</th> -->
                                     </tr>
                                 </thead>
                                 <tbody data-table="positive" class="tableBody showtablebody" id="planetTable">
@@ -1072,11 +1092,20 @@
                 }
 
                 let gocharData = data[0].gochar;
+                const today = new Date();
+
+                // Filter data where today's date is within the range
+                gocharData = gocharData.filter(entry => {
+                    const entryDate = new Date(entry.date_of_entry);
+                    const exitDate = new Date(entry.date_of_exit);
+                    return today >= entryDate && today <= exitDate;
+                });
+
+                const planetOrder = ["Ascendant", "Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
+
+                // Sort based on custom planet order
                 gocharData.sort((a, b) => {
-                    if (a.planet_name === b.planet_name) {
-                        return new Date(a.date_of_entry) - new Date(b.date_of_entry);
-                    }
-                    return a.planet_name.localeCompare(b.planet_name);
+                    return planetOrder.indexOf(a.planet_name) - planetOrder.indexOf(b.planet_name);
                 });
 
                 // Populate the table
@@ -1096,6 +1125,7 @@
             </tr>`;
                     tableBody.innerHTML += row;
                 });
+
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -1615,8 +1645,8 @@
                                 const retro = matchedPlanet?.retro;
                                 const combust = matchedPlanet?.is_combust;
 
-                                let retroPlanet = retro ? '&#128293;' : "";
-                                let combustPlanet = combust ? '&#8634;' : "";
+                                let retroPlanet = retro ? '&#8634;' : "";
+                                let combustPlanet = combust ? '&#128293;' : "";
 
                                 let matchedNakshatra = matchedPlanet?.nakshatra || "";
                                 let matchedPada = matchedPlanet?.pada || "";
@@ -1669,7 +1699,17 @@
                                     }
                                 });
 
-                                let dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "-";
+                                // let dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "-";
+
+                                const dashaLabels = {
+                                    major: "Mahadasha (MD)",
+                                    minor: "Antardasha (AD)",
+                                    sub_minor: "Pratyantar Dasha (PD)",
+                                    sub_sub_minor: "Sookshma Dasha (SD)"
+                                };
+
+                                let dashaForms = dashakeys.map(key => dashaLabels[key]);
+                                let dashaForm = dashaForms.length > 0 ? `${dashaForms.join(", ")}` : "-";
 
                                 // Append planet data row
                                 const row = `
@@ -1687,7 +1727,7 @@
                 <div class="color-bx ${status}" data-tooltip="${positionValue?.status ? positionValue.status : ''}"></div>
             </td>
             <td class="td-span">
-                <span>${dashaText}</span>
+                <span>${dashaForm}</span>
             </td>
         </tr>
     `;
@@ -1846,7 +1886,7 @@
                     }
 
                     // Map Data
-                    const planets = mapPlanetData(horoscopeData.response);
+                    const planets = mapPlanetData(horoscopeData.response).slice(0, 10);
                     const dasaDetails = mapDasaDetails(horoscopeData);
                     const panchangDetails = mapPanchangDetails(horoscopeData);
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga-Based Trading Recommendations</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {background-color: #f9f9f9;}
+        tr:hover {background-color: #f1f1f1;}
+        .trade {background-color: #e6ffe6; color: green;}
+        .avoid {background-color: #ffe6e6; color: red;}
+        .caution {background-color: #fff8e6; color: orange;}
+    </style>
+</head>
+<body>
+    <h1>Yoga-Based Trading Recommendations</h1>
+    <p>Get personalized trading advice based on the <strong>current Yoga</strong>.</p>
+
+    <label for="currentYoga">Select Current Yoga:</label>
+    <select id="currentYoga">
+        <option value="Siddhi">Siddhi</option>
+        <option value="Amrita">Amrita</option>
+        <option value="Dhriti">Dhriti</option>
+        <option value="Vyatipata">Vyatipata</option>
+        <option value="Vaidhriti">Vaidhriti</option>
+        <option value="Shoola">Shoola</option>
+        <option value="Brahma">Brahma</option>
+        <option value="Indra">Indra</option>
+        <option value="Vishkumbha">Vishkumbha</option>
+        <option value="Preeti">Preeti</option>
+        <option value="Ayushman">Ayushman</option>
+        <option value="Saubhagya">Saubhagya</option>
+        <option value="Shobhana">Shobhana</option>
+        <option value="Atiganda">Atiganda</option>
+        <option value="Sukarma">Sukarma</option>
+        <option value="Dhriti">Dhriti</option>
+        <option value="Shoola">Shoola</option>
+        <option value="Ganda">Ganda</option>
+        <option value="Vriddhi">Vriddhi</option>
+        <option value="Dhruva">Dhruva</option>
+        <option value="Vyaghata">Vyaghata</option>
+        <option value="Harshana">Harshana</option>
+        <option value="Vajra">Vajra</option>
+        <option value="Siddhi">Siddhi</option>
+        <option value="Vyatipata">Vyatipata</option>
+        <option value="Variyan">Variyan</option>
+        <option value="Parigha">Parigha</option>
+    </select>
+
+    <button onclick="getRecommendation()">Get Recommendation</button>
+
+    <h2>Trading Recommendation:</h2>
+    <div id="recommendation"></div>
+
+    <script>
+        const auspiciousYogas = ["Siddhi", "Amrita", "Dhriti", "Saubhagya", "Shobhana", "Vriddhi", "Dhruva"];
+        const inauspiciousYogas = ["Vyatipata", "Vaidhriti", "Shoola", "Atiganda", "Vyaghata", "Vajra", "Parigha"];
+        const neutralYogas = ["Brahma", "Indra", "Vishkumbha", "Preeti", "Ayushman", "Sukarma", "Harshana", "Variyan"];
+
+        function getRecommendation() {
+            const currentYoga = document.getElementById("currentYoga").value;
+            const recommendationDiv = document.getElementById("recommendation");
+
+            let recommendation = "";
+
+            if (auspiciousYogas.includes(currentYoga)) {
+                recommendation = "✅ Favorable Yoga for Trading - Positive energies enhance clarity and confidence.";
+            } else if (inauspiciousYogas.includes(currentYoga)) {
+                recommendation = "❌ Avoid Trading - Inauspicious Yoga may cause confusion or unexpected losses.";
+            } else if (neutralYogas.includes(currentYoga)) {
+                recommendation = "⚠️ Neutral Yoga - Mixed influences, proceed with caution.";
+            } else {
+                recommendation = "⚠️ Unknown Yoga - Insufficient data, trade conservatively.";
+            }
+
+            recommendationDiv.innerHTML = `<p>${recommendation}</p>`;
+        }
+    </script>
+</body>
+</html>

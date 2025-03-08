@@ -68,6 +68,7 @@
                 if (!response.ok) throw new Error("Failed to fetch location data.");
                 const data = await response.json();
                 populatePunchang(data.response);
+                console.log(data.response,"data.response")
             } catch (error) {
                 document.getElementById("#dataTable tbody").innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
             }
