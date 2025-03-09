@@ -1953,18 +1953,52 @@
                         for (const div of divisions) {
                             const divisionalUrl = `${baseUrl}/horoscope/divisional-charts?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${div}&api_key=${params.api_key}&lang=${params.lang}&response_type=planet_object`;
 
-                            const response = await fetch(divisionalUrl);
-                            if (!response.ok) continue;
+                            try {
+                                const response = await fetch(divisionalUrl);
+                                if (!response.ok) {
+                                    console.warn(`Failed to fetch data for ${div}`);
+                                    continue; // Skip this division if there's an error
+                                }
 
-                            const horoscopeData = await response.json();
-                            if (horoscopeData && horoscopeData.response) {
-                                rashiData[div] = horoscopeData.response;
+                                const horoscopeData = await response.json();
+                                if (horoscopeData && horoscopeData.response) {
+                                    const mapPlanetData = (data) => {
+                                        if (Array.isArray(data)) {
+                                            return data.map((planet) => ({
+                                                name: planet.full_name,
+                                                zodiac: planet.zodiac,
+                                                house: planet.house,
+                                                retro: planet.retro,
+                                                rasi_no: planet.rasi_no,
+                                                local_degree: planet.local_degree,
+                                            }));
+                                        } else if (typeof data === "object" && data !== null) {
+                                            return Object.values(data).map((planet) => ({
+                                                name: planet.full_name,
+                                                zodiac: planet.zodiac,
+                                                house: planet.house,
+                                                retro: planet.retro,
+                                                rasi_no: planet.rasi_no,
+                                                local_degree: planet.local_degree,
+                                            }));
+                                        } else {
+                                            console.error(`Unexpected data format for ${div}:`, data);
+                                            return [];
+                                        }
+                                    };
+
+                                    rashiData[div] = mapPlanetData(horoscopeData.response).slice(0, 10);
+                                } else {
+                                    console.warn(`Invalid or missing data for ${div}`);
+                                }
+                            } catch (error) {
+                                console.error(`Error fetching horoscope data for ${div}:`, error);
                             }
                         }
                     } catch (error) {
-                        console.error("Error fetching divisional charts:", error);
+                        console.log("error")
                     }
-                    const response5 = await fetch(`${host}/api/detail/adddetail`, {
+                    const response = await fetch(`${host}/api/detail/adddetail`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -1973,11 +2007,11 @@
                         body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url })
                     });
 
-                    const result = await response5.json();
+                    const result = await response.json();
                     console.log(result);
                 }
                 catch (error) {
-                    console.log(error, "error")
+                    console.log(error,"error")
                 }
 
                 document.querySelector(".login-reg-comp").classList.remove("formactive");
@@ -2022,7 +2056,8 @@
                 logoutBox.addEventListener("click", function () {
                     localStorage.removeItem("token");
                     localStorage.removeItem('params');
-                    location.reload();
+                    // location.reload();
+                    window.location.href = "./index.html";
                 });
             }
         });

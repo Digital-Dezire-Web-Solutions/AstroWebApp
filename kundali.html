@@ -1054,6 +1054,7 @@
                 loginForm.style.display = "block";
                 regInfo.style.display = "block";
                 profileInfo.style.display = "none";
+                window.location.href = "./index.html";
             }
 
             // Logout functionality
@@ -1061,7 +1062,7 @@
             if (logoutBox) {
                 logoutBox.addEventListener("click", function () {
                     localStorage.removeItem("token");
-                    window.location.href = "./index.html";
+                    localStorage.removeItem('params');
                     location.reload();
                 });
             }

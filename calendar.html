@@ -963,6 +963,8 @@
                 loginForm.style.display = "block";
                 regInfo.style.display = "block";
                 profileInfo.style.display = "none";
+                window.location.href = "./index.html";
+
             }
 
             // Logout functionality
@@ -972,7 +974,6 @@
                     localStorage.removeItem("token");
                     localStorage.removeItem('params');
                     location.reload();
-                    window.location.href = "./index.html";
                 });
             }
         });

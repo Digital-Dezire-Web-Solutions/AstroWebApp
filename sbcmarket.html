@@ -785,6 +785,7 @@
                 loginForm.style.display = "block";
                 regInfo.style.display = "block";
                 profileInfo.style.display = "none";
+                window.location.href = "./index.html";
             }
 
             // Logout functionality
@@ -895,7 +896,7 @@
                 const datass = await response.json();
                 const api = adminData[0]?.apiKey || [];
                 const apiKey = api[0]?.apiKey;
-                const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(currentDateForPanchang)}&tz=${params.tz}&lat=${params.lat}&lon=${params.lon}&time=${encodeURIComponent(currentTime24Hr)}&lang=${params.lang}`;
+                const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(currentDateForPanchang)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&time=${encodeURIComponent(currentTime24Hr)}&lang=en`;
                 const response3 = await fetch(TithiPanchang);
                 if (!response3.ok) throw new Error("Failed to fetch TithiPanchang data.");
                 const TithiPanchangResponse = await response3.json();
@@ -930,7 +931,7 @@
             'Jyeshtha': { front: '-', right: '-', left: '-' },
             'Mula': { front: '2,7,12', right: '-', left: '-' },
             'PurvaShadha': { front: '1,6,11,5,10,15,3,8,13', right: '-', left: '-' },
-            'UttraShadha': { front: '4,9,14', right: '-', left: '-' },
+            'UttaraShadha': { front: '4,9,14', right: '-', left: '-' },
             'Sravana': { front: '-', right: '2,7,12,3,8,13', left: '-' },
             'Dhanista': { front: '-', right: '-', left: '1,6,11,4,9,14' },
             'Shatabhisha': { front: '-', right: '-', left: '-' },
@@ -960,7 +961,7 @@
             'Jyeshtha': { front: '-', right: '-', left: '-' },
             'Mula': { front: 'Monday, Wednesday', right: '-', left: '-' },
             'PurvaShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
-            'UttraShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
+            'UttaraShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
             'Sravana': { front: '-', right: 'Monday, Wednesday, Thursday', left: '-' },
             'Dhanista': { front: '-', right: '-', left: 'Sunday, Tuesday, Friday' },
             'Shatabhisha': { front: '-', right: '-', left: '-' },
@@ -990,7 +991,7 @@
             'Jyeshtha': { front: 'Leo, Virgo, Libra', right: '-', left: 'Pisces, Sagittarius' },
             'Mula': { front: 'Cancer, Scorpio', right: '-', left: '-' },
             'PurvaShadha': { front: 'Gemini, Sagittarius', right: '-', left: '-' },
-            'UttraShadha': { front: 'Taurus, Capricorn', right: 'Libra, Scorpio', left: '-' },
+            'UttaraShadha': { front: 'Taurus, Capricorn', right: 'Libra, Scorpio', left: '-' },
             'Sravana': { front: '-', right: 'Leo, Capricorn', left: '-' },
             'Dhanista': { front: '-', right: '-', left: 'Cancer, Aquarius' },
             'Shatabhisha': { front: 'Scorpio, Sagittarius, Capricorn', right: '-', left: 'Gemini, Pisces' },
@@ -1020,7 +1021,7 @@
             'Jyeshtha': { front: 'Da, Lree, Ae, Na', right: 'Re', left: 'Cha, Aha, Ya' },
             'Mula': { front: 'Ha, Ou, Am, Ya', right: 'Tha, Na', left: 'Bha, Dha' },
             'PurvaShadha': { front: 'Ka, Bha', right: 'Ra, Ae, Ya', left: 'Sa, Aei, Ja' },
-            'UttraShadha': { front: 'Va, O, Ja, Aha', right: 'Pa, Bha', left: 'Ga, Kha' },
+            'UttaraShadha': { front: 'Va, O, Ja, Aha', right: 'Pa, Bha', left: 'Ga, Kha' },
             'Sravana': { front: 'oo, La, Cha, Dha, Sa, Ga, Ree', right: 'Ma, Kha', left: 'EE' },
             'Dhanista': { front: 'Ree, Kha, Ja, Bha, Ya, Na, Re', right: '-', left: 'Da, Ga' },
             'Shatabhisha': { front: 'Ga, Aei, Ae, Tha', right: 'Ree', left: 'Ha, O, SA' },
@@ -1037,7 +1038,7 @@
                 'Krittika': 'Bharani',
                 'Rohini': 'Ashvini',
                 'Mrigashira': 'Revati',
-                'Ardra': 'UttaraBhadrapada',
+                'Ardra': 'UttaraBhadra',
                 'Punarvasu': 'PurvaBhadra',
                 'Pushya': 'Shatabhisha',
                 'Ashlesha': 'Dhanistha',
@@ -1052,12 +1053,12 @@
                 'Jyeshtha': 'Svati',
                 'Mula': 'Chitra',
                 'PurvaShadha': 'Hasta',
-                'UttraShadha': 'UttaraPhalguni',
+                'UttaraShadha': 'UttaraPhalguni',
                 'Sravana': 'Magha',
                 'Dhanista': 'Sravana',
                 'Shatabhisha': 'Abhijit',
-                'PurvaBhadra': 'UttraShadha',
-                'UttaraBhadrapada': 'PurvaShadha',
+                'PurvaBhadra': 'UttaraShadha',
+                'UttaraBhadra': 'PurvaShadha',
                 'Revati': 'Mula',
                 'Abhijit': 'Purva Phalguni'
             },
@@ -1073,7 +1074,7 @@
                 'Ashlesha': 'Magha',
                 'Magha': 'Sravana',
                 'PurvaPhalguni': 'Abhijit',
-                'UttaraPhalguni': 'UttraShadha',
+                'UttaraPhalguni': 'UttaraShadha',
                 'Hasta': 'PurvaShadha',
                 'Chitra': 'Mula',
                 'Svati': 'Jyeshtha',
@@ -1081,13 +1082,13 @@
                 'Anuradha': 'Bharani',
                 'Jyeshtha': 'Ashvini',
                 'Mula': 'Revati',
-                'PurvaShadha': 'UttaraBhadrapada',
-                'UttraShadha': 'PurvaBhadra',
+                'PurvaShadha': 'UttaraBhadra',
+                'UttaraShadha': 'PurvaBhadra',
                 'Sravana': 'Dhanista',
                 'Dhanista': 'Ashlesha',
                 'Shatabhisha': 'Pushya',
                 'PurvaBhadra': 'Punarvasu',
-                'UttaraBhadrapada': 'Ardra',
+                'UttaraBhadra': 'Ardra',
                 'Revati': 'Mrigashira',
                 'Abhijit': 'Shatabhisha'
             },
@@ -1096,7 +1097,7 @@
                 'Bharani': 'Magha',
                 'Krittika': 'Sravana',
                 'Rohini': 'Abhijit',
-                'Mrigashira': 'UttraShadha',
+                'Mrigashira': 'UttaraShadha',
                 'Ardra': 'PurvaShadha',
                 'Punarvasu': 'Mula',
                 'Pushya': 'Jyeshtha',
@@ -1104,7 +1105,7 @@
                 'Magha': 'Bharani',
                 'PurvaPhalguni': 'Ashvini',
                 'UttaraPhalguni': 'Revati',
-                'Hasta': 'UttaraBhadrapada',
+                'Hasta': 'UttaraBhadra',
                 'Chitra': 'PurvaBhadra',
                 'Svati': 'Shatabhisha',
                 'Vishakha': 'Dhanista',
@@ -1112,12 +1113,12 @@
                 'Jyeshtha': 'Pushya',
                 'Mula': 'Punarvasu',
                 'PurvaShadha': 'Ardra',
-                'UttraShadha': 'Mrigashira',
+                'UttaraShadha': 'Mrigashira',
                 'Sravana': 'Krittika',
                 'Dhanista': 'Vishakha',
                 'Shatabhisha': 'Svati',
                 'PurvaBhadra': 'Chitra',
-                'UttaraBhadrapada': 'Hasta',
+                'UttaraBhadra': 'Hasta',
                 'Revati': 'UttaraPhalguni',
                 'Abhijit': 'Rohini'
             }
@@ -1159,8 +1160,8 @@
             "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
             "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
             "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
-            "PurvaBhadra", "UttaraBhadrapada", "Revati", "Abhijit"
+            "PurvaShadha", "UttaraShadha", "Sravana", "Dhanista", "Shatabhisha",
+            "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
         ];
 
         const tithiPanchang = [
@@ -1246,7 +1247,7 @@
                 "market_sentiment": "Bearish"
             },
             {
-                "tithi": "Dashami",
+                "tithi": "Dasami",
                 "paksha": "Shukla",
                 "auspiciousness": "Very Auspicious",
                 "good_for": "Starting work, travel, investments",
@@ -1372,7 +1373,7 @@
                 "market_sentiment": "Bearish"
             },
             {
-                "tithi": "Dashami",
+                "tithi": "Dasami",
                 "paksha": "Krishna",
                 "auspiciousness": "Moderate",
                 "good_for": "Settlements, resolving disputes",
@@ -1479,12 +1480,14 @@
                     const tithiName = tithiPanchangData2.tithi.name;
                     const tithiType = tithiPanchangData2.tithi.type;
                     const matchingTithi = tithiPanchang.find(t => t.tithi === tithiName && t.paksha === tithiType);
-                    // console.log(matchingTithi, "matchingTithi")
+                    console.log(matchingTithi, "matchingTithi")
+                    console.log(tithiName,"tithiName")
                     const tithi = panchangDetails.Tithi
                     const Day_of_Birth = panchangDetails.Day;
                     const yoga = panchangDetails.Yoga;
                     const karana = panchangDetails.Karana;
                     const Nakshatra = panchangDetails.Nakshatra;
+                    console.log(Nakshatra,"Nakshatra")
 
                     // yoga
 
