@@ -3410,6 +3410,7 @@
 
                                 // Append a single row for nakshatra data
                                 const lifeAspectBody = document.getElementById('lifeAspectBody');
+                                lifeAspectBody.innerHTML = "";
                                 if (lifeAspect.length > 0) {
                                     lifeAspect.forEach((i) => {
                                         if (i.nakshatra && i.nakshatra.length > 0 && i.nakshatra.trim() !== '') {
