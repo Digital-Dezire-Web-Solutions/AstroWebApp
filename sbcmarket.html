@@ -1256,7 +1256,7 @@
                 "market_sentiment": "Bullish"
             },
             {
-                "tithi": "Ekadashi",
+                "tithi": "Ekadasi",
                 "paksha": "Shukla",
                 "auspiciousness": "Highly Auspicious",
                 "good_for": "Fasting, long-term financial planning",
@@ -1382,7 +1382,7 @@
                 "market_sentiment": "Neutral"
             },
             {
-                "tithi": "Ekadashi",
+                "tithi": "Ekadasi",
                 "paksha": "Krishna",
                 "auspiciousness": "Highly Auspicious",
                 "good_for": "Fasting, meditation, spiritual gains",
@@ -1434,6 +1434,8 @@
         async function initializeData(datass, adminData,TithiPanchangResponse, apiKey) {
             let horoscopeData = datass[0]?.horoscopeData || [];
             let monthlyPanchang = adminData[0].monthlyPanchang;
+
+            console.log(TithiPanchangResponse,"TithiPanchangResponse")
 
             if (monthlyPanchang && monthlyPanchang.response) {
                 const panchangDatas = monthlyPanchang.response;
