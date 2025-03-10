@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +11,43 @@
             border-collapse: collapse;
             font-size: 12px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
         }
+
         th {
             background-color: #f2f2f2;
         }
-        tr:nth-child(even) {background-color: #f9f9f9;}
-        tr:hover {background-color: #f1f1f1;}
-        .trade {background-color: #e6ffe6; color: green;}
-        .avoid {background-color: #ffe6e6; color: red;}
-        .caution {background-color: #fff8e6; color: orange;}
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .trade {
+            background-color: #e6ffe6;
+            color: green;
+        }
+
+        .avoid {
+            background-color: #ffe6e6;
+            color: red;
+        }
+
+        .caution {
+            background-color: #fff8e6;
+            color: orange;
+        }
     </style>
 </head>
+
 <body>
     <h1>Yoga-Based Trading Recommendations</h1>
     <p>Get personalized trading advice based on the <strong>current Yoga</strong>.</p>
@@ -66,9 +89,10 @@
     <div id="recommendation"></div>
 
     <script>
-        const auspiciousYogas = ["Siddhi", "Amrita", "Dhriti", "Saubhagya", "Shobhana", "Vriddhi", "Dhruva"];
-        const inauspiciousYogas = ["Vyatipata", "Vaidhriti", "Shoola", "Atiganda", "Vyaghata", "Vajra", "Parigha"];
-        const neutralYogas = ["Brahma", "Indra", "Vishkumbha", "Preeti", "Ayushman", "Sukarma", "Harshana", "Variyan"];
+        const auspiciousYogas = ["Siddhi", "Amrita", "Dhrithi", "Saubhagya", "Sobhana", "Vridhi", "Dhruva", "Subha", "Sadhya", "Siva"];
+        const inauspiciousYogas = ["Vyatipata", "Vaidhriti", "Soola", "Atiganda", "Vyaghata", "Vajra", "Parigha", "Ganda"];
+        const neutralYogas = ["Bramha", "Indra", "Vishkambha", "Prithi", "Ayushman", "Sukarman", "Harshana", "Variyan"];
+
 
         function getRecommendation() {
             const currentYoga = document.getElementById("currentYoga").value;
@@ -90,4 +114,5 @@
         }
     </script>
 </body>
+
 </html>

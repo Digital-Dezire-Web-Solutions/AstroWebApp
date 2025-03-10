@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Rashi-Based Sector Analysis</title>
+   <style>
+       table {
+           width: 100%;
+           border-collapse: collapse;
+           font-size: 14px;
+       }
+       th, td {
+           border: 1px solid #ddd;
+           padding: 8px;
+           text-align: center;
+       }
+       th {
+           background-color: #f2f2f2;
+       }
+       tr:nth-child(even) {background-color: #f9f9f9;}
+       tr:hover {background-color: #f1f1f1;}
+   </style>
+</head>
+<body>
+   <h1>Rashi-Based Sector Analysis</h1>
+   <p>Select a Rashi (Zodiac Sign) to see the governed financial sectors.</p>
+ 
+   <label for="currentRashi">Select Rashi:</label>
+   <select id="currentRashi">
+       <option value="Aries">Aries (Mesha)</option>
+       <option value="Taurus">Taurus (Vrishabha)</option>
+       <option value="Gemini">Gemini (Mithuna)</option>
+       <option value="Cancer">Cancer (Karka)</option>
+       <option value="Leo">Leo (Simha)</option>
+       <option value="Virgo">Virgo (Kanya)</option>
+       <option value="Libra">Libra (Tula)</option>
+       <option value="Scorpio">Scorpio (Vrischika)</option>
+       <option value="Sagittarius">Sagittarius (Dhanu)</option>
+       <option value="Capricorn">Capricorn (Makara)</option>
+       <option value="Aquarius">Aquarius (Kumbha)</option>
+       <option value="Pisces">Pisces (Meena)</option>
+   </select>
+ 
+   <button onclick="getSectorAnalysis()">Get Sector Analysis</button>
+ 
+   <h2>Governed Sectors:</h2>
+   <div id="sectorAnalysis"></div>
+ 
+   <script>
+       const rashiSectors = {
+           "Aries": "Metals, Defense, Sports, Machinery, Automobiles",
+           "Taurus": "Banking, Real Estate, Agriculture, Luxury Goods",
+           "Gemini": "Media, Telecom, IT, Publishing, Advertising",
+           "Cancer": "Hotels, Dairy, Water-Related Businesses, Shipping",
+           "Leo": "Gold, Government, Leadership, Entertainment",
+           "Virgo": "Healthcare, Pharmaceuticals, Trading, Education",
+           "Libra": "Stock Market, Business Partnerships, Arts, Legal",
+           "Scorpio": "Mining, Research, Insurance, Occult Sciences",
+           "Sagittarius": "Finance, Spirituality, Education, Law Firms",
+           "Capricorn": "Oil, Construction, Leather, Heavy Industries",
+           "Aquarius": "Technology, Innovation, Social Causes, Aviation",
+           "Pisces": "Liquids, Entertainment, Psychology, Spirituality"
+       };
+ 
+       function getSectorAnalysis() {
+           const currentRashi = document.getElementById("currentRashi").value;
+           const sectorAnalysisDiv = document.getElementById("sectorAnalysis");
+           
+           let sectors = rashiSectors[currentRashi] || "No data available";
+           
+           sectorAnalysisDiv.innerHTML = `<p><strong>${currentRashi} governs:</strong> ${sectors}</p>`;
+       }
+   </script>
+</body>
+</html>
