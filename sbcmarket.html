@@ -917,7 +917,7 @@
 
 
                 // localStorage.setItem("tithiPanchang", JSON.stringify(TithiPanchangResponse));
-                initializeData(datass, adminData, gocharData, apiKey,data)
+                initializeData(datass, adminData, gocharData, apiKey, data)
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -2769,11 +2769,196 @@
             }
         ]
 
+        const vedFinder = [
+            {
+                "Nakshatra": "Ashvini",
+                "1": "Healthcare & Medicine",
+                "2": "Defense & Military",
+                "3": "Technology & Innovation",
+                "4": "Finance & Banking"
+            },
+            {
+                "Nakshatra": "Bharani",
+                "1": "Entertainment & Arts",
+                "2": "Real Estate & Property",
+                "3": "Textiles & Fashion",
+                "4": "Oil & Energy"
+            },
+            {
+                "Nakshatra": "Rohini",
+                "1": "Agriculture & Dairy",
+                "2": "Luxury Goods & Jewelry",
+                "3": "Hospitality & Hotels",
+                "4": "Healthcare & Medical Institutions"
+            },
+            {
+                "Nakshatra": "Mrigashira",
+                "1": "Media & Communication",
+                "2": "Marketing & Advertising",
+                "3": "Travel & Tourism",
+                "4": "Software & IT"
+            },
+            {
+                "Nakshatra": "Ardra",
+                "1": "Artificial Intelligence",
+                "2": "Cybersecurity",
+                "3": "Fintech & Digital Banking",
+                "4": "Social Media & Influencer Marketing"
+            },
+            {
+                "Nakshatra": "Punarvasu",
+                "1": "Renewable Energy",
+                "2": "Infrastructure Development",
+                "3": "NGOs & Social Work",
+                "4": "Spiritual & Holistic Healing"
+            },
+            {
+                "Nakshatra": "Pushya",
+                "1": "Banking & Finance",
+                "2": "Healthcare & Pharmaceuticals",
+                "3": "Food & Agriculture",
+                "4": "Education & Research"
+            },
+            {
+                "Nakshatra": "Ashlesha",
+                "1": "Pharmaceuticals & Chemicals",
+                "2": "Psychology & Counseling",
+                "3": "Cybersecurity & Intelligence",
+                "4": "Astrology & Occult Studies"
+            },
+            {
+                "Nakshatra": "Magha",
+                "1": "Government & Leadership",
+                "2": "Real Estate & Heritage",
+                "3": "Politics & Administration",
+                "4": "Luxury & High-Status Businesses"
+            },
+            {
+                "Nakshatra": "Purva Phalguni",
+                "1": "Fashion & Beauty",
+                "2": "Entertainment & Media",
+                "3": "Luxury & Hospitality",
+                "4": "Marriage & Relationships Industry"
+            },
+            {
+                "Nakshatra": "UttaraPhalguni",
+                "1": "Legal & Contracts",
+                "2": "Finance & Banking",
+                "3": "Education & Knowledge",
+                "4": "Public Administration"
+            },
+            {
+                "Nakshatra": "Hasta",
+                "1": "Handicrafts & Manufacturing",
+                "2": "Medical & Healthcare",
+                "3": "Education & Training",
+                "4": "Hospitality & Service Industry"
+            },
+            {
+                "Nakshatra": "Chitra",
+                "1": "Architecture & Design",
+                "2": "Fashion & Creativity",
+                "3": "Construction & Real Estate",
+                "4": "Luxury Goods & Art"
+            },
+            {
+                "Nakshatra": "Svati",
+                "1": "Business & Entrepreneurship",
+                "2": "Travel & Tourism",
+                "3": "Trade & Commerce",
+                "4": "Technology & Communications"
+            },
+            {
+                "Nakshatra": "Vishakha",
+                "1": "Banking & Finance",
+                "2": "Politics & Leadership",
+                "3": "Spiritual & Religious Institutions",
+                "4": "Marketing & Public Relations"
+            },
+            {
+                "Nakshatra": "Anuradha",
+                "1": "Friendship & Networking",
+                "2": "Psychology & Counseling",
+                "3": "International Trade",
+                "4": "Research & Investigation"
+            },
+            {
+                "Nakshatra": "Jyeshtha",
+                "1": "Government & Intelligence",
+                "2": "Strategy & Planning",
+                "3": "Business & Finance",
+                "4": "Security & Defense"
+            },
+            {
+                "Nakshatra": "Mula",
+                "1": "Healing & Medicine",
+                "2": "Pharmaceuticals & Ayurveda",
+                "3": "Exploration & Research",
+                "4": "Spiritual & Occult Studies"
+            },
+            {
+                "Nakshatra": "PurvaShadha",
+                "1": "Marketing & Advertising",
+                "2": "Luxury & Lifestyle",
+                "3": "Water Resources & Marine Industry",
+                "4": "Public Speaking & Influence"
+            },
+            {
+                "Nakshatra": "UttaraShadha",
+                "1": "Politics & Leadership",
+                "2": "Law & Governance",
+                "3": "Education & Research",
+                "4": "Public Administration"
+            },
+            {
+                "Nakshatra": "Sravana",
+                "1": "Education & Teaching",
+                "2": "Communication & Journalism",
+                "3": "Travel & Exploration",
+                "4": "Music & Performing Arts"
+            },
+            {
+                "Nakshatra": "Dhanista",
+                "1": "Music & Arts",
+                "2": "Metals & Mining",
+                "3": "Real Estate & Infrastructure",
+                "4": "Sports & Athletics"
+            },
+            {
+                "Nakshatra": "Shatabhisha",
+                "1": "Medical Research & Healthcare",
+                "2": "Technology & Innovation",
+                "3": "Social Work & Welfare",
+                "4": "Space & Astronomy"
+            },
+            {
+                "Nakshatra": "PurvaBhadra",
+                "1": "Occult & Mysticism",
+                "2": "Finance & Investment",
+                "3": "Extreme Professions",
+                "4": "Non-Profit & Charity"
+            },
+            {
+                "Nakshatra": "UttaraBhadra",
+                "1": "Spirituality & Meditation",
+                "2": "Property & Land Management",
+                "3": "Deep Research & Investigation",
+                "4": "Water & Marine Industries"
+            },
+            {
+                "Nakshatra": "Revati",
+                "1": "Travel & Tourism",
+                "2": "Animal Welfare & Veterinary",
+                "3": "Logistics & Supply Chain",
+                "4": "Art & Creativity"
+            }
+        ]
+
 
         const sparshPlanets = ["Jupiter", "Venus", "Moon", "Mercury"];
         const vedhPlanets = ["Sun", "Mars", "Saturn", "Rahu", "Ketu"];
 
-        async function initializeData(datass, adminData, gocharData, apiKey,data) {
+        async function initializeData(datass, adminData, gocharData, apiKey, data) {
             // console.log(gocharData, "gocharData")
             // console.log(data,"data")
             const nameConsonent = data.consonent;
@@ -2835,18 +3020,18 @@
                         const tithiName = tithiPanchangData2.tithi.name;
                         const tithiType = tithiPanchangData2.tithi.type;
                         const matchingTithi = tithiPanchang.find(t => t.tithi === tithiName && t.paksha === tithiType);
-                        console.log(matchingTithi, "matchingTithi")
-                        console.log(tithiName, "tithiName")
-                        console.log(tithiType, "tithiType")
-                        console.log(tithiPanchang.find(t => t.tithi === tithiName), "match")
+                        // console.log(matchingTithi, "matchingTithi")
+                        // console.log(tithiName, "tithiName")
+                        // console.log(tithiType, "tithiType")
+                        // console.log(tithiPanchang.find(t => t.tithi === tithiName), "match")
                         const tithi = panchangDetails.Tithi
                         const Day_of_Birth = panchangDetails.Day;
                         const yoga = panchangDetails.Yoga;
                         const karana = panchangDetails.Karana;
                         const Nakshatra = panchangDetails.Nakshatra;
                         // console.log(Nakshatra, "Nakshatra")
-                        console.log(tithiPanchang, "tithiPanchang")
-                        console.log(tithi, "tithi")
+                        // console.log(tithiPanchang, "tithiPanchang")
+                        // console.log(tithi, "tithi")
 
                         // yoga
 
@@ -3213,6 +3398,55 @@
                                             // console.log("Matched Value:", gocharNakMatch);
                                         }
                                     }
+
+
+                                    const tithiLordNumber = planetNumberMapping[tithiLord];
+                                    const vedh = tithiVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                                    const varDay = daysVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                                    const rashiDay = nakshatraToRashiVedh[gocharNakshatra] || { front: '-', right: '-', left: '-' };
+                                    const letterDay = letterTable[gocharNakshatra] || { front: '-', right: '-', left: '-' };
+                                    const nakshatraDay = {
+                                        front: vedhTables.front[gocharNakshatra] || '-',
+                                        right: vedhTables.right[gocharNakshatra] || '-',
+                                        left: vedhTables.left[gocharNakshatra] || '-'
+                                    };
+                                    // console.log(nakshatraDay, "nakshatraDay")
+                                    // console.log(letterDay, "letterDay")
+                                    // Calculate Vedh Padas
+
+                                    // console.log(gocharNakshatra,"nakshatra")
+                                    const frontVedhPada = vedhPadaMap(pada);
+                                    const rightVedhPada = vedhPadaMap(pada);
+                                    const leftVedhPada = vedhPadaMap(pada);
+
+                                    const frontnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.front);
+                                    const rightnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.right);
+                                    const leftnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.left);
+
+                                    const frontVedhNakshatra = vedFinder.find((i) =>
+                                        i.Nakshatra === nakshatraDay.front
+                                    )?.[frontVedhPada];
+
+                                    const leftVedhNakshatra = vedFinder.find((i) =>
+                                        i.Nakshatra === nakshatraDay.left
+                                    )?.[leftVedhPada];
+
+                                    const rightVedhNakshatra = vedFinder.find((i) =>
+                                        i.Nakshatra === nakshatraDay.right
+                                    )?.[rightVedhPada];
+
+                                    // Get specific data based on the Vedh Pada value
+                                    const getPadaDetail = (nakshatraObj, vedhPada) => {
+                                        if (nakshatraObj && nakshatraObj.padaDetailss && Array.isArray(nakshatraObj.padaDetailss)) {
+                                            return nakshatraObj.padaDetailss[vedhPada - 1];
+                                        }
+                                        return null;
+                                    };
+
+                                    // console.log(Lucky_Letters,"Lucky_Letters")
+
+                                    // console.log(rashiDay, "rashiDay")
+
                                     const rashiSectors = {
                                         "Aries": "Metals, Defense, Sports, Machinery, Automobiles",
                                         "Taurus": "Banking, Real Estate, Agriculture, Luxury Goods",
@@ -3228,43 +3462,18 @@
                                         "Pisces": "Liquids, Entertainment, Psychology, Spirituality"
                                     };
 
-                                    function getSectorAnalysis(gocharRashii) {
-                                        return rashiSectors[gocharRashi] || "No data available";
+                                    function getSectorAnalysisFromRashiDay(rashiDay) {
+                                        let selectedRashi = rashiDay.front || (rashiDay.left !== "-" ? rashiDay.left : rashiDay.right);
+
+                                        if (!selectedRashi) return "No data available";
+
+                                        return selectedRashi.split(", ").map(rashi => ( rashiSectors[rashi] || "No data available"
+                                        ));
                                     }
-
                                     // Define gocharRashi
-                                    let gocharRashii = "Leo";
-                                    const impactRashi = getSectorAnalysis(gocharRashii);
-
-                                    const tithiLordNumber = planetNumberMapping[tithiLord];
-                                    const vedh = tithiVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
-                                    const varDay = daysVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
-                                    const letterDay = letterTable[gocharNakshatra] || { front: '-', right: '-', left: '-' };
-                                    const nakshatraDay = {
-                                        front: vedhTables.front[gocharNakshatra] || '-',
-                                        right: vedhTables.right[gocharNakshatra] || '-',
-                                        left: vedhTables.left[gocharNakshatra] || '-'
-                                    };
-
-                                    // console.log(letterDay, "letterDay")
-                                    // Calculate Vedh Padas
-                                    const frontVedhPada = vedhPadaMap(pada);
-                                    const rightVedhPada = vedhPadaMap(pada);
-                                    const leftVedhPada = vedhPadaMap(pada);
-
-                                    const frontnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.front);
-                                    const rightnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.right);
-                                    const leftnakshatra = sequence.find(n => n.nakshatras === nakshatraDay.left);
-
-                                    // Get specific data based on the Vedh Pada value
-                                    const getPadaDetail = (nakshatraObj, vedhPada) => {
-                                        if (nakshatraObj && nakshatraObj.padaDetailss && Array.isArray(nakshatraObj.padaDetailss)) {
-                                            return nakshatraObj.padaDetailss[vedhPada - 1];
-                                        }
-                                        return null;
-                                    };
-
-                                    // console.log(Lucky_Letters,"Lucky_Letters")
+                                    // let gocharRashii = "Leo";
+                                    const impactRashi = getSectorAnalysisFromRashiDay(rashiDay);
+                                    // console.log(impactRashi, "gocharRashii")
 
                                     let matchletter = '';
                                     if (letterDay.front.includes(Lucky_Letters)) {
@@ -3279,23 +3488,26 @@
                                     const lifeAspectData = {
                                         planet: name,
                                         nakshatra: gocharNakMatch,
-                                        pada: gocharPada,
-                                        frontVedh: {
-                                            nakshatra: nakshatraDay.front,
-                                            nakshatra1: getPadaDetail(frontnakshatra, frontVedhPada),
-                                            pada: frontVedhPada,
-                                        },
-                                        rightVedh: {
-                                            nakshatra: nakshatraDay.right,
-                                            nakshatra1: getPadaDetail(rightnakshatra, rightVedhPada),
-                                            pada: rightVedhPada,
-                                        },
-                                        leftVedh: {
-                                            nakshatra: nakshatraDay.left,
-                                            nakshatra1: getPadaDetail(leftnakshatra, leftVedhPada),
-                                            pada: leftVedhPada,
-                                        },
-                                        vowel: matchletter,
+                                        // pada: gocharPada,
+                                        // frontVedh: {
+                                        //     nakshatra: nakshatraDay.front,
+                                        //     nakshatra1: getPadaDetail(frontnakshatra, frontVedhPada),
+                                        //     pada: frontVedhPada,
+                                        // },
+                                        // rightVedh: {
+                                        //     nakshatra: nakshatraDay.right,
+                                        //     nakshatra1: getPadaDetail(rightnakshatra, rightVedhPada),
+                                        //     pada: rightVedhPada,
+                                        // },
+                                        // leftVedh: {
+                                        //     nakshatra: nakshatraDay.left,
+                                        //     nakshatra1: getPadaDetail(leftnakshatra, leftVedhPada),
+                                        //     pada: leftVedhPada,
+                                        // },
+                                        frontnakVedh: frontVedhNakshatra,
+                                        rightnakVedh: rightVedhNakshatra,
+                                        leftnakVedh: leftVedhNakshatra,
+                                        vowel: letterDay,
                                         rashi: impactRashi,
                                     };
 
@@ -3358,7 +3570,7 @@
                                     const row = document.createElement('tr');
                                     row.innerHTML = `
                     <td>Tithi</td>
-                    <td>${tithiData.map(data => data.tithiLord).slice(0, 1)}</td>
+                    <td>${tithiData.map(data => data.tithiLord).slice(0, 1)} (${tithiType})</td>
                     <td>${tithiData.map(data => data.sparsh).join(' ')}</td>
                     <td>${tithiData.map(data => data.vedh).join(' ')}</td>
                     <td>${matchingTithi.market_sentiment}</td>
@@ -3418,10 +3630,10 @@
                                             row.innerHTML = `
                                             <td>${i.planet}</td>
                                             <td>${i.nakshatra || "-"}</td>
-                                            <td>${i.frontVedh.nakshatra1}</td>
-                                            <td>${i.leftVedh.nakshatra1}</td>
-                                            <td>${i.rightVedh.nakshatra1}</td>
-                                            <td>${i.vowel ? `${Lucky_Letters}` : "-"}</td>
+                                            <td>${i.frontnakVedh}</td>
+                                            <td>${i.leftnakVedh}</td>
+                                            <td>${i.rightnakVedh}</td>
+                                            <td>${i.vowel.front},${i.vowel.left},${i.vowel.right}</td>
                                             <td>${i.rashi || "-"}</td>
                                         `;
                                             lifeAspectBody.appendChild(row);
