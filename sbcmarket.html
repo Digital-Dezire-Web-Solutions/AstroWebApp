@@ -624,11 +624,19 @@
                                         <th>Front Vedh</th>
                                         <th>Left Vedh</th>
                                         <th>Right Vedh</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lifeAspectBody"></tbody>
+                            </table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Planet</th>
                                         <th>Vowel</th>
                                         <th>Rashi</th>
                                     </tr>
                                 </thead>
-                                <tbody id="lifeAspectBody"></tbody>
+                                <tbody id="lifeAspectBody2"></tbody>
                             </table>
                         </div>
                     </div>
@@ -879,34 +887,26 @@
                 }
 
                 let gocharData = adminData[0].gochar;
-                const today = new Date();
-
-                // Filter data where today's date is within the range
-                gocharData = gocharData.filter(entry => {
-                    const entryDate = new Date(entry.date_of_entry);
-                    const exitDate = new Date(entry.date_of_exit);
-                    return today >= entryDate && today <= exitDate;
-                });
 
                 const api = adminData[0]?.apiKey || [];
                 const apiKey = api[0]?.apiKey;
                 // Function to format date as DD/MM/YYYY
-                function formatDateForPanchang(date) {
-                    let day = String(date.getDate()).padStart(2, '0');
-                    let month = String(date.getMonth() + 1).padStart(2, '0');
-                    let year = date.getFullYear();
-                    return `${day}/${month}/${year}`;
-                }
+                // function formatDateForPanchang(date) {
+                //     let day = String(date.getDate()).padStart(2, '0');
+                //     let month = String(date.getMonth() + 1).padStart(2, '0');
+                //     let year = date.getFullYear();
+                //     return `${day}/${month}/${year}`;
+                // }
 
                 // Function to get the current time in 24-hour format (HH:MM)
-                function getCurrentTime24Hr() {
-                    let hours = String(today.getHours()).padStart(2, '0');
-                    let minutes = String(today.getMinutes()).padStart(2, '0');
-                    return `${hours}:${minutes}`;
-                }
+                // function getCurrentTime24Hr() {
+                //     let hours = String(today.getHours()).padStart(2, '0');
+                //     let minutes = String(today.getMinutes()).padStart(2, '0');
+                //     return `${hours}:${minutes}`;
+                // }
 
-                let formattedTithiDate = formatDateForPanchang(today);
-                let formattedTithiTime = getCurrentTime24Hr();
+                // let formattedTithiDate = formatDateForPanchang(today);
+                // let formattedTithiTime = getCurrentTime24Hr();
 
                 // const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(formattedTithiDate)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&time=${encodeURIComponent(formattedTithiTime)}&lang=en`;
                 // const response3 = await fetch(TithiPanchang);
@@ -944,7 +944,7 @@
             'Jyeshtha': { front: '-', right: '-', left: '-' },
             'Mula': { front: '2,7,12', right: '-', left: '-' },
             'PurvaShadha': { front: '1,6,11,5,10,15,3,8,13', right: '-', left: '-' },
-            'UttaraShadha': { front: '4,9,14', right: '-', left: '-' },
+            'UttraShadha': { front: '4,9,14', right: '-', left: '-' },
             'Sravana': { front: '-', right: '2,7,12,3,8,13', left: '-' },
             'Dhanista': { front: '-', right: '-', left: '1,6,11,4,9,14' },
             'Shatabhisha': { front: '-', right: '-', left: '-' },
@@ -964,7 +964,7 @@
             'Pushya': { front: '-', right: '-', left: '-' },
             'Ashlesha': { front: '-', right: 'Sunday, Tuesday, Friday', left: '-' },
             'Magha': { front: '-', right: '-', left: 'Monday, Wednesday, Thursday' },
-            'Purva Phalguni': { front: '-', right: '-', left: '-' },
+            'PurvaPhalguni': { front: '-', right: '-', left: '-' },
             'UttaraPhalguni': { front: 'Sunday, Tuesday', right: '-', left: '-' },
             'Hasta': { front: 'Monday, Wednesday, Friday, Saturday', right: '-', left: '-' },
             'Chitra': { front: 'Thursday', right: '-', left: '-' },
@@ -974,7 +974,7 @@
             'Jyeshtha': { front: '-', right: '-', left: '-' },
             'Mula': { front: 'Monday, Wednesday', right: '-', left: '-' },
             'PurvaShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
-            'UttaraShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
+            'UttraShadha': { front: 'Sunday, Tuesday, Saturday, Thursday', right: '-', left: '-' },
             'Sravana': { front: '-', right: 'Monday, Wednesday, Thursday', left: '-' },
             'Dhanista': { front: '-', right: '-', left: 'Sunday, Tuesday, Friday' },
             'Shatabhisha': { front: '-', right: '-', left: '-' },
@@ -994,7 +994,7 @@
             'Pushya': { front: 'Leo, Virgo, Libra', right: 'Gemini, Pisces', left: '-' },
             'Ashlesha': { front: '-', right: 'Cancer, Aquarius', left: '-' },
             'Magha': { front: '-', right: '-', left: 'Leo, Capricorn' },
-            'Purva Phalguni': { front: 'Taurus, Gemini, Cancer', right: '-', left: 'Virgo, Sagittarius' },
+            'PurvaPhalguni': { front: 'Taurus, Gemini, Cancer', right: '-', left: 'Virgo, Sagittarius' },
             'UttaraPhalguni': { front: 'Aries, Leo', right: '-', left: 'Libra, Scorpio' },
             'Hasta': { front: 'Virgo, Pisces', right: '-', left: '-' },
             'Chitra': { front: 'Libra, Aquarius', right: 'Cancer, Leo', left: '-' },
@@ -1004,7 +1004,7 @@
             'Jyeshtha': { front: 'Leo, Virgo, Libra', right: '-', left: 'Pisces, Sagittarius' },
             'Mula': { front: 'Cancer, Scorpio', right: '-', left: '-' },
             'PurvaShadha': { front: 'Gemini, Sagittarius', right: '-', left: '-' },
-            'UttaraShadha': { front: 'Taurus, Capricorn', right: 'Libra, Scorpio', left: '-' },
+            'UttraShadha': { front: 'Taurus, Capricorn', right: 'Libra, Scorpio', left: '-' },
             'Sravana': { front: '-', right: 'Leo, Capricorn', left: '-' },
             'Dhanista': { front: '-', right: '-', left: 'Cancer, Aquarius' },
             'Shatabhisha': { front: 'Scorpio, Sagittarius, Capricorn', right: '-', left: 'Gemini, Pisces' },
@@ -1024,7 +1024,7 @@
             'Pushya': { front: 'Da, Lree, Ae, Na', right: 'Ha, O, SA', left: 'OO' },
             'Ashlesha': { front: 'OO, Ma, Ta, Pa, Ra, Tha, Re', right: 'Da, Ga', left: 'AA' },
             'Magha': { front: 'oo, OO, A, Va, Ka, Ha, Da', right: '-', left: 'Ma, Kha' },
-            'Purva Phalguni': { front: 'Ma, Lree, Lri, Ra', right: 'OO', left: 'Ta, Am, Ja' },
+            'PurvaPhalguni': { front: 'Ma, Lree, Lri, Ra', right: 'OO', left: 'Ta, Am, Ja' },
             'UttaraPhalguni': { front: 'Tau, O, Ou, Cha', right: 'Ma, Da', left: 'Pa, Bha' },
             'Hasta': { front: 'Pa, Dha', right: 'Ta, Lree, Ha', left: 'Ra, Ae, Ya' },
             'Chitra': { front: 'Ra, Sa', right: 'Pa, Ka', left: 'Tha, Na' },
@@ -1034,7 +1034,7 @@
             'Jyeshtha': { front: 'Da, Lree, Ae, Na', right: 'Re', left: 'Cha, Aha, Ya' },
             'Mula': { front: 'Ha, Ou, Am, Ya', right: 'Tha, Na', left: 'Bha, Dha' },
             'PurvaShadha': { front: 'Ka, Bha', right: 'Ra, Ae, Ya', left: 'Sa, Aei, Ja' },
-            'UttaraShadha': { front: 'Va, O, Ja, Aha', right: 'Pa, Bha', left: 'Ga, Kha' },
+            'UttraShadha': { front: 'Va, O, Ja, Aha', right: 'Pa, Bha', left: 'Ga, Kha' },
             'Sravana': { front: 'oo, La, Cha, Dha, Sa, Ga, Ree', right: 'Ma, Kha', left: 'EE' },
             'Dhanista': { front: 'Ree, Kha, Ja, Bha, Ya, Na, Re', right: '-', left: 'Da, Ga' },
             'Shatabhisha': { front: 'Ga, Aei, Ae, Tha', right: 'Ree', left: 'Ha, O, SA' },
@@ -1066,14 +1066,14 @@
                 'Jyeshtha': 'Svati',
                 'Mula': 'Chitra',
                 'PurvaShadha': 'Hasta',
-                'UttaraShadha': 'UttaraPhalguni',
+                'UttraShadha': 'UttaraPhalguni',
                 'Sravana': 'Magha',
                 'Dhanista': 'Sravana',
                 'Shatabhisha': 'Abhijit',
-                'PurvaBhadra': 'UttaraShadha',
+                'PurvaBhadra': 'UttraShadha',
                 'UttaraBhadra': 'PurvaShadha',
                 'Revati': 'Mula',
-                'Abhijit': 'Purva Phalguni'
+                'Abhijit': 'PurvaPhalguni'
             },
             left: {
                 'Ashvini': 'Rohini',
@@ -1087,7 +1087,7 @@
                 'Ashlesha': 'Magha',
                 'Magha': 'Sravana',
                 'PurvaPhalguni': 'Abhijit',
-                'UttaraPhalguni': 'UttaraShadha',
+                'UttaraPhalguni': 'UttraShadha',
                 'Hasta': 'PurvaShadha',
                 'Chitra': 'Mula',
                 'Svati': 'Jyeshtha',
@@ -1096,7 +1096,7 @@
                 'Jyeshtha': 'Ashvini',
                 'Mula': 'Revati',
                 'PurvaShadha': 'UttaraBhadra',
-                'UttaraShadha': 'PurvaBhadra',
+                'UttraShadha': 'PurvaBhadra',
                 'Sravana': 'Dhanista',
                 'Dhanista': 'Ashlesha',
                 'Shatabhisha': 'Pushya',
@@ -1110,7 +1110,7 @@
                 'Bharani': 'Magha',
                 'Krittika': 'Sravana',
                 'Rohini': 'Abhijit',
-                'Mrigashira': 'UttaraShadha',
+                'Mrigashira': 'UttraShadha',
                 'Ardra': 'PurvaShadha',
                 'Punarvasu': 'Mula',
                 'Pushya': 'Jyeshtha',
@@ -1126,7 +1126,7 @@
                 'Jyeshtha': 'Pushya',
                 'Mula': 'Punarvasu',
                 'PurvaShadha': 'Ardra',
-                'UttaraShadha': 'Mrigashira',
+                'UttraShadha': 'Mrigashira',
                 'Sravana': 'Krittika',
                 'Dhanista': 'Vishakha',
                 'Shatabhisha': 'Svati',
@@ -1173,7 +1173,7 @@
             "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
             "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
             "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "UttaraShadha", "Sravana", "Dhanista", "Shatabhisha",
+            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
             "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
         ];
 
@@ -1181,7 +1181,7 @@
             {
                 "tithi": "Pratipada",
                 "paksha": "Shukla",
-                "auspiciousness": "Medium",
+                "Nature": "Medium",
                 "good_for": "Starting spiritual practices, worship",
                 "avoid": "Major investments, loans",
                 "market_trend": "Volatile market, sudden movement",
@@ -1190,7 +1190,7 @@
             {
                 "tithi": "Dwitiya",
                 "paksha": "Shukla",
-                "auspiciousness": "Auspicious",
+                "Nature": "Auspicious",
                 "good_for": "Travel, partnerships, financial planning",
                 "avoid": "Legal disputes, conflicts",
                 "market_trend": "Market stabilizing, minor gains",
@@ -1199,7 +1199,7 @@
             {
                 "tithi": "Tritiya",
                 "paksha": "Shukla",
-                "auspiciousness": "Very Auspicious",
+                "Nature": "Very Auspicious",
                 "good_for": "Buying gold, starting new ventures",
                 "avoid": "Debt, legal cases",
                 "market_trend": "Positive momentum in markets",
@@ -1208,7 +1208,7 @@
             {
                 "tithi": "Chaturthi",
                 "paksha": "Shukla",
-                "auspiciousness": "Inauspicious",
+                "Nature": "Inauspicious",
                 "good_for": "Worship of Ganesha, strategic planning",
                 "avoid": "Arguments, risky investments",
                 "market_trend": "High volatility, avoid trading",
@@ -1217,7 +1217,7 @@
             {
                 "tithi": "Panchami",
                 "paksha": "Shukla",
-                "auspiciousness": "Auspicious",
+                "Nature": "Auspicious",
                 "good_for": "Education, medicine, creativity",
                 "avoid": "Property-related matters",
                 "market_trend": "Positive for pharma & tech stocks",
@@ -1226,7 +1226,7 @@
             {
                 "tithi": "Shasti",
                 "paksha": "Shukla",
-                "auspiciousness": "Auspicious",
+                "Nature": "Auspicious",
                 "good_for": "Travel, meeting influential people",
                 "avoid": "Litigation, aggressive actions",
                 "market_trend": "Market sees steady upward trends",
@@ -1235,7 +1235,7 @@
             {
                 "tithi": "Sapthami",
                 "paksha": "Shukla",
-                "auspiciousness": "Very Auspicious",
+                "Nature": "Very Auspicious",
                 "good_for": "Buying vehicles, starting medical treatments",
                 "avoid": "Delaying work, arguments",
                 "market_trend": "Good for auto, transport stocks",
@@ -1244,7 +1244,7 @@
             {
                 "tithi": "Ashtami",
                 "paksha": "Shukla",
-                "auspiciousness": "Inauspicious",
+                "Nature": "Inauspicious",
                 "good_for": "Prayers, fasting, inner reflection",
                 "avoid": "Marriages, business deals",
                 "market_trend": "Market corrections, unpredictable",
@@ -1253,7 +1253,7 @@
             {
                 "tithi": "Navami",
                 "paksha": "Shukla",
-                "auspiciousness": "Inauspicious",
+                "Nature": "Inauspicious",
                 "good_for": "Spiritual work, deep learning",
                 "avoid": "Major purchases, housewarming",
                 "market_trend": "Market slow, low volume trading",
@@ -1262,7 +1262,7 @@
             {
                 "tithi": "Dasami",
                 "paksha": "Shukla",
-                "auspiciousness": "Very Auspicious",
+                "Nature": "Very Auspicious",
                 "good_for": "Starting work, travel, investments",
                 "avoid": "Court matters",
                 "market_trend": "Bullish trends, strong buying",
@@ -1271,7 +1271,7 @@
             {
                 "tithi": "Ekadasi",
                 "paksha": "Shukla",
-                "auspiciousness": "Highly Auspicious",
+                "Nature": "Highly Auspicious",
                 "good_for": "Fasting, long-term financial planning",
                 "avoid": "Luxury spending",
                 "market_trend": "Market stability, positive sentiment",
@@ -1280,7 +1280,7 @@
             {
                 "tithi": "Dvadasi",
                 "paksha": "Shukla",
-                "auspiciousness": "Auspicious",
+                "Nature": "Auspicious",
                 "good_for": "Charity, learning, spiritual activities",
                 "avoid": "Heavy spending, fights",
                 "market_trend": "Steady market growth, good for long-term investments",
@@ -1289,7 +1289,7 @@
             {
                 "tithi": "Trayodasi",
                 "paksha": "Shukla",
-                "auspiciousness": "Auspicious",
+                "Nature": "Auspicious",
                 "good_for": "Business, finance, wealth accumulation",
                 "avoid": "Arguments, unnecessary expenses",
                 "market_trend": "Positive market momentum",
@@ -1298,7 +1298,7 @@
             {
                 "tithi": "Chaturdasi",
                 "paksha": "Shukla",
-                "auspiciousness": "Inauspicious",
+                "Nature": "Inauspicious",
                 "good_for": "Meditation, Shiva worship",
                 "avoid": "Major investments, starting projects",
                 "market_trend": "High volatility, sharp moves",
@@ -1307,7 +1307,7 @@
             {
                 "tithi": "Purnima",
                 "paksha": "Shukla",
-                "auspiciousness": "Very Auspicious",
+                "Nature": "Very Auspicious",
                 "good_for": "Financial deals, celebrations, donations",
                 "avoid": "Anger, ego battles",
                 "market_trend": "Market tops out, reversal possible",
@@ -1316,128 +1316,137 @@
             {
                 "tithi": "Pratipada",
                 "paksha": "Krishna",
-                "auspiciousness": "Inauspicious",
-                "good_for": "Fasting, introspection, spiritual practice",
-                "avoid": "New beginnings, financial investments",
-                "market_trend": "Uncertain, weak market trends",
-                "market_sentiment": "Bearish"
+                "Nature": "Medium",
+                "good_for": "Meditation, self-improvement",
+                "avoid": "Buying assets, loans",
+                "market_trend": "Mixed trends, uncertain movement",
+                "market_sentiment": "Mixed"
             },
             {
                 "tithi": "Dwitiya",
                 "paksha": "Krishna",
-                "auspiciousness": "Moderate",
-                "good_for": "Long-term planning, research, learning",
-                "avoid": "Speculative trading, high-risk deals",
-                "market_trend": "Slow movement, minor corrections",
-                "market_sentiment": "Neutral"
+                "Nature": "Auspicious",
+                "good_for": "Networking, family work	",
+                "avoid": "Risky deals	",
+                "market_trend": "Stability in market, neutral sentiment	",
+                "market_sentiment": "Stable"
             },
             {
                 "tithi": "Tritiya",
                 "paksha": "Krishna",
-                "auspiciousness": "Auspicious",
-                "good_for": "Debt repayment, legal settlements",
-                "avoid": "High-risk business deals",
-                "market_trend": "Steady movement, value buying",
-                "market_sentiment": "Stable"
+                "Nature": "Auspicious",
+                "good_for": "Learning, business expansion	",
+                "avoid": "Major surgeries, conflicts	",
+                "market_trend": "Positive market sentiment	",
+                "market_sentiment": "Bullish"
             },
             {
                 "tithi": "Chaturthi",
                 "paksha": "Krishna",
-                "auspiciousness": "Inauspicious",
-                "good_for": "Obstacle removal, deep meditation",
-                "avoid": "Major decisions, trading",
-                "market_trend": "High volatility, uncertain direction",
-                "market_sentiment": "Volatile"
+                "Nature": "Inauspicious",
+                "good_for": "Prayer, personal discipline	",
+                "avoid": "Investments, court cases	",
+                "market_trend": "Sharp falls, correction phase	",
+                "market_sentiment": "Correction"
             },
             {
                 "tithi": "Panchami",
                 "paksha": "Krishna",
-                "auspiciousness": "Moderate",
-                "good_for": "Healing, medical treatments",
-                "avoid": "New business ventures",
-                "market_trend": "Weak trends, sideways movement",
-                "market_sentiment": "Neutral"
+                "Nature": "Auspicious",
+                "good_for": "Health, research, travel	",
+                "avoid": "Arguments, emotional decisions	",
+                "market_trend": "Market starts recovering	",
+                "market_sentiment": "Recovery"
             },
             {
                 "tithi": "Shasti",
                 "paksha": "Krishna",
-                "auspiciousness": "Auspicious",
-                "good_for": "Property-related matters, contracts",
-                "avoid": "Impulsive investments",
-                "market_trend": "Steady growth, selective buying",
+                "Nature": "Very Auspicious	",
+                "good_for": "Real estate deals, financial planning	",
+                "avoid": "Hasty investments	",
+                "market_trend": "Good for real estate & banking stocks	",
+                "market_sentiment": "Bullish"
+            },
+            {
+                "tithi": "Sapthami",
+                "paksha": "Krishna",
+                "Nature": "Auspicious",
+                "good_for": "Buying land, vehicle, new initiatives",
+                "avoid": "Aggressive actions	",
+                "market_trend": "Market shows slow bullish movement",
                 "market_sentiment": "Bullish"
             },
             {
                 "tithi": "Ashtami",
                 "paksha": "Krishna",
-                "auspiciousness": "Inauspicious",
-                "good_for": "Fasting, penance, charity",
-                "avoid": "Marriages, important events",
-                "market_trend": "Corrections, profit booking",
-                "market_sentiment": "Bearish"
+                "Nature": "Inauspicious",
+                "good_for": "Meditation, fasting, research	",
+                "avoid": "New beginnings, big purchases	",
+                "market_trend": "Market correction, possible losses	",
+                "market_sentiment": "Correction"
             },
             {
                 "tithi": "Navami",
                 "paksha": "Krishna",
-                "auspiciousness": "Inauspicious",
-                "good_for": "Prayers, spiritual retreats",
-                "avoid": "New ventures, major financial decisions",
-                "market_trend": "Weak markets, declining sentiment",
+                "Nature": "Inauspicious",
+                "good_for": "Spiritual retreat, avoiding arguments	",
+                "avoid": "Major contracts, loans	",
+                "market_trend": "Bearish sentiment, market cautious	",
                 "market_sentiment": "Bearish"
             },
             {
                 "tithi": "Dasami",
                 "paksha": "Krishna",
-                "auspiciousness": "Moderate",
-                "good_for": "Settlements, resolving disputes",
-                "avoid": "Major financial transactions",
-                "market_trend": "Market attempts recovery",
-                "market_sentiment": "Neutral"
+                "Nature": "Medium",
+                "good_for": "Career growth, strategic planning	",
+                "avoid": "Aggressive financial moves	",
+                "market_trend": "Market recovery, positive trend	",
+                "market_sentiment": "Recovery"
             },
             {
                 "tithi": "Ekadasi",
                 "paksha": "Krishna",
-                "auspiciousness": "Highly Auspicious",
-                "good_for": "Fasting, meditation, spiritual gains",
-                "avoid": "Material pursuits, extravagance",
-                "market_trend": "Stable, with long-term investment opportunities",
-                "market_sentiment": "Stable"
+                "Nature": "Highly Auspicious",
+                "good_for": "Spiritual progress, long-term investment	",
+                "avoid": "Luxury expenses, speculation	",
+                "market_trend": "Good for long-term holdings	",
+                "market_sentiment": "Bullish"
             },
             {
                 "tithi": "Dvadasi",
                 "paksha": "Krishna",
-                "auspiciousness": "Auspicious",
-                "good_for": "Charitable work, donation, simplicity",
-                "avoid": "Heavy financial transactions",
-                "market_trend": "Gradual improvements, selective investments",
-                "market_sentiment": "Bullish"
+                "Nature": "Auspicious",
+                "good_for": "Donations, financial discipline	",
+                "avoid": "Starting conflicts	",
+                "market_trend": "Market steady, good for banking & IT	",
+                "market_sentiment": "Stable"
             },
             {
                 "tithi": "Trayodasi",
                 "paksha": "Krishna",
-                "auspiciousness": "Auspicious",
-                "good_for": "Wealth accumulation, financial restructuring",
-                "avoid": "Aggressive decisions",
-                "market_trend": "Strong market positioning",
-                "market_sentiment": "Bullish"
+                "Nature": "Auspicious",
+                "good_for": "Short-term financial gains, networking	",
+                "avoid": "Litigation, risky investments	",
+                "market_trend": "Mixed market, short-term gains	",
+                "market_sentiment": "Mixed"
             },
             {
                 "tithi": "Chaturdasi",
                 "paksha": "Krishna",
-                "auspiciousness": "Inauspicious",
-                "good_for": "Deep meditation, Shiva worship",
-                "avoid": "Starting new work",
-                "market_trend": "Market unpredictability, volatility",
-                "market_sentiment": "Volatile"
+                "Nature": "Inauspicious",
+                "good_for": "Worship, fasting, spiritual focus	",
+                "avoid": "Materialistic activities	",
+                "market_trend": "Market uncertainty, possible falls	",
+                "market_sentiment": "Bearish"
             },
             {
                 "tithi": "Amavasya",
                 "paksha": "Krishna",
-                "auspiciousness": "Inauspicious",
-                "good_for": "Spiritual awakening, ancestor worship",
-                "avoid": "Major investments, risky trades",
-                "market_trend": "Weak sentiments, consolidation phase",
-                "market_sentiment": "Bearish"
+                "Nature": "Medium",
+                "good_for": "Inner work, charity, debt clearance	",
+                "avoid": "New ventures, aggressive decisions	",
+                "market_trend": "Weak sentiment, unpredictable market	",
+                "market_sentiment": "Volatile"
             }
         ]
 
@@ -1504,7 +1513,7 @@
                         "3": "Profit Booking in Government Contracts",
                         "4": "Exit: High-Risk Public Sector Ventures"
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "1": "Enter: Luxury Real Estate",
                         "2": "Invest in High-End Properties",
                         "3": "Profit Booking in Luxury Real Estate Stocks",
@@ -1673,7 +1682,7 @@
                         "3": "Profit Booking in PSU Stocks",
                         "4": "Exit: High-Risk Public Sector Ventures"
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "1": "Enter: Hotel & Tourism",
                         "2": "Invest in Hospitality Chains",
                         "3": "Profit Booking in Tourism Stocks",
@@ -1832,7 +1841,7 @@
                         "Retrograde": { "1": "Review Real Estate Portfolios", "2": "Avoid New Property Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Property Ventures", "2": "Potential Volatility", "3": "Hold Stable Property Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Entertainment Industry", "2": "Invest in Media & Arts", "3": "Profit Booking in Entertainment Stocks", "4": "Exit: High-Risk Entertainment Ventures" },
                         "Retrograde": { "1": "Review Media Portfolios", "2": "Avoid New Entertainment Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Entertainment Ventures", "2": "Potential Volatility", "3": "Hold Stable Media Stocks", "4": "Exit if Volatile" }
@@ -1975,7 +1984,7 @@
                         "Retrograde": { "1": "Review Mining Portfolios", "2": "Avoid New Resource Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Mining Ventures", "2": "Potential Volatility", "3": "Hold Stable Mining Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Fashion Industry", "2": "Invest in Luxury Goods", "3": "Profit Booking in Fashion Stocks", "4": "Exit: High-Risk Fashion Ventures" },
                         "Retrograde": { "1": "Review Fashion Portfolios", "2": "Avoid New Luxury Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Fashion Ventures", "2": "Potential Volatility", "3": "Hold Stable Fashion Stocks", "4": "Exit if Volatile" }
@@ -2138,7 +2147,7 @@
                         "Retrograde": { "1": "Review Real Estate Portfolios", "2": "Avoid New Heritage Property Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Real Estate Ventures", "2": "Potential Volatility", "3": "Hold Stable Estate Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Fashion & Lifestyle", "2": "Invest in Leisure & Recreation", "3": "Profit Booking in High-End Fashion", "4": "Exit: High-Risk Leisure Ventures" },
                         "Retrograde": { "1": "Review Lifestyle Portfolios", "2": "Avoid New Leisure Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Leisure Ventures", "2": "Potential Volatility", "3": "Hold Stable Fashion Stocks", "4": "Exit if Volatile" }
@@ -2255,7 +2264,7 @@
                         "Retrograde": { "1": "Review Machinery Portfolios", "2": "Avoid New Equipment Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Machinery Ventures", "2": "Potential Volatility", "3": "Hold Stable Equipment Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Real Estate Development", "2": "Invest in Urban Projects", "3": "Profit Booking in Property Stocks", "4": "Exit: High-Risk Real Estate Ventures" },
                         "Retrograde": { "1": "Review Real Estate Portfolios", "2": "Avoid New Urban Development Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Real Estate Ventures", "2": "Potential Volatility", "3": "Hold Stable Property Stocks", "4": "Exit if Volatile" }
@@ -2396,7 +2405,7 @@
                         "Retrograde": { "1": "Review Real Estate Portfolios", "2": "Avoid New Property Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Property Ventures", "2": "Potential Volatility", "3": "Hold Stable Property Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Fashion & Lifestyle", "2": "Invest in Luxury Goods", "3": "Profit Booking in Fashion Stocks", "4": "Exit: High-Risk Fashion Ventures" },
                         "Retrograde": { "1": "Review Fashion Portfolios", "2": "Avoid New Luxury Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Fashion Ventures", "2": "Potential Volatility", "3": "Hold Stable Fashion Stocks", "4": "Exit if Volatile" }
@@ -2538,7 +2547,7 @@
                         "Retrograde": { "1": "Review PropTech Portfolios", "2": "Avoid New Property Tech Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Real Estate Tech Ventures", "2": "Potential Volatility", "3": "Hold Stable PropTech Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Fashion Technology", "2": "Invest in Smart Wearables", "3": "Profit Booking in Fashion Tech Stocks", "4": "Exit: High-Risk Fashion Ventures" },
                         "Retrograde": { "1": "Review Fashion Tech Portfolios", "2": "Avoid New Wearable Tech Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Fashion Ventures", "2": "Potential Volatility", "3": "Hold Stable Wearable Stocks", "4": "Exit if Volatile" }
@@ -2680,7 +2689,7 @@
                         "Retrograde": { "1": "Review Property Portfolios", "2": "Avoid New Real Estate Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Property Ventures", "2": "Potential Volatility", "3": "Hold Stable Real Estate Stocks", "4": "Exit if Volatile" }
                     },
-                    "Purva Phalguni": {
+                    "PurvaPhalguni": {
                         "Direct": { "1": "Enter: Fashion & Design", "2": "Invest in Creative Industries", "3": "Profit Booking in Luxury Goods", "4": "Exit: High-Risk Fashion Ventures" },
                         "Retrograde": { "1": "Review Fashion Portfolios", "2": "Avoid New Design Investments", "3": "Hold Existing", "4": "No New Trades" },
                         "Combust": { "1": "Avoid High-Risk Fashion Ventures", "2": "Potential Volatility", "3": "Hold Stable Fashion Stocks", "4": "Exit if Volatile" }
@@ -2834,7 +2843,7 @@
                 "4": "Luxury & High-Status Businesses"
             },
             {
-                "Nakshatra": "Purva Phalguni",
+                "Nakshatra": "PurvaPhalguni",
                 "1": "Fashion & Beauty",
                 "2": "Entertainment & Media",
                 "3": "Luxury & Hospitality",
@@ -2904,7 +2913,7 @@
                 "4": "Public Speaking & Influence"
             },
             {
-                "Nakshatra": "UttaraShadha",
+                "Nakshatra": "UttraShadha",
                 "1": "Politics & Leadership",
                 "2": "Law & Governance",
                 "3": "Education & Research",
@@ -2951,6 +2960,20 @@
                 "2": "Animal Welfare & Veterinary",
                 "3": "Logistics & Supply Chain",
                 "4": "Art & Creativity"
+            },
+            {
+                "Nakshatra": "Abhijit",
+                "1": "Space & Aerospace",
+                "2": "AGovernment Policies & Leadership",
+                "3": "Pharmaceuticals & Biotech",
+                "4": "Luxury & High-end Brands"
+            },
+            {
+                "Nakshatra": "Krittika",
+                "1": "Metals & Mining",
+                "2": "Defense & Military Equipment",
+                "3": "Agriculture & Farming Equipment",
+                "4": "Education & Research"
             }
         ]
 
@@ -2959,7 +2982,7 @@
         const vedhPlanets = ["Sun", "Mars", "Saturn", "Rahu", "Ketu"];
 
         async function initializeData(datass, adminData, gocharData, apiKey, data) {
-            // console.log(gocharData, "gocharData")
+
             // console.log(data,"data")
             const nameConsonent = data.consonent;
             // console.log(nameConsonent,"nameConsonent")
@@ -2995,6 +3018,23 @@
                     return `${day}/${month}/${year}`;  // Converts to DD/MM/YYYY format
                 }
                 const updatePanchang = async () => {
+                    // console.log(gocharData, "Before filtering");
+
+                    let GocharDatas = []
+
+                    // Get today's date in YYYY-MM-DD format
+                    const today = new Date(currentDate);
+                    const formattedToday = today.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+
+                    // console.log(formattedToday, "Formatted Today");
+
+                    // Filter data where today's date is within the range
+                    GocharDatas = gocharData.filter(entry => {
+                        return formattedToday >= entry.date_of_entry && formattedToday <= entry.date_of_exit;
+                    });
+
+                    // console.log(GocharDatas, "Filtered Gochar Data");
+
                     currentDate.setHours(currentHours, currentMinutes); // Ensure currentDate has updated time
                     let formattedDate = formatDate(currentDate);  // Convert to DD/MM/YYYY
                     let nextDate = new Date(currentDate);
@@ -3082,6 +3122,33 @@
                         }
                         let panchangDetails3 = { karana };
                         const KaranaImpact = getKaranaRecommendation(panchangDetails3);
+
+                        // console.log(Nakshatra, "Nakshatra")
+
+                        // nakshatra
+                        const auspiciousNakshatras = ["Rohini", "UttaraPhalguni", "Hasta", "Pushya", "Anuradha", "Sravana"];
+                        const volatileNakshatras = ["Mula", "Ashlesha", "Magha", "Ardra", "Jyeshtha", "Shatabhisha"];
+                        const neutralNakshatras = ["Bharani", "Krittika", "Mrigashira", "Punarvasu", "Chitra", "Svati", "Vishakha", "PurvaPhalguni", "Dhanista", "PurvaBhadra", "UttaraBhadra", "Revati"];
+
+                        let nakshatraImpact = ""; // Variable to store recommendation
+
+                        function getRecommendation(Nakshatra) {
+                            if (auspiciousNakshatras.includes(Nakshatra)) {
+                                nakshatraImpact = "✅ Favorable Nakshatra for Trading - Positive energy supports growth and stability.";
+                            } else if (volatileNakshatras.includes(Nakshatra)) {
+                                nakshatraImpact = "⚠️ Volatile Nakshatra - Market may be unpredictable, trade cautiously.";
+                            } else if (neutralNakshatras.includes(Nakshatra)) {
+                                nakshatraImpact = "⚠️ Neutral Nakshatra - Mixed results expected, manage risks wisely.";
+                            } else {
+                                nakshatraImpact = "⚠️ Unknown Nakshatra - Limited data available, proceed with caution.";
+                            }
+
+                        }
+
+                        // Call function with Nakshatra variable
+                        getRecommendation(Nakshatra);
+
+                        // console.log(nakshatraImpact, "nakshatraImpact");
 
                         if (horoscopeData && horoscopeData.response) {
                             const planetDatas = horoscopeData.response;
@@ -3198,7 +3265,7 @@
                                     let gocharMotion = [];
                                     let gocharCombust = [];
                                     let gocharNakMatch = [];
-                                    const gocharPlanet = gocharData.find((i) => i.planet_name === name)
+                                    const gocharPlanet = GocharDatas.find((i) => i.planet_name === name)
                                     // console.log(gocharPlanet, "gocharPlanet")
                                     if (gocharPlanet) {
                                         gocharNakshatra = gocharPlanet.nakshatra;
@@ -3207,6 +3274,7 @@
                                         gocharMotion = gocharPlanet.motion;
                                         gocharCombust = gocharPlanet.combust;
                                         const planetName = gocharPlanet.planet_name
+                                        // console.log(planetName, "gplanetName")
 
                                         if (planetName === "Sun") {
                                             const sunData = sunFinder[0]["Sun"];
@@ -3467,7 +3535,7 @@
 
                                         if (!selectedRashi) return "No data available";
 
-                                        return selectedRashi.split(", ").map(rashi => ( rashiSectors[rashi] || "No data available"
+                                        return selectedRashi.split(", ").map(rashi => (rashiSectors[rashi] || "No data available"
                                         ));
                                     }
                                     // Define gocharRashi
@@ -3483,6 +3551,10 @@
                                     } else if (letterDay.left.includes(Lucky_Letters)) {
                                         matchletter = 'Left';
                                     }
+                                    // console.log(gocharNakMatch,"gocharNakMatch")
+                                    // console.log(gocharNakshatra,"gocharNakshatra")
+                                    //                         console.log(Nakshatra, "Nakshatra")
+
 
                                     // console.log(matchletter,"matchletter")
                                     const lifeAspectData = {
@@ -3617,6 +3689,19 @@
                 `;
                                     tableBody.appendChild(row);
                                 }
+                                // Append a single row for letter data
+                                if (Nakshatra.length > 0) {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                <td>Nakshatra</td>
+                    <td>${Nakshatra}</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>${nakshatraImpact}</td>
+                    <td>-</td>
+                `;
+                                    tableBody.appendChild(row);
+                                }
 
                                 // aspect ratio table
 
@@ -3633,10 +3718,24 @@
                                             <td>${i.frontnakVedh}</td>
                                             <td>${i.leftnakVedh}</td>
                                             <td>${i.rightnakVedh}</td>
+                                        `;
+                                            lifeAspectBody.appendChild(row);
+                                        }
+                                    });
+                                }
+                                // Append a single row for nakshatra data
+                                const lifeAspectBody2 = document.getElementById('lifeAspectBody2');
+                                lifeAspectBody2.innerHTML = "";
+                                if (lifeAspect.length > 0) {
+                                    lifeAspect.forEach((i) => {
+                                        if (i.nakshatra && i.nakshatra.length > 0 && i.nakshatra.trim() !== '') {
+                                            const row = document.createElement('tr');
+                                            row.innerHTML = `
+                                            <td>${i.planet}</td>
                                             <td>${i.vowel.front},${i.vowel.left},${i.vowel.right}</td>
                                             <td>${i.rashi || "-"}</td>
                                         `;
-                                            lifeAspectBody.appendChild(row);
+                                            lifeAspectBody2.appendChild(row);
                                         }
                                     });
                                 }

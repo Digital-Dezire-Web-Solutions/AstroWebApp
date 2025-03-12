@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Nakshatra-Based Trading Recommendations</title>
+   <style>
+       table {
+           width: 100%;
+           border-collapse: collapse;
+           font-size: 12px;
+       }
+       th, td {
+           border: 1px solid #ddd;
+           padding: 8px;
+           text-align: center;
+       }
+       th {
+           background-color: #f2f2f2;
+       }
+       tr:nth-child(even) {background-color: #f9f9f9;}
+       tr:hover {background-color: #f1f1f1;}
+       .trade {background-color: #e6ffe6; color: green;}
+       .avoid {background-color: #ffe6e6; color: red;}
+       .caution {background-color: #fff8e6; color: orange;}
+   </style>
+</head>
+<body>
+   <h1>Nakshatra-Based Trading Recommendations</h1>
+   <p>Get personalized trading advice based on the <strong>current Nakshatra</strong>.</p>
+ 
+   <label for="currentNakshatra">Select Current Nakshatra:</label>
+   <select id="currentNakshatra">
+       <option value="Ashwini">Ashwini</option>
+       <option value="Bharani">Bharani</option>
+       <option value="Krittika">Krittika</option>
+       <option value="Rohini">Rohini</option>
+       <option value="Mrigashira">Mrigashira</option>
+       <option value="Ardra">Ardra</option>
+       <option value="Punarvasu">Punarvasu</option>
+       <option value="Pushya">Pushya</option>
+       <option value="Ashlesha">Ashlesha</option>
+       <option value="Magha">Magha</option>
+       <option value="Purva Phalguni">Purva Phalguni</option>
+       <option value="Uttara Phalguni">Uttara Phalguni</option>
+       <option value="Hasta">Hasta</option>
+       <option value="Chitra">Chitra</option>
+       <option value="Swati">Swati</option>
+       <option value="Vishakha">Vishakha</option>
+       <option value="Anuradha">Anuradha</option>
+       <option value="Jyeshtha">Jyeshtha</option>
+       <option value="Moola">Moola</option>
+       <option value="Purva Ashadha">Purva Ashadha</option>
+       <option value="Uttara Ashadha">Uttara Ashadha</option>
+       <option value="Shravana">Shravana</option>
+       <option value="Dhanishta">Dhanishta</option>
+       <option value="Shatabhisha">Shatabhisha</option>
+       <option value="Purva Bhadrapada">Purva Bhadrapada</option>
+       <option value="Uttara Bhadrapada">Uttara Bhadrapada</option>
+       <option value="Revati">Revati</option>
+   </select>
+ 
+   <button onclick="getRecommendation()">Get Recommendation</button>
+ 
+   <h2>Trading Recommendation:</h2>
+   <div id="recommendation"></div>
+ 
+   <script>
+       const auspiciousNakshatras = ["Rohini", "Uttara Phalguni", "Hasta", "Pushya", "Anuradha", "Shravana"];
+       const volatileNakshatras = ["Moola", "Ashlesha", "Magha", "Ardra", "Jyeshtha", "Shatabhisha"];
+       const neutralNakshatras = ["Bharani", "Krittika", "Mrigashira", "Punarvasu", "Chitra", "Swati", "Vishakha", "Purva Phalguni", "Dhanishta", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"];
+ 
+       function getRecommendation() {
+           const currentNakshatra = document.getElementById("currentNakshatra").value;
+           const recommendationDiv = document.getElementById("recommendation");
+ 
+           let recommendation = "";
+ 
+           if (auspiciousNakshatras.includes(currentNakshatra)) {
+               recommendation = "✅ Favorable Nakshatra for Trading - Positive energy supports growth and stability.";
+           } else if (volatileNakshatras.includes(currentNakshatra)) {
+               recommendation = "⚠️ Volatile Nakshatra - Market may be unpredictable, trade cautiously.";
+           } else if (neutralNakshatras.includes(currentNakshatra)) {
+               recommendation = "⚠️ Neutral Nakshatra - Mixed results expected, manage risks wisely.";
+           } else {
+               recommendation = "⚠️ Unknown Nakshatra - Limited data available, proceed with caution.";
+           }
+ 
+           recommendationDiv.innerHTML = `<p>${recommendation}</p>`;
+       }
+   </script>
+</body>
+</html>

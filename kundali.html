@@ -847,10 +847,38 @@
                                         <th>Planets </th>
                                         <th>Nature</th>
                                         <th>Dasha</th>
-                                        <!-- <th>Gochar</th> -->
                                     </tr>
                                 </thead>
-                                <tbody data-table="positive" class="tableBody showtablebody" id="planetTable">
+                                <tbody data-table="positive" class="tableBody showtablebody" id="thirdTable">
+                                </tbody>
+                            </table>
+                            <h6 style="margin: 2rem 0 1rem 0;">Life Aspect</h6>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nakshatra(Pada)</th>
+                                        <th>Rashi</th>
+                                        <th>Planets </th>
+                                        <th>Nature</th>
+                                        <th>Dasha</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-table="positive" class="tableBody showtablebody" id="fourthTable">
+                                </tbody>
+                            </table>
+                            <h6 style="margin: 2rem 0 1rem 0;"></h6>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nakshatra(Pada)</th>
+                                        <th>Rashi</th>
+                                        <th>Planets </th>
+                                        <th>Nature</th>
+                                        <th>Dasha</th>
+                                        <th>Gochar</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-table="positive" class="tableBody showtablebody" id="fifthTable">
                                 </tbody>
                             </table>
                         </div>
@@ -1164,11 +1192,11 @@
     <script>
         const nakshatraPadas = [];
         const nakshatras = [
-            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
-            "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "UttaraPhalguni", "Hasta",
-            "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
+            "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
+            "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
             "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
-            "PurvaBhadra", "UttaraBhadra", "Revati"
+            "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
         ];
 
         const rashis = [
@@ -1268,13 +1296,30 @@
                     }
                 });
 
+                const response2 = await fetch(`${host}/api/admindetail/all`);
+                const data = await response2.json();
+
+                if (!Array.isArray(data) || data.length === 0 || !data[0].gochar || !Array.isArray(data[0].gochar)) {
+                    throw new Error("Invalid data format: 'gochar' is missing or not an array.");
+                }
+
+                let gocharData = data[0].gochar;
+                const today = new Date();
+
+                // Filter data where today's date is within the range
+                gocharData = gocharData.filter(entry => {
+                    const entryDate = new Date(entry.date_of_entry);
+                    const exitDate = new Date(entry.date_of_exit);
+                    return today >= entryDate && today <= exitDate;
+                });
+
                 if (!response.ok) {
                     throw new Error("Failed to fetch data");
                 }
 
                 const datass = await response.json();
                 // console.log(datass, "data")
-                initializeData(datass)
+                initializeData(datass, gocharData)
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -1361,7 +1406,8 @@
         }
         displayStatus();
 
-        async function initializeData(datass, selectedHouse = "1") {
+        async function initializeData(datass, gocharData, selectedHouse = "1") {
+            let GocharData = gocharData;
             let horoscopeData = datass[0]?.horoscopeData || [];
             let dashas = datass[0]?.dashas || [];
             let rashiData = datass[0]?.rashiData || [];
@@ -1501,15 +1547,16 @@
                     });
 
 
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < 9; i++) {
                         const padaIndex = (currentIndex + i) % nakshatraPadas.length;
                         const pada = nakshatraPadas[padaIndex];
-                        // console.log(pada,"pada")
+                        // console.log(pada, "pada")
 
                         // Find all matching planets
                         const matchingPlanets = planets.filter(
                             (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
                         );
+
 
                         let planetNames = matchingPlanets.length > 0 ? matchingPlanets.map((planet) => planet.name).join(", ") : "-";
                         let dashakeys = [];
@@ -1545,7 +1592,8 @@
                         });
                     }
 
-                    let planetTable = document.getElementById("planetTable");
+                    // let planetTable = document.getElementById("planetTable");
+                    // let matchedTable = document.getElementById("matchedTable");
                     let selectedDivisional = document.getElementById("divisionalSelect").value;
                     let selectedRasNak = document.getElementById("rashiNakSelect").value;
 
@@ -1558,7 +1606,7 @@
                         // console.log(selectedRasNak, "selectedRasNak")
                         // console.log(comparisonData, "comparisonData")
 
-                        planetTable.innerHTML = ``;
+                        // planetTable.innerHTML = ``;
 
                         let allMatchingPlanets = [];
 
@@ -1598,6 +1646,9 @@
                             // Sort by percentage (descending order)
                             return getValue(b) - getValue(a);
                         });
+
+                        let firstTableData = [];
+                        let secondTableData = [];
 
                         comparisonData.forEach((data) => {
                             // console.log(data, "data");
@@ -1712,28 +1763,42 @@
                                 let dashaForms = dashakeys.map(key => dashaLabels[key]);
                                 let dashaForm = dashaForms.length > 0 ? `${dashaForms.join(", ")}` : "-";
 
-                                // Append planet data row
-                                const row = `
-        <tr>
-            <td class="td-span">
-                <span>${matchedNakshatra}(${matchedPada})</span>
-            </td>
-            <td class="td-span">
-                <span>${matchedRashis}</span>
-            </td>
-            <td class="td-span">
-                <span>${planetName} ${percentageText} ${retroPlanet} ${combustPlanet}</span>
-            </td>
-            <td class="td-span">
-                <div class="color-bx ${status}" data-tooltip="${positionValue?.status ? positionValue.status : ''}"></div>
-            </td>
-            <td class="td-span">
-                <span>${dashaForm}</span>
-            </td>
-        </tr>
-    `;
+                                // Store in an array
+                                firstTableData.push({
+                                    nakshatra: matchedNakshatra,
+                                    pada: matchedPada,
+                                    rashi: matchedRashis,
+                                    planet: planetName,
+                                    positionValue: positionValue,
+                                    status: status,
+                                    percentageText: percentageText,
+                                    retroPlanet: retroPlanet,
+                                    combustPlanet: combustPlanet,
+                                    dashaForm: dashaForm
+                                });
 
-                                planetTable.innerHTML += row;
+                                // Append planet data row
+                                //                             const row = `
+                                //     <tr>
+                                //         <td class="td-span">
+                                //             <span>${matchedNakshatra}(${matchedPada})</span>
+                                //         </td>
+                                //         <td class="td-span">
+                                //             <span>${matchedRashis}</span>
+                                //         </td>
+                                //         <td class="td-span">
+                                //             <span>${planetName} ${percentageText} ${retroPlanet} ${combustPlanet}</span>
+                                //         </td>
+                                //         <td class="td-span">
+                                //             <div class="color-bx ${status}" data-tooltip="${positionValue?.status ? positionValue.status : ''}"></div>
+                                //         </td>
+                                //         <td class="td-span">
+                                //             <span>${dashaForm}</span>
+                                //         </td>
+                                //     </tr>
+                                // `;
+
+                                //                             planetTable.innerHTML += row;
                             }
                         });
 
@@ -1747,20 +1812,106 @@
                             let matchedNakshatras = data.pada?.nakshatra || "";
                             let matchedRashi = data.pada?.rashi || "";
                             if (matchedPadas) {
-                                const row = `
-<tr>
-<td class="td-span"><span>${matchedNakshatras}(${matchedPadas})</span></td>
-<td class="td-span"><span>${matchedRashi}</span></td>
-<td class="td-span"><span>${planetName || "-"}</span></td>
-<td class="td-span"><span>-</span></td>
-<td class="td-span"><span>-</span></td>
-</tr>
-`;
+                                secondTableData.push({
+                                    nakshatra: matchedNakshatras,
+                                    pada: matchedPadas,
+                                    rashi: matchedRashi
+                                });
+                                //                                 const row = `
+                                // <tr>
+                                // <td class="td-span"><span>${matchedNakshatras}(${matchedPadas})</span></td>
+                                // <td class="td-span"><span>${matchedRashi}</span></td>
+                                // <td class="td-span"><span>${planetName || "-"}</span></td>
+                                // <td class="td-span"><span>-</span></td>
+                                // <td class="td-span"><span>-</span></td>
+                                // </tr>
+                                // `;
 
-                                planetTable.innerHTML += row;
+                                //                                 planetTable.innerHTML += row;
                             }
 
                         });
+                        // Compare and generate the third table
+                        let thirdTableContent = "";
+                        let fourthTableContent = "";
+                        let fifthTableContent = "";
+                        let matchedNakshatras = new Set();
+                        let matchedPlanets = new Set(); // Track planets added to the third table
+
+                        secondTableData.forEach((entry2) => {
+                            let matches = firstTableData.filter(entry1 => entry1.nakshatra === entry2.nakshatra);
+                            let matchPlanetst3 = matches.find((i) => i.pada === entry2.pada);
+
+                            // Add planet to the set to prevent duplicate display
+                            if (matchPlanetst3?.planet) {
+                                matchedPlanets.add(matchPlanetst3.planet);
+                            }
+
+                            thirdTableContent += `
+                                <tr>
+                                    <td class="td-span"><span>${entry2.nakshatra}(${entry2.pada})</span></td>
+                                    <td class="td-span"><span>${entry2.rashi}</span></td>
+                                    <td class="td-span"><span>${matchPlanetst3?.planet || "-"} ${matchPlanetst3?.percentageText || " "} ${matchPlanetst3?.retroPlanet || " "} ${matchPlanetst3?.combustPlanet || " "} </span></td>
+                                    <td class="td-span">
+                                        <div class="color-bx ${matchPlanetst3?.status || "-"}" data-tooltip="${matchPlanetst3?.positionValue?.status ? matchPlanetst3?.positionValue.status : '-'}"></div>
+                                    </td>
+                                    <td class="td-span">
+                                        <span>${matchPlanetst3?.dashaForm || "-"}</span>
+                                    </td>
+                                </tr>`;
+                        });
+
+                        // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
+                        firstTableData.forEach(entry1 => {
+                            if (!matchedNakshatras.has(entry1.nakshatra) && !matchedPlanets.has(entry1.planet)) {
+                                fourthTableContent += `
+                                <tr>
+                                    <td class="td-span"><span>${entry1.nakshatra}(${entry1.pada})</span></td>
+                                    <td class="td-span"><span>${entry1.rashi}</span></td>
+                                    <td class="td-span"><span>${entry1.planet || "-"} ${entry1?.percentageText || " "} ${entry1?.retroPlanet || " "} ${entry1?.combustPlanet || " "} </span></td>
+                                    <td class="td-span">
+                                        <div class="color-bx ${entry1?.status || "-"}" data-tooltip="${entry1?.positionValue?.status ? entry1?.positionValue.status : '-'}"></div>
+                                    </td>
+                                    <td class="td-span">
+                                        <span>${entry1?.dashaForm || "-"}</span>
+                                    </td>
+                                </tr>`;
+                            }
+                        });
+                        // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
+                        firstTableData.forEach(entry1 => {
+
+                            // console.log(GocharData,"gocharData")
+                            let matchGocharPlanet = GocharData.find((i) => i.planet_name === entry1.planet)
+                            // console.log(matchGocharPlanet, "matchPlanet")
+
+                            // if (!matchedNakshatras.has(entry1.nakshatra) && !matchedPlanets.has(entry1.planet)) {
+                            fifthTableContent += `
+                                <tr>
+                                    <td class="td-span"><span>${entry1.nakshatra}(${entry1.pada})</span></td>
+                                    <td class="td-span"><span>${entry1.rashi}</span></td>
+                                    <td class="td-span"><span>${entry1.planet || "-"} ${entry1?.percentageText || " "} ${entry1?.retroPlanet || " "} ${entry1?.combustPlanet || " "} </span></td>
+                                    <td class="td-span">
+                                        <div class="color-bx ${entry1?.status || "-"}" data-tooltip="${entry1?.positionValue?.status ? entry1?.positionValue.status : '-'}"></div>
+                                    </td>
+                                    <td class="td-span">
+                                        <span>${entry1?.dashaForm || "-"}</span>
+                                    </td>
+                                    <td class="td-span">
+                                       <span>
+                                         ${matchGocharPlanet?.nakshatra
+                                    ? `${matchGocharPlanet.nakshatra} (${matchGocharPlanet.pada || ""})`
+                                    : "-"}
+                                       </span>
+                                    </td>
+                                </tr>`;
+                            // }
+                        });
+
+                        // Append the matched and unmatched data to respective tables
+                        document.getElementById("thirdTable").innerHTML = thirdTableContent;
+                        document.getElementById("fourthTable").innerHTML = fourthTableContent;
+                        document.getElementById("fifthTable").innerHTML = fifthTableContent;
                     }
 
                     // Event listener for divisional chart selection
