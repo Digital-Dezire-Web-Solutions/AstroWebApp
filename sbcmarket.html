@@ -3709,16 +3709,57 @@
                                 const lifeAspectBody = document.getElementById('lifeAspectBody');
                                 lifeAspectBody.innerHTML = "";
                                 if (lifeAspect.length > 0) {
+                                    const planetOrder = ["Jupiter", "Venus", "Mercury", "Moon", "Sun", "Mars", "Saturn", "Rahu", "Ketu"];
+
+                                    // Sort based on custom planet order
+                                    lifeAspect.sort((a, b) => {
+                                        return planetOrder.indexOf(a.planet) - planetOrder.indexOf(b.planet);
+                                    });
+
+
+                                    // console.log(lifeAspect, "lifeAspect");
+                                    let status = [];
+
+                                    if (lifeAspect.some((i) => i.planet === "Jupiter")) {
+                                        status.push('color-pos-bx1');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Venus")) {
+                                        status.push('color-pos-bx2');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Mercury")) {
+                                        status.push('color-pos-bx3');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Moon")) {
+                                        status.push('color-pos-bx3');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Sun")) {
+                                        status.push('color-pos-bx4');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Mars")) {
+                                        status.push('color-pos-bx4');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Saturn")) {
+                                        status.push('color-pos-bx6');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Rahu")) {
+                                        status.push('color-pos-bx6');
+                                    }
+                                    if (lifeAspect.some((i) => i.planet === "Ketu")) {
+                                        status.push('color-pos-bx6');
+                                    }
+
+                                    // console.log(status, "status");
+
                                     lifeAspect.forEach((i) => {
                                         if (i.nakshatra && i.nakshatra.length > 0 && i.nakshatra.trim() !== '') {
                                             const row = document.createElement('tr');
                                             row.innerHTML = `
-                                            <td>${i.planet}</td>
-                                            <td>${i.nakshatra || "-"}</td>
-                                            <td>${i.frontnakVedh}</td>
-                                            <td>${i.leftnakVedh}</td>
-                                            <td>${i.rightnakVedh}</td>
-                                        `;
+            <td>${i.planet}</td>
+            <td>${i.nakshatra || "-"}</td>
+            <td>${i.frontnakVedh}</td>
+            <td>${i.leftnakVedh}</td>
+            <td>${i.rightnakVedh}</td>
+        `;
                                             lifeAspectBody.appendChild(row);
                                         }
                                     });

@@ -852,7 +852,7 @@
                                 <tbody data-table="positive" class="tableBody showtablebody" id="thirdTable">
                                 </tbody>
                             </table>
-                            <h6 style="margin: 2rem 0 1rem 0;">Life Aspect</h6>
+                            <h6 style="margin: 2rem 0 1rem 0;">Planet Aspect</h6>
                             <table>
                                 <thead>
                                     <tr>
@@ -866,7 +866,7 @@
                                 <tbody data-table="positive" class="tableBody showtablebody" id="fourthTable">
                                 </tbody>
                             </table>
-                            <h6 style="margin: 2rem 0 1rem 0;"></h6>
+                            <h6 style="margin: 2rem 0 1rem 0;">Gochar</h6>
                             <table>
                                 <thead>
                                     <tr>
@@ -1196,7 +1196,7 @@
             "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
             "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
             "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
-            "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
+            "PurvaBhadra", "UttaraBhadra", "Revati"
         ];
 
         const rashis = [
@@ -1475,15 +1475,20 @@
                     (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
                 );
 
+                let currentIndex2 = nakshatraPadas.findIndex(
+                    (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+                );
+
+
                 let storedPadas = [];
                 let comparisonData = []; // Store comparison data for use in resultTable
 
 
                 for (let house = 1; house <= 12; house++) {
-                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+                    currentIndex2 = (currentIndex2 + 9) % nakshatraPadas.length;
 
                     for (let i = 0; i < 10; i++) {
-                        const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                        const padaIndex = (currentIndex2 + i) % nakshatraPadas.length;
                         const pada = nakshatraPadas[padaIndex];
                         storedPadas.push(nakshatraPadas[padaIndex]);
                     }
@@ -1564,12 +1569,13 @@
                         matchingPlanets.forEach((planet) => {
                             Object.entries(dashas).forEach(([key, value]) => {
                                 if (value.name === planet.name) {
-                                    dashakeys.push(key);
+                                    dashakeys.push(key, value);
                                 }
                             });
                         });
 
                         const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
+                        // console.log(dashakeys,"dashaText")
 
                         // Find planets with percentage matches
                         let oneHundredPercentNames = comparisonData
@@ -1747,7 +1753,7 @@
                                 let dashakeys = [];
                                 Object.entries(dashas).forEach(([key, value]) => {
                                     if (value.name === planetName) {
-                                        dashakeys.push(key);
+                                        dashakeys.push({ key, value });
                                     }
                                 });
 
@@ -1760,8 +1766,21 @@
                                     sub_sub_minor: "Sookshma Dasha (SD)"
                                 };
 
-                                let dashaForms = dashakeys.map(key => dashaLabels[key]);
-                                let dashaForm = dashaForms.length > 0 ? `${dashaForms.join(", ")}` : "-";
+                                let dashaForms = dashakeys.map(({ key }) => dashaLabels[key] || key);
+
+                                // Extract actual dasha values (ensuring valid data)
+                                let dashaValues = dashakeys.map(({ value }) => value ? value : null).filter(Boolean);
+
+                                // Format outputs
+                                let dashaForm = dashaForms.length > 0 ? dashaForms.join(", ") : "-";
+                                let dashavalueForm = dashaValues.length > 0 ? dashaValues : "-";
+
+                                let dashaStart = dashaValues.length > 0 ? new Date(dashaValues[0].start).toISOString().split("T")[0] : "-";
+                                let dashaEnd = dashaValues.length > 0 ? new Date(dashaValues[0].end).toISOString().split("T")[0] : "-";
+
+                                // console.log(dashaStart, "dashaStart");
+                                // console.log(dashaEnd, "dashaEnd");
+
 
                                 // Store in an array
                                 firstTableData.push({
@@ -1774,7 +1793,9 @@
                                     percentageText: percentageText,
                                     retroPlanet: retroPlanet,
                                     combustPlanet: combustPlanet,
-                                    dashaForm: dashaForm
+                                    dashaForm: dashaForm,
+                                    dashaStart: dashaStart,
+                                    dashaEnd: dashaEnd
                                 });
 
                                 // Append planet data row
@@ -1847,6 +1868,8 @@
                                 matchedPlanets.add(matchPlanetst3.planet);
                             }
 
+                            // console.log(matchPlanetst3,"matchPlanetst3")
+
                             thirdTableContent += `
                                 <tr>
                                     <td class="td-span"><span>${entry2.nakshatra}(${entry2.pada})</span></td>
@@ -1856,13 +1879,17 @@
                                         <div class="color-bx ${matchPlanetst3?.status || "-"}" data-tooltip="${matchPlanetst3?.positionValue?.status ? matchPlanetst3?.positionValue.status : '-'}"></div>
                                     </td>
                                     <td class="td-span">
-                                        <span>${matchPlanetst3?.dashaForm || "-"}</span>
+                                        <span>${matchPlanetst3?.dashaForm ?
+                                    `${matchPlanetst3?.dashaForm} <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" class="fa-regular fa-eye mx-2" data-tooltip="${matchPlanetst3.dashaStart} - ${matchPlanetst3.dashaEnd}"></i>`
+                                    : "-"}</span>
                                     </td>
                                 </tr>`;
                         });
 
                         // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
                         firstTableData.forEach(entry1 => {
+                            // console.log(entry1,"entry1")
+                            // console.log(entry1.dashavalueForm.find((i) => i.end),"end")
                             if (!matchedNakshatras.has(entry1.nakshatra) && !matchedPlanets.has(entry1.planet)) {
                                 fourthTableContent += `
                                 <tr>
@@ -1873,7 +1900,10 @@
                                         <div class="color-bx ${entry1?.status || "-"}" data-tooltip="${entry1?.positionValue?.status ? entry1?.positionValue.status : '-'}"></div>
                                     </td>
                                     <td class="td-span">
-                                        <span>${entry1?.dashaForm || "-"}</span>
+                                        <span data-tooltip="tooltips">
+                                            ${entry1.dashaForm && entry1.dashaForm !== "-" ?
+                                        `${entry1.dashaForm} <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" class="fa-regular fa-eye mx-2" data-tooltip="${entry1.dashaStart} - ${entry1.dashaEnd}"></i>`
+                                        : "-"} </span>
                                     </td>
                                 </tr>`;
                             }
@@ -1881,9 +1911,11 @@
                         // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
                         firstTableData.forEach(entry1 => {
 
+                            // console.log(entry1, "entry1")
+
                             // console.log(GocharData,"gocharData")
                             let matchGocharPlanet = GocharData.find((i) => i.planet_name === entry1.planet)
-                            // console.log(matchGocharPlanet, "matchPlanet")
+                            // console.log(matchGocharPlanet, "matchGocharPlanet")
 
                             // if (!matchedNakshatras.has(entry1.nakshatra) && !matchedPlanets.has(entry1.planet)) {
                             fifthTableContent += `
@@ -1900,9 +1932,8 @@
                                     <td class="td-span">
                                        <span>
                                          ${matchGocharPlanet?.nakshatra
-                                    ? `${matchGocharPlanet.nakshatra} (${matchGocharPlanet.pada || ""})`
-                                    : "-"}
-                                       </span>
+                                    ? `${matchGocharPlanet.nakshatra} (${matchGocharPlanet.pada || ""}) <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" class="fa-regular fa-eye mx-2" data-tooltip="${matchGocharPlanet.date_of_entry} - ${matchGocharPlanet.date_of_exit}"></i>`
+                                    : "-"}</span>
                                     </td>
                                 </tr>`;
                             // }
