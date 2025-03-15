@@ -1860,30 +1860,36 @@
                         let matchedPlanets = new Set(); // Track planets added to the third table
 
                         secondTableData.forEach((entry2) => {
+                            // console.log(entry2,"entry2")
                             let matches = firstTableData.filter(entry1 => entry1.nakshatra === entry2.nakshatra);
-                            let matchPlanetst3 = matches.find((i) => i.pada === entry2.pada);
+                            let matchPlanetsList = matches.filter((i) => i.pada === entry2.pada);
+                            // console.log(matchPlanetsList, "matchPlanetsList");
 
-                            // Add planet to the set to prevent duplicate display
-                            if (matchPlanetst3?.planet) {
-                                matchedPlanets.add(matchPlanetst3.planet);
-                            }
+                            // Extract and join all matching planet-related values
+                            let planetsText = matchPlanetsList.map(mp => mp.planet).join(", ");
+                            let percentageText = matchPlanetsList.map(mp => mp.percentageText).join(", ");
+                            let retroPlanets = matchPlanetsList.map(mp => mp.retroPlanet).join(", ");
+                            let combustPlanets = matchPlanetsList.map(mp => mp.combustPlanet).join(", ");
+                            let statusClass = matchPlanetsList.length > 0 ? matchPlanetsList[0].status : "-";
+                            let positionStatus = matchPlanetsList.length > 0 ? matchPlanetsList[0].positionValue?.status : "-";
 
-                            // console.log(matchPlanetst3,"matchPlanetst3")
+                            // Add all matched planets to the set
+                            matchPlanetsList.forEach(mp => matchedPlanets.add(mp.planet));
 
                             thirdTableContent += `
-                                <tr>
-                                    <td class="td-span"><span>${entry2.nakshatra}(${entry2.pada})</span></td>
-                                    <td class="td-span"><span>${entry2.rashi}</span></td>
-                                    <td class="td-span"><span>${matchPlanetst3?.planet || "-"} ${matchPlanetst3?.percentageText || " "} ${matchPlanetst3?.retroPlanet || " "} ${matchPlanetst3?.combustPlanet || " "} </span></td>
-                                    <td class="td-span">
-                                        <div class="color-bx ${matchPlanetst3?.status || "-"}" data-tooltip="${matchPlanetst3?.positionValue?.status ? matchPlanetst3?.positionValue.status : '-'}"></div>
-                                    </td>
-                                    <td class="td-span">
-                                        <span>${matchPlanetst3?.dashaForm ?
-                                    `${matchPlanetst3?.dashaForm} <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" class="fa-regular fa-eye mx-2" data-tooltip="${matchPlanetst3.dashaStart} - ${matchPlanetst3.dashaEnd}"></i>`
-                                    : "-"}</span>
-                                    </td>
-                                </tr>`;
+    <tr>
+        <td class="td-span"><span>${entry2.nakshatra}(${entry2.pada})</span></td>
+        <td class="td-span"><span>${entry2.rashi}</span></td>
+        <td class="td-span"><span>${planetsText || "-"} ${percentageText || " "} ${retroPlanets || " "} ${combustPlanets || " "} </span></td>
+        <td class="td-span">
+            <div class="color-bx ${statusClass}" data-tooltip="${positionStatus}"></div>
+        </td>
+        <td class="td-span">
+            <span>${matchPlanetsList.length > 0 && matchPlanetsList[0].dashaForm ?
+            `${matchPlanetsList[0].dashaForm} <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" data-tooltip="${matchPlanetsList[0].dashaStart} - ${matchPlanetsList[0].dashaEnd}"></i>`
+            : "-"}</span>
+        </td>
+    </tr>`;
                         });
 
                         // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
