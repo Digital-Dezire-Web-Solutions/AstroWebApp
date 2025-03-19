@@ -575,7 +575,7 @@
                         <span onclick="document.getElementById('renewModal').style.display='none'">
                             <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                         </span>
-                        <h5>Renew Subscription</h5>
+                        <h5>Subscription</h5>
                         <div class="payment-plan-box">
                             <div class="payment-plan-head">
                                 <h6 id="planName">Basic</h6>
@@ -643,9 +643,9 @@
                     </div>
                 </a>
             </div>
-            <div class="profile-renew">
-                <h6>Subscribe to get your future updates!</h6>
-                <p class="renew-btn" onclick="openRenewModal()">Subscribe</p>
+            <div class="profile-renew" id="renewDiv">
+                <h6>Renew your Subscription to get your future updates!</h6>
+                <p class="renew-btn" onclick="openRenewModal()">Renew Subscription</p>
             </div>
 
         </div>
@@ -755,6 +755,60 @@
                 // console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
+
+                const user = data
+                function getSubscriptionDates(user) {
+                    let startDate, endDate;
+
+                    if (user.subscription.plan === "Free") {
+                        startDate = user.subscription.startDate;
+                        endDate = user.subscription.endDate;
+                    } else {
+                        if (user.subscriptionHistory.length > 0) {
+                            const startDates = user.subscriptionHistory.map(sub => new Date(sub.startDate));
+                            const endDates = user.subscriptionHistory.map(sub => new Date(sub.endDate));
+
+                            const minStartDate = new Date(Math.min(...startDates));
+                            const maxEndDate = new Date(Math.max(...endDates));
+
+                            startDate = minStartDate.toISOString();
+                            endDate = maxEndDate.toISOString();
+                        } else {
+                            startDate = user.subscription.startDate;
+                            endDate = user.subscription.endDate;
+                        }
+                    }
+
+                    return { startDate, endDate };
+                }
+                const result = getSubscriptionDates(user);
+
+                function formatDateToISO(dateStr) {
+                    const dateObj = new Date(dateStr + " 12:00:00");
+                    return dateObj.toISOString().split('T')[0];
+                }
+
+                // Convert start & end to ISO
+                const startDateISO = result.startDate;
+                const endDateISO = result.endDate;
+
+                // Example: Replace this date with your fetched subscription end date
+                const subscriptionEndDate = new Date(endDateISO); // YYYY-MM-DD format
+                const today = new Date();
+
+                const timeDiff = subscriptionEndDate.getTime() - today.getTime();
+                const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                // Get the div
+                const renewDiv = document.getElementById('renewDiv');
+
+                // Logic to show/hide
+                if (dayDiff > 2) {
+                    renewDiv.style.display = 'none';
+                } else {
+                    renewDiv.style.display = 'flex';
+                }
+
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
@@ -817,6 +871,12 @@
             // Example: Show modal and populate hidden input with subscriptionId
             document.getElementById('renewModal').style.display = 'block';
         }
+        // Auto open modal after 2 seconds on page load
+        // window.addEventListener('load', () => {
+        //     setTimeout(() => {
+        //         openRenewModal();
+        //     }, 1000); // 2000 ms = 2 sec
+        // });
 
         let discountPercent = 0; // To store applied discount
 
