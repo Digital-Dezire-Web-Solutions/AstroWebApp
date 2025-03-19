@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Astro Market Web App</title>
+    <title>Market | Astro Nivesh</title>
     <!-- swiper slider css CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -107,7 +107,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-8800209988</span>
+                        <span>+91-9376241408</span>
                     </div>
                 </div>
 
@@ -231,11 +231,10 @@
             color: white;
         }
 
-        .page-title{
+        .page-title {
             text-align: center;
             margin-bottom: 2rem;
         }
-
     </style>
 
 
@@ -268,7 +267,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="https://wa.me/8800209988">Talk to Astrologer</a></li>
+                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
@@ -290,7 +289,7 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-8800209988</span>
+                            <span>+91-9376241408</span>
                         </div>
                     </div>
 
@@ -556,6 +555,8 @@
                 </div>
 
                 <div id="profile-body"></div>
+                <a style=" display: flex; align-items: center; justify-content: center;  font-size: 18px; padding-top: 1rem;"
+                    href="profile.html"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>My Profile</a>
                 <div class="logout-bx" id="logoutBox">
                     <p><ion-icon name="log-out"></ion-icon>Log Out</p>
                 </div>
@@ -566,6 +567,62 @@
     </section>
     <section class="our-cards-comp">
         <div class="common-container3">
+
+            <!-- payment -->
+            <div id="renewModal" class="renewmodal" style="display:none;">
+                <div class="renewmodal-box">
+                    <div class="modal-content" id="modalContent">
+                        <span onclick="document.getElementById('renewModal').style.display='none'">
+                            <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                        </span>
+                        <h5>Renew Subscription</h5>
+                        <div class="payment-plan-box">
+                            <div class="payment-plan-head">
+                                <h6 id="planName">Basic</h6>
+                            </div>
+                            <div class="payment-plan-body">
+                                <div class="payment-price">
+                                    <p>₹</p>
+                                    <h5 id="planPrice">199</h5>
+                                </div>
+                                <div class="payment-plan-body-box">
+                                    <p>/Per user</p>
+                                    <p>/Per months</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="coupon">Coupon</label>
+                            <div class="inpt payment-coupon">
+                                <input type="type" id="couponInput" name="couponInput" placeholder="Coupon code"
+                                    autocomplete="off">
+                                <button type="button" onclick="applyCoupon()">Apply</button>
+                            </div>
+                            <p id="couponMessage" style="margin-top: 5px;"></p>
+                        </div>
+                        <p>100% Secure Payment method</p>
+                        <button class="form-btn" type="button" onclick="processPayment(true)">Proceed to
+                            Payment</button>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="subscription-message" id="successMessage"
+                        style="display:none; text-align:center; color:white;">
+                        <img src="./images/success.gif" alt="">
+                        <p>Payment Successful!</p>
+                        <p>Subscription from 18-03-2025 to 17-03-2025 is successfull!</p>
+                    </div>
+
+                    <!-- Failed Message -->
+                    <div class="subscription-message" id="failedMessage"
+                        style="display:none; text-align:center; color:white;">
+                        <i class="fa-solid fa-circle-xmark"
+                            style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
+                        <p>Payment failed!</p>
+                    </div>
+                </div>
+            </div>
+
             <h5 class="page-title">Market</h5>
             <div class="cards-grid grid grid-four-col grid-gap">
                 <a href="/calendar.html" id="marketLink">
@@ -585,6 +642,10 @@
                         <h6>SBC</h6>
                     </div>
                 </a>
+            </div>
+            <div class="profile-renew">
+                <h6>Subscribe to get your future updates!</h6>
+                <p class="renew-btn" onclick="openRenewModal()">Subscribe</p>
             </div>
 
         </div>
@@ -628,13 +689,12 @@
                     <div class="footer-bx">
                         <h6>Corporate Info</h6>
                         <div class="footer-li">
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Disclimar</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Pricing Policy</a></li>
-
-
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <li><a href="shippingpolicy.html">Shipping Policy</a></li>
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
                         </div>
                     </div>
 
@@ -670,9 +730,9 @@
 
             <div class="copyright-bx">
                 <p>Copyright 2025 Astro Nivesh | All Rights Reserved | Dev. By: <a
-                        href="https://digitaldezire.com/">Dezire
-                        Dezire</a></p>
+                        href="https://digitaldezire.com/">Digital Dezire</a></p>
             </div>
+        </div>
     </footer>
     <script>
         const host = "https://api.astronivesh.com";
@@ -751,6 +811,110 @@
                 });
             }
         });
+
+        // Function to open modal (customize as per your modal setup)
+        function openRenewModal(subscriptionId) {
+            // Example: Show modal and populate hidden input with subscriptionId
+            document.getElementById('renewModal').style.display = 'block';
+        }
+
+        let discountPercent = 0; // To store applied discount
+
+        const couponCodes = {
+            NIVESH25: 25,
+            NIVESH50: 50,
+            NIVESH100: 100
+        };
+        const originalPrice = parseInt(document.getElementById('planPrice').innerText);
+        let finalPrice = originalPrice;
+
+        function applyCoupon() {
+            let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
+            let message = document.getElementById('couponMessage');
+
+            if (couponCodes[couponInput]) {
+                discountPercent = couponCodes[couponInput];
+                const discountAmount = (originalPrice * discountPercent) / 100;
+                finalPrice = originalPrice - discountAmount;
+                document.getElementById('planPrice').innerText = finalPrice;
+                message.style.color = 'green';
+                message.innerText = `Coupon applied! ${discountPercent}% discount.`;
+            } else {
+                discountPercent = 0;
+                message.style.color = 'red';
+                message.innerText = `Invalid Coupon Code.`;
+            }
+        }
+
+        async function processPayment() {
+            let plan = document.getElementById('planName').innerText;
+            let price = parseInt(document.getElementById('planPrice').innerText);
+            let coupon = document.getElementById('couponInput').value.trim().toUpperCase();
+            let paymentMethod = "Credit Card"; // You can dynamically get this if needed
+            let transactionId = Math.floor(Math.random() * 1000000000);
+
+            console.log(`Plan: ${plan}`);
+            console.log(`Original Price: ₹${price}`);
+            console.log(`Applied Coupon: ${coupon}`);
+            console.log(`Discount: ${discountPercent}%`);
+
+            let finalPrice = price - (price * discountPercent / 100);
+            console.log(`Final Price after Discount: ₹${finalPrice}`);
+
+            document.getElementById('modalContent').style.display = 'none';
+
+            // If 100% discount → no payment gateway, show success directly
+            if (discountPercent === 100) {
+                await assignSubscription(plan, paymentMethod, transactionId, coupon);
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                let isSuccess = Math.random() < 0.7;
+
+                if (isSuccess) {
+                    await assignSubscription(plan, paymentMethod, transactionId, coupon);
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    document.getElementById('failedMessage').style.display = 'block';
+                }
+            }
+
+            // Auto-close & reset after 2 seconds
+            setTimeout(() => {
+                document.getElementById('renewModal').style.display = 'none';
+                document.getElementById('modalContent').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('failedMessage').style.display = 'none';
+                document.getElementById('couponMessage').innerText = '';
+                discountPercent = 0;
+                document.getElementById('couponInput').value = '';
+            }, 5000);
+        }
+        async function assignSubscription(plan, paymentMethod, transactionId, coupon) {
+            try {
+                let response = await fetch(`${host}/api/subscription/assign`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify({
+                        plan: plan,
+                        paymentMethod: paymentMethod,
+                        transactionId: transactionId,
+                        couponCode: coupon
+                    })
+                });
+
+                let data = await response.json();
+                if (data.success === true) {
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000)
+                }
+            } catch (err) {
+                console.error('Error assigning subscription:', err);
+            }
+        }
     </script>
 
     <script>

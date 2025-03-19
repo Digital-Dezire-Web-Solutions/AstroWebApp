@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Nakshatra Pada List</h2>
+    <select id="houseDropdown">
+        <option value="1" selected>House 1</option>
+        <option value="2">House 2</option>
+        <option value="3">House 3</option>
+        <option value="4">House 4</option>
+        <option value="5">House 5</option>
+        <option value="6">House 6</option>
+        <option value="7">House 7</option>
+        <option value="8">House 8</option>
+        <option value="9">House 9</option>
+        <option value="10">House 10</option>
+        <option value="11">House 11</option>
+        <option value="12">House 12</option>
+    </select>
+    <table id="resultbody">
+        <thead>
+            <tr>
+                <th>House</th>
+                <th>Nakshatra (Pada)</th>
+                <th>Rashi</th>
+                <th>Planet</th>
+                <th>R</th>
+                <th>C</th>
+                <th>100%</th>
+                <th>75%</th>
+                <th>50%</th>
+                <th>25%</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <script>
+        const nakshatraPadas = [];
+        const nakshatras = [
+            "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira",
+            "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha",
+            "Purva Phalguni", "UttaraPhalguni", "Hasta", "Chitra",
+            "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista",
+            "Shatabhisaj", "Purva Bhadrapada", "Uttara Bhadrapada",
+            "Revati"
+        ];
+
+        const rashis = [
+            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
+            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+        ];
+
+        const zodiacMap = {
+            Aries: 1,
+            Taurus: 2,
+            Gemini: 3,
+            Cancer: 4,
+            Leo: 5,
+            Virgo: 6,
+            Libra: 7,
+            Scorpio: 8,
+            Sagittarius: 9,
+            Capricorn: 10,
+            Aquarius: 11,
+            Pisces: 12,
+        };
+    </script>
+    <script>
+        // Fetch dasha Data
+        const baseUrl = "https://api.vedicastroapi.com/v3-json/";
+        const params = JSON.parse(localStorage.getItem("params"));
+        let dashas = [];
+        const fetchDashaData = async () => {
+            try {
+                // Construct the API URL
+                const DashaUrl = `${baseUrl}dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
+                const responseAll = await fetch(DashaUrl);
+
+                if (!responseAll.ok) {
+                    throw new Error("Failed to fetch Dasha data.");
+                }
+
+                const DashaData = await responseAll.json();
+                dashas = DashaData.response.order_of_dashas || [];
+            } catch (error) {
+                console.error("Error fetching Dasha data:", error);
+            }
+        };
+
+        // Fetch and display the data
+        fetchDashaData();
+        nakshatras.forEach((nakshatra, index) => {
+            for (let pada = 1; pada <= 4; pada++) {
+                const rashiIndex = Math.floor((index * 4 + (pada - 1)) / 9) % 12;
+                nakshatraPadas.push({ nakshatra, pada, rashi: rashis[rashiIndex] });
+            }
+        });
+
+        // Function to populate the table
+        // const populateTable = (selectedHouse = "1") => {
+        //     const resultTable = document.getElementById("resultbody").querySelector("tbody");
+        //     resultTable.innerHTML = "";
+
+        //     // Get horoscopeData from localStorage
+        //     const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+        //     let planets = [];
+
+        //     if (horoscopeData && horoscopeData.response) {
+        //         const planetDatas = horoscopeData.response;
+
+        //         const createHouses = (startZodiacNumber) => {
+        //             const houses = [];
+        //             let currentNumber = startZodiacNumber;
+        //             for (let i = 0; i < 12; i++) {
+        //                 houses.push(currentNumber);
+        //                 currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
+        //             }
+        //             return houses;
+        //         };
+
+        //         // Map Planet Data
+        //         const mapPlanetData = (data) => {
+        //             if (Array.isArray(data)) {
+        //                 return data.map((planet) => ({
+        //                     name: planet.full_name,
+        //                     nakshatra: planet.nakshatra,
+        //                     pada: planet.nakshatra_pada,
+        //                     retro: planet.retro,
+        //                     is_combust: planet.is_combust,
+        //                     zodiac: planet.zodiac,
+        //                     zodiacNumber: zodiacMap[planet.zodiac] || "-",
+        //                     houses: createHouses(zodiacMap[planet.zodiac] || 1),
+        //                 }));
+        //             } else if (typeof data === "object" && data !== null) {
+        //                 return Object.values(data).map((planet) => ({
+        //                     name: planet.full_name,
+        //                     nakshatra: planet.nakshatra,
+        //                     pada: planet.nakshatra_pada,
+        //                     retro: planet.retro,
+        //                     is_combust: planet.is_combust,
+        //                     zodiac: planet.zodiac,
+        //                     zodiacNumber: zodiacMap[planet.zodiac] || "-",
+        //                     houses: createHouses(zodiacMap[planet.zodiac] || 1),
+        //                 }));
+        //             } else {
+        //                 console.error("Unexpected data format for planets:", data);
+        //                 return [];
+        //             }
+        //         };
+
+        //         planets = mapPlanetData(planetDatas).slice(0, 10);
+        //     }
+
+        //     const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
+        //     const defaultPada = planets[0]?.pada || 1;
+
+        //     let currentIndex = nakshatraPadas.findIndex(
+        //         (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+        //     );
+
+        //     for (let house = 1; house <= 12; house++) {
+        //         if (selectedHouse !== "all" && house !== parseInt(selectedHouse, 10)) {
+        //             currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+        //             continue;
+        //         }
+
+        //         const ascendant = planets[0];
+        //         const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
+
+        //         let comparisonData = []; // Store comparison data for use in resultTable
+
+        //         planets.forEach((planet) => {
+        //             const sitting = planet.houses[0] === ascendantHouseValue;
+
+        //             let oneHundredPercent = "-";
+        //             let seventyFivePercent = "-";
+        //             let fiftyPercent = "-";
+        //             let twentyFivePercent = "-";
+
+        //             if (planet.houses[0] === ascendantHouseValue) {
+        //                 oneHundredPercent = "True";
+        //             } else if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
+        //                 seventyFivePercent = "True";
+        //             } else if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
+        //                 fiftyPercent = "True";
+        //             } else if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
+        //                 twentyFivePercent = "True";
+        //             }
+
+        //             // Save comparison data for the resultTable
+        //             comparisonData.push({
+        //                 name: planet.name,
+        //                 oneHundredPercent,
+        //                 seventyFivePercent,
+        //                 fiftyPercent,
+        //                 twentyFivePercent,
+        //             });
+        //         });
+
+        //         for (let i = 0; i < 10; i++) {
+        //             const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+        //             const pada = nakshatraPadas[padaIndex];
+        //             console.log(pada,"matchingPlanet")
+
+        //             // Find all matching planets
+        //             const matchingPlanets = planets.filter(
+        //                 (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+        //             );
+
+        //             const planetNames = matchingPlanets.length > 0
+        //                 ? matchingPlanets.map((planet) => planet.name).join(", ")
+        //                 : "-";
+
+        //             const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map((planet) => "R").join(", ");
+        //             const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map((planet) => "C").join(", ");
+
+        //             let dashakeys = [];
+        //             matchingPlanets.forEach((planet) => {
+        //                 Object.entries(dashas).forEach(([key, value]) => {
+        //                     if (value.name === planet.name) {
+        //                         dashakeys.push(key);
+        //                     }
+        //                 });
+        //             });
+
+        //             const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
+
+        //             // Find planets with "True" for percentage comparisons
+        //             const oneHundredPercentNames = comparisonData
+        //                 .filter((data) => data.oneHundredPercent === "True")
+        //                 .map((planet) => planet.name)
+        //                 .join(", ") || "-";
+
+        //             const seventyFivePercentNames = comparisonData
+        //                 .filter((data) => data.seventyFivePercent === "True")
+        //                 .map((planet) => planet.name)
+        //                 .join(", ") || "-";
+
+        //             const fiftyPercentNames = comparisonData
+        //                 .filter((data) => data.fiftyPercent === "True")
+        //                 .map((planet) => planet.name)
+        //                 .join(", ") || "-";
+
+        //             const twentyFivePercentNames = comparisonData
+        //                 .filter((data) => data.twentyFivePercent === "True")
+        //                 .map((planet) => planet.name)
+        //                 .join(", ") || "-";
+
+        //             const row = `
+        // <tr>
+        //     <td>House ${house}</td>
+        //     <td>${pada.nakshatra} (${pada.pada})</td>
+        //     <td>${pada.rashi}</td>
+        //     <td>${planetNames} ${dashaText}</td>
+        //     <td>${retroPlanets || ""}</td>
+        //     <td>${combustPlanets || ""}</td>
+        //     <td>${oneHundredPercentNames}</td>
+        //     <td>${seventyFivePercentNames}</td>
+        //     <td>${fiftyPercentNames}</td>                
+        //     <td>${twentyFivePercentNames}</td>             
+        // </tr>`;
+
+        //             resultTable.innerHTML += row;
+        //         }
+
+        //         currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+        //     }
+        // };
+
+        // // Event listener for house selection
+        // document.getElementById("houseDropdown").addEventListener("change", (event) => {
+        //     const selectedHouse = event.target.value;
+        //     populateTable(selectedHouse);
+        // });
+
+        // // Run populateTable on window load
+        // window.onload = async () => {
+        //     await fetchDashaData();
+        //     populateTable("1");
+        // };
+
+        const populateTable = (selectedHouse = "1") => {
+            const resultTable = document.getElementById("resultbody").querySelector("tbody");
+            resultTable.innerHTML = "";
+
+            // Get horoscopeData from localStorage
+            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+            let planets = [];
+
+            if (horoscopeData && horoscopeData.response) {
+                const planetDatas = horoscopeData.response;
+
+                const createHouses = (startZodiacNumber) => {
+                    const houses = [];
+                    let currentNumber = startZodiacNumber;
+                    for (let i = 0; i < 12; i++) {
+                        houses.push(currentNumber);
+                        currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
+                    }
+                    return houses;
+                };
+
+                const mapPlanetData = (data) => {
+                    if (Array.isArray(data)) {
+                        return data.map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                            zodiac: planet.zodiac,
+                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                        }));
+                    } else if (typeof data === "object" && data !== null) {
+                        return Object.values(data).map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                            zodiac: planet.zodiac,
+                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                        }));
+                    } else {
+                        console.error("Unexpected data format for planets:", data);
+                        return [];
+                    }
+                };
+
+                planets = mapPlanetData(planetDatas).slice(0, 10);
+            }
+
+            const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
+            const defaultPada = planets[0]?.pada || 1;
+
+            let currentIndex = nakshatraPadas.findIndex(
+                (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+            );
+
+            for (let house = 1; house <= 12; house++) {
+                if (selectedHouse !== "1" && house !== parseInt(selectedHouse, 10)) {
+                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+                    continue;
+                }
+
+                const ascendant = planets[0];
+                const ascendantHouseValue = ascendant.houses[house - 1]; // Update house index
+
+                let comparisonData = [];
+
+                planets.forEach((planet) => {
+                    const sitting = planet.houses[0] === ascendantHouseValue;
+
+                    let oneHundredPercent = "-";
+                    let seventyFivePercent = "-";
+                    let fiftyPercent = "-";
+                    let twentyFivePercent = "-";
+
+                    if (planet.houses[0] === ascendantHouseValue) {
+                        oneHundredPercent = "True";
+                    } else if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
+                        seventyFivePercent = "True";
+                    } else if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
+                        fiftyPercent = "True";
+                    } else if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
+                        twentyFivePercent = "True";
+                    }
+
+                    comparisonData.push({
+                        name: planet.name,
+                        oneHundredPercent,
+                        seventyFivePercent,
+                        fiftyPercent,
+                        twentyFivePercent,
+                    });
+                });
+
+                for (let i = 0; i < 10; i++) {
+                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                    const pada = nakshatraPadas[padaIndex];
+                    console.log(pada, "pada")
+
+                    const matchingPlanets = planets.filter(
+                        (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
+                    );
+
+                    const planetNames = matchingPlanets.length > 0
+                        ? matchingPlanets.map((planet) => planet.name).join(", ")
+                        : "-";
+
+                    const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map(() => "R").join(", ");
+                    const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map(() => "C").join(", ");
+
+                    let dashakeys = [];
+                    matchingPlanets.forEach((planet) => {
+                        Object.entries(dashas).forEach(([key, value]) => {
+                            if (value.name === planet.name) {
+                                dashakeys.push(key);
+                            }
+                        });
+                    });
+
+                    const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
+
+                    const oneHundredPercentNames = comparisonData
+                        .filter((data) => data.oneHundredPercent === "True")
+                        .map((planet) => planet.name)
+                        .join(", ") || "-";
+
+                    const seventyFivePercentNames = comparisonData
+                        .filter((data) => data.seventyFivePercent === "True")
+                        .map((planet) => planet.name)
+                        .join(", ") || "-";
+
+                    const fiftyPercentNames = comparisonData
+                        .filter((data) => data.fiftyPercent === "True")
+                        .map((planet) => planet.name)
+                        .join(", ") || "-";
+
+                    const twentyFivePercentNames = comparisonData
+                        .filter((data) => data.twentyFivePercent === "True")
+                        .map((planet) => planet.name)
+                        .join(", ") || "-";
+
+                    const row = `
+<tr>
+    <td>House ${house}</td>
+    <td>${pada.nakshatra} (${pada.pada})</td>
+    <td>${pada.rashi}</td>
+    <td>${planetNames} ${dashaText}</td>
+    <td>${retroPlanets || ""}</td>
+    <td>${combustPlanets || ""}</td>
+    <td>${oneHundredPercentNames}</td>
+    <td>${seventyFivePercentNames}</td>
+    <td>${fiftyPercentNames}</td>                
+    <td>${twentyFivePercentNames}</td>             
+</tr>`;
+
+                    resultTable.innerHTML += row;
+                }
+
+                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+            }
+        };
+
+        // Event listener for house selection
+        document.getElementById("houseDropdown").addEventListener("change", (event) => {
+            const selectedHouse = event.target.value;
+            populateTable(selectedHouse);
+        });
+
+        // Run populateTable on window load
+        window.onload = async () => {
+            await fetchDashaData();
+            populateTable("1");
+        };
+    </script>
+</body>
+
+</html>

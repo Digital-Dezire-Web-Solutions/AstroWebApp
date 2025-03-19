@@ -4,497 +4,1468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
 
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
+    <title>Profile | Astro Nivesh</title>
+    <!-- swiper slider css CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tempus Dominus CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="/images/astrology.png" />
 
-        th,
-        td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        h2 {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
+    <!-- __________________________________ 
+     Our header Comp 
+     ------------------------ -->
+    <!-- 
+     <header class="header-comp">
+        <div class="common-container3">
 
-    <h2>Nakshatra Pada List</h2>
-    <select id="houseDropdown">
-        <option value="1" selected>House 1</option>
-        <option value="2">House 2</option>
-        <option value="3">House 3</option>
-        <option value="4">House 4</option>
-        <option value="5">House 5</option>
-        <option value="6">House 6</option>
-        <option value="7">House 7</option>
-        <option value="8">House 8</option>
-        <option value="9">House 9</option>
-        <option value="10">House 10</option>
-        <option value="11">House 11</option>
-        <option value="12">House 12</option>
-    </select>
-    <table id="resultbody">
-        <thead>
-            <tr>
-                <th>House</th>
-                <th>Nakshatra (Pada)</th>
-                <th>Rashi</th>
-                <th>Planet</th>
-                <th>R</th>
-                <th>C</th>
-                <th>100%</th>
-                <th>75%</th>
-                <th>50%</th>
-                <th>25%</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+            <div class="header-flex-bx flex item-between">
+
+                <div class="left-header-logo flex item-start gap">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astro Nivesh</h6>
+                    
+                </div>
+
+                <div class="right-navbar class-rel flex item-start gap">
+                    <div class="navbar class-rel">
+                    <nav class="nav class-rel">
+                        <div class="nav-lists flex item-start">
+                            <li><a href="#">Calendar</a></li>
+                            <li><a href="#">Market</a></li>
+                            <li><a href="#">Kundali</a></li>
+                            <li><a href="#">Affirmations</a></li>
+                            <li><a href="#">Runes</a></li>
+                            <li><a href="#">Healing</a></li>
+                            <li><a href="#">Wisdom</a></li>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="header-icons-flex-bx class-rel flex gap">
+
+                    <a href="#">
+                        <button class="headr-btn">
+                            <ion-icon name="cart-outline"></ion-icon>
+                            <span>Store</span>
+                        </button>
+                    </a>
+
+                    <a href="#">
+                        <button id="login_btn" class="headr-btn headr-btn2">
+                            <ion-icon name="person"></ion-icon>
+                            <span>Login</span>
+                        </button>
+                    </a>
+                    
+                </div>
+
+                <button class="menu-bar-btn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+                
+                </div>
+                
+            </div>
+            
+        </div>
+     </header> -->
+
+    <section class="top-header-comp">
+        <div class="common-container3 top-header-flex flex item-between">
+            <div class="left-header-logo flex item-start gap">
+                <img src="./images/astrology.png" alt="">
+
+                <h6>Astro Nivesh</h6>
+
+            </div>
+
+            <div class="right-top-header-flex-bx flex item-start gap">
+
+                <!-- <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="home"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Reach Us</h6>
+                        <span>601 , Ram Nagar Dewas</span>
+                    </div>
+                </div> -->
+
+                <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="call"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Talk to Us</h6>
+                        <span>+91-9376241408</span>
+                    </div>
+                </div>
 
 
+                <button class="menu-bar-btn">
+                    <ion-icon name="menu"></ion-icon>
+                </button>
+
+
+                <!-- <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2">
+                        <span class="qty">4</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+
+                    <div class="cart-lists-bx cart-lists-bx-mob">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div> -->
+
+                <button class="apnt-btn coming-soon">
+                    Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
+                </button>
+
+                <div class="profile-bx" id="login_btn">
+                    <ion-icon name="person-circle-outline" size="large" color="#fe7000"></ion-icon>
+                    <p id="profile-name">LogIn / Reg.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <style>
+        .coming-soon {
+            filter: grayscale(5);
+        }
+
+        .coming-soon .card-info {
+            color: #ffffff;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            border-radius: .7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: #dcdcdc;
+            transition: ease-in-out
+        }
+
+        .coming-soon:hover .card-info {
+            color: white;
+            transition: color 1s;
+            display: flex;
+            transition: ease-in-out;
+        }
+
+        .coming-soon .card-info p {
+            color: white;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* .profile {
+            display: flex;
+            gap: 2rem;
+        } */
+
+        .profile-head {
+            margin-bottom: 1rem;
+        }
+
+        /* .profile-person {
+            width: 35%;
+        }
+
+        .profile-subscription {
+            width: 65%;
+        } */
+
+        .profile-person-card {
+            background-color: #ffc599;
+            /* padding: 2rem; */
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .profile-subscription-card {
+            background-color: #ffc599;
+            /* padding: 2rem; */
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .subs-head {
+            background-color: #fe7000;
+            border-radius: 8px 8px 0 0;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .subs-head .profile-item .edit-btn {
+            color: white;
+            padding: 0px 12px;
+        }
+
+        .subs-head h5 {
+            color: white;
+            font-size: 18px;
+        }
+
+        .subs-head h5 span {
+            color: white;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .subs-head h6 {
+            color: white;
+            font-size: 18px;
+        }
+
+        .subs-head h6 del {
+            color: white;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .subs-head h6 span {
+            color: white;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .subs-body {
+            padding: 1rem 2rem 2rem 2rem;
+        }
+
+        .subs-body p {
+            display: flex;
+            align-items: center;
+        }
+
+        .subs-body p button {
+            border: none;
+            background-color: transparent;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .profile-item {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            /* margin-bottom: 1rem; */
+        }
+
+        .profile-item h5 {
+            font-size: 22px;
+        }
+
+        .profile-item span {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+        }
+
+        .profile-item p {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .profile-item .edit-btn,
+        .profile-item .cancel-btn,
+        .profile-item .save-btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .profile-item .edit-btn {
+            color: black;
+            padding: 0px 12px;
+        }
+
+        .profile-item .save-btn {
+            background-color: green;
+            margin-left: 10px;
+        }
+
+        .profile-item .cancel-btn {
+            background-color: red;
+            margin-left: 10px;
+        }
+
+        .profile-item input,
+        .profile-item select {
+            height: 3.5rem;
+            background-color: transparent;
+            background-color: #fff;
+            border: 0.1rem solid #ddd;
+            border-radius: 10rem;
+            padding-inline: 2rem;
+            outline: none;
+        }
+
+
+
+        /* @media all and (min-width: 320px) and (max-width: 767px) {
+            .profile {
+                flex-direction: column;
+            }
+
+            .profile-person {
+                width: 100%;
+            }
+
+            .profile-subscription {
+                width: 100%;
+            }
+        } */
+    </style>
+
+
+    <header class="header">
+        <div class="common-container3 header-flex flex item-between gap">
+
+            <div class="nav-overlay"></div>
+            <div class="navbar">
+
+                <button class="close-nav-btn">
+                    <ion-icon name="close-circle"></ion-icon>
+                </button>
+
+                <div class="left-header-logo flex item-start gap mob-logo">
+                    <img src="./images/astrology.png" alt="">
+
+                    <h6>Astro Nivesh</h6>
+
+                </div>
+
+                <div class="search-inpt-bx search-inpt-bx-mob">
+                    <input type="text" name="search" id="search" placeholder="Search here...">
+                    <button class="search-btn">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
+
+                <nav class="nav">
+                    <div class="nav-lists flex item-start">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="kundali.html">Kundali</a></li>
+                        <li><a href="market.html">Market</a></li>
+                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
+                    </div>
+                </nav>
+
+                <div class="astrology-cont-info">
+
+                    <div class="top-hedr-bx flex item-center">
+                        <div class="left-hedr-icon">
+                            <ion-icon name="home"></ion-icon>
+                        </div>
+                        <div class="right-hedr-inof">
+                            <h6>Reach Us</h6>
+                            <span>601 , Ram Nagar Dewas</span>
+                        </div>
+                    </div>
+
+                    <div class="top-hedr-bx flex item-center">
+                        <div class="left-hedr-icon">
+                            <ion-icon name="call"></ion-icon>
+                        </div>
+                        <div class="right-hedr-inof">
+                            <h6>Talk to Us</h6>
+                            <span>+91-9376241408</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button class="apnt-btn apnt-btn-mob coming-soon">
+                    Appointments
+                    <div class="card-info">
+                        <p class="title">Coming Soon</p>
+                    </div>
+                </button>
+
+            </div>
+
+            <div class="right-header-flex flex item-start ">
+                <div class="search-inpt-bx">
+                    <input type="text" name="search" id="search" placeholder="Search here...">
+                    <button class="search-btn">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
+
+
+                <!-- <div class="cart-bx">
+                    <button class="cart-btn">
+                        <span class="qty">4</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+
+                    <div class="cart-lists-bx">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div> -->
+
+
+
+            </div>
+
+        </div>
+    </header>
+
+    <!-- _______________________
+       Our Login Reg Comp 
+       ------------------ -->
+
+    <section class="login-reg-comp">
+
+        <div class="login-bx ">
+
+            <button class="close-form-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="login-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+
+
+                <div class="comn-heading">
+                    <h4>Sign In to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+
+                    <form onsubmit="handleSubmit(event)">
+
+                        <div class="inpt-bx">
+                            <label for="email">Email Address</label>
+                            <div class="inpt">
+                                <input type="email" id="email" name="email" placeholder="Enter your Email..."
+                                    autocomplete="off" required>
+
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="email">Password</label>
+                            <div class="inpt">
+                                <input type="password" id="password" name="password"
+                                    placeholder="Enter your password..." autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="form-btns-flex">
+
+                            <button class="form-btn" type="submit">
+                                Sign In
+                            </button>
+
+                            <button type="button" class="form-btn form-btn2" id="newAcnt">
+                                Create Account
+                            </button>
+
+                        </div>
+                        <div id="alert" class="alert"></div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="reg-info">
+
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+
+                <div class="comn-heading">
+                    <h4>Sign Up to Astrology </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
+                </div>
+
+                <div class="login-form">
+                    <form onsubmit="handleCreate(event)">
+
+                        <div class="inpt-bx">
+                            <label for="name">Name</label>
+                            <div class="inpt">
+                                <input type="text" name="cname" placeholder="Enter your Name" autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="name">Email</label>
+                            <div class="inpt">
+                                <input type="email" name="cemail" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Create Password</label>
+                            <div class="inpt">
+                                <input type="text" name="ccreatepassword" placeholder="Create your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                        <div class="inpt-bx">
+                            <label for="password">Date Of Birth</label>
+                            <div class="inpt">
+                                <input type="text" id="calendarInput" name="calendarInput"
+                                    placeholder="Choose a date" />
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Birth Time</label>
+                            <div class="inpt">
+                                <input type="text" id="timePicker" name="timePicker" class="time-picker"
+                                    placeholder="Select Time">
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="birthplace">Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" name="birthplace" placeholder="Enter your Birth Place..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="consonent">Consonent of your name</label>
+                            <div class="inpt">
+                                <input type="text" name="consonent" placeholder="Enter your Consonent..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="vowel">Vowel of your name</label>
+                            <div class="inpt">
+                                <input type="text" name="vowel" placeholder="Enter your Vowel..." autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-btns-flex">
+
+                            <button class="form-btn" type="submit">
+                                Create Account
+                            </button>
+
+                            <button class="form-btn  form-btn3" type="button" id="signInBtn">
+                                I Already Have Account
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+
+            </div>
+            <div class="profile-info">
+                <div class="login-logo">
+                    <img src="./images/astrology.png" alt="">
+                </div>
+                <div class="comn-heading">
+                    <h4>Astro Nivesh</h4>
+                </div>
+
+                <div id="profile-body"></div>
+                <a style=" display: flex; align-items: center; justify-content: center;  font-size: 18px; padding-top: 1rem;"
+                    href="profile.html"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>My Profile</a>
+                <div class="logout-bx" id="logoutBox">
+                    <p><ion-icon name="log-out"></ion-icon>Log Out</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- body section -->
+
+    <section class="kundali-comp">
+        <div class="common-container3">
+            <div id="renewModal" class="renewmodal" style="display:none;">
+                <div class="renewmodal-box">
+                    <div class="modal-content" id="modalContent">
+                        <span onclick="document.getElementById('renewModal').style.display='none'">
+                            <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                        </span>
+                        <h5>Renew Subscription</h5>
+                        <div class="payment-plan-box">
+                            <div class="payment-plan-head">
+                                <h6 id="planName">Basic</h6>
+                            </div>
+                            <div class="payment-plan-body">
+                                <div class="payment-price">
+                                    <p>₹</p>
+                                    <h5 id="planPrice">199</h5>
+                                </div>
+                                <div class="payment-plan-body-box">
+                                    <p>/Per user</p>
+                                    <p>/Per months</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="coupon">Coupon</label>
+                            <div class="inpt payment-coupon">
+                                <input type="type" id="couponInput" name="couponInput" placeholder="Coupon code"
+                                    autocomplete="off">
+                                <button type="button" onclick="applyCoupon()">Apply</button>
+                            </div>
+                            <p id="couponMessage" style="margin-top: 5px;"></p>
+                        </div>
+                        <p>100% Secure Payment method</p>
+                        <button class="form-btn" type="button" onclick="processPayment(true)">Proceed to
+                            Payment</button>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="subscription-message" id="successMessage"
+                        style="display:none; text-align:center; color:white;">
+                        <img src="./images/success.gif" alt="">
+                        <p>Payment Successful!</p>
+                        <p>Subscription from 18-03-2025 to 17-03-2025 is successfull!</p>
+                    </div>
+
+                    <!-- Failed Message -->
+                    <div class="subscription-message" id="failedMessage"
+                        style="display:none; text-align:center; color:white;">
+                        <i class="fa-solid fa-circle-xmark"
+                            style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
+                        <p>Payment failed!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- <h5 class="page-title">Profile</h5> -->
+            <div class="kundali-container">
+                <div class="table-data">
+                    <div class="profile" id="profile-Person">
+                        <div class="profile-person" id="profileDetails">
+                            <div class="profile-person-card">
+                                <div class="subs-head">
+                                    <div class="profile-item">
+                                        <h5 id="name-display"></h5>
+                                        <input type="text" id="name-input" class="edit-input" style="display: none;">
+                                        <p class="edit-btn" onclick="enableEdit('name')">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </p>
+                                        <p class="save-btn" onclick="saveEdit('name')" style="display: none;">
+                                            <i class="fa-solid fa-check"></i>
+                                        </p>
+                                        <p class="cancel-btn" onclick="cancelEdit('name')" style="display: none;">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="subs-body">
+
+                                    <div class="profile-item">
+                                        <span>Email : </span>
+                                        <p id="email-display"></p>
+                                    </div>
+
+                                    <div class="profile-item">
+                                        <span>Date of Birth : </span>
+                                        <p id="dob-display"></p>
+                                    </div>
+
+                                    <div class="profile-item">
+                                        <span>Birth Time : </span>
+                                        <p id="birthtime-display"></p>
+                                    </div>
+
+                                    <div class="profile-item">
+                                        <span>Birth Place : </span>
+                                        <p id="birthplace-display"></p>
+                                    </div>
+
+                                    <div class="profile-item">
+                                        <span>Consonant : </span>
+                                        <p id="consonent-display"></p>
+                                        <select id="consonent-input" class="edit-input" style="display: none;">
+                                            <option value="Ka">Ka</option>
+                                            <option value="Kha">Kha</option>
+                                            <option value="Ga">Ga</option>
+                                            <option value="Cha">Cha</option>
+                                            <option value="Ya">Ya</option>
+                                            <option value="Va">Va</option>
+                                            <option value="Ha">Ha</option>
+                                            <option value="Da">Da</option>
+                                            <option value="La">La</option>
+                                            <option value="Na">Na</option>
+                                            <option value="Dha">Dha</option>
+                                            <option value="Sha">Sha</option>
+                                            <option value="Tha">Tha</option>
+                                            <option value="Kha">Kha</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="Ja">Ja</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="Bha">Bha</option>
+                                            <option value="Ta">Ta</option>
+                                            <option value="Ma">Ma</option>
+                                            <option value="SA">Sa</option>
+                                            <option value="Tau">Tau</option>
+                                        </select>
+                                        <p class="edit-btn" onclick="enableEdit('consonent')"> <i
+                                                class="fa-solid fa-pen-to-square"></i></p>
+                                        <p class="save-btn" onclick="saveEdit('consonent')" style="display: none;"><i
+                                                class="fa-solid fa-check"></i></p>
+                                        <p class="cancel-btn" onclick="cancelEdit('consonent')" style="display: none;">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </p>
+                                    </div>
+
+                                    <div class="profile-item">
+                                        <span>Vowel : </span>
+                                        <p id="vowel-display"></p>
+                                        <select id="vowel-input" class="edit-input" style="display: none;">
+                                            <option value="A">A</option>
+                                            <option value="AA">AA</option>
+                                            <option value="Ae">Ae</option>
+                                            <option value="Aei">Aei</option>
+                                            <option value="Da">Da</option>
+                                            <option value="E">E</option>
+                                            <option value="EE">EE</option>
+                                            <option value="O">O</option>
+                                            <option value="OO">OO</option>
+                                            <option value="Ou">Ou</option>
+                                            <option value="oo">oo</option>
+                                            <option value="Re">Re</option>
+                                            <option value="Ree">Ree</option>
+                                            <option value="Am">Am</option>
+                                            <option value="Aha">Aha</option>
+                                            <option value="Lri">Lri</option>
+                                            <option value="Lree">Lree</option>
+                                        </select>
+                                        <p class="edit-btn" onclick="enableEdit('vowel')">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </p>
+                                        <p class="save-btn" onclick="saveEdit('vowel')" style="display: none;">
+                                            <i class="fa-solid fa-check"></i>
+                                        </p>
+                                        <p class="cancel-btn" onclick="cancelEdit('vowel')" style="display: none;">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-subscription">
+                                <h5 class="profile-head">Subscription</h5>
+                                <div id="profile-subscription"></div>
+                                <h5 class="profile-head">Subscription History</h5>
+                                <div id="profile-subscription-history"></div>
+                                <h5 class="profile-head">Transactions History</h5>
+                                <div id="profile-subscription-transition"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    <!-- ____________________________
+          Our Footer Comp 
+          -------------------- -->
+
+    <footer class="footer-comp">
+        <div class="common-container3">
+
+            <div class="footer-flex-bx">
+
+                <div class="left-footer-bx">
+
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="">
+
+                        <h6>Astro Nivesh</h6>
+
+
+                    </div>
+
+
+
+
+                    <p>
+                        Astro Nivesh is the best astrology website for online Astrology predictions. Talk to Astrologer
+                        on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
+                    </p>
+
+                </div>
+
+
+                <div class="right-footer-bx">
+
+                    <div class="footer-bx">
+                        <h6>Corporate Info</h6>
+                        <div class="footer-li">
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <li><a href="shippingpolicy.html">Shipping Policy</a></li>
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
+                        </div>
+                    </div>
+
+
+                    <div class="footer-bx">
+                        <h6>Contact Info</h6>
+                        <div class="footer-li">
+                            <li><a href="#"> We are available 24x7 on chat support</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
+
+                            <div class="soc-icons-flex">
+                                <a href="#">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="copyright-bx">
+                <p>Copyright 2025 Astro Nivesh | All Rights Reserved | Dev. By: <a
+                        href="https://digitaldezire.com/">Digital Dezire</a></p>
+            </div>
+        </div>
+    </footer>
     <script>
-        const nakshatraPadas = [];
-        const nakshatras = [
-            "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira",
-            "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha",
-            "Purva Phalguni", "UttaraPhalguni", "Hasta", "Chitra",
-            "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "Uttara Ashadha", "Sravana", "Dhanista",
-            "Shatabhisaj", "Purva Bhadrapada", "Uttara Bhadrapada",
-            "Revati"
-        ];
-
-        const rashis = [
-            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
-            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-        ];
-
-        const zodiacMap = {
-            Aries: 1,
-            Taurus: 2,
-            Gemini: 3,
-            Cancer: 4,
-            Leo: 5,
-            Virgo: 6,
-            Libra: 7,
-            Scorpio: 8,
-            Sagittarius: 9,
-            Capricorn: 10,
-            Aquarius: 11,
-            Pisces: 12,
-        };
-    </script>
-    <script>
-        // Fetch dasha Data
-        const baseUrl = "https://api.vedicastroapi.com/v3-json/";
-        const params = JSON.parse(localStorage.getItem("params"));
-        let dashas = [];
-        const fetchDashaData = async () => {
+        const host = "https://api.astronivesh.com";
+        const token = localStorage.getItem("token");
+        async function fetchAllData() {
             try {
-                // Construct the API URL
-                const DashaUrl = `${baseUrl}dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
-                const responseAll = await fetch(DashaUrl);
-
-                if (!responseAll.ok) {
-                    throw new Error("Failed to fetch Dasha data.");
-                }
-
-                const DashaData = await responseAll.json();
-                dashas = DashaData.response.order_of_dashas || [];
-            } catch (error) {
-                console.error("Error fetching Dasha data:", error);
-            }
-        };
-
-        // Fetch and display the data
-        fetchDashaData();
-        nakshatras.forEach((nakshatra, index) => {
-            for (let pada = 1; pada <= 4; pada++) {
-                const rashiIndex = Math.floor((index * 4 + (pada - 1)) / 9) % 12;
-                nakshatraPadas.push({ nakshatra, pada, rashi: rashis[rashiIndex] });
-            }
-        });
-
-        // Function to populate the table
-        // const populateTable = (selectedHouse = "1") => {
-        //     const resultTable = document.getElementById("resultbody").querySelector("tbody");
-        //     resultTable.innerHTML = "";
-
-        //     // Get horoscopeData from localStorage
-        //     const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
-        //     let planets = [];
-
-        //     if (horoscopeData && horoscopeData.response) {
-        //         const planetDatas = horoscopeData.response;
-
-        //         const createHouses = (startZodiacNumber) => {
-        //             const houses = [];
-        //             let currentNumber = startZodiacNumber;
-        //             for (let i = 0; i < 12; i++) {
-        //                 houses.push(currentNumber);
-        //                 currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
-        //             }
-        //             return houses;
-        //         };
-
-        //         // Map Planet Data
-        //         const mapPlanetData = (data) => {
-        //             if (Array.isArray(data)) {
-        //                 return data.map((planet) => ({
-        //                     name: planet.full_name,
-        //                     nakshatra: planet.nakshatra,
-        //                     pada: planet.nakshatra_pada,
-        //                     retro: planet.retro,
-        //                     is_combust: planet.is_combust,
-        //                     zodiac: planet.zodiac,
-        //                     zodiacNumber: zodiacMap[planet.zodiac] || "-",
-        //                     houses: createHouses(zodiacMap[planet.zodiac] || 1),
-        //                 }));
-        //             } else if (typeof data === "object" && data !== null) {
-        //                 return Object.values(data).map((planet) => ({
-        //                     name: planet.full_name,
-        //                     nakshatra: planet.nakshatra,
-        //                     pada: planet.nakshatra_pada,
-        //                     retro: planet.retro,
-        //                     is_combust: planet.is_combust,
-        //                     zodiac: planet.zodiac,
-        //                     zodiacNumber: zodiacMap[planet.zodiac] || "-",
-        //                     houses: createHouses(zodiacMap[planet.zodiac] || 1),
-        //                 }));
-        //             } else {
-        //                 console.error("Unexpected data format for planets:", data);
-        //                 return [];
-        //             }
-        //         };
-
-        //         planets = mapPlanetData(planetDatas).slice(0, 10);
-        //     }
-
-        //     const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
-        //     const defaultPada = planets[0]?.pada || 1;
-
-        //     let currentIndex = nakshatraPadas.findIndex(
-        //         (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
-        //     );
-
-        //     for (let house = 1; house <= 12; house++) {
-        //         if (selectedHouse !== "all" && house !== parseInt(selectedHouse, 10)) {
-        //             currentIndex = (currentIndex + 9) % nakshatraPadas.length;
-        //             continue;
-        //         }
-
-        //         const ascendant = planets[0];
-        //         const ascendantHouseValue = ascendant.houses[selectedHouse - 1];
-
-        //         let comparisonData = []; // Store comparison data for use in resultTable
-
-        //         planets.forEach((planet) => {
-        //             const sitting = planet.houses[0] === ascendantHouseValue;
-
-        //             let oneHundredPercent = "-";
-        //             let seventyFivePercent = "-";
-        //             let fiftyPercent = "-";
-        //             let twentyFivePercent = "-";
-
-        //             if (planet.houses[0] === ascendantHouseValue) {
-        //                 oneHundredPercent = "True";
-        //             } else if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
-        //                 seventyFivePercent = "True";
-        //             } else if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
-        //                 fiftyPercent = "True";
-        //             } else if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
-        //                 twentyFivePercent = "True";
-        //             }
-
-        //             // Save comparison data for the resultTable
-        //             comparisonData.push({
-        //                 name: planet.name,
-        //                 oneHundredPercent,
-        //                 seventyFivePercent,
-        //                 fiftyPercent,
-        //                 twentyFivePercent,
-        //             });
-        //         });
-
-        //         for (let i = 0; i < 10; i++) {
-        //             const padaIndex = (currentIndex + i) % nakshatraPadas.length;
-        //             const pada = nakshatraPadas[padaIndex];
-        //             console.log(pada,"matchingPlanet")
-
-        //             // Find all matching planets
-        //             const matchingPlanets = planets.filter(
-        //                 (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
-        //             );
-
-        //             const planetNames = matchingPlanets.length > 0
-        //                 ? matchingPlanets.map((planet) => planet.name).join(", ")
-        //                 : "-";
-
-        //             const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map((planet) => "R").join(", ");
-        //             const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map((planet) => "C").join(", ");
-
-        //             let dashakeys = [];
-        //             matchingPlanets.forEach((planet) => {
-        //                 Object.entries(dashas).forEach(([key, value]) => {
-        //                     if (value.name === planet.name) {
-        //                         dashakeys.push(key);
-        //                     }
-        //                 });
-        //             });
-
-        //             const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
-
-        //             // Find planets with "True" for percentage comparisons
-        //             const oneHundredPercentNames = comparisonData
-        //                 .filter((data) => data.oneHundredPercent === "True")
-        //                 .map((planet) => planet.name)
-        //                 .join(", ") || "-";
-
-        //             const seventyFivePercentNames = comparisonData
-        //                 .filter((data) => data.seventyFivePercent === "True")
-        //                 .map((planet) => planet.name)
-        //                 .join(", ") || "-";
-
-        //             const fiftyPercentNames = comparisonData
-        //                 .filter((data) => data.fiftyPercent === "True")
-        //                 .map((planet) => planet.name)
-        //                 .join(", ") || "-";
-
-        //             const twentyFivePercentNames = comparisonData
-        //                 .filter((data) => data.twentyFivePercent === "True")
-        //                 .map((planet) => planet.name)
-        //                 .join(", ") || "-";
-
-        //             const row = `
-        // <tr>
-        //     <td>House ${house}</td>
-        //     <td>${pada.nakshatra} (${pada.pada})</td>
-        //     <td>${pada.rashi}</td>
-        //     <td>${planetNames} ${dashaText}</td>
-        //     <td>${retroPlanets || ""}</td>
-        //     <td>${combustPlanets || ""}</td>
-        //     <td>${oneHundredPercentNames}</td>
-        //     <td>${seventyFivePercentNames}</td>
-        //     <td>${fiftyPercentNames}</td>                
-        //     <td>${twentyFivePercentNames}</td>             
-        // </tr>`;
-
-        //             resultTable.innerHTML += row;
-        //         }
-
-        //         currentIndex = (currentIndex + 9) % nakshatraPadas.length;
-        //     }
-        // };
-
-        // // Event listener for house selection
-        // document.getElementById("houseDropdown").addEventListener("change", (event) => {
-        //     const selectedHouse = event.target.value;
-        //     populateTable(selectedHouse);
-        // });
-
-        // // Run populateTable on window load
-        // window.onload = async () => {
-        //     await fetchDashaData();
-        //     populateTable("1");
-        // };
-
-        const populateTable = (selectedHouse = "1") => {
-            const resultTable = document.getElementById("resultbody").querySelector("tbody");
-            resultTable.innerHTML = "";
-
-            // Get horoscopeData from localStorage
-            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
-            let planets = [];
-
-            if (horoscopeData && horoscopeData.response) {
-                const planetDatas = horoscopeData.response;
-
-                const createHouses = (startZodiacNumber) => {
-                    const houses = [];
-                    let currentNumber = startZodiacNumber;
-                    for (let i = 0; i < 12; i++) {
-                        houses.push(currentNumber);
-                        currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
+                const response = await fetch(`${host}/api/auth/getuser`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
                     }
-                    return houses;
-                };
-
-                const mapPlanetData = (data) => {
-                    if (Array.isArray(data)) {
-                        return data.map((planet) => ({
-                            name: planet.full_name,
-                            nakshatra: planet.nakshatra,
-                            pada: planet.nakshatra_pada,
-                            retro: planet.retro,
-                            is_combust: planet.is_combust,
-                            zodiac: planet.zodiac,
-                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
-                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
-                        }));
-                    } else if (typeof data === "object" && data !== null) {
-                        return Object.values(data).map((planet) => ({
-                            name: planet.full_name,
-                            nakshatra: planet.nakshatra,
-                            pada: planet.nakshatra_pada,
-                            retro: planet.retro,
-                            is_combust: planet.is_combust,
-                            zodiac: planet.zodiac,
-                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
-                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
-                        }));
-                    } else {
-                        console.error("Unexpected data format for planets:", data);
-                        return [];
-                    }
-                };
-
-                planets = mapPlanetData(planetDatas).slice(0, 10);
-            }
-
-            const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
-            const defaultPada = planets[0]?.pada || 1;
-
-            let currentIndex = nakshatraPadas.findIndex(
-                (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
-            );
-
-            for (let house = 1; house <= 12; house++) {
-                if (selectedHouse !== "1" && house !== parseInt(selectedHouse, 10)) {
-                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
-                    continue;
-                }
-
-                const ascendant = planets[0];
-                const ascendantHouseValue = ascendant.houses[house - 1]; // Update house index
-
-                let comparisonData = [];
-
-                planets.forEach((planet) => {
-                    const sitting = planet.houses[0] === ascendantHouseValue;
-
-                    let oneHundredPercent = "-";
-                    let seventyFivePercent = "-";
-                    let fiftyPercent = "-";
-                    let twentyFivePercent = "-";
-
-                    if (planet.houses[0] === ascendantHouseValue) {
-                        oneHundredPercent = "True";
-                    } else if (planet.houses[3] === ascendantHouseValue || planet.houses[7] === ascendantHouseValue) {
-                        seventyFivePercent = "True";
-                    } else if (planet.houses[4] === ascendantHouseValue || planet.houses[8] === ascendantHouseValue) {
-                        fiftyPercent = "True";
-                    } else if (planet.houses[2] === ascendantHouseValue || planet.houses[9] === ascendantHouseValue) {
-                        twentyFivePercent = "True";
-                    }
-
-                    comparisonData.push({
-                        name: planet.name,
-                        oneHundredPercent,
-                        seventyFivePercent,
-                        fiftyPercent,
-                        twentyFivePercent,
-                    });
                 });
 
-                for (let i = 0; i < 10; i++) {
-                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
-                    const pada = nakshatraPadas[padaIndex];
-                    console.log(pada, "pada")
-
-                    const matchingPlanets = planets.filter(
-                        (planet) => planet.nakshatra === pada.nakshatra && planet.pada === pada.pada
-                    );
-
-                    const planetNames = matchingPlanets.length > 0
-                        ? matchingPlanets.map((planet) => planet.name).join(", ")
-                        : "-";
-
-                    const retroPlanets = matchingPlanets.filter((planet) => planet.retro).map(() => "R").join(", ");
-                    const combustPlanets = matchingPlanets.filter((planet) => planet.is_combust).map(() => "C").join(", ");
-
-                    let dashakeys = [];
-                    matchingPlanets.forEach((planet) => {
-                        Object.entries(dashas).forEach(([key, value]) => {
-                            if (value.name === planet.name) {
-                                dashakeys.push(key);
-                            }
-                        });
-                    });
-
-                    const dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "";
-
-                    const oneHundredPercentNames = comparisonData
-                        .filter((data) => data.oneHundredPercent === "True")
-                        .map((planet) => planet.name)
-                        .join(", ") || "-";
-
-                    const seventyFivePercentNames = comparisonData
-                        .filter((data) => data.seventyFivePercent === "True")
-                        .map((planet) => planet.name)
-                        .join(", ") || "-";
-
-                    const fiftyPercentNames = comparisonData
-                        .filter((data) => data.fiftyPercent === "True")
-                        .map((planet) => planet.name)
-                        .join(", ") || "-";
-
-                    const twentyFivePercentNames = comparisonData
-                        .filter((data) => data.twentyFivePercent === "True")
-                        .map((planet) => planet.name)
-                        .join(", ") || "-";
-
-                    const row = `
-<tr>
-    <td>House ${house}</td>
-    <td>${pada.nakshatra} (${pada.pada})</td>
-    <td>${pada.rashi}</td>
-    <td>${planetNames} ${dashaText}</td>
-    <td>${retroPlanets || ""}</td>
-    <td>${combustPlanets || ""}</td>
-    <td>${oneHundredPercentNames}</td>
-    <td>${seventyFivePercentNames}</td>
-    <td>${fiftyPercentNames}</td>                
-    <td>${twentyFivePercentNames}</td>             
-</tr>`;
-
-                    resultTable.innerHTML += row;
+                if (!response.ok == true) {
+                    throw new Error("Failed to fetch data");
                 }
 
-                currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+                const data = await response.json();
+                populatePTable(data)
+                populateName(data)
+                populateSubscription(data)
+                populateSubscriptionHistory(data)
+                populateTransitionHistory(data)
+                // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
+            } catch (error) {
+                console.error(error);
+                // alert("Error fetching data: " + error.message);
             }
+        }
+
+        function populatePTable(data) {
+            const tableBody = document.getElementById("profile-body");
+            tableBody.innerHTML = "";
+
+            tableBody.innerHTML = `
+            <div class="profile-desc">
+                <h4>${data.name}</h4>
+            </div>
+             
+            `
+        }
+        function populateName(data) {
+            const tableBody = document.getElementById("profile-name");
+            tableBody.innerHTML = "";
+
+            tableBody.innerHTML = `
+            <p>${data.name}</p>
+             
+            `
+        }
+        function populateSubscription(data) {
+            // console.log(data, 'data')
+            const tableBody = document.getElementById("profile-subscription");
+            tableBody.innerHTML = "";
+
+            let price = 199;
+            let discount = data.subscription?.appliedCoupon?.discount || 0;
+            // console.log(discount, "discount")
+
+            if (data.subscription.plan === "Free") {
+                price = 0;
+            }
+
+            let discountPer = (discount / 100) * price;
+            let discounted = price - discountPer;
+            // console.log(discounted, "discounted")
+
+            tableBody.innerHTML = `
+                                <div class="profile-subscription-card">
+                                    <div class="subs-head">
+                                        <h5>${data.subscription.plan} <span>(Subscription) ${data.subscription.status === "Active" ? `<i class="fa-solid fa-circle" style="color: #00ff11;"></i>` : `<i class="fa-solid fa-circle" style="color: #ff0000;"></i>`}  </span></h5>
+                                        <h6>${data.subscription?.appliedCoupon?.discount
+                    ? `<span>-${data.subscription.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
+                    : `${price}`
+                }</h6>
+                                    </div>
+                                    <div class="subs-body">
+                                        ${data.subscription.plan === "Free" ? "" :
+                    `<p>TransactionId. : <span>${data.subscription.transactionId}</span> <button><i class="fa-solid fa-download"></i></button></p>`}
+                                        
+                                        <p>Subscription Start: <span> ${new Date(data.subscription.startDate)
+                    .toISOString()
+                    .split("T")[0]}</span></p>
+                                        <p>Subscription End: <span> ${data.subscription.endDate !== ""
+                    ? new Date(data.subscription.endDate)
+                        .toISOString()
+                        .split("T")[0]
+                    : new Date(data.subscription.start)
+                        .toISOString()
+                        .split("T")[0]}</span></p>
+                                        <p>Status : <span>${data.subscription.status}</span></p>
+                                        ${data.subscription.status !== "Active" ? `<div class="profile-renew">
+                <h6>Renew your plan to get your future updates!</h6>
+                <p class="renew-btn" data-id="${data._id}">Renew</p>
+            </div>` : ""}                                    
+                                    </div>             
+            `
+
+            // After inserting, attach event listeners
+            const renewButtons = document.querySelectorAll('.renew-btn');
+
+            renewButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const subscriptionId = e.target.dataset.id;
+                    // Open modal logic here
+                    openRenewModal(subscriptionId);
+                });
+            });
+
+        }
+
+
+        // Function to open modal (customize as per your modal setup)
+        function openRenewModal(subscriptionId) {
+            // Example: Show modal and populate hidden input with subscriptionId
+            document.getElementById('renewModal').style.display = 'block';
+        }
+
+        let discountPercent = 0; // To store applied discount
+
+        const couponCodes = {
+            NIVESH25: 25,
+            NIVESH50: 50,
+            NIVESH100: 100
         };
+        const originalPrice = parseInt(document.getElementById('planPrice').innerText);
+        let finalPrice = originalPrice;
 
-        // Event listener for house selection
-        document.getElementById("houseDropdown").addEventListener("change", (event) => {
-            const selectedHouse = event.target.value;
-            populateTable(selectedHouse);
+        function applyCoupon() {
+            let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
+            let message = document.getElementById('couponMessage');
+
+            if (couponCodes[couponInput]) {
+                discountPercent = couponCodes[couponInput];
+                const discountAmount = (originalPrice * discountPercent) / 100;
+                finalPrice = originalPrice - discountAmount;
+                document.getElementById('planPrice').innerText = finalPrice;
+                message.style.color = 'green';
+                message.innerText = `Coupon applied! ${discountPercent}% discount.`;
+            } else {
+                discountPercent = 0;
+                message.style.color = 'red';
+                message.innerText = `Invalid Coupon Code.`;
+            }
+        }
+
+        async function processPayment() {
+            let plan = document.getElementById('planName').innerText;
+            let price = parseInt(document.getElementById('planPrice').innerText);
+            let coupon = document.getElementById('couponInput').value.trim().toUpperCase();
+            let paymentMethod = "Credit Card"; // You can dynamically get this if needed
+            let transactionId = Math.floor(Math.random() * 1000000000);
+
+            console.log(`Plan: ${plan}`);
+            console.log(`Original Price: ₹${price}`);
+            console.log(`Applied Coupon: ${coupon}`);
+            console.log(`Discount: ${discountPercent}%`);
+
+            let finalPrice = price - (price * discountPercent / 100);
+            console.log(`Final Price after Discount: ₹${finalPrice}`);
+
+            document.getElementById('modalContent').style.display = 'none';
+
+            // If 100% discount → no payment gateway, show success directly
+            if (discountPercent === 100) {
+                await assignSubscription(plan, paymentMethod, transactionId, coupon);
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                let isSuccess = Math.random() < 0.7;
+
+                if (isSuccess) {
+                    await assignSubscription(plan, paymentMethod, transactionId, coupon);
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    document.getElementById('failedMessage').style.display = 'block';
+                }
+            }
+
+            // Auto-close & reset after 2 seconds
+            setTimeout(() => {
+                document.getElementById('renewModal').style.display = 'none';
+                document.getElementById('modalContent').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('failedMessage').style.display = 'none';
+                document.getElementById('couponMessage').innerText = '';
+                discountPercent = 0; // Reset for next time
+                document.getElementById('couponInput').value = ''; // Clear input
+            }, 5000);
+        }
+        async function assignSubscription(plan, paymentMethod, transactionId, coupon) {
+            // console.log(plan, "plan")
+            // console.log(paymentMethod, "paymentMethod")
+            // console.log(transactionId, " transactionId")
+            // console.log(coupon, "coupon")
+            try {
+                let response = await fetch(`${host}/api/subscription/assign`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify({
+                        plan: plan,
+                        paymentMethod: paymentMethod,
+                        transactionId: transactionId,
+                        couponCode: coupon
+                    })
+                });
+
+                let data = await response.json();
+                if (data.success === true) {
+                    setTimeout(() => {
+                        location.reload();
+                    },5000)
+                }
+            } catch (err) {
+                console.error('Error assigning subscription:', err);
+            }
+        }
+
+        function populateSubscriptionHistory(data) {
+            const tableBody = document.getElementById("profile-subscription-history");
+            tableBody.innerHTML = "";
+
+            let subscriptionHistoryData = data.subscriptionHistory;
+            subscriptionHistoryData = subscriptionHistoryData.reverse();
+            // console.log(subscriptionHistoryData, "subscriptionHistoryData");
+
+            // If no data, show message
+            if (!subscriptionHistoryData || subscriptionHistoryData.length === 0) {
+                tableBody.innerHTML = `
+            <div class="profile-subscription-card">
+                <div class="subs-body">
+                    <p style="text-align: center; font-weight: bold;">No Subscription History Found</p>
+                </div>
+            </div>
+        `;
+                return;
+            }
+
+            // Step 1: Loop through subscriptions
+            subscriptionHistoryData.forEach((item, index) => {
+                // console.log(item, "item");
+                const price = 199;
+                let discount = item?.appliedCoupon?.discount || 0;
+                let discountPer = (discount / 100) * price;
+                let discounted = price - discountPer;
+                // console.log(discounted, "discounted")
+
+                tableBody.innerHTML += `
+            <div class="profile-subscription-card">
+                <div class="subs-head">
+                    <h5>${item.plan} <span>(Subscription)</span></h5>
+                    <h6>${item?.appliedCoupon?.discount
+                        ? `<span>-${item.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
+                        : `${price}`
+                    }</h6>
+                </div>
+                <div class="subs-body">
+                    <p>TransactionId : <span>${item.transactionId || "N/A"}</span> <button><i class="fa-solid fa-download"></i></button></p>
+                    <p>Subscription : <span>${new Date(item.startDate).toISOString()
+                        .split("T")[0]} to ${new Date(item.endDate).toISOString()
+                            .split("T")[0]}</span></p>
+                    <p>Pay Date : <span>${new Date(item.date)
+                        .toISOString()
+                        .split("T")[0]}</span></p>
+                    <p>Status : <span>${item.status}</span></p>
+                    ${data.subscription.status !== "Active" ? `<div class="profile-renew">
+                <h6>Renew your plan to get your future updates!</h6>
+                <p class="renew-btn" data-id="${data._id}">Renew</p>
+            </div>` : ""} 
+                </div>
+            </div>
+        `;
+            });
+        }
+
+        function populateTransitionHistory(data) {
+            const tableBody = document.getElementById("profile-subscription-transition");
+            tableBody.innerHTML = "";
+
+            let subscriptionHistoryData = data.subscriptionHistory;
+            subscriptionHistoryData = subscriptionHistoryData.reverse();
+            // console.log(subscriptionHistoryData, "subscriptionHistoryData");
+
+            // If no data, show message
+            if (!subscriptionHistoryData || subscriptionHistoryData.length === 0) {
+                tableBody.innerHTML = `
+            <div class="profile-subscription-card">
+                <div class="subs-body">
+                    <p style="text-align: center; font-weight: bold;">No Subscription History Found</p>
+                </div>
+            </div>
+        `;
+                return;
+            }
+            subscriptionHistoryData.forEach((item, index) => {
+                // console.log(item, "item");
+                const price = 199;
+                let discount = item?.appliedCoupon?.discount || 0;
+                let discountPer = (discount / 100) * price;
+                let discounted = price - discountPer;
+                // console.log(discounted, "discounted")
+
+                if (item.plan !== "Free") {
+                    tableBody.innerHTML += `
+            <div class="profile-subscription-card">
+                                        <div class="subs-head">
+                                            <h5>${item.plan} <span>(Subscription)</span></h5>
+                        <h6>${item?.appliedCoupon?.discount
+                            ? `<span>-${item.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
+                            : `${price}`
+                        }</h6>
+                                        </div>
+                                        <div class="subs-body">
+                                                                <p>Invoice No. : <span>${item.transactionId || "N/A"}</span> <button><i class="fa-solid fa-download"></i></button></p>
+                                            <p>Pay Date : <span>${new Date(item.date)
+                            .toISOString()
+                            .split("T")[0]}</span></p>
+                                        </div>
+                                    </div>
+        `;
+                }
+            })
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // console.log(token, "token")
+            const loginForm = document.querySelector(".login-info");
+            const regInfo = document.querySelector(".reg-info");
+            const profileInfo = document.querySelector(".profile-info");
+
+            if (token) {
+                // User is logged in, show profile and hide login/signup forms
+                loginForm.style.display = "none";
+                regInfo.style.display = "none";
+                profileInfo.style.display = "block";
+            } else {
+                // User is not logged in, show login/signup forms
+                loginForm.style.display = "block";
+                regInfo.style.display = "block";
+                profileInfo.style.display = "none";
+            }
+
+            // Logout functionality
+            const logoutBox = document.getElementById("logoutBox");
+            if (logoutBox) {
+                logoutBox.addEventListener("click", function () {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem('params');
+                    location.reload();
+                    window.location.href = "./index.html";
+                });
+            }
         });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            if (!token) {
+                alert("User not authenticated");
+                return;
+            }
 
-        // Run populateTable on window load
+            async function fetchUserProfile() {
+                try {
+                    const response = await fetch(`${host}/api/auth/getuser`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token
+                        }
+                    });
+
+                    if (!response.ok) throw new Error("Failed to fetch user profile");
+
+                    const data = await response.json();
+
+                    // Populate profile details
+                    document.getElementById("name-display").textContent = data.name || "Not Set";
+                    document.getElementById("email-display").textContent = data.email || "Not Set";
+                    document.getElementById("dob-display").textContent = data.dob || "Not Set";
+                    document.getElementById("birthtime-display").textContent = data.birthtime || "Not Set";
+                    document.getElementById("birthplace-display").textContent = data.birthplace || "Not Set";
+                    document.getElementById("consonent-display").textContent = data.consonent || "Not Set";
+                    document.getElementById("vowel-display").textContent = data.vowel || "Not Set";
+                } catch (error) {
+                    console.error("Error fetching profile:", error);
+                }
+            }
+
+            fetchUserProfile();
+
+            // Function to enable edit mode
+            window.enableEdit = function (field) {
+                const displayElem = document.getElementById(`${field}-display`);
+                const inputElem = document.getElementById(`${field}-input`);
+                inputElem.value = displayElem.textContent; // Store old value
+                displayElem.style.display = "none";
+                inputElem.style.display = "inline-block";
+                document.querySelector(`[onclick="enableEdit('${field}')"]`).style.display = "none";
+                document.querySelector(`[onclick="saveEdit('${field}')"]`).style.display = "inline-block";
+                document.querySelector(`[onclick="cancelEdit('${field}')"]`).style.display = "inline-block";
+            };
+
+            // Function to save the edited value
+            window.saveEdit = async function (field) {
+                const updatedValue = document.getElementById(`${field}-input`).value.trim();
+
+                if (!updatedValue) {
+                    alert("Field cannot be empty.");
+                    return;
+                }
+
+                const updateData = {};
+                updateData[field] = updatedValue;
+
+                try {
+                    const response = await fetch(`${host}/api/auth/edituser`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token
+                        },
+                        body: JSON.stringify(updateData)
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        document.getElementById(`${field}-display`).textContent = updatedValue;
+                        cancelEdit(field); // Close edit mode
+                        alert("Profile updated successfully!");
+                    } else {
+                        alert("Update failed.");
+                    }
+                } catch (error) {
+                    console.error("Error updating profile:", error);
+                    alert("An error occurred while updating your profile.");
+                }
+            };
+            window.cancelEdit = function (field) {
+                document.getElementById(`${field}-display`).style.display = "inline-block";
+                document.getElementById(`${field}-input`).style.display = "none";
+                document.querySelector(`[onclick="enableEdit('${field}')"]`).style.display = "inline-block";
+                document.querySelector(`[onclick="saveEdit('${field}')"]`).style.display = "none";
+                document.querySelector(`[onclick="cancelEdit('${field}')"]`).style.display = "none";
+            };
+        });
+    </script>
+
+    <script>
+        // Populate table on page load
         window.onload = async () => {
-            await fetchDashaData();
-            populateTable("1");
+            fetchAllData()
         };
     </script>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Swiper Js file -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- script file -->
+    <script src="./js/index.js"></script>
+
 </body>
 
 </html>

@@ -2142,6 +2142,132 @@ form {
   width: 20rem;
 }
 
+/* subscription */
+
+.profile-renew {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.profile-renew p {
+  background-color: #fe7000;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.renewmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background: white;
+  border-radius: 1.4rem;
+  padding: 2rem;
+  transition-duration: 0.3s;
+  width: 25%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 15px;
+}
+
+.renewmodal-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.renewmodal-box span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: red;
+  border-radius: 2px;
+  padding: 10px 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-content p {
+  font-size: 12px;
+  color: #606060;
+  text-align: center;
+}
+
+.payment-plan-box {
+  background-color: #fe7000;
+  border-radius: 1.4rem;
+  padding: 2rem 4rem;
+  color: white;
+  margin: 1rem 0;
+}
+
+.payment-plan-head h6 {
+  color: white;
+  /* font-size: 20px; */
+  margin-bottom: 1.5rem;
+}
+
+.payment-plan-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-plan-body .payment-price {
+  display: flex;
+}
+.payment-plan-body h5 {
+  display: flex;
+  align-items: flex-start;
+  color: white;
+  font-size: 45px;
+  margin-right: 10px;
+}
+
+.payment-plan-body .payment-price p {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.payment-coupon{
+  display: flex;
+  align-items: center;
+}
+.payment-coupon button{
+ border: none;
+ border-radius:  0 1.5rem 1.5rem 0;
+    /* padding: 10px; */
+    height: 100%;
+    padding-inline: 2rem;
+    cursor: pointer;
+    background-color: #fe7000;
+    color: white;
+}
+
+.payment-plan-body-box p {
+  margin: 0;
+  font-size: 10px;
+  color: white;
+  font-weight: 400;
+}
+
+.subscription-message {
+  padding: 2rem 4rem;
+}
+
+.subscription-message img {
+  background-color: #4BB543;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  color: white;
+}
+
 @media all and (min-width: 1025px) and (max-width: 1125px) {
   html {
     font-size: 56.2%;
