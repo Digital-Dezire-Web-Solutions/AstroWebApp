@@ -1410,7 +1410,7 @@
                     <div class="payment-plan-body">
                         <div class="payment-price">
                             <p>₹</p>
-                            <h5 id="planPrice">199</h5>
+                            <h5 id="planPrice">501</h5>
                         </div>
                         <div class="payment-plan-body-box">
                             <p>/Per user</p>
@@ -1839,12 +1839,15 @@
             document.getElementById('renewModal').style.display = 'block';
         }
 
-        // Auto open modal after 2 seconds on page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                openRenewModal();
-            }, 2000); 
-        });
+        if (token) {
+            // Auto open modal after 2 seconds on page load
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    openRenewModal();
+                }, 2000);
+            });
+        }
+
 
         let discountPercent = 0; // To store applied discount
 

@@ -1753,6 +1753,8 @@
                                     }
                                 }
 
+                                // console.log(positionValue,"positionValue")
+
                                 let dashakeys = [];
                                 Object.entries(dashas).forEach(([key, value]) => {
                                     if (value.name === planetName) {
@@ -1862,15 +1864,13 @@
                         let matchedNakshatras = new Set();
                         let matchedPlanets = new Set(); // Track planets added to the third table
 
-                        console.log(planets, "planets")
-
                         secondTableData.forEach((entry2) => {
 
                             // console.log(entry2,"entry2")
                             let matches = firstTableData.filter(entry1 => entry1.nakshatra === entry2.nakshatra);
                             let matchPlanetsList = matches.filter((i) => i.pada === entry2.pada);
-                            // console.log(matchPlanetsList, "matchPlanetsList");
-                            console.log(matches, "matches")
+                            // console.log(matches, "matches")
+                            // console.log(matchPlanetsList,"matchPlanetsList")
 
                             // Extract and join all matching planet-related values
                             let planetsText = matchPlanetsList.map(mp => mp.planet).join(", ");
@@ -1879,12 +1879,93 @@
                             let combustPlanets = matchPlanetsList.map(mp => mp.combustPlanet).join(", ");
                             let statusClass = matchPlanetsList.length > 0 ? matchPlanetsList[0].status : "-";
                             let positionStatus = matchPlanetsList.length > 0 ? matchPlanetsList[0].positionValue?.status : "-";
+                            let dashaform2 = matchPlanetsList.length > 0 ? matchPlanetsList[0].dashaForm : "-"
+                            let dashaformStart = matchPlanetsList.length > 0 ? matchPlanetsList[0].dashaStart : "-"
+                            let dashaformEnd = matchPlanetsList.length > 0 ? matchPlanetsList[0].dashaEnd : "-"
 
                             if (!planetsText) {
                                 const planetText2 = planets.find(j => j.nakshatra === entry2.nakshatra && j.pada === entry2.pada);
+
+                                // console.log(planetText2,"planetText2")
                                 planetsText = planetText2 ? planetText2.name : "";
                                 retroPlanets = planetText2?.retro === true ? '&#8634;' : "";
                                 combustPlanets = planetText2?.is_combust === true ? '&#128293;' : "";
+
+                                let matchedD = [];
+                                if (divisionalData) {
+                                    matchedD = divisionalData.find((i) => i.name === planetText2?.name);
+                                }
+                                let matchedRashis = matchedD?.zodiac || "";
+
+                                let positionValue = [];
+                                let status = [];
+
+                                if (selectedRasNak === "Rashi") {
+                                    positionValue = position.find((i) => i.planet === planetText2?.name && i.rashi === matchedRashis);
+                                    console.log(positionValue,"positionValue")
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        status = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Own") {
+                                        status = 'color-pos-bx2';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        status = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        status = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        status = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        status = 'color-pos-bx6';
+                                    }
+                                } else {
+                                    positionValue = nakshatraPosition.find((i) => i.planet === planetText2?.name && i.nakshatra === planetText2?.nakshatra && i.pada === planetText2?.pada);
+
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        status = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        status = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        status = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        status = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        status = 'color-pos-bx6';
+                                    }
+                                }
+                                statusClass = status;
+                                positionStatus = positionValue;
+
+                                let dashakeys = [];
+                                Object.entries(dashas).forEach(([key, value]) => {
+                                    if (value.name === planetText2?.name) {
+                                        dashakeys.push({ key, value });
+                                    }
+                                });
+
+                                // let dashaText = dashakeys.length > 0 ? `(${dashakeys.join(", ")})` : "-";
+
+                                const dashaLabels = {
+                                    major: "Mahadasha (MD)",
+                                    minor: "Antardasha (AD)",
+                                    sub_minor: "Pratyantar Dasha (PD)",
+                                    sub_sub_minor: "Sookshma Dasha (SD)"
+                                };
+
+                                let dashaForms = dashakeys.map(({ key }) => dashaLabels[key] || key);
+
+                                // Extract actual dasha values (ensuring valid data)
+                                let dashaValues = dashakeys.map(({ value }) => value ? value : null).filter(Boolean);
+
+                                // Format outputs
+                                let dashaForm = dashaForms.length > 0 ? dashaForms.join(", ") : "-";
+                                let dashavalueForm = dashaValues.length > 0 ? dashaValues : "-";
+
+                                let dashaStart = dashaValues.length > 0 ? new Date(dashaValues[0].start).toISOString().split("T")[0] : "-";
+                                let dashaEnd = dashaValues.length > 0 ? new Date(dashaValues[0].end).toISOString().split("T")[0] : "-";
+
+                                dashaform2 = dashaForm
+                                dashaformStart = dashaStart
+                                dashaformEnd = dashaEnd
+
                             }
                             // Add all matched planets to the set
                             matchPlanetsList.forEach(mp => matchedPlanets.add(mp.planet));
@@ -1895,11 +1976,11 @@
         <td class="td-span"><span>${entry2.rashi}</span></td>
         <td class="td-span"><span>${planetsText || "-"} ${percentageText || " "} ${retroPlanets || " "} ${combustPlanets || " "} </span></td>
         <td class="td-span">
-            <div class="color-bx ${statusClass}" data-tooltip="${positionStatus}"></div>
+            <div class="color-bx ${statusClass}" data-tooltip="${positionStatus?.status}"></div>
         </td>
         <td class="td-span">
-            <span>${matchPlanetsList.length > 0 && matchPlanetsList[0].dashaForm ?
-                                    `${matchPlanetsList[0].dashaForm} <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" data-tooltip="${matchPlanetsList[0].dashaStart} - ${matchPlanetsList[0].dashaEnd}"></i>`
+            <span>${dashaform2 !== "-" && dashaform2 ?
+                                    `${dashaform2} <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" data-tooltip="${dashaformStart} - ${dashaformEnd}"></i>`
                                     : "-"}</span>
         </td>
     </tr>`;
