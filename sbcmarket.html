@@ -604,7 +604,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="inpt-bx">
+                        <!-- <div class="inpt-bx">
                             <label for="coupon">Coupon</label>
                             <div class="inpt payment-coupon">
                                 <input type="type" id="couponInput" name="couponInput" placeholder="Coupon code"
@@ -612,10 +612,11 @@
                                 <button type="button" onclick="applyCoupon()">Apply</button>
                             </div>
                             <p id="couponMessage" style="margin-top: 5px;"></p>
-                        </div>
+                        </div> -->
                         <p>100% Secure Payment method</p>
-                        <button class="form-btn" type="button" onclick="processPayment(true)">Proceed to
-                            Payment</button>
+                        <button class="form-btn" type="button" onclick="window.location.href='checkout.html'">
+                            Proceed to Checkout
+                        </button>
                     </div>
 
                     <!-- Success Message -->
@@ -662,7 +663,7 @@
                     </div>
 
                     <div class="common-container3">
-                        <div class="table-data">
+                        <div class="table-data" id="tableData">
                             <table id="planetTithiVedhTable">
                                 <thead>
                                     <tr>
@@ -735,11 +736,7 @@
 
 
                     <p>
-                        Astro Nivesh is a unit of Climstrip Shift Private Limited and the best astrology website for
-                        online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by
-                        seeing the future life through Astrology Kundli Predictions from the best Astrologers from
-                        India. Get best future predictions related to Marriage, love life, Career or Health over call,
-                        chat, query or report.
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
                     </p>
 
                 </div>
@@ -790,7 +787,7 @@
             </div>
 
             <div class="copyright-bx">
-                <p>Copyright 2025 Astro Nivesh (Climstrip Shift Private Limited) | All Rights Reserved | Dev. By: <a
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
                         href="https://digitaldezire.com/">Digital Dezire</a></p>
             </div>
         </div>
@@ -3204,7 +3201,7 @@
 
         async function initializeData(datass, adminData, gocharData, apiKey, data) {
 
-            // console.log(data,"data")
+            console.log(data, "data")
             const nameConsonent = data.consonent;
             // console.log(nameConsonent,"nameConsonent")
             let horoscopeData = datass[0]?.horoscopeData || [];
@@ -3238,7 +3235,66 @@
                     let year = date.getFullYear();
                     return `${day}/${month}/${year}`;  // Converts to DD/MM/YYYY format
                 }
+
+                const user = data
+                function getSubscriptionDates(user) {
+                    let startDate, endDate;
+
+                    if (user.subscription.plan === "Free") {
+                        startDate = user.subscription.startDate;
+                        endDate = user.subscription.endDate;
+                    } else {
+                        if (user.subscriptionHistory.length > 0) {
+                            const startDates = user.subscriptionHistory.map(sub => new Date(sub.startDate));
+                            const endDates = user.subscriptionHistory.map(sub => new Date(sub.endDate));
+
+                            const minStartDate = new Date(Math.min(...startDates));
+                            const maxEndDate = new Date(Math.max(...endDates));
+
+                            startDate = minStartDate.toISOString();
+                            endDate = maxEndDate.toISOString();
+                        } else {
+                            startDate = user.subscription.startDate;
+                            endDate = user.subscription.endDate;
+                        }
+                    }
+
+                    return { startDate, endDate };
+                }
+                const result = getSubscriptionDates(user);
+
+                function formatDateToISO(dateStr) {
+                    const dateObj = new Date(dateStr + " 12:00:00");
+                    return dateObj.toISOString().split('T')[0];
+                }
+
+                // Convert start & end to ISO
+                const startDateISO = result.startDate;
+                const endDateISO = result.endDate;
+
+                const startDate = new Date(startDateISO);
+                const endDate = new Date(endDateISO);
+                const today = new Date();
+
+                // Get the divs
+                // Example: Replace this date with your fetched subscription end date
+                const subscriptionEndDate = new Date(endDateISO); // YYYY-MM-DD format
+
+                const timeDiff = subscriptionEndDate.getTime() - today.getTime();
+                const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                // Get the div
+                const renewDiv = document.getElementById('renewDiv');
+
+                // Logic to show/hide
+                if (dayDiff > 2) {
+                    renewDiv.style.display = 'none';
+                } else {
+                    renewDiv.style.display = 'flex';
+                }
+
                 const updatePanchang = async () => {
+
                     // console.log(gocharData, "Before filtering");
 
                     let GocharDatas = []
@@ -3278,7 +3334,7 @@
                     // console.log(TithiPanchangResponse, "TithiPanchangResponse")
                     if (TithiPanchangResponse.length !== 0) {
                         const tithiPanchangData2 = TithiPanchangResponse.response;
-                        console.log(tithiPanchangData2, "tithiPanchangData2")
+                        // console.log(tithiPanchangData2, "tithiPanchangData2")
                         let tithiName = [];
                         let tithiType = [];
                         const tithiNextName = tithiPanchangData2.tithi.next_tithi;
@@ -3305,8 +3361,8 @@
                             formattedTimeWithDate.setDate(formattedTimeWithDate.getDate() + 1);
                         }
 
-                        console.log("FormattedTime with Date:", formattedTimeWithDate);
-                        console.log("Tithi End Time:", tithiEndTime);
+                        // console.log("FormattedTime with Date:", formattedTimeWithDate);
+                        // console.log("Tithi End Time:", tithiEndTime);
 
                         // Compare
                         if (formattedTimeWithDate <= tithiEndTime) {
@@ -3317,7 +3373,7 @@
                             tithiType = null;
                         }
 
-                        console.log("Final tithiName:", tithiName);
+                        // console.log("Final tithiName:", tithiName);
 
                         const matchingTithi = tithiPanchang.find(t => t.tithi === tithiName && t.paksha === tithiType);
                         // console.log(matchingTithi, "matchingTithi")
@@ -4054,13 +4110,31 @@
                 document.getElementById('nextBtnDate').addEventListener('click', () => {
                     currentDate.setDate(currentDate.getDate() + 1);
                     document.getElementById('dateLabel').innerText = formatDate(currentDate);
-                    updatePanchang();
+                    const tableData = document.getElementById('tableData');
+                    // Main Logic
+                    if (startDate <= currentDate && endDate >= currentDate) {
+                        renewDiv.style.display = 'none';
+                        tableData.style.display = 'block';
+                        updatePanchang();
+                    } else {
+                        tableData.style.display = 'none';
+                        renewDiv.style.display = 'flex';
+                    }
                 });
 
                 document.getElementById('prevBtnDate').addEventListener('click', () => {
                     currentDate.setDate(currentDate.getDate() - 1);
                     document.getElementById('dateLabel').innerText = formatDate(currentDate);
-                    updatePanchang();
+                    const tableData = document.getElementById('tableData');
+                    // Main Logic
+                    if (startDate <= currentDate && endDate >= currentDate) {
+                        renewDiv.style.display = 'none';
+                        tableData.style.display = 'block';
+                        updatePanchang();
+                    } else {
+                        tableData.style.display = 'none';
+                        renewDiv.style.display = 'flex';
+                    }
                 });
 
                 document.getElementById('nextBtnTime').addEventListener('click', () => {

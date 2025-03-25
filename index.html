@@ -1416,7 +1416,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="inpt-bx">
+                <!-- <div class="inpt-bx">
                     <label for="coupon">Coupon</label>
                     <div class="inpt payment-coupon">
                         <input type="type" id="couponInput" name="couponInput" placeholder="Coupon code"
@@ -1424,10 +1424,11 @@
                         <button type="button" onclick="applyCoupon()">Apply</button>
                     </div>
                     <p id="couponMessage" style="margin-top: 5px;"></p>
-                </div>
+                </div> -->
                 <p>100% Secure Payment method</p>
-                <button class="form-btn" type="button" onclick="processPayment(true)">Proceed to
-                    Payment</button>
+                <button class="form-btn" type="button" onclick="window.location.href='checkout.html'">
+                    Proceed to Checkout
+                </button>
             </div>
 
             <!-- Success Message -->
@@ -1690,7 +1691,7 @@
 
 
                     <p>
-                        Astro Nivesh is a unit of Climstrip Shift Private Limited and the best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
                     </p>
 
                 </div>
@@ -1741,7 +1742,7 @@
             </div>
 
             <div class="copyright-bx">
-                <p>Copyright 2025 Astro Nivesh (Climstrip Shift Private Limited) | All Rights Reserved | Dev. By: <a
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
                         href="https://digitaldezire.com/">Digital Dezire</a></p>
             </div>
             <div style="display: none;">
@@ -1840,105 +1841,6 @@
                     openRenewModal();
                 }, 2000);
             });
-        }
-
-
-        let discountPercent = 0; // To store applied discount
-
-        const couponCodes = {
-            NIVESH25: 25,
-            NIVESH50: 50,
-            NIVESH100: 100
-        };
-        const originalPrice = parseInt(document.getElementById('planPrice').innerText);
-        let finalPrice = originalPrice;
-
-        function applyCoupon() {
-            let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
-            let message = document.getElementById('couponMessage');
-
-            if (couponCodes[couponInput]) {
-                discountPercent = couponCodes[couponInput];
-                const discountAmount = (originalPrice * discountPercent) / 100;
-                finalPrice = originalPrice - discountAmount;
-                document.getElementById('planPrice').innerText = finalPrice;
-                message.style.color = 'green';
-                message.innerText = `Coupon applied! ${discountPercent}% discount.`;
-            } else {
-                discountPercent = 0;
-                message.style.color = 'red';
-                message.innerText = `Invalid Coupon Code.`;
-            }
-        }
-
-        async function processPayment() {
-            let plan = document.getElementById('planName').innerText;
-            let price = parseInt(document.getElementById('planPrice').innerText);
-            let coupon = document.getElementById('couponInput').value.trim().toUpperCase();
-            let paymentMethod = "Credit Card"; // You can dynamically get this if needed
-            let transactionId = Math.floor(Math.random() * 1000000000);
-
-            console.log(`Plan: ${plan}`);
-            console.log(`Original Price: ₹${price}`);
-            console.log(`Applied Coupon: ${coupon}`);
-            console.log(`Discount: ${discountPercent}%`);
-
-            let finalPrice = price - (price * discountPercent / 100);
-            console.log(`Final Price after Discount: ₹${finalPrice}`);
-
-            document.getElementById('modalContent').style.display = 'none';
-
-            // If 100% discount → no payment gateway, show success directly
-            if (discountPercent === 100) {
-                await assignSubscription(plan, paymentMethod, transactionId, coupon);
-                document.getElementById('successMessage').style.display = 'block';
-            } else {
-                let isSuccess = Math.random() < 0.7;
-
-                if (isSuccess) {
-                    await assignSubscription(plan, paymentMethod, transactionId, coupon);
-                    document.getElementById('successMessage').style.display = 'block';
-                } else {
-                    document.getElementById('failedMessage').style.display = 'block';
-                }
-            }
-
-            // Auto-close & reset after 2 seconds
-            setTimeout(() => {
-                document.getElementById('renewModal').style.display = 'none';
-                document.getElementById('modalContent').style.display = 'block';
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('failedMessage').style.display = 'none';
-                document.getElementById('couponMessage').innerText = '';
-                discountPercent = 0;
-                document.getElementById('couponInput').value = '';
-            }, 5000);
-        }
-        async function assignSubscription(plan, paymentMethod, transactionId, coupon) {
-            try {
-                let response = await fetch(`${host}/api/subscription/assign`, {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token": token
-                    },
-                    body: JSON.stringify({
-                        plan: plan,
-                        paymentMethod: paymentMethod,
-                        transactionId: transactionId,
-                        couponCode: coupon
-                    })
-                });
-
-                let data = await response.json();
-                if (data.success === true) {
-                    setTimeout(() => {
-                        location.reload();
-                    }, 5000)
-                }
-            } catch (err) {
-                console.error('Error assigning subscription:', err);
-            }
         }
 
         function showAlert(message, type) {

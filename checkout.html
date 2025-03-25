@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Shipping Policy | Astro Nivesh</title>
+    <title>SBC | Astro Nivesh</title>
     <!-- swiper slider css CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -231,11 +231,29 @@
             color: white;
         }
 
-        .page-title{
+        .page-title {
             text-align: center;
             margin-bottom: 2rem;
         }
 
+        .textareainput {
+            position: relative;
+            width: 100%;
+            height: 8.5rem;
+            background-color: #fff;
+            border: 0.1rem solid #ddd;
+            border-radius: 2rem;
+        }
+
+        .textareainput textarea {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 2rem;
+            border: none;
+            padding: 1rem;
+        }
     </style>
 
 
@@ -569,157 +587,206 @@
 
     <!-- body section -->
 
-    <section class="why-astrologer-comp">
+    <section class="kundali-comp">
         <div class="common-container3">
+            <h5 class="page-title">Checkout</h5>
+            <div class="kundali-container">
+                <div class="Checkout">
+                    <div class="Checkout-left">
+                        <h6>Billing Address</h6>
+                        <div class="Checkout-left-box">
+                            <div class="inpt-bx">
+                                <label for="coupon">Name</label>
+                                <div class="inpt">
+                                    <input type="type" id="name-checkout" placeholder="Enter your name.."
+                                        name="name-checkout" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="inpt-bx">
+                                <label for="coupon">Email</label>
+                                <div class="inpt">
+                                    <input type="email" id="email-checkout" placeholder="Enter your email.."
+                                        name="email-checkout" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="inpt-bx">
+                                <label for="coupon">Phone No.</label>
+                                <div class="inpt">
+                                    <input type="number" id="phnum" placeholder="Enter your phonenumber.." name="phnum"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="inpt-bx">
+                                <label for="coupon">Address</label>
+                                <div class="textareainput">
+                                    <textarea name="address-checkout" id="address-checkout"
+                                        placeholder="Enter your Address"></textarea>
+                                </div>
+                            </div>
+                            <div class="inpt-bx">
+                                <label for="coupon">Pin Code</label>
+                                <div class="inpt">
+                                    <input type="number" id="pinc" placeholder="Enter your pincode " name="pinc"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="inpt-bx">
+                                <label for="coupon">City</label>
+                                <div class="inpt">
+                                    <input type="type" id="city" placeholder="Enter your ity" name="city"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="inpt-bx">
+                                <label for="coupon">State</label>
+                                <div class="inpt">
+                                    <input type="type" id="state" placeholder="Enter your state" name="state"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Checkout-right">
+                        <h6>Plan</h6>
+                        <div id="renewModal" class="Checkout-right-box">
+                            <div class="Checkout-box">
+                                <div class="modal-content" id="modalContent">
+                                    <!-- <span onclick="document.getElementById('renewModal').style.display='none'">
+                                        <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                                    </span> -->
+                                    <!-- <h5>Renew Subscription</h5> -->
+                                    <div class="payment-plan-box">
+                                        <div class="payment-plan-head">
+                                            <h6 id="planName">Basic</h6>
+                                        </div>
+                                        <div class="payment-plan-body">
+                                            <div class="payment-price">
+                                                <p>₹</p>
+                                                <h5 id="planPrice">501</h5>
+                                            </div>
+                                            <div class="payment-plan-body-box">
+                                                <p>/Per user</p>
+                                                <p>/Per months</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inpt-bx">
+                                        <label for="coupon">Coupon</label>
+                                        <div class="inpt payment-coupon">
+                                            <input type="type" id="couponInput" name="couponInput"
+                                                placeholder="Coupon code" autocomplete="off">
+                                            <button type="button" onclick="applyCoupon()">Apply</button>
+                                        </div>
+                                        <p id="couponMessage" style="margin-top: 5px;"></p>
+                                    </div>
+                                    <p>100% Secure Payment method</p>
+                                    <button class="form-btn" type="button" onclick="processPayment(true)">Proceed to
+                                        Payment</button>
+                                </div>
 
-            <div class="comn-heading">
-                <h3>Shipping Policy</h3>
-                <p>Effective Date: March 19, 2025</p>
+                                <!-- Success Message -->
+                                <div class="subscription-message" id="successMessage"
+                                    style="display:none; text-align:center; color:white;">
+                                    <img src="./images/success.gif" alt="">
+                                    <p>Payment Successful!</p>
+                                    <p>Subscription from 18-03-2025 to 17-03-2025 is successfull!</p>
+                                </div>
+
+                                <!-- Failed Message -->
+                                <div class="subscription-message" id="failedMessage"
+                                    style="display:none; text-align:center; color:white;">
+                                    <i class="fa-solid fa-circle-xmark"
+                                        style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
+                                    <p>Payment failed!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="para-info">
-
-                <p>At Astro Nivesh, we strive to ensure timely and efficient delivery of our products and services. This Shipping Policy outlines the terms under which we process and deliver orders.</p>
-
-                <Strong>1. General Shipping Terms</Strong>
-
-                <p>- We offer shipping for physical products purchased through our platform.</p>
-
-                <p>- Digital products, such as astrology reports, are delivered electronically and do not require physical shipping.</p>
-
-                <p>- Shipping services are available across the country.</p>
-                <p>- Orders are processed and shipped only on business days (Monday to Saturday, excluding public holidays).</p>
-
-                <strong>2. Shipping Time & Delivery</strong>
-
-                <p>- Orders are typically processed within 24 to 48 hours after payment confirmation.</p>
-
-                <p>- Estimated delivery times:</p>
-                <p>- Standard Shipping: 4 to 5 Business Days</p>
-                <p>- Express Shipping: 2 to 3 Business Days (available at an additional cost)</p>
-                <p>- Delivery times may vary depending on location, courier delays, and unforeseen circumstances.</p>
-                <p>- Once shipped, customers will receive tracking details via email or SMS.</p>
-
-                <strong>3. Shipping Charges</strong>
-
-                <p>- Shipping charges vary based on the delivery location and selected shipping method.</p>
-
-                <p>- Any additional shipping charges (such as express shipping or international delivery) will be displayed at checkout.</p>
-                <p>- Free shipping may be available for orders above a certain value, as per promotional offers.</p>
-
-                <strong>4. International Shipping</strong>
-                <p>- We currently do not offer international shipping.</p>
-
-                <p>- For international shipments, customs duties, taxes, and import fees may apply and are the responsibility of the customer.</p>
-
-                <strong>5. Order Tracking</strong>
-                <p>- Customers will receive a tracking number once the order has been dispatched.</p>
-
-                <p>- Orders can be tracked via the courier’s website using the provided tracking number.</p>
-
-
-                <strong>6. Delays & Issues</strong>
-                <p>- If an order is delayed beyond the estimated delivery time, customers can contact our support team for assistance.</p>
-
-                <p>- Astro Nivesh is not responsible for delays caused by natural disasters, courier service disruptions, or unforeseen circumstances.</p>
-                <p>- In case of a lost or undelivered order, we will work with the courier to resolve the issue. A replacement or refund may be issued based on the resolution.</p>
-
-
-                <strong>7. Damaged or Incorrect Orders</strong>
-                <p>- If a product arrives damaged or is incorrect, customers must report the issue within 12 hours of delivery by emailing contact@astronivesh.com with images of the product.</p>
-
-                <p>- We will arrange for a replacement or refund as per our Return & Refund Policy.</p>
-
-                <strong>8. Contact Us</strong>
-                <p>For any shipping-related queries, please contact us at: contact@astronivesh.com</p>
-
-                <p>By placing an order with us, you acknowledge and agree to this Shipping Policy.</p>
-
-            </div>
-
         </div>
     </section>
-   
+
 
     <!-- ____________________________
           Our Footer Comp 
           -------------------- -->
 
-          <footer class="footer-comp">
-            <div class="common-container3">
-    
-                <div class="footer-flex-bx">
-    
-                    <div class="left-footer-bx">
-    
-                        <div class="left-header-logo flex item-start gap">
-                            <img src="./images/astrology.png" alt="">
-    
-                            <h6>Astro Nivesh</h6>
-    
-    
-                        </div>
-    
-    
-    
-    
-                        <p>
-                            Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
-                        </p>
-    
+    <footer class="footer-comp">
+        <div class="common-container3">
+
+            <div class="footer-flex-bx">
+
+                <div class="left-footer-bx">
+
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="">
+
+                        <h6>Astro Nivesh</h6>
+
+
                     </div>
-    
-    
-                    <div class="right-footer-bx">
-    
-                        <div class="footer-bx">
-                            <h6>Corporate Info</h6>
-                            <div class="footer-li">
-                                <li><a href="aboutus.html">About Us</a></li>
-                                <li><a href="contactus.html">Contact Us</a></li>
-                                <li><a href="termsconditions.html">Terms & Conditions</a></li>
-                                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
-                                <li><a href="refundpolicy.html">Refund Policy</a></li>
-                            </div>
+
+
+
+
+                    <p>
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
+                    </p>
+
+                </div>
+
+
+                <div class="right-footer-bx">
+
+                    <div class="footer-bx">
+                        <h6>Corporate Info</h6>
+                        <div class="footer-li">
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
                         </div>
-    
-    
-                        <div class="footer-bx">
-                            <h6>Contact Info</h6>
-                            <div class="footer-li">
-                                <li><a href="#"> We are available 24x7 on chat support</a></li>
-                                <li><a href="#">Email ID: contact@astronivesh.com</a></li>
-    
-                                <div class="soc-icons-flex">
-                                    <a href="#">
-                                        <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-youtube"></ion-icon>
-                                    </a>
-                                </div>
-    
-                            </div>
-                        </div>
-    
-    
                     </div>
-    
+
+
+                    <div class="footer-bx">
+                        <h6>Contact Info</h6>
+                        <div class="footer-li">
+                            <li><a href="#"> We are available 24x7 on chat support</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
+
+                            <div class="soc-icons-flex">
+                                <a href="#">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
-    
-                <div class="copyright-bx">
-                    <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
-                            href="https://digitaldezire.com/">Digital Dezire</a></p>
-                </div>
+
             </div>
-        </footer>
+
+            <div class="copyright-bx">
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
+                        href="https://digitaldezire.com/">Digital Dezire</a></p>
+            </div>
+        </div>
+    </footer>
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -741,7 +808,9 @@
                 // console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
-                // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
+                document.getElementById("name-checkout").value = data.name || "Not Set";
+                document.getElementById("email-checkout").value = data.email || "Not Set";
+                document.getElementById("address-checkout").value = data.birthplace || "Not Set";
             } catch (error) {
                 console.error(error);
                 // alert("Error fetching data: " + error.message);
@@ -768,6 +837,163 @@
              
             `
         }
+
+        // subscription
+        let discountPercent = 0; // To store applied discount
+
+        const couponCodes = {
+            NIVESH25: 25,
+            NIVESH50: 50,
+            NIVESH100: 100
+        };
+        const originalPrice = parseInt(document.getElementById('planPrice').innerText);
+        let finalPrice = originalPrice;
+
+        function applyCoupon() {
+            let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
+            let message = document.getElementById('couponMessage');
+
+            if (couponCodes[couponInput]) {
+                discountPercent = couponCodes[couponInput];
+                const discountAmount = (originalPrice * discountPercent) / 100;
+                finalPrice = originalPrice - discountAmount;
+                document.getElementById('planPrice').innerText = finalPrice;
+                message.style.color = 'green';
+                message.innerText = `Coupon applied! ${discountPercent}% discount.`;
+            } else {
+                discountPercent = 0;
+                message.style.color = 'red';
+                message.innerText = `Invalid Coupon Code.`;
+            }
+        }
+
+        async function processPayment() {
+            // Fetch user input data
+            let name = document.getElementById('name-checkout').value.trim();
+            let email = document.getElementById('email-checkout').value.trim();
+            let phone = document.getElementById('phnum').value.trim();
+            let address = document.getElementById('address-checkout').value.trim();
+            let pincode = document.getElementById('pinc').value.trim();
+            let city = document.getElementById('city').value.trim();
+            let state = document.getElementById('state').value.trim();
+            // console.log(name, "name")
+            // console.log(email, "email")
+            // console.log(phone, "phone")
+            // console.log(address, "address")
+            // console.log(pincode, "pincode")
+            // console.log(city, "city")
+            // console.log(state, "state")
+
+            // subscription
+            let plan = document.getElementById('planName').innerText;
+            let price = parseInt(document.getElementById('planPrice').innerText);
+            let coupon = document.getElementById('couponInput').value.trim().toUpperCase();
+            let paymentMethod = "Credit Card"; // You can dynamically get this if needed
+            let transactionId = Math.floor(Math.random() * 1000000000);
+
+            // console.log(`Plan: ${plan}`);
+            // console.log(`Original Price: ₹${price}`);
+            // console.log(`Applied Coupon: ${coupon}`);
+            // console.log(`Discount: ${discountPercent}%`);
+
+            let finalPrice = price - (price * discountPercent / 100);
+            console.log(`Final Price after Discount: ₹${finalPrice}`);
+
+            document.getElementById('modalContent').style.display = 'none';
+
+            // If 100% discount → no payment gateway, show success directly
+            if (discountPercent === 100) {
+                await assignSubscription(plan, paymentMethod, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state);
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                let isSuccess = Math.random() < 0.7;
+
+                if (isSuccess) {
+                    await assignSubscription(plan, paymentMethod, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state);
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    document.getElementById('failedMessage').style.display = 'block';
+                }
+            }
+
+            // Auto-close & reset after 2 seconds
+            setTimeout(() => {
+                document.getElementById('renewModal').style.display = 'none';
+                document.getElementById('modalContent').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('failedMessage').style.display = 'none';
+                document.getElementById('couponMessage').innerText = '';
+                discountPercent = 0;
+                document.getElementById('couponInput').value = '';
+            }, 5000);
+        }
+        async function assignSubscription(plan, paymentMethod, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state) {
+            try {
+                // console.log(plan, "plan");
+                // console.log(coupon, "coupon");
+                let response = await fetch(`${host}/api/subscription/assign`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify({
+                        plan: plan,
+                        paymentMethod: paymentMethod,
+                        transactionId: transactionId,
+                        couponCode: coupon
+                    })
+                });
+                let data = await response.json();
+                if (data.success === true) {
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000)
+                }
+            } catch (err) {
+                console.error('Error assigning subscription:', err);
+            }
+            try {
+                // console.log(finalPrice, "finalPrice")
+                // console.log(name, "name")
+                // console.log(email, "email")
+                // console.log(phone, "phone")
+                // console.log(address, "address")
+                // console.log(pincode, "pincode")
+                // console.log(city, "city")
+                // console.log(state, "state")
+                let response2 = await fetch(`${host}/api/invoice/add`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify({
+                        price: finalPrice,
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        pincode: pincode,
+                        city: city,
+                        state: state
+                    }),
+                });
+
+                // console.log(response2, "response2")
+                let data2 = await response2.json();
+                // console.log(data2, "data2")
+                if (data2.success === true) {
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000)
+                }
+            } catch (error) {
+
+            }
+        }
+
+
         document.addEventListener("DOMContentLoaded", function () {
             // console.log(token, "token")
             const loginForm = document.querySelector(".login-info");
@@ -793,7 +1019,7 @@
                     localStorage.removeItem("token");
                     localStorage.removeItem('params');
                     location.reload();
-                    // window.location.href = "./index.html";
+                    window.location.href = "./index.html";
                 });
             }
         });

@@ -2233,19 +2233,19 @@ form {
   font-weight: 400;
 }
 
-.payment-coupon{
+.payment-coupon {
   display: flex;
   align-items: center;
 }
-.payment-coupon button{
- border: none;
- border-radius:  0 1.5rem 1.5rem 0;
-    /* padding: 10px; */
-    height: 100%;
-    padding-inline: 2rem;
-    cursor: pointer;
-    background-color: #fe7000;
-    color: white;
+.payment-coupon button {
+  border: none;
+  border-radius: 0 1.5rem 1.5rem 0;
+  /* padding: 10px; */
+  height: 100%;
+  padding-inline: 2rem;
+  cursor: pointer;
+  background-color: #fe7000;
+  color: white;
 }
 
 .payment-plan-body-box p {
@@ -2260,7 +2260,7 @@ form {
 }
 
 .subscription-message img {
-  background-color: #4BB543;
+  background-color: #4bb543;
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -2831,3 +2831,20 @@ form {
     padding-inline: 2rem;
   }
 }
+
+.Checkout {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* gap: 2rem; */
+}
+.Checkout-left {
+  width: 60%;
+}
+.Checkout-right {
+  width: 35%;
+}
+
+/* .Checkout-right-box{
+  width: 100%;
+} */
