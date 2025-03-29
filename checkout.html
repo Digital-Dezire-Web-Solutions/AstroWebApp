@@ -610,49 +610,49 @@
                                 <label for="coupon">Name</label>
                                 <div class="inpt">
                                     <input type="type" id="name-checkout" placeholder="Enter your name.."
-                                        name="name-checkout" autocomplete="off">
+                                        name="name-checkout" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
                                 <label for="coupon">Email</label>
                                 <div class="inpt">
                                     <input type="email" id="email-checkout" placeholder="Enter your email.."
-                                        name="email-checkout" autocomplete="off">
+                                        name="email-checkout" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
                                 <label for="coupon">Phone No.</label>
                                 <div class="inpt">
                                     <input type="number" id="phnum" placeholder="Enter your phonenumber.." name="phnum"
-                                        autocomplete="off">
+                                        autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
                                 <label for="coupon">Address</label>
                                 <div class="textareainput">
                                     <textarea name="address-checkout" id="address-checkout"
-                                        placeholder="Enter your Address"></textarea>
+                                        placeholder="Enter your Address" required></textarea>
                                 </div>
                             </div>
                             <div class="inpt-bx">
                                 <label for="coupon">Pin Code</label>
                                 <div class="inpt">
                                     <input type="number" id="pinc" placeholder="Enter your pincode " name="pinc"
-                                        autocomplete="off">
+                                        autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
                                 <label for="coupon">City</label>
                                 <div class="inpt">
                                     <input type="type" id="city" placeholder="Enter your ity" name="city"
-                                        autocomplete="off">
+                                        autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
                                 <label for="coupon">State</label>
                                 <div class="inpt">
                                     <input type="type" id="state" placeholder="Enter your state" name="state"
-                                        autocomplete="off">
+                                        autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -940,7 +940,7 @@
                 discountPercent = 0;
                 document.getElementById('couponInput').value = '';
                 // location.reload();
-            }, 3000);
+            }, 5000);
         }
 
         async function paymentStatus() {
@@ -958,13 +958,17 @@
                     document.getElementById('successMessage').style.display = 'none';
                     document.getElementById('failedMessage').style.display = 'none';
 
-                    if (parsedData.success) {
+                    if (parsedData.state === "COMPLETED") { 
                         document.getElementById('modalContent').style.display = 'none';
                         document.getElementById('successMessage').style.display = 'block';
+
                         const storingData = JSON.parse(localStorage.getItem("storingData"));
-                        let paymentMethod = parsedData.data?.paymentInstrument?.cardType || "Pending"
-                        let transactionId = parsedData.data?.transactionId
-                        await assignSubscription(storingData, paymentMethod, transactionId)
+
+                        // Extract payment details
+                        let paymentMethod = parsedData.paymentDetails?.[0]?.paymentMode || "Pending";
+                        let transactionId = parsedData.transactionId;
+
+                        await assignSubscription(storingData, paymentMethod, transactionId);
                     } else {
                         document.getElementById('modalContent').style.display = 'none';
                         document.getElementById('failedMessage').style.display = 'block';
@@ -984,7 +988,7 @@
                         url.searchParams.delete("data");
                         window.history.replaceState({}, document.title, url);
                         document.getElementById('modalContent').style.display = 'block';
-                    }, 3000);
+                    }, 5000);
 
                 } catch (error) {
                     console.error("Error parsing payment data:", error);
