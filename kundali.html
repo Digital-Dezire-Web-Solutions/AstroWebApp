@@ -1121,6 +1121,7 @@
             try {
                 const response = await fetch(`${host}/api/admindetail/all`);
                 const data = await response.json();
+                // console.log(data,"data")
 
                 if (!Array.isArray(data) || data.length === 0 || !data[0].gochar || !Array.isArray(data[0].gochar)) {
                     throw new Error("Invalid data format: 'gochar' is missing or not an array.");
@@ -1908,7 +1909,7 @@
 
                                 if (selectedRasNak === "Rashi") {
                                     positionValue = position.find((i) => i.planet === planetText2?.name && i.rashi === matchedRashis);
-                                    console.log(positionValue,"positionValue")
+                                    // console.log(positionValue,"positionValue")
                                     if (positionValue?.status === "Uccha (Exalted)") {
                                         status = 'color-pos-bx1';
                                     } else if (positionValue?.status === "Own") {

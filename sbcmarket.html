@@ -16,16 +16,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="/images/astrology.png" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZF2CQTE5JG"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZF2CQTE5JG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-ZF2CQTE5JG');
-</script>
-<script src="https://cdn.pagesense.io/js/astronivesh/b70b9482d2454a09ac5feadc3675f35c.js"></script>
+        gtag('config', 'G-ZF2CQTE5JG');
+    </script>
+    <script src="https://cdn.pagesense.io/js/astronivesh/b70b9482d2454a09ac5feadc3675f35c.js"></script>
 </head>
 
 <body>
@@ -745,7 +745,10 @@
 
 
                     <p>
-                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
                     </p>
 
                 </div>
@@ -796,8 +799,8 @@
             </div>
 
             <div class="copyright-bx">
-                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
-                        href="https://digitaldezire.com/">Digital Dezire</a></p>
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All
+                    Rights Reserved | Dev. By: <a href="https://digitaldezire.com/">Digital Dezire</a></p>
             </div>
         </div>
     </footer>
@@ -938,104 +941,6 @@
             // Example: Show modal and populate hidden input with subscriptionId
             document.getElementById('renewModal').style.display = 'block';
         }
-
-        let discountPercent = 0; // To store applied discount
-
-        const couponCodes = {
-            NIVESH25: 25,
-            NIVESH50: 50,
-            NIVESH100: 100
-        };
-        const originalPrice = parseInt(document.getElementById('planPrice').innerText);
-        let finalPrice = originalPrice;
-
-        function applyCoupon() {
-            let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
-            let message = document.getElementById('couponMessage');
-
-            if (couponCodes[couponInput]) {
-                discountPercent = couponCodes[couponInput];
-                const discountAmount = (originalPrice * discountPercent) / 100;
-                finalPrice = originalPrice - discountAmount;
-                document.getElementById('planPrice').innerText = finalPrice;
-                message.style.color = 'green';
-                message.innerText = `Coupon applied! ${discountPercent}% discount.`;
-            } else {
-                discountPercent = 0;
-                message.style.color = 'red';
-                message.innerText = `Invalid Coupon Code.`;
-            }
-        }
-
-        async function processPayment() {
-            let plan = document.getElementById('planName').innerText;
-            let price = parseInt(document.getElementById('planPrice').innerText);
-            let coupon = document.getElementById('couponInput').value.trim().toUpperCase();
-            let paymentMethod = "Credit Card"; // You can dynamically get this if needed
-            let transactionId = Math.floor(Math.random() * 1000000000);
-
-            console.log(`Plan: ${plan}`);
-            console.log(`Original Price: ₹${price}`);
-            console.log(`Applied Coupon: ${coupon}`);
-            console.log(`Discount: ${discountPercent}%`);
-
-            let finalPrice = price - (price * discountPercent / 100);
-            console.log(`Final Price after Discount: ₹${finalPrice}`);
-
-            document.getElementById('modalContent').style.display = 'none';
-
-            // If 100% discount → no payment gateway, show success directly
-            if (discountPercent === 100) {
-                await assignSubscription(plan, paymentMethod, transactionId, coupon);
-                document.getElementById('successMessage').style.display = 'block';
-            } else {
-                let isSuccess = Math.random() < 0.7;
-
-                if (isSuccess) {
-                    await assignSubscription(plan, paymentMethod, transactionId, coupon);
-                    document.getElementById('successMessage').style.display = 'block';
-                } else {
-                    document.getElementById('failedMessage').style.display = 'block';
-                }
-            }
-
-            // Auto-close & reset after 2 seconds
-            setTimeout(() => {
-                document.getElementById('renewModal').style.display = 'none';
-                document.getElementById('modalContent').style.display = 'block';
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('failedMessage').style.display = 'none';
-                document.getElementById('couponMessage').innerText = '';
-                discountPercent = 0;
-                document.getElementById('couponInput').value = '';
-            }, 5000);
-        }
-        async function assignSubscription(plan, paymentMethod, transactionId, coupon) {
-            try {
-                let response = await fetch(`${host}/api/subscription/assign`, {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token": token
-                    },
-                    body: JSON.stringify({
-                        plan: plan,
-                        paymentMethod: paymentMethod,
-                        transactionId: transactionId,
-                        couponCode: coupon
-                    })
-                });
-
-                let data = await response.json();
-                if (data.success === true) {
-                    setTimeout(() => {
-                        location.reload();
-                    }, 5000)
-                }
-            } catch (err) {
-                console.error('Error assigning subscription:', err);
-            }
-        }
     </script>
 
     <script>
@@ -1078,6 +983,7 @@
         async function fetchUserData(data) {
             // console.log(data,"data")
             const params = JSON.parse(localStorage.getItem('params'));
+            // console.log(params,"params")
             const baseUrl = "https://api.vedicastroapi.com/v3-json";
             try {
                 const response = await fetch(`${host}/api/detail/fetchalldetail`, {
@@ -3210,7 +3116,7 @@
 
         async function initializeData(datass, adminData, gocharData, apiKey, data) {
 
-            console.log(data, "data")
+            // console.log(data, "data")
             const nameConsonent = data.consonent;
             // console.log(nameConsonent,"nameConsonent")
             let horoscopeData = datass[0]?.horoscopeData || [];
@@ -3220,7 +3126,7 @@
 
             if (monthlyPanchang && monthlyPanchang.response) {
                 const panchangDatas = monthlyPanchang.response;
-                console.log(panchangDatas, "panchangDatas")
+                // console.log(panchangDatas, "panchangDatas")
                 const planetDatas = horoscopeData.response;
                 const getPanchangForDate = (selectedDate) => {
                     const foundData = panchangDatas.find(data => data.date === selectedDate);
@@ -3333,7 +3239,7 @@
                     const baseUrl = "https://api.vedicastroapi.com/v3-json";
                     let panchangDetails = getPanchangForDate(formattedDate);
                     // console.log(formattedTithiDate, "formattedTithiDate")
-                    console.log(formattedTime, "formattedTime")
+                    // console.log(formattedTime, "formattedTime")
 
                     // Convert formattedDate ("Sat Mar 08 2025") to "08/03/2025"
                     const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(formattedTithiDate)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&time=${encodeURIComponent(formattedTime)}&lang=en`;
@@ -3351,6 +3257,59 @@
                         const tithiEnd = tithiPanchangData2.tithi.end;
                         const tithiStartTime = new Date(tithiStart);
                         const tithiEndTime = new Date(tithiEnd);
+
+                        // Convert formattedTithiDate and formattedTime to a Date object
+                        let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
+                        let [hoursmoon, minutesmoon] = formattedTime.split(":").map(Number);
+
+                        let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon); // Month is zero-based in JS
+
+
+                        // moon data
+                        let moonNakshatra = tithiPanchangData2.nakshatra.name;
+                        let moonStart = new Date(tithiPanchangData2.nakshatra.start);
+                        let moonEnd = new Date(tithiPanchangData2.nakshatra.end);
+                        let moonrashi = tithiPanchangData2.rasi.name
+
+                        // console.log(moonNakshatra, "moonNakshatra");
+                        // console.log(moonStart, "moonStart");
+                        // console.log(moonEnd, "moonEnd");
+
+                        // Calculate total duration
+                        let totalDuration = moonEnd - moonStart;
+                        let partDuration = totalDuration / 4; // Divide into 4 equal parts
+
+                        // Define the four time divisions
+                        let part1 = new Date(moonStart.getTime() + partDuration);
+                        let part2 = new Date(moonStart.getTime() + partDuration * 2);
+                        let part3 = new Date(moonStart.getTime() + partDuration * 3);
+                        let part4 = moonEnd; // Last part is the end time itself
+
+                        // console.log(part1, "End of Pada 1");
+                        // console.log(part2, "End of Pada 2");
+                        // console.log(part3, "End of Pada 3");
+                        // console.log(part4, "End of Pada 4");
+
+                        // Function to determine Pada based on input time
+                        function getPada(time) {
+                            let dateTime = new Date(time);
+
+                            if (dateTime >= moonStart && dateTime < part1) {
+                                return 1;
+                            } else if (dateTime >= part1 && dateTime < part2) {
+                                return 2;
+                            } else if (dateTime >= part2 && dateTime < part3) {
+                                return 3;
+                            } else if (dateTime >= part3 && dateTime <= part4) {
+                                return 4;
+                            } else {
+                                return "Out of range";
+                            }
+                        }
+
+                        // Determine and log the Pada
+                        let moonpada = getPada(currentDateTime);
+                        // console.log(moonpada, "Current Pada");
 
                         // Extract hours and minutes from formattedTime ("17:00")
                         const [hours, minutes] = formattedTime.split(":").map(Number);
@@ -3599,17 +3558,9 @@
                                         gocharMotion = gocharPlanet.motion;
                                         gocharCombust = gocharPlanet.combust;
                                         const planetName = gocharPlanet.planet_name
-                                        // console.log(planetName, "gplanetName")
 
                                         if (planetName === "Sun") {
                                             const sunData = sunFinder[0]["Sun"];
-                                            if (sunData[gocharNakshatra] && sunData[gocharNakshatra][gocharPada]) {
-                                                gocharNakMatch = sunData[gocharNakshatra][gocharPada];
-                                            }
-                                            // console.log(gocharNakMatch, "gocharNakMatch")
-                                        }
-                                        if (planetName === "Moon") {
-                                            const sunData = moonFinder[0]["Moon"];
                                             if (sunData[gocharNakshatra] && sunData[gocharNakshatra][gocharPada]) {
                                                 gocharNakMatch = sunData[gocharNakshatra][gocharPada];
                                             }
@@ -3791,7 +3742,18 @@
                                             // console.log("Matched Value:", gocharNakMatch);
                                         }
                                     }
+                                    if (name === "Moon") {
+                                        gocharNakshatra = moonNakshatra;
+                                        gocharPada = moonpada;
+                                        gocharRashi = moonrashi
+                                        const moonData = moonFinder[0]["Moon"];
+                                        if (moonData[moonNakshatra] && moonData[moonNakshatra][moonpada]) {
+                                            gocharNakMatch = moonData[moonNakshatra][moonpada];
+                                        }
+                                        // console.log(gocharNakMatch, "gocharNakMatch")
+                                    }
 
+                                    // console.log(name,gocharRashi,"gocharRashi")
 
                                     const tithiLordNumber = planetNumberMapping[tithiLord];
                                     const vedh = tithiVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
@@ -3854,9 +3816,13 @@
                                         "Aquarius": "Technology, Innovation, Social Causes, Aviation",
                                         "Pisces": "Liquids, Entertainment, Psychology, Spirituality"
                                     };
+                                    // console.log(rashiDay, "rashiDay")
 
                                     function getSectorAnalysisFromRashiDay(rashiDay) {
-                                        let selectedRashi = rashiDay.front || (rashiDay.left !== "-" ? rashiDay.left : rashiDay.right);
+                                        let selectedRashi =
+                                            rashiDay.front !== "-" ? rashiDay.front :
+                                                rashiDay.left !== "-" ? rashiDay.left :
+                                                    rashiDay.right;
 
                                         if (!selectedRashi) return "No data available";
 
@@ -3941,13 +3907,16 @@
                                         return { sparsh, vedh };
                                     };
 
+                                    // console.log(matchColumn, "matchColumn")
+
                                     // Collect tithi data for a single row
                                     if (matchColumn) {
                                         const { sparsh, vedh } = getSparshAndVedh();
                                         tithiData.push({
                                             tithiLord,
                                             sparsh,
-                                            vedh
+                                            vedh,
+                                            matchColumn
                                         });
                                     }
                                     // Collect var data for a single row
@@ -3964,12 +3933,22 @@
 
                                 // Append a single row for rashi data
                                 if (tithiData.length > 0) {
+                                    // console.log(tithiData, "tithiData")
+
+                                    let sparshType = tithiData
+                                        .filter(data => data.sparsh.trim())
+                                        .map(data => data.matchColumn.charAt(0).toUpperCase());
+
+                                    let vedhType = tithiData
+                                        .filter(data => data.vedh.trim())
+                                        .map(data => data.matchColumn.charAt(0).toUpperCase());
+
                                     const row = document.createElement('tr');
                                     row.innerHTML = `
                     <td>Tithi</td>
                     <td>${tithiData.map(data => data.tithiLord).slice(0, 1)} (${tithiType || "-"})</td>
-                    <td>${tithiData.map(data => data.sparsh).join(' ')}</td>
-                    <td>${tithiData.map(data => data.vedh).join(' ')}</td>
+                    <td>${tithiData.map(data => data.sparsh).join(' ')} (${sparshType})</td>
+                    <td>${tithiData.map(data => data.vedh).join(' ')} (${vedhType})</td>
                     <td>${matchingTithi?.market_sentiment || "-"}</td>
                     <td>${matchingTithi?.market_trend || "-"} </td>
                 `;
