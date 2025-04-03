@@ -1124,6 +1124,9 @@
             try {
                 const response = await fetch(`${host}/api/admindetail/all`);
                 const data = await response.json();
+
+                const api = data[0]?.apiKey || [];
+                const apiKey = api[0]?.apiKey;
                 // console.log(data,"data")
 
                 if (!Array.isArray(data) || data.length === 0 || !data[0].gochar || !Array.isArray(data[0].gochar)) {
@@ -1131,27 +1134,162 @@
                 }
 
                 let gocharData = data[0].gochar;
-                const today = new Date();
+                // console.log(gocharData, "gocharData")
+                const normalizeDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                const today = normalizeDate(new Date());
 
-                // Filter data where today's date is within the range
-                gocharData = gocharData.filter(entry => {
-                    const entryDate = new Date(entry.date_of_entry);
-                    const exitDate = new Date(entry.date_of_exit);
+                let filteredData = gocharData.filter(entry => {
+                    const entryDate = normalizeDate(new Date(entry.date_of_entry));
+                    const exitDate = normalizeDate(new Date(entry.date_of_exit));
                     return today >= entryDate && today <= exitDate;
                 });
+
+                filteredData = filteredData.reduce((unique, entry) => {
+                    const exitDate = normalizeDate(new Date(entry.date_of_exit));
+
+                    if (exitDate.getTime() === today.getTime()) {
+                        unique[entry.planet_name] = entry;
+                    } else if (!unique[entry.planet_name]) {
+                        unique[entry.planet_name] = entry;
+                    }
+
+                    return unique;
+                }, {});
+
+                // Convert back to an array
+                filteredData = Object.values(filteredData);
 
                 const planetOrder = ["Ascendant", "Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
 
                 // Sort based on custom planet order
-                gocharData.sort((a, b) => {
+                filteredData.sort((a, b) => {
                     return planetOrder.indexOf(a.planet_name) - planetOrder.indexOf(b.planet_name);
                 });
+
+                // const params = JSON.parse(localStorage.getItem('params'));
+                // const baseUrl = "https://api.vedicastroapi.com/v3-json";
+
+                // // Convert formattedDate ("Sat Mar 08 2025") to "08/03/2025"
+                // const getPanchangData = async (date) => {
+                //     const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(date)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&lang=en`;
+                //     const response = await fetch(TithiPanchang);
+                //     if (!response.ok) throw new Error("Failed to fetch TithiPanchang data.");
+                //     return response.json();
+                // };
+
+                // // Get current date in "DD/MM/YYYY" format
+                // const currentDate = new Date();
+                // const formattedTithiDate = currentDate.toLocaleDateString("en-GB"); // "DD/MM/YYYY"
+
+                // // Get current time in "HH:MM" format
+                // const formattedTime = currentDate.toTimeString().slice(0, 5); // "HH:MM"
+
+                // // Fetch current day's Panchang data
+                // const TithiPanchangResponse = await getPanchangData(formattedTithiDate);
+                // // console.log(TithiPanchangResponse, "TithiPanchangResponse")
+                // if (TithiPanchangResponse.length !== 0) {
+                //     const tithiPanchangData2 = TithiPanchangResponse.response;
+                //     // console.log(tithiPanchangData2, "tithiPanchangData2")
+
+                //     let moonNakshatra = tithiPanchangData2.nakshatra.name;
+                //     let sunSign = tithiPanchangData2.sun_position.zodiac;
+                //     let moonStart = new Date(tithiPanchangData2.nakshatra.start);
+                //     let moonEnd = new Date(tithiPanchangData2.nakshatra.end);
+                //     let moonrashi = tithiPanchangData2.rasi.name
+
+                //     // Convert formattedTithiDate and formattedTime to a Date object
+                //     let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
+                //     let [hoursmoon, minutesmoon] = formattedTime.split(":").map(Number);
+                //     let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon);
+
+                //     // console.log(currentDateTime, "currentDateTime")
+
+                //     // Calculate total duration and divide into 4 Padas
+                //     let totalDuration = moonEnd - moonStart;
+                //     let partDuration = totalDuration / 4;
+                //     let part1 = new Date(moonStart.getTime() + partDuration);
+                //     let part2 = new Date(moonStart.getTime() + partDuration * 2);
+                //     let part3 = new Date(moonStart.getTime() + partDuration * 3);
+                //     let part4 = moonEnd;
+
+                //     // console.log(part1, "End of Pada 1");
+                //     // console.log(part2, "End of Pada 2");
+                //     // console.log(part3, "End of Pada 3");
+                //     // console.log(part4, "End of Pada 4");
+
+                //     function getPada(time) {
+                //         let dateTime = new Date(time);
+                //         if (dateTime >= moonStart && dateTime < part1) {
+                //             return 1;
+                //         } else if (dateTime >= part1 && dateTime < part2) {
+                //             return 2;
+                //         } else if (dateTime >= part2 && dateTime < part3) {
+                //             return 3;
+                //         } else if (dateTime >= part3 && dateTime <= part4) {
+                //             return 4;
+                //         } else {
+                //             return "Out of range";
+                //         }
+                //     }
+
+                //     let moonpada = getPada(currentDateTime);
+
+                //     // If Pada is out of range, fetch the next day's Panchang
+                //     if (moonpada === "Out of range") {
+                //         let nextDate = new Date(yearmoon, monthmoon - 1, daymoon + 1);
+                //         let nextFormattedDate = nextDate.toLocaleDateString("en-GB").split("/").join("/"); // Convert to YYYY/MM/DD
+
+                //         const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
+                //         if (nextTithiPanchangResponse.length !== 0) {
+                //             const nextTithiPanchangData = nextTithiPanchangResponse.response;
+                //             // console.log(nextTithiPanchangData, "nextTithiPanchangData")
+
+                //             let nextMoonNakshatra = nextTithiPanchangData.nakshatra.name;
+                //             let nextMoonStart = new Date(nextTithiPanchangData.nakshatra.start);
+                //             let nextMoonEnd = new Date(nextTithiPanchangData.nakshatra.end);
+
+                //             let nextTotalDuration = nextMoonEnd - nextMoonStart;
+                //             let nextPartDuration = nextTotalDuration / 4;
+                //             let nextPart1 = new Date(nextMoonStart.getTime() + nextPartDuration);
+                //             let nextPart2 = new Date(nextMoonStart.getTime() + nextPartDuration * 2);
+                //             let nextPart3 = new Date(nextMoonStart.getTime() + nextPartDuration * 3);
+                //             let nextPart4 = nextMoonEnd;
+
+                //             //         console.log(nextPart1, "End of nextPart 1");
+                //             // console.log(nextPart2, "End of nextPart 2");
+                //             // console.log(nextPart3, "End of nextPart 3");
+                //             // console.log(nextPart4, "End of nextPart 4");
+
+                //             function getPada2(time) {
+                //                 let dateTime = new Date(time);
+
+                //                 if (dateTime >= moonStart && dateTime < nextPart1) {
+                //                     return 1;
+                //                 } else if (dateTime >= nextPart1 && dateTime < nextPart2) {
+                //                     return 2;
+                //                 } else if (dateTime >= nextPart2 && dateTime < nextPart3) {
+                //                     return 3;
+                //                 } else if (dateTime >= nextPart3 && dateTime <= nextPart4) {
+                //                     return 4;
+                //                 } else {
+                //                     return "Out of range";
+                //                 }
+                //             }
+
+                //             let nextMoonPada = getPada2(currentDateTime);
+                //             moonpada = nextMoonPada
+                //             // console.log(nextMoonPada, "nextMoonPada")
+                //             moonNakshatra = nextMoonNakshatra
+                //         }
+                //     }
+                //     console.log(moonNakshatra, moonpada, "moon")
+                // }
 
                 // Populate the table
                 const tableBody = document.querySelector("#gocharTable tbody");
                 tableBody.innerHTML = "";
 
-                gocharData.forEach(entry => {
+                filteredData.forEach(entry => {
                     const row = `<tr>
                 <td>${entry.planet_name || "N/A"}</td>
                 <td>${entry.rashi || "N/A"}</td>

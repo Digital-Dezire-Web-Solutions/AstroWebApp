@@ -1501,17 +1501,17 @@
 
                     document.getElementById("birthGocharSelect").addEventListener("change", (event) => {
                         birthGocharSelect = event.target.value;
-                        console.log(birthGocharSelect, "caskdvba")
+                        // console.log(birthGocharSelect, "caskdvba")
                         populateTable(birthGocharSelect);
                     });
                     populateTable(birthGocharSelect);
-                    console.log(birthGocharSelect,"birthGocharSelect")
+                    // console.log(birthGocharSelect,"birthGocharSelect")
 
 
                     function populateTable(birthGocharSelect) {
-                        console.log(moonNakshatra,moonpada,"moon")
+                        // console.log(moonNakshatra,moonpada,"moon")
                         let planets = [];
-                        console.log(planets,"planets")
+                        // console.log(planets,"planets")
                         if (birthGocharSelect === "Gochar") {
                             planets = [...GocharData];
                             planets.push({ planet_name: "Moon", nakshatra: moonNakshatra, pada: moonpada });
@@ -1527,7 +1527,7 @@
 
                             const moonNakshatra = moonAspectData.nakshatra;
                             const moonPada = moonAspectData.pada
-                            console.log(moonNakshatra, moonPada, "data")
+                            // console.log(moonNakshatra, moonPada, "data")
 
                             if (!moonNakshatra || !moonPada) {
                                 console.error("Missing nakshatra or pada");
