@@ -191,12 +191,12 @@
 
                 </div> -->
 
-                <!-- <button class="apnt-btn coming-soon">
+                <button class="apnt-btn coming-soon">
                     Appointments
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </button> -->
+                </button>
 
                 <div class="profile-bx" id="login_btn">
                     <ion-icon name="person-circle-outline" size="large" color="#fe7000"></ion-icon>
@@ -254,6 +254,11 @@
             margin: 1rem;
             color: white;
         }
+
+        .bank-select-box {
+            display: flex;
+            align-items: center;
+        }
     </style>
 
 
@@ -285,8 +290,8 @@
                     <div class="nav-lists flex item-start">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
-                        <!-- <li><a href="market.html">Market</a></li> -->
-                        <!-- <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li> -->
+                        <li><a href="market.html">Market</a></li>
+                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
@@ -605,7 +610,7 @@
                             <div class="payment-plan-body">
                                 <div class="payment-price">
                                     <p>₹</p>
-                                    <h5 id="planPrice">501</h5>
+                                    <h5 id="planPrice">251</h5>
                                 </div>
                                 <div class="payment-plan-body-box">
                                     <p>/Per user</p>
@@ -652,6 +657,106 @@
             <h5 class="page-title">SBC (Sarvatobhadra Chakra)</h5>
             <div class="kundali-container">
                 <div class="section">
+                    <div class="house-fact-sel-bx" style="margin-bottom: 1rem;">
+                        <div class="date-select">
+                            <h6>Dhrubank Calculator</h6>
+                            <div class="bank-select-box">
+                                <label for="commodity">Commodity/Sector:</label>
+                                <select id="commodity">
+                                    <option value="86" selected>General Shares (Nifty)</option>
+                                    <option value="93">Banking</option>
+                                    <option value="90">IT / Tech</option>
+                                    <option value="72">Pharma / Medical</option>
+                                    <option value="92">FMCG</option>
+                                    <option value="81">Metals & Mining</option>
+                                    <option value="95">Oil & Gas / Energy</option>
+                                    <option value="80">Infra / Construction</option>
+                                    <option value="88">Auto</option>
+                                    <option value="76">PSU Stocks</option>
+                                    <option value="84">Textile</option>
+                                    <option value="85">Real Estate</option>
+                                    <option value="78">Telecom</option>
+                                    <option value="74">Agro / Fertilizers</option>
+                                    <option value="91">Media & Entertainment</option>
+                                    <option value="87">Aviation</option>
+                                    <option value="94">Insurance & Finance</option>
+                                    <option value="89">Luxury / Fashion</option>
+                                    <option value="75">Sugar / Edible</option>
+                                    <option value="79">Alcohol / Cigarettes</option>
+                                    <option value="96">Defense / Weapons</option>
+                                    <!-- Countries -->
+                                    <option value="0">Share</option>
+                                    <option value="91">Gold</option>
+                                    <option value="81">Silver</option>
+                                    <option value="51">Iron</option>
+                                    <option value="10">Copper</option>
+                                    <option value="59">Brass</option>
+                                    <option value="95">Pearl</option>
+                                    <option value="58">Red Coral</option>
+                                    <option value="334">Diamond</option>
+                                    <option value="14">Wheat</option>
+                                    <option value="56">Gram</option>
+                                    <option value="97">Rice</option>
+                                    <option value="51">Moong</option>
+                                    <option value="80">Urad</option>
+                                    <option value="72">Arhar</option>
+                                    <option value="53">Til</option>
+                                    <option value="88">Sarso</option>
+                                    <option value="50">Ghee</option>
+                                    <option value="107">Haldi</option>
+                                    <option value="18">Red Chillies</option>
+                                    <option value="40">Gur</option>
+                                    <option value="103">Sugar</option>
+                                    <option value="70">Zeera</option>
+                                    <option value="62">Heeng</option>
+                                    <option value="212">Groundnut</option>
+                                    <option value="112">Wool</option>
+                                    <option value="542">Dhania</option>
+                                    <option value="257">Almond</option>
+                                </select>
+                                <!-- <br> -->
+                            </div>
+
+
+                            <div class="bank-select-box">
+                                <label>City / Country:</label>
+                                <select id="city">
+                                    <!-- Indian Cities -->
+                                    <option value="136" selected>Delhi (NSE)</option>
+                                    <option value="161">Ahmedabad</option>
+                                    <option value="145">Kanpur</option>
+                                    <option value="247">Calcutta</option>
+
+                                    <option value="198">Bombay / Mumbai</option>
+                                    <option value="314">Jaipur</option>
+                                    <option value="633">Madras / Chennai</option>
+                                    <option value="166">Nagpur</option>
+                                    <option value="157">Gwalior</option>
+                                    <option value="154">Nepal</option>
+                                    <option value="337">Vadodara</option>
+                                    <option value="198">Bhopal</option>
+                                    <option value="254">Surat</option>
+                                    <option value="196">Mathura</option>
+                                    <option value="314">Rest of Rajasthan</option>
+                                    <option value="213">Bikaner</option>
+                                    <option value="259">Whole Kashmir</option>
+
+                                    <!-- Countries -->
+                                    <option value="1234">New York</option>
+                                    <option value="939">London</option>
+                                    <option value="1541">Singapore</option>
+                                    <option value="543">Myanmar / Burma</option>
+                                    <option value="767">Rangoon</option>
+                                    <option value="3254">Russia</option>
+                                    <option value="1830">Germany</option>
+                                    <option value="332">America</option>
+                                    <option value="976">Europe</option>
+                                    <option value="642">China</option>
+                                </select>
+                            </div>
+                            <div class="dhrubankResult" id="dhrubankResult"></div>
+                        </div>
+                    </div>
                     <div class="house-factors-selc-bx">
                         <div class="house-fact-sel-bx">
                             <div class="date-select">
@@ -670,7 +775,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="common-container3">
                         <div class="table-data" id="tableData">
                             <table id="planetTithiVedhTable">
@@ -680,7 +784,7 @@
                                         <th>Aspect</th>
                                         <th>Sparsh</th>
                                         <th>Vedh</th>
-                                        <th>Stock Market Impact</th>
+                                        <th>Market Impact</th>
                                         <th>Market Trend</th>
                                     </tr>
                                 </thead>
@@ -691,6 +795,7 @@
                                 <thead>
                                     <tr>
                                         <th>Planet</th>
+                                        <th>Nature</th>
                                         <th>Nakshatra</th>
                                         <th>Front Vedh</th>
                                         <th>Left Vedh</th>
@@ -3110,9 +3215,208 @@
             }
         ]
 
+        const dhrubank = {
+            "lunarMonths": [
+                { "value": 61, "name": "Caitra" },
+                { "value": 63, "name": "Vaishakh" },
+                { "value": 65, "name": "Jyestha" },
+                { "value": 67, "name": "Ashada" },
+                { "value": 69, "name": "Shravan" },
+                { "value": 71, "name": "Bhadrapada" },
+                { "value": 73, "name": "Ashwin" },
+                { "value": 51, "name": "Kartik" },
+                { "value": 53, "name": "Margashirsha" },
+                { "value": 55, "name": "Paush" },
+                { "value": 57, "name": "Magha" },
+                { "value": 59, "name": "Falgun" }
+            ],
+            "tithis": [
+                { "value": 18, "name": "Pratipada" },
+                { "value": 20, "name": "Dwitiya" },
+                { "value": 22, "name": "Tritiya" },
+                { "value": 24, "name": "Chaturthi" },
+                { "value": 26, "name": "Panchami" },
+                { "value": 25, "name": "Shasti" },
+                { "value": 23, "name": "Sapthami" },
+                { "value": 21, "name": "Ashtami" },
+                { "value": 19, "name": "Navami" },
+                { "value": 17, "name": "Dasami" },
+                { "value": 15, "name": "Ekadasi" },
+                { "value": 13, "name": "Dvadasi" },
+                { "value": 11, "name": "Trayodasi" },
+                { "value": 9, "name": "Chaturdasi" },
+                { "value": 16, "name": "Purnima" },
+                { "value": 7, "name": "Amavasya" }
+            ],
+            "pakshas": [
+                { "value": 3, "name": "Shukla" },
+                { "value": -3, "name": "Krishna" }
+            ],
+            "nakshatras": [
+                { "value": 10, "name": "Ashvini" },
+                { "value": 10, "name": "Bharani" },
+                { "value": 96, "name": "Krittika" },
+                { "value": 56, "name": "Rohini" },
+                { "value": 20, "name": "Mrigashira" },
+                { "value": 86, "name": "Ardra" },
+                { "value": 21, "name": "Punarvasu" },
+                { "value": 64, "name": "Pushya" },
+                { "value": 135, "name": "Ashlesha" },
+                { "value": 150, "name": "Magha" },
+                { "value": 220, "name": "PurvaPhalguni" },
+                { "value": 72, "name": "UttaraPhalguni" },
+                { "value": 334, "name": "Hasta" },
+                { "value": 21, "name": "Chitra" },
+                { "value": 210, "name": "Svati" },
+                { "value": 320, "name": "Vishakha" },
+                { "value": 493, "name": "Anuradha" },
+                { "value": 559, "name": "Jyeshtha" },
+                { "value": 552, "name": "Mula" },
+                { "value": 142, "name": "PurvaShadha" },
+                { "value": 420, "name": "UttraShadha" },
+                { "value": 550, "name": "Sravana" },
+                { "value": 736, "name": "Dhanista" },
+                { "value": 576, "name": "Shatabhisha" },
+                { "value": 275, "name": "PurvaBhadra" },
+                { "value": 126, "name": "UttaraBhadra" },
+                { "value": 256, "name": "Revati" }
+            ],
+            "yogas": [
+                { "value": 13, "name": "Vishkambha" },
+                { "value": 17, "name": "Prithi" },
+                { "value": 48, "name": "Ayushman" },
+                { "value": 9, "name": "Saubhagya" },
+                { "value": 36, "name": "Sobhana" },
+                { "value": 47, "name": "Atiganda" },
+                { "value": 13, "name": "Sukarman" },
+                { "value": 44, "name": "Dhrithi" },
+                { "value": 13, "name": "Soola" },
+                { "value": 25, "name": "Ganda" },
+                { "value": 17, "name": "Vridhi" },
+                { "value": 22, "name": "Dhruva" },
+                { "value": 15, "name": "Vyaghata" },
+                { "value": 14, "name": "Harshana" },
+                { "value": 9, "name": "Vajra" },
+                { "value": 23, "name": "Siddhi" },
+                { "value": 39, "name": "Vyatipata" },
+                { "value": 15, "name": "Variyan" },
+                { "value": 13, "name": "Parigha" },
+                { "value": 19, "name": "Siva" },
+                { "value": 48, "name": "Sadhya" },
+                { "value": 88, "name": "Subha" },
+                { "value": 12, "name": "Bramha" },
+                { "value": 27, "name": "Indra" },
+                { "value": 25, "name": "Sidho" },
+                { "value": 12, "name": "Shukla" }
+            ],
+            "weekdays": [
+                { "value": 40, "name": "Sunday" },
+                { "value": 50, "name": "Monday" },
+                { "value": 57, "name": "Tuesday" },
+                { "value": 72, "name": "Wednesday" },
+                { "value": 65, "name": "Thursday" },
+                { "value": 24, "name": "Friday" },
+                { "value": 14, "name": "Saturday" }
+            ],
+            "sunSigns": [
+                { "value": 37, "name": "Aries" },
+                { "value": 84, "name": "Taurus" },
+                { "value": 66, "name": "Gemini" },
+                { "value": 109, "name": "Cancer" },
+                { "value": 125, "name": "Leo" },
+                { "value": 102, "name": "Virgo" },
+                { "value": 140, "name": "Libra" },
+                { "value": 144, "name": "Scorpio" },
+                { "value": 144, "name": "Sagittarius" },
+                { "value": 198, "name": "Capricorn" },
+                { "value": 19, "name": "Aquarius" },
+                { "value": 180, "name": "Pisces" }
+            ]
+        }
+
+        const nakshatras = [
+            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
+            "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
+            "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+            "PurvaBhadra", "UttaraBhadra", "Revati"
+        ];
+        const ucchaNeechaDegrees = {
+            "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } },
+            "Moon": { exalted: { nakshatra: "Krittika", pada: 1 }, debilitated: { nakshatra: "Anuradha", pada: 4 } },
+            "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } },
+            "Mercury": { exalted: { nakshatra: "UttaraPhalguni", pada: 4 }, debilitated: { nakshatra: "UttaraBhadra", pada: 2 } },
+            "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "Dhanista", pada: 2 } },
+            "Venus": { exalted: { nakshatra: "UttaraBhadra", pada: 4 }, debilitated: { nakshatra: "UttaraPhalguni", pada: 2 } },
+            "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } },
+            "Rahu": { exalted: { nakshatra: "Rohini", pada: 2 }, debilitated: { nakshatra: "Jyeshtha", pada: 1 } },
+            "Ketu": { exalted: { nakshatra: "Jyeshtha", pada: 4 }, debilitated: { nakshatra: "Rohini", pada: 3 } }
+        };
+        const nakshatraLords = {
+            "Ashvini": "Ketu", "Bharani": "Venus", "Krittika": "Sun", "Rohini": "Moon",
+            "Mrigashira": "Mars", "Ardra": "Rahu", "Punarvasu": "Jupiter", "Pushya": "Saturn",
+            "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
+            "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
+            "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
+            "UttraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
+            "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
+        };
+
+
+        const planetaryRelations2 = {
+            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon"] },
+            "Ketu": { friends: ["Mars", "Venus", "Saturn"], enemies: ["Sun", "Moon"] }
+        };
+
 
         const sparshPlanets = ["Jupiter", "Venus", "Moon", "Mercury"];
         const vedhPlanets = ["Sun", "Mars", "Saturn", "Rahu", "Ketu"];
+
+        const planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
+
+        // --------- nature -----------
+        function getStatusNak(planet, nakshatra, pada) {
+            const exalted = ucchaNeechaDegrees[planet].exalted;
+            const debilitated = ucchaNeechaDegrees[planet].debilitated;
+
+            if (nakshatra === exalted.nakshatra && pada === exalted.pada) return "Uccha (Exalted)";
+            if (nakshatra === debilitated.nakshatra && pada === debilitated.pada) return "Neecha (Debilitated)";
+
+            const nakshatraLord = nakshatraLords[nakshatra];
+            const friends = planetaryRelations2[planet].friends;
+            const enemies = planetaryRelations2[planet].enemies;
+
+            if (friends.includes(nakshatraLord)) return "Mitra (Friend)";
+            if (enemies.includes(nakshatraLord)) return "Shatru (Enemy)";
+
+            return "Neutral";
+        }
+        const nakshatraPosition = [];
+        function displayStatus() {
+            planets.forEach(planet => {
+                nakshatras.forEach(nakshatra => {
+                    for (let pada = 1; pada <= 4; pada++) {
+                        const status = getStatusNak(planet, nakshatra, pada);
+
+                        nakshatraPosition.push({
+                            planet: planet,
+                            nakshatra: nakshatra,
+                            pada: pada,
+                            status: status
+                        });
+                    }
+                });
+            })
+        }
+        displayStatus();
+        // console.log(nakshatraPosition, "nakshatraPosition")
 
         async function initializeData(datass, adminData, gocharData, apiKey, data) {
 
@@ -3238,20 +3542,33 @@
                     const params = JSON.parse(localStorage.getItem('params'));
                     const baseUrl = "https://api.vedicastroapi.com/v3-json";
                     let panchangDetails = getPanchangForDate(formattedDate);
-                    // console.log(formattedTithiDate, "formattedTithiDate")
                     // console.log(formattedTime, "formattedTime")
+                    // console.log(formattedTithiDate, "formattedTithiDate");
 
                     // Convert formattedDate ("Sat Mar 08 2025") to "08/03/2025"
-                    const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(formattedTithiDate)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&time=${encodeURIComponent(formattedTime)}&lang=en`;
-                    const response3 = await fetch(TithiPanchang);
-                    if (!response3.ok) throw new Error("Failed to fetch TithiPanchang data.");
-                    const TithiPanchangResponse = await response3.json();
-                    // console.log(TithiPanchangResponse, "TithiPanchangResponse")
+                    const getPanchangData = async (date) => {
+                        const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(date)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&time=${encodeURIComponent(formattedTime)}&lang=en`;
+                        const response = await fetch(TithiPanchang);
+                        if (!response.ok) throw new Error("Failed to fetch TithiPanchang data.");
+                        return response.json();
+                    };
+
+                    // Fetch current day's Panchang data
+                    const TithiPanchangResponse = await getPanchangData(formattedTithiDate);
                     if (TithiPanchangResponse.length !== 0) {
                         const tithiPanchangData2 = TithiPanchangResponse.response;
                         // console.log(tithiPanchangData2, "tithiPanchangData2")
+
+                        let lunarMonth = tithiPanchangData2.advanced_details.masa.amanta_name
+                        // console.log(lunarMonth, "lunarMonth")
+
+                        let moonNakshatra = tithiPanchangData2.nakshatra.name;
+                        let sunSign = tithiPanchangData2.sun_position.zodiac;
+                        let moonStart = new Date(tithiPanchangData2.nakshatra.start);
+                        let moonEnd = new Date(tithiPanchangData2.nakshatra.end);
                         let tithiName = [];
                         let tithiType = [];
+                        let moonrashi = tithiPanchangData2.rasi.name
                         const tithiNextName = tithiPanchangData2.tithi.next_tithi;
                         const tithiStart = tithiPanchangData2.tithi.start;
                         const tithiEnd = tithiPanchangData2.tithi.end;
@@ -3261,39 +3578,25 @@
                         // Convert formattedTithiDate and formattedTime to a Date object
                         let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
                         let [hoursmoon, minutesmoon] = formattedTime.split(":").map(Number);
+                        let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon);
 
-                        let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon); // Month is zero-based in JS
+                        // console.log(currentDateTime, "currentDateTime")
 
-
-                        // moon data
-                        let moonNakshatra = tithiPanchangData2.nakshatra.name;
-                        let moonStart = new Date(tithiPanchangData2.nakshatra.start);
-                        let moonEnd = new Date(tithiPanchangData2.nakshatra.end);
-                        let moonrashi = tithiPanchangData2.rasi.name
-
-                        // console.log(moonNakshatra, "moonNakshatra");
-                        // console.log(moonStart, "moonStart");
-                        // console.log(moonEnd, "moonEnd");
-
-                        // Calculate total duration
+                        // Calculate total duration and divide into 4 Padas
                         let totalDuration = moonEnd - moonStart;
-                        let partDuration = totalDuration / 4; // Divide into 4 equal parts
-
-                        // Define the four time divisions
+                        let partDuration = totalDuration / 4;
                         let part1 = new Date(moonStart.getTime() + partDuration);
                         let part2 = new Date(moonStart.getTime() + partDuration * 2);
                         let part3 = new Date(moonStart.getTime() + partDuration * 3);
-                        let part4 = moonEnd; // Last part is the end time itself
+                        let part4 = moonEnd;
 
                         // console.log(part1, "End of Pada 1");
                         // console.log(part2, "End of Pada 2");
                         // console.log(part3, "End of Pada 3");
                         // console.log(part4, "End of Pada 4");
 
-                        // Function to determine Pada based on input time
                         function getPada(time) {
                             let dateTime = new Date(time);
-
                             if (dateTime >= moonStart && dateTime < part1) {
                                 return 1;
                             } else if (dateTime >= part1 && dateTime < part2) {
@@ -3307,9 +3610,52 @@
                             }
                         }
 
-                        // Determine and log the Pada
                         let moonpada = getPada(currentDateTime);
-                        // console.log(moonpada, "Current Pada");
+                        console.log(moonpada, "Current Pada");
+
+                        // If Pada is out of range, fetch the next day's Panchang
+                        if (moonpada === "Out of range") {
+                            let nextDate = new Date(yearmoon, monthmoon - 1, daymoon + 1);
+                            let nextFormattedDate = nextDate.toLocaleDateString("en-GB").split("/").join("/"); // Convert to YYYY/MM/DD
+
+                            const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
+                            if (nextTithiPanchangResponse.length !== 0) {
+                                const nextTithiPanchangData = nextTithiPanchangResponse.response;
+                                // console.log(nextTithiPanchangData, "nextTithiPanchangData")
+
+                                let nextMoonNakshatra = nextTithiPanchangData.nakshatra.name;
+                                let nextMoonStart = new Date(nextTithiPanchangData.nakshatra.start);
+                                let nextMoonEnd = new Date(nextTithiPanchangData.nakshatra.end);
+
+                                let nextTotalDuration = nextMoonEnd - nextMoonStart;
+                                let nextPartDuration = nextTotalDuration / 4;
+                                let nextPart1 = new Date(nextMoonStart.getTime() + nextPartDuration);
+                                let nextPart2 = new Date(nextMoonStart.getTime() + nextPartDuration * 2);
+                                let nextPart3 = new Date(nextMoonStart.getTime() + nextPartDuration * 3);
+                                let nextPart4 = nextMoonEnd;
+
+                                function getPada2(time) {
+                                    let dateTime = new Date(time);
+
+                                    if (dateTime >= moonStart && dateTime < nextPart1) {
+                                        return 1;
+                                    } else if (dateTime >= nextPart1 && dateTime < nextPart2) {
+                                        return 2;
+                                    } else if (dateTime >= nextPart2 && dateTime < nextPart3) {
+                                        return 3;
+                                    } else if (dateTime >= nextPart3 && dateTime <= nextPart4) {
+                                        return 4;
+                                    } else {
+                                        return "Out of range";
+                                    }
+                                }
+
+                                let nextMoonPada = getPada2(currentDateTime);
+                                moonpada = nextMoonPada
+                                // console.log(nextMoonPada, "nextMoonPada")
+                                moonNakshatra = nextMoonNakshatra
+                            }
+                        }
 
                         // Extract hours and minutes from formattedTime ("17:00")
                         const [hours, minutes] = formattedTime.split(":").map(Number);
@@ -3550,6 +3896,7 @@
                                     let gocharCombust = [];
                                     let gocharNakMatch = [];
                                     const gocharPlanet = GocharDatas.find((i) => i.planet_name === name)
+
                                     // console.log(gocharPlanet, "gocharPlanet")
                                     if (gocharPlanet) {
                                         gocharNakshatra = gocharPlanet.nakshatra;
@@ -3747,10 +4094,11 @@
                                         gocharPada = moonpada;
                                         gocharRashi = moonrashi
                                         const moonData = moonFinder[0]["Moon"];
+                                        // console.log(moonData,"moonData")
                                         if (moonData[moonNakshatra] && moonData[moonNakshatra][moonpada]) {
                                             gocharNakMatch = moonData[moonNakshatra][moonpada];
                                         }
-                                        // console.log(gocharNakMatch, "gocharNakMatch")
+                                        // console.log(gocharNakMatch,moonNakshatra,moonpada, "gocharNakMatch")
                                     }
 
                                     // console.log(name,gocharRashi,"gocharRashi")
@@ -3847,10 +4195,29 @@
                                     //                         console.log(Nakshatra, "Nakshatra")
 
 
+                                    // console.log(nakshatraPosition, "nakshatraPosition")
+                                    let positionValue = [];
+                                    let natureStatus = [];
+
+                                    positionValue = nakshatraPosition.find((i) => i.planet === name && i.nakshatra === gocharNakshatra && i.pada === gocharPada);
+
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        natureStatus = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        natureStatus = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        natureStatus = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        natureStatus = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        natureStatus = 'color-pos-bx6';
+                                    }
+
                                     // console.log(matchletter,"matchletter")
                                     const lifeAspectData = {
                                         planet: name,
                                         nakshatra: gocharNakMatch,
+                                        gocharNakshatra,
                                         // pada: gocharPada,
                                         // frontVedh: {
                                         //     nakshatra: nakshatraDay.front,
@@ -3872,6 +4239,10 @@
                                         leftnakVedh: leftVedhNakshatra,
                                         vowel: letterDay,
                                         rashi: impactRashi,
+                                        gocharMotion,
+                                        gocharCombust,
+                                        natureStatus,
+                                        positionValue
                                     };
 
                                     if (lifeAspectData) {
@@ -4020,50 +4391,38 @@
                                         return planetOrder.indexOf(a.planet) - planetOrder.indexOf(b.planet);
                                     });
 
-
-                                    // console.log(lifeAspect, "lifeAspect");
-                                    let status = [];
-
-                                    if (lifeAspect.some((i) => i.planet === "Jupiter")) {
-                                        status.push('color-pos-bx1');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Venus")) {
-                                        status.push('color-pos-bx2');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Mercury")) {
-                                        status.push('color-pos-bx3');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Moon")) {
-                                        status.push('color-pos-bx3');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Sun")) {
-                                        status.push('color-pos-bx4');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Mars")) {
-                                        status.push('color-pos-bx4');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Saturn")) {
-                                        status.push('color-pos-bx6');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Rahu")) {
-                                        status.push('color-pos-bx6');
-                                    }
-                                    if (lifeAspect.some((i) => i.planet === "Ketu")) {
-                                        status.push('color-pos-bx6');
-                                    }
+                                    // Mapping planets to their corresponding status colors
+                                    const planetStatusMap = {
+                                        "Jupiter": "#bcf5bc",
+                                        "Venus": "#bcf5bc",
+                                        "Mercury": "#ffff9d",
+                                        "Moon": "#ffff9d",
+                                        "Sun": "#ffd484",
+                                        "Mars": "#ffd484",
+                                        "Saturn": "#ffd484",
+                                        "Rahu": "#ff7070",
+                                        "Ketu": "#ff7070"
+                                    };
 
                                     // console.log(status, "status");
 
                                     lifeAspect.forEach((i) => {
                                         if (i.nakshatra && i.nakshatra.length > 0 && i.nakshatra.trim() !== '') {
+                                            // console.log(i, "data")
+                                            // console.log(i.gocharCombust, "gocharCombust")
+                                            // console.log(i.gocharMotion, "gocharMotion")
+                                            let retroPlanet = i.gocharMotion === "retrograde" ? '&#8634;' : "";
+                                            let combustPlanet = i.gocharCombust === true ? '&#128293;' : "";
+                                            const status = planetStatusMap[i.planet] || ''; // Get status based on planet
                                             const row = document.createElement('tr');
                                             row.innerHTML = `
-            <td>${i.planet}</td>
-            <td>${i.nakshatra || "-"}</td>
-            <td>${i.frontnakVedh}</td>
-            <td>${i.leftnakVedh}</td>
-            <td>${i.rightnakVedh}</td>
-        `;
+            <td style="background-color: ${status}">${i.planet} ${retroPlanet ? retroPlanet : ""} ${combustPlanet ? combustPlanet : ""}</td>
+            <td style="background-color: ${status}"><div class="color-bx ${i.natureStatus}" data-tooltip="${i.positionValue?.status}"></div></td>
+            <td style="background-color: ${status}">${i.nakshatra ? i.nakshatra + "(" + i.gocharNakshatra + ")" : "-"}</td >
+            <td style="background-color: ${status}">${i.frontnakVedh}</td>
+            <td style="background-color: ${status}">${i.leftnakVedh}</td>
+            <td style="background-color: ${status}">${i.rightnakVedh}</td>
+                                `;
                                             lifeAspectBody.appendChild(row);
                                         }
                                     });
@@ -4076,16 +4435,82 @@
                                         if (i.nakshatra && i.nakshatra.length > 0 && i.nakshatra.trim() !== '') {
                                             const row = document.createElement('tr');
                                             row.innerHTML = `
-                                            <td>${i.planet}</td>
+                                    <td> ${i.planet}</td >
                                             <td>${i.vowel.front},${i.vowel.left},${i.vowel.right}</td>
                                             <td>${i.rashi || "-"}</td>
-                                        `;
+                                `;
                                             lifeAspectBody2.appendChild(row);
                                         }
                                     });
                                 }
 
+                                let commodity = parseInt(document.getElementById("commodity").value) || 0;
+                                let city = parseInt(document.getElementById("city").value) || 0;
+
+                                document.getElementById("commodity").addEventListener("change", (event) => {
+                                    commodity = parseInt(event.target.value) || 0;
+                                    dhruBankFunction(commodity, city);
+                                });
+
+                                document.getElementById("city").addEventListener("change", (event) => {
+                                    city = parseInt(event.target.value) || 0;
+                                    dhruBankFunction(commodity, city);
+                                });
+
+                                function dhruBankFunction(commodity, city) {
+                                    // console.log(commodity, "commodity");
+                                    // console.log(city, "city");
+                                    let lunarBank = dhrubank.lunarMonths.find(i => i.name === lunarMonth);
+                                    let tithiBank = dhrubank.tithis.find(i => i.name === tithiName);
+                                    let pakshaBank = dhrubank.pakshas.find(i => i.name === tithiType);
+                                    let nakshatraBank = dhrubank.nakshatras.find(i => i.name === moonNakshatra);
+                                    let yogaBank = dhrubank.yogas.find(i => i.name === yoga);
+                                    let weekdayBank = dhrubank.weekdays.find(i => i.name === Day_of_Birth);
+                                    let sunSignBank = dhrubank.sunSigns.find(i => i.name === sunSign);
+
+                                    // console.log("Lunar Month Value:", lunarBank);
+                                    // console.log("Tithi Value:", tithiBank);
+                                    // console.log("Paksha Value:", pakshaBank);
+                                    // console.log("Nakshatra Value:", nakshatraBank);
+                                    // console.log("Yoga Value:", yogaBank);
+                                    // console.log("Weekday Value:", weekdayBank);
+                                    // console.log("Sun Sign Value:", sunSignBank);
+
+                                    const planetMap = {
+                                        1: "Bullish",
+                                        2: "Extremely Bearish",
+                                        3: "Bullish",
+                                        4: "Extreme Bullish",
+                                        5: "Bearish",
+                                        6: "Bullish",
+                                        7: "Sideways",
+                                        8: "Bullish",
+                                        9: "Bearish"
+                                    };
+                                    let total = 0;
+                                    total =
+                                        commodity +
+                                        city +
+                                        (lunarBank?.value || 0) +
+                                        (tithiBank?.value || 0) +
+                                        (pakshaBank?.value || 0) +
+                                        (nakshatraBank?.value || 0) +
+                                        (yogaBank?.value || 0) +
+                                        (weekdayBank?.value || 0) +
+                                        (sunSignBank?.value || 0);
+
+                                    let remainder = total % 9;
+                                    remainder = remainder === 0 ? 9 : remainder;
+
+                                    const effect = planetMap[remainder];
+                                    document.getElementById("dhrubankResult").innerHTML = `
+                                    <h6> Planetary Effect: <strong>${effect}</strong></h6 >
+
+      `;
+                                }
+                                dhruBankFunction(commodity, city);
                             }
+
 
                             populateTable()
                         } else {
@@ -4144,6 +4569,8 @@
                     document.getElementById('timeLabel').innerText = formatTime(currentHours, currentMinutes);
                     updatePanchang();
                 });
+                // Event listener for house selection
+
 
                 updatePanchang();
             }

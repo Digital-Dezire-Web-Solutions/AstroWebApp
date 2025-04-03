@@ -177,108 +177,108 @@
 
     <script>
         // Function to retrieve Moon Nakshatra and Pada from horoscope data
-        function getMoonNakshatraAndPada() {
-            // Retrieve data from localStorage
-            const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
+        // function getMoonNakshatraAndPada() {
+        //     // Retrieve data from localStorage
+        //     const horoscopeData = JSON.parse(localStorage.getItem("horoscopeData"));
 
-            if (!horoscopeData || !horoscopeData.response) {
-                console.error("Invalid horoscope data or response");
-                return { nakshatra: null, pada: null };
-            }
-            // Map Planet Data
-            const mapPlanetData = (data) => {
-                if (Array.isArray(data)) {
-                    return data.map((planet) => ({
-                        name: planet.full_name,
-                        nakshatra: planet.nakshatra,
-                        pada: planet.nakshatra_pada,
-                    }));
-                } else if (typeof data === "object" && data !== null) {
-                    return Object.values(data).map((planet) => ({
-                        name: planet.full_name,
-                        nakshatra: planet.nakshatra,
-                        pada: planet.nakshatra_pada,
-                    }));
-                } else {
-                    console.error("Unexpected data format for planets:", data);
-                    return [];
-                }
-            };
+        //     if (!horoscopeData || !horoscopeData.response) {
+        //         console.error("Invalid horoscope data or response");
+        //         return { nakshatra: null, pada: null };
+        //     }
+        //     // Map Planet Data
+        //     const mapPlanetData = (data) => {
+        //         if (Array.isArray(data)) {
+        //             return data.map((planet) => ({
+        //                 name: planet.full_name,
+        //                 nakshatra: planet.nakshatra,
+        //                 pada: planet.nakshatra_pada,
+        //             }));
+        //         } else if (typeof data === "object" && data !== null) {
+        //             return Object.values(data).map((planet) => ({
+        //                 name: planet.full_name,
+        //                 nakshatra: planet.nakshatra,
+        //                 pada: planet.nakshatra_pada,
+        //             }));
+        //         } else {
+        //             console.error("Unexpected data format for planets:", data);
+        //             return [];
+        //         }
+        //     };
 
-            // Normalize the planets data using mapPlanetData
-            const planets = mapPlanetData(horoscopeData.response);
+        //     // Normalize the planets data using mapPlanetData
+        //     const planets = mapPlanetData(horoscopeData.response);
 
-            // Find Moon data
-            const moon = planets.find(planet => planet.name === "Moon");
-            if (!moon) {
-                console.error("Moon data not found");
-                return { nakshatra: null, pada: null };
-            }
+        //     // Find Moon data
+        //     const moon = planets.find(planet => planet.name === "Moon");
+        //     if (!moon) {
+        //         console.error("Moon data not found");
+        //         return { nakshatra: null, pada: null };
+        //     }
 
-            // Extract nakshatra and pada
-            const nakshatra = moon.nakshatra || null;
-            const pada = moon.pada || null;
+        //     // Extract nakshatra and pada
+        //     const nakshatra = moon.nakshatra || null;
+        //     const pada = moon.pada || null;
 
-            return { nakshatra, pada };
-        }
+        //     return { nakshatra, pada };
+        // }
 
         // Function to update the life aspects table based on Moon Nakshatra and Pada
-        function updateLifeAspects1() {
-            const { nakshatra, pada } = getMoonNakshatraAndPada();
-            console.log(nakshatra ,pada, "pada")
+        // function updateLifeAspects1() {
+        //     const { nakshatra, pada } = getMoonNakshatraAndPada();
+        //     console.log(nakshatra ,pada, "pada")
 
-            if (!nakshatra || !pada) {
-                console.error("Missing nakshatra or pada");
-                document.getElementById("outputTable").style.display = "none";
-                return;
-            }
+        //     if (!nakshatra || !pada) {
+        //         console.error("Missing nakshatra or pada");
+        //         document.getElementById("outputTable").style.display = "none";
+        //         return;
+        //     }
 
-            // Find the index of the Moon's nakshatra
-            const startIndex = nakshatraList.indexOf(nakshatra);
-            console.log(startIndex,"startIndex")
+        //     // Find the index of the Moon's nakshatra
+        //     const startIndex = nakshatraList.indexOf(nakshatra);
+        //     console.log(startIndex,"startIndex")
 
-            if (startIndex === -1) {
-                console.error("Nakshatra not found in list");
-                document.getElementById("outputTable").style.display = "none";
-                return;
-            }
+        //     if (startIndex === -1) {
+        //         console.error("Nakshatra not found in list");
+        //         document.getElementById("outputTable").style.display = "none";
+        //         return;
+        //     }
 
-            // Generate the sequence
-            const sequence = [];
-            for (let i = 0; i < lifeAspects.length; i++) {
-                const nakshatraIndex = (startIndex + i) % nakshatraList.length;
-                sequence.push({
-                    position: i + 1,
-                    nakshatra: nakshatraList[nakshatraIndex],
-                    lifeAspect: lifeAspects[i].aspect,
-                    padaDetails: lifeAspects[i].pada
-                });
-            }
+        //     // Generate the sequence
+        //     const sequence = [];
+        //     for (let i = 0; i < lifeAspects.length; i++) {
+        //         const nakshatraIndex = (startIndex + i) % nakshatraList.length;
+        //         sequence.push({
+        //             position: i + 1,
+        //             nakshatra: nakshatraList[nakshatraIndex],
+        //             lifeAspect: lifeAspects[i].aspect,
+        //             padaDetails: lifeAspects[i].pada
+        //         });
+        //     }
 
-            // Update the output table
-            const table = document.getElementById("outputTableMoon");
-            const tbody = table.querySelector("tbody");
-            tbody.innerHTML = ""; // Clear previous data
+        //     // Update the output table
+        //     const table = document.getElementById("outputTableMoon");
+        //     const tbody = table.querySelector("tbody");
+        //     tbody.innerHTML = ""; // Clear previous data
 
-            sequence.forEach(({ position, nakshatra, lifeAspect, padaDetails }) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-            <td>${position}</td>
-            <td>${nakshatra}</td>
-            <td>${lifeAspect}</td>
-            <td>${padaDetails[0]}</td>
-                        <td>${padaDetails[1]}</td>
-                        <td>${padaDetails[2]}</td>
-                        <td>${padaDetails[3]}</td>
-        `;
-                tbody.appendChild(row);
-            });
+        //     sequence.forEach(({ position, nakshatra, lifeAspect, padaDetails }) => {
+        //         const row = document.createElement("tr");
+        //         row.innerHTML = `
+        //     <td>${position}</td>
+        //     <td>${nakshatra}</td>
+        //     <td>${lifeAspect}</td>
+        //     <td>${padaDetails[0]}</td>
+        //                 <td>${padaDetails[1]}</td>
+        //                 <td>${padaDetails[2]}</td>
+        //                 <td>${padaDetails[3]}</td>
+        // `;
+        //         tbody.appendChild(row);
+        //     });
 
-            table.style.display = "table";
-        }
+        //     table.style.display = "table";
+        // }
 
         // Automatically update the table on page load
-        window.onload = updateLifeAspects1;
+        // window.onload = updateLifeAspects1;
 
     </script>
 </body>

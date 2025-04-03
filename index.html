@@ -193,12 +193,12 @@
 
                 </div> -->
 
-                <!-- <button class="apnt-btn coming-soon">
+                <button class="apnt-btn coming-soon">
                     Appointments
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </button> -->
+                </button>
 
                 <div class="profile-bx" id="login_btn">
                     <ion-icon name="person-circle-outline" size="large" color="#fe7000"></ion-icon>
@@ -239,8 +239,8 @@
                     <div class="nav-lists flex item-start">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
-                        <!-- <li><a href="market.html">Market</a></li> -->
-                        <!-- <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li> -->
+                        <li><a href="market.html">Market</a></li>
+                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
@@ -269,12 +269,12 @@
                 </div>
 
 
-                <!-- <button class="apnt-btn apnt-btn-mob coming-soon">
+                <button class="apnt-btn apnt-btn-mob coming-soon">
                     Appointments
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </button> -->
+                </button>
 
             </div>
 
@@ -929,7 +929,7 @@
 
                     </div>
                 </a>
-                <!-- <a href="javascript:void(0);" id="marketLink">
+                <a href="javascript:void(0);" id="marketLink">
                     <div class="card-bx card1">
                         <div class="icon icon1">
                             <img src="./images/icon-1.png" alt="">
@@ -937,7 +937,7 @@
                         <h6>Market</h6>
 
                     </div>
-                </a> -->
+                </a>
                 <a href="javascript:void(0);" id="sbcLink">
                     <div class="card-bx card1">
                         <div class="icon icon2">
@@ -946,15 +946,15 @@
                         <h6>SBC</h6>
                     </div>
                 </a>
-                <!-- <a href="https://wa.me/9376241408">
+                <a href="https://wa.me/9376241408">
                     <div class="card-bx card1">
                         <div class="icon icon7">
                             <img src="./images/iconwhats.png" alt="">
                         </div>
                         <h6>Talk to Astrologer</h6>
                     </div>
-                </a> -->
-                <!-- <div class="card-bx card1 coming-soon">
+                </a>
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon4">
                         <img src="./images/icon-4.png" alt="">
                     </div>
@@ -962,10 +962,10 @@
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </div> -->
+                </div>
 
 
-                <!-- <div class="card-bx card1 coming-soon">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon5">
                         <img src="./images/icon-5.png" alt="">
                     </div>
@@ -973,9 +973,9 @@
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </div> -->
+                </div>
 
-                <!-- <div class="card-bx card1 coming-soon">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon6">
                         <img src="./images/icon-6.png" alt="">
                     </div>
@@ -983,12 +983,12 @@
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </div> -->
+                </div>
 
 
 
 
-                <!-- <div class="card-bx card1 coming-soon">
+                <div class="card-bx card1 coming-soon">
                     <div class="icon icon8">
                         <img src="./images/icon-8.png" alt="">
                     </div>
@@ -996,7 +996,7 @@
                     <div class="card-info">
                         <p class="title">Coming Soon</p>
                     </div>
-                </div> -->
+                </div>
 
 
             </div>
@@ -1278,7 +1278,7 @@
     <section class="our-cards-comp">
         <div class="common-container3">
             <div class="comn-heading">
-                <h5>Subscription Price ₹501 (Valid for 30 Days)</h5>
+                <h5>Subscription Price ₹251 (Valid for 30 Days)</h5>
             </div>
         </div>
     </section>
@@ -1460,7 +1460,7 @@
                     <div class="payment-plan-body">
                         <div class="payment-price">
                             <p>₹</p>
-                            <h5 id="planPrice">501</h5>
+                            <h5 id="planPrice">251</h5>
                         </div>
                         <div class="payment-plan-body-box">
                             <p>/Per user</p>
@@ -1940,11 +1940,11 @@
 
         if (token) {
             // Auto open modal after 2 seconds on page load
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    openRenewModal();
-                }, 2000);
-            });
+            // window.addEventListener('load', () => {
+            //     setTimeout(() => {
+            //         openRenewModal();
+            //     }, 2000);
+            // });
         }
 
         function showAlert(message, type) {
@@ -2271,19 +2271,19 @@
                     loginModal.click();
                 }
             });
-            // marketLink.addEventListener("click", function (event) {
-            //     if (token) {
-            //         // Redirect to Kundali Form if token is present
-            //         window.location.href = "./market.html";
-            //     } else {
-            //         // Open login modal if no token
-            //         loginModal.click();
-            //     }
-            // });
+            marketLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./market.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
             sbcLink.addEventListener("click", function (event) {
                 if (token) {
                     // Redirect to Kundali Form if token is present
-                    window.location.href = "./lifeaspect.html";
+                    window.location.href = "./sbc.html";
                 } else {
                     // Open login modal if no token
                     loginModal.click();

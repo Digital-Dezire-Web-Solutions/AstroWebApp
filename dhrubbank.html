@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dhrubank Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        select,
+        button {
+            padding: 5px 10px;
+            margin: 10px 0;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h4>Dhrubank Calculator</h4>
+
+    <label>Commodity/Sector:</label>
+    <select id="commodity">
+        <option value="86">General Shares (Nifty)</option>
+        <option value="93">Banking</option>
+        <option value="90">IT / Tech</option>
+        <option value="72">Pharma / Medical</option>
+        <option value="92">FMCG</option>
+        <option value="81">Metals & Mining</option>
+        <option value="95">Oil & Gas / Energy</option>
+        <option value="80">Infra / Construction</option>
+        <option value="88">Auto</option>
+        <option value="76">PSU Stocks</option>
+        <option value="84">Textile</option>
+        <option value="85">Real Estate</option>
+        <option value="78">Telecom</option>
+        <option value="74">Agro / Fertilizers</option>
+        <option value="91">Media & Entertainment</option>
+        <option value="87">Aviation</option>
+        <option value="94">Insurance & Finance</option>
+        <option value="89">Luxury / Fashion</option>
+        <option value="75">Sugar / Edible</option>
+        <option value="79">Alcohol / Cigarettes</option>
+        <option value="96">Defense / Weapons</option>
+        <!-- Countries -->
+        <option value="0">Share</option>
+        <option value="91">Gold</option>
+        <option value="81">Silver</option>
+        <option value="51">Iron</option>
+        <option value="10">Copper</option>
+        <option value="59">Brass</option>
+        <option value="95">Pearl</option>
+        <option value="58">Red Coral</option>
+        <option value="334">Diamond</option>
+        <option value="14">Wheat</option>
+        <option value="56">Gram</option>
+        <option value="97">Rice</option>
+        <option value="51">Moong</option>
+        <option value="80">Urad</option>
+        <option value="72">Arhar</option>
+        <option value="53">Til</option>
+        <option value="88">Sarso</option>
+        <option value="50">Ghee</option>
+        <option value="107">Haldi</option>
+        <option value="18">Red Chillies</option>
+        <option value="40">Gur</option>
+        <option value="103">Sugar</option>
+        <option value="70">Zeera</option>
+        <option value="62">Heeng</option>
+        <option value="212">Groundnut</option>
+        <option value="112">Wool</option>
+        <option value="542">Dhania</option>
+        <option value="257">Almond</option>
+    </select><br>
+
+
+    <label>City / Country:</label>
+    <select id="city">
+        <!-- Indian Cities -->
+        <option value="136">Delhi (NSE)</option>
+        <option value="161">Ahmedabad</option>
+        <option value="145">Kanpur</option>
+        <option value="247">Calcutta</option>
+
+        <option value="198">Bombay / Mumbai</option>
+        <option value="314">Jaipur</option>
+        <option value="633">Madras / Chennai</option>
+        <option value="166">Nagpur</option>
+        <option value="157">Gwalior</option>
+        <option value="154">Nepal</option>
+        <option value="337">Vadodara</option>
+        <option value="198">Bhopal</option>
+        <option value="254">Surat</option>
+        <option value="196">Mathura</option>
+        <option value="314">Rest of Rajasthan</option>
+        <option value="213">Bikaner</option>
+        <option value="259">Whole Kashmir</option>
+
+        <!-- Countries -->
+        <option value="1234">New York</option>
+        <option value="939">London</option>
+        <option value="1541">Singapore</option>
+        <option value="543">Myanmar / Burma</option>
+        <option value="767">Rangoon</option>
+        <option value="3254">Russia</option>
+        <option value="1830">Germany</option>
+        <option value="332">America</option>
+        <option value="976">Europe</option>
+        <option value="642">China</option>
+    </select><br>
+
+    <!--autofillthrough API-->
+
+    <label>Lunar Month:</label>
+    <select id="month">
+        <option value="61">Chaitra</option>
+        <option value="63">Vaishakh</option>
+        <option value="65">Jyestha</option>
+        <option value="67">Ashada</option>
+        <option value="69">Shravan</option>
+        <option value="71">Bhadrapada</option>
+        <option value="73">Ashwin</option>
+        <option value="51">Kartik</option>
+        <option value="53">Margashirsha</option>
+        <option value="55">Paush</option>
+        <option value="57">Magh</option>
+        <option value="59">Falgun</option>
+    </select><br>
+
+
+    <label>Tithi:</label>
+    <select id="tithi">
+        <option value="18">Pratipada</option>
+        <option value="20">Dwitya</option>
+        <option value="22">Tritya</option>
+        <option value="24">Chaturthi</option>
+        <option value="26">Panchami</option>
+        <option value="25">Sashthi</option>
+        <option value="23">Saptami</option>
+        <option value="21">Ashtami</option>
+        <option value="19">Navami</option>
+        <option value="17">Dashmi</option>
+        <option value="15">Ekadashi</option>
+        <option value="13">Dwadashi</option>
+        <option value="11">Trayodashi</option>
+        <option value="9">Chaturdashi</option>
+        <option value="16">Poornima</option>
+        <option value="7">Amavasya</option>
+    </select><br>
+
+    <label>Paksha:</label>
+    <select id="paksha">
+        <option value="3">Shukla Paksha </option>
+        <option value="-3">Krishna Paksha </option>
+    </select><br>
+
+
+
+    <label>Nakshatra:</label>
+    <select id="nakshatra">
+        <option value="10">Ashwini</option>
+        <option value="10">Bharani</option>
+        <option value="96">Krittika</option>
+        <option value="56">Rohini</option>
+        <option value="20">Mrigashira</option>
+        <option value="86">Ardra</option>
+        <option value="21">Punarvasu</option>
+        <option value="64">Pushya</option>
+        <option value="135">Ashlesha</option>
+        <option value="150">Magha</option>
+        <option value="220">Purva Phalguni</option>
+        <option value="72">Uttara Phalguni</option>
+        <option value="334">Hasta</option>
+        <option value="21">Chitra</option>
+        <option value="210">Swati</option>
+        <option value="320">Vishakha</option>
+        <option value="493">Anuradha</option>
+        <option value="559">Jyeshtha</option>
+        <option value="552">Mula</option>
+        <option value="142">Purva Ashadha</option>
+        <option value="420">Uttara Ashadha</option>
+        <option value="550">Shravana</option>
+        <option value="736">Dhanishta</option>
+        <option value="576">Shatabhisha</option>
+        <option value="275">Purva Bhadrapada</option>
+        <option value="126">Uttara Bhadrapada</option>
+        <option value="256">Revati</option>
+    </select><br>
+
+
+    <label>Yoga:</label>
+    <select id="yoga">
+        <option value="13">Vishkumba</option>
+        <option value="17">Preeti</option>
+        <option value="48">Ayushman</option>
+        <option value="9">Saubhagya</option>
+        <option value="36">Shobhan</option>
+        <option value="47">Atighand</option>
+        <option value="13">Sukarma</option>
+        <option value="44">Dhruti</option>
+        <option value="13">Shool</option>
+        <option value="25">Gand</option>
+        <option value="17">Vridhi</option>
+        <option value="22">Dhrva</option>
+        <option value="15">Vyaghat</option>
+        <option value="14">Harshan</option>
+        <option value="9">Bajra</option>
+        <option value="23">Siddhi</option>
+        <option value="39">Vyatipat</option>
+        <option value="15">Varyana</option>
+        <option value="13">Parigh</option>
+        <option value="19">Shiva</option>
+        <option value="25">Sidho</option>
+        <option value="48">Sadhya</option>
+        <option value="88">Shubh</option>
+        <option value="12">Shukla</option>
+        <option value="12">Brahma</option>
+        <option value="27">Indra</option>
+    </select><br>
+
+
+    <label>Weekday:</label>
+    <select id="weekday">
+        <option value="40">Sunday</option>
+        <option value="50">Monday</option>
+        <option value="57">Tuesday</option>
+        <option value="72">Wednesday</option>
+        <option value="65">Thursday</option>
+        <option value="24">Friday</option>
+        <option value="14">Saturday</option>
+    </select><br>
+
+    <label>Sun Sign:</label>
+    <select id="sunSign">
+        <option value="37">Aries</option>
+        <option value="84">Taurus</option>
+        <option value="66">Gemini</option>
+        <option value="109">Cancer</option>
+        <option value="125">Leo</option>
+        <option value="102">Virgo</option>
+        <option value="140">Libra</option>
+        <option value="144">Scorpio</option>
+        <option value="144">Sagittarius</option>
+        <option value="198">Capricorn</option>
+        <option value="19">Aquarius</option>
+        <option value="180">Pisces</option>
+    </select><br>
+
+
+
+
+
+    <button onclick="calculateDhrubank()">Calculate Dhrubank</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        const planetMap = {
+            1: "Bullish",
+            2: "Extremely Bearish",
+            3: "Bullish",
+            4: "Extreme Bullish",
+            5: "Bearish",
+            6: "Bullish",
+            7: "Sideways",
+            8: "Bullish",
+            9: "Bearish"
+        };
+
+        function calculateDhrubank() {
+            const fields = ["commodity", "city", "month", "tithi", "nakshatra", "yoga", "weekday", "sunSign"];
+            let total = 0;
+            console.log(fields, "fields")
+
+            fields.forEach(id => {
+                total += parseInt(document.getElementById(id).value);
+            });
+
+            // Add Paksha modifier
+            total += parseInt(document.getElementById("paksha").value);
+            console.log(total, "totl")
+
+            let remainder = total % 9;
+            remainder = remainder === 0 ? 9 : remainder;
+
+            const effect = planetMap[remainder];
+            document.getElementById("result").innerHTML = `
+    Total Dhrubank Score: ${total} <br>
+    Remainder (÷9): ${remainder} <br>
+    Planetary Effect: <strong>${effect}</strong>
+  `;
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+</div>
+</div>
+</div>
+</section>
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- Swiper Js file -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- script file -->
+<script src="./js/index.js"></script>
+
+</body>
+
+</html>

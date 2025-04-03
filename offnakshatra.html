@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nakshatra Offset Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f8;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+    .planet-row {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    select {
+      padding: 5px;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #result {
+      margin-top: 20px;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🌟 Planet to Nakshatra Selector</h2>
+    <div id="selectors"></div>
+
+    <button onclick="calculateOffsetNakshatras()">Get Code Nakshatras</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
+
+    const nakshatras = [
+      "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
+      "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta",
+      "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+      "Purva Ashadha", "Uttara Ashadha", "Abhijit", "Shravana", "Dhanishta",
+      "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
+    ];
+
+    // Offset (0-based): 12th = +11
+    const offsetMap = {
+      Sun: 11,
+      Moon: 7,
+      Mars: 2,
+      Mercury: 21,
+      Jupiter: 5,
+      Venus: 24,
+      Saturn: 7,
+      Rahu: 8,
+      Ketu: 8
+    };
+
+    const interpretationMap = {
+      Sun: "loss of wealth",
+      Moon: "serious danger",
+      Mars: "death",
+      Mercury: "loss, danger",
+      Jupiter: "danger to relative",
+      Venus: "setbacks",
+      Saturn: "death and destruction",
+      Rahu: "death",
+      Ketu: "death"
+    };
+
+    // Create selectors dynamically
+    const container = document.getElementById('selectors');
+
+    planets.forEach(planet => {
+      const row = document.createElement('div');
+      row.className = 'planet-row';
+
+      const label = document.createElement('label');
+      label.innerText = planet;
+
+      const select = document.createElement('select');
+      select.name = planet;
+
+      nakshatras.forEach(nak => {
+        const option = document.createElement('option');
+        option.value = nak;
+        option.innerText = nak;
+        select.appendChild(option);
+      });
+
+      row.appendChild(label);
+      row.appendChild(select);
+      container.appendChild(row);
+    });
+
+    // Main function to compute result
+    function calculateOffsetNakshatras() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+
+      const results = [];
+
+      planets.forEach(planet => {
+        const select = document.querySelector(`select[name='${planet}']`);
+        const selectedNak = select.value;
+        const startIndex = nakshatras.indexOf(selectedNak);
+        const offset = offsetMap[planet];
+        const interpretation = interpretationMap[planet];
+
+        if (startIndex === -1) {
+          results.push(`<strong>${planet}</strong>: Invalid starting Nakshatra`);
+          return;
+        }
+
+        const targetIndex = (startIndex + offset) % nakshatras.length;
+        const resultNak = nakshatras[targetIndex];
+
+        results.push(
+          `<strong>${planet}</strong>: ${offset + 1}th from <em>${selectedNak}</em> → <span style="color: darkblue">${resultNak}</span> → <span style="color: crimson"><em>${interpretation}</em></span>`
+        );
+      });
+
+      resultDiv.innerHTML = `<h3>🧮 Offset Nakshatras & Interpretations:</h3><ul><li>${results.join('</li><li>')}</li></ul>`;
+    }
+  </script>
+</body>
+</html>
