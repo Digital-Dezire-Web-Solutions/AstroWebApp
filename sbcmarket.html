@@ -3430,7 +3430,7 @@
 
             if (monthlyPanchang && monthlyPanchang.response) {
                 const panchangDatas = monthlyPanchang.response;
-                // console.log(panchangDatas, "panchangDatas")
+                console.log(panchangDatas, "panchangDatas")
                 const planetDatas = horoscopeData.response;
                 const getPanchangForDate = (selectedDate) => {
                     const foundData = panchangDatas.find(data => data.date === selectedDate);
@@ -4557,6 +4557,7 @@
                         currentHours = (currentHours + 1) % 24;
                     }
                     document.getElementById('timeLabel').innerText = formatTime(currentHours, currentMinutes);
+                    // Main Logic
                     updatePanchang();
                 });
 
@@ -4567,12 +4568,31 @@
                         currentHours = (currentHours - 1 + 24) % 24;
                     }
                     document.getElementById('timeLabel').innerText = formatTime(currentHours, currentMinutes);
+                    // Main Logic
                     updatePanchang();
                 });
                 // Event listener for house selection
+                if (user.subscription.plan === "Free") {
+                    const startDateOnly = new Date(startDate).toISOString().split("T")[0];
+                    const currentDateOnly = new Date(currentDate).toISOString().split("T")[0];
 
+                    // console.log(startDateOnly, "startDate");
+                    // console.log(currentDateOnly, "currentDate");
+                    // console.log(startDateOnly === currentDateOnly, "check");
 
-                updatePanchang();
+                    if (startDateOnly === currentDateOnly) {
+                        updatePanchang();
+                        tableData.style.display = 'block';
+                    } else {
+                        tableData.style.display = 'none';
+                    }
+                } else if (startDate <= currentDate && endDate >= currentDate) {
+                    updatePanchang();
+                    tableData.style.display = 'block';
+                } else {
+                    console.log("Buy Subscription")
+                    tableData.style.display = 'none';
+                }
             }
         }
 

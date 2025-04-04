@@ -909,6 +909,114 @@
                         </thead>
                         <tbody id="dasa-data"></tbody>
                     </table>
+
+                    <div class="cards-grid grid grid-two-col grid-gap">
+                        <div class="kundali-dashaCards">
+                            <h6>Maha Dasha</h6>
+                            <p><strong>Dasha Remaining:</strong> <span id="dasha_remaining"></span></p>
+                            <p><strong>Dasha Start Date:</strong> <span id="dasha_start_date"></span></p>
+                            <p><strong>Start Year:</strong> <span id="start_year"></span></p>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Planet</th>
+                                        <th>Mahadasha Order</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashaTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="kundali-dashaCards">
+
+                            <h6>Char Dasha</h6>
+                            <p><strong>Start Date:</strong> <span id="startDate"></span></p>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Zodiac Sign</th>
+                                        <th>Dasha End Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="charDashaTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="kundali-dashaCards">
+                            <h6>Antar Dasha</h6>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Planet</th>
+                                        <th>Antardasha Order</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="antardashaTableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="kundali-dashaCards">
+                            <h6>Yogini Dasha</h6>
+                            <p><strong>Start Date:</strong> <span id="yoginistartDate"></span></p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Yogini Dasha</th>
+                                        <th>Yogini Lord</th>
+                                        <th>End Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="yoginiDashaTableBody"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="kundali-dashaCards">
+                        <h6>Char Dasha sub</h6>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Main Dasha</th>
+                                    <th>Main Dasha Lord</th>
+                                    <th>Sub Dasha</th>
+                                    <th>Sub Dasha Start Date</th>
+                                    <th>Sub Dasha End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="charSubDashaTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="kundali-dashaCards">
+                        <h6>Yogini Dasha Sub</h6>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Yogini Dasha</th>
+                                    <th>Yogini Lord</th>
+                                    <th>Sub Dasha</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="yoginiSubDashaTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="cards-grid grid grid-two-col grid-gap">
+                        <div class="kundali-dashaCards">
+                            <h6>Paryantar Dasha</h6>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Paryantardasha</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="paryantarDashaTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Panchang Details Section -->
@@ -1165,126 +1273,6 @@
                 filteredData.sort((a, b) => {
                     return planetOrder.indexOf(a.planet_name) - planetOrder.indexOf(b.planet_name);
                 });
-
-                // const params = JSON.parse(localStorage.getItem('params'));
-                // const baseUrl = "https://api.vedicastroapi.com/v3-json";
-
-                // // Convert formattedDate ("Sat Mar 08 2025") to "08/03/2025"
-                // const getPanchangData = async (date) => {
-                //     const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${encodeURIComponent(date)}&tz=5.5&lat=${params.lat}&lon=${params.lon}&lang=en`;
-                //     const response = await fetch(TithiPanchang);
-                //     if (!response.ok) throw new Error("Failed to fetch TithiPanchang data.");
-                //     return response.json();
-                // };
-
-                // // Get current date in "DD/MM/YYYY" format
-                // const currentDate = new Date();
-                // const formattedTithiDate = currentDate.toLocaleDateString("en-GB"); // "DD/MM/YYYY"
-
-                // // Get current time in "HH:MM" format
-                // const formattedTime = currentDate.toTimeString().slice(0, 5); // "HH:MM"
-
-                // // Fetch current day's Panchang data
-                // const TithiPanchangResponse = await getPanchangData(formattedTithiDate);
-                // // console.log(TithiPanchangResponse, "TithiPanchangResponse")
-                // if (TithiPanchangResponse.length !== 0) {
-                //     const tithiPanchangData2 = TithiPanchangResponse.response;
-                //     // console.log(tithiPanchangData2, "tithiPanchangData2")
-
-                //     let moonNakshatra = tithiPanchangData2.nakshatra.name;
-                //     let sunSign = tithiPanchangData2.sun_position.zodiac;
-                //     let moonStart = new Date(tithiPanchangData2.nakshatra.start);
-                //     let moonEnd = new Date(tithiPanchangData2.nakshatra.end);
-                //     let moonrashi = tithiPanchangData2.rasi.name
-
-                //     // Convert formattedTithiDate and formattedTime to a Date object
-                //     let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
-                //     let [hoursmoon, minutesmoon] = formattedTime.split(":").map(Number);
-                //     let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon);
-
-                //     // console.log(currentDateTime, "currentDateTime")
-
-                //     // Calculate total duration and divide into 4 Padas
-                //     let totalDuration = moonEnd - moonStart;
-                //     let partDuration = totalDuration / 4;
-                //     let part1 = new Date(moonStart.getTime() + partDuration);
-                //     let part2 = new Date(moonStart.getTime() + partDuration * 2);
-                //     let part3 = new Date(moonStart.getTime() + partDuration * 3);
-                //     let part4 = moonEnd;
-
-                //     // console.log(part1, "End of Pada 1");
-                //     // console.log(part2, "End of Pada 2");
-                //     // console.log(part3, "End of Pada 3");
-                //     // console.log(part4, "End of Pada 4");
-
-                //     function getPada(time) {
-                //         let dateTime = new Date(time);
-                //         if (dateTime >= moonStart && dateTime < part1) {
-                //             return 1;
-                //         } else if (dateTime >= part1 && dateTime < part2) {
-                //             return 2;
-                //         } else if (dateTime >= part2 && dateTime < part3) {
-                //             return 3;
-                //         } else if (dateTime >= part3 && dateTime <= part4) {
-                //             return 4;
-                //         } else {
-                //             return "Out of range";
-                //         }
-                //     }
-
-                //     let moonpada = getPada(currentDateTime);
-
-                //     // If Pada is out of range, fetch the next day's Panchang
-                //     if (moonpada === "Out of range") {
-                //         let nextDate = new Date(yearmoon, monthmoon - 1, daymoon + 1);
-                //         let nextFormattedDate = nextDate.toLocaleDateString("en-GB").split("/").join("/"); // Convert to YYYY/MM/DD
-
-                //         const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
-                //         if (nextTithiPanchangResponse.length !== 0) {
-                //             const nextTithiPanchangData = nextTithiPanchangResponse.response;
-                //             // console.log(nextTithiPanchangData, "nextTithiPanchangData")
-
-                //             let nextMoonNakshatra = nextTithiPanchangData.nakshatra.name;
-                //             let nextMoonStart = new Date(nextTithiPanchangData.nakshatra.start);
-                //             let nextMoonEnd = new Date(nextTithiPanchangData.nakshatra.end);
-
-                //             let nextTotalDuration = nextMoonEnd - nextMoonStart;
-                //             let nextPartDuration = nextTotalDuration / 4;
-                //             let nextPart1 = new Date(nextMoonStart.getTime() + nextPartDuration);
-                //             let nextPart2 = new Date(nextMoonStart.getTime() + nextPartDuration * 2);
-                //             let nextPart3 = new Date(nextMoonStart.getTime() + nextPartDuration * 3);
-                //             let nextPart4 = nextMoonEnd;
-
-                //             //         console.log(nextPart1, "End of nextPart 1");
-                //             // console.log(nextPart2, "End of nextPart 2");
-                //             // console.log(nextPart3, "End of nextPart 3");
-                //             // console.log(nextPart4, "End of nextPart 4");
-
-                //             function getPada2(time) {
-                //                 let dateTime = new Date(time);
-
-                //                 if (dateTime >= moonStart && dateTime < nextPart1) {
-                //                     return 1;
-                //                 } else if (dateTime >= nextPart1 && dateTime < nextPart2) {
-                //                     return 2;
-                //                 } else if (dateTime >= nextPart2 && dateTime < nextPart3) {
-                //                     return 3;
-                //                 } else if (dateTime >= nextPart3 && dateTime <= nextPart4) {
-                //                     return 4;
-                //                 } else {
-                //                     return "Out of range";
-                //                 }
-                //             }
-
-                //             let nextMoonPada = getPada2(currentDateTime);
-                //             moonpada = nextMoonPada
-                //             // console.log(nextMoonPada, "nextMoonPada")
-                //             moonNakshatra = nextMoonNakshatra
-                //         }
-                //     }
-                //     console.log(moonNakshatra, moonpada, "moon")
-                // }
-
                 // Populate the table
                 const tableBody = document.querySelector("#gocharTable tbody");
                 tableBody.innerHTML = "";
@@ -1579,6 +1567,14 @@
             let rashiData = datass[0]?.rashiData || [];
             let chart1Url = datass[0]?.chart1Url || [];
             let chart2Url = datass[0]?.chart2Url || [];
+            let mahaDashaData = datass[0]?.mahaDashaData || [];
+            let antarDashaData = datass[0]?.antarDashaData || [];
+            let charDashaData = datass[0]?.charDashaData || [];
+            let charsubDashaData = datass[0]?.charsubDashaData || [];
+            let yoginiDashaData = datass[0]?.yoginiDashaData || [];
+            let yoginisubDashaData = datass[0]?.yoginisubDashaData || [];
+            let paryantarDashaData = datass[0]?.paryantarDashaData || [];
+
             // Function to populate the table
             const populateHouseTable = (selectedHouse = "1") => {
                 // const resultTable = document.getElementById("resultbody").querySelector("tbody");
@@ -2309,7 +2305,7 @@
                     };
                 };
 
-                // Map Dasa Details
+                // Map Panchang Details
                 const mapPanchangDetails = (data) => {
                     return {
                         ayanamsa: planetDatas.panchang.ayanamsa,
@@ -2472,6 +2468,146 @@
             } else {
                 console.error("Horoscope data not found or invalid in localStorage.");
             }
+            async function DashaData() {
+                const dashaInfo = mahaDashaData.response;
+                const antardashaInfo = antarDashaData.response;
+                const chardashaInfo = charDashaData.response;
+                const charsubdashaInfo = charsubDashaData.response;
+                const yoginidashaInfo = yoginiDashaData.response;
+                const yoginisubdashaInfo = yoginisubDashaData.response;
+                const paryantardashaInfo = paryantarDashaData.response;
+                // console.log(dashaInfo, "dashaInfo")
+                // console.log(antardashaInfo, "antardashaInfo")
+                // console.log(chardashaInfo, "charDashaData")
+                // console.log(charsubdashaInfo, "charsubDashaData")
+                // console.log(yoginidashaInfo, "yoginidashaInfo")
+                // console.log(yoginisubdashaInfo, "yoginisubdashaInfo")
+                // console.log(paryantardashaInfo, "paryantardashaInfo")
+
+                // Set top information
+                document.getElementById("dasha_remaining").innerText = dashaInfo.dasha_remaining_at_birth;
+                document.getElementById("dasha_start_date").innerText = dashaInfo.dasha_start_date;
+                document.getElementById("start_year").innerText = dashaInfo.start_year;
+
+                // Populate table
+                const tableBody = document.getElementById("dashaTableBody");
+                dashaInfo.mahadasha.forEach((planet, index) => {
+                    const row = `<tr>
+                                <td>${planet}</td>
+                                <td>${dashaInfo.mahadasha_order[index]}</td>
+                            </tr>`;
+                    tableBody.innerHTML += row;
+                });
+
+                // Populate table of antar dasha
+                const andarTableBody = document.getElementById("antardashaTableBody");
+                antardashaInfo.antardashas.forEach((planetList, i) => {
+                    planetList.forEach((planet, j) => {
+                        const arow = `<tr>
+                                    <td>${planet}</td>
+                                    <td>${antardashaInfo.antardasha_order[i][j] || "N/A"}</td>
+                                 </tr>`;
+                        andarTableBody.innerHTML += arow;
+                    });
+                })
+
+                // Display start date
+                document.getElementById("startDate").textContent = chardashaInfo.start_date;
+
+                // Populate table
+                const chartableBody = document.getElementById("charDashaTableBody");
+                chardashaInfo.dasha_list.forEach((sign, index) => {
+                    const crow = `<tr>
+                    <td>${sign}</td>
+                    <td>${chardashaInfo.dasha_end_dates[index] || "N/A"}</td>
+                 </tr>`;
+                    chartableBody.innerHTML += crow;
+                });
+
+                // Populate table
+                const charstableBody = document.getElementById("charSubDashaTableBody");
+                charsubdashaInfo.forEach(dasha => {
+                    dasha.sub_dasha_list.forEach((subDasha, index) => {
+                        const csrow = `<tr>
+                                    <td>${dasha.main_dasha}</td>
+                                    <td>${dasha.main_dasha_lord}</td>
+                                    <td>${subDasha}</td>
+                                    <td>${dasha.sub_dasha_start_date || "N/A"}</td>
+                                    <td>${dasha.sub_dasha_end_dates[index] || "N/A"}</td>
+                                 </tr>`;
+                        charstableBody.innerHTML += csrow;
+                    });
+                });
+
+                const paryanttableBody = document.getElementById("paryantarDashaTableBody");
+                paryantardashaInfo.paryantardasha.forEach((parrow, parrowIndex) => {
+                    parrow.forEach((entry, colIndex) => {
+                        let parstartDatevalues = [];
+
+                        if (typeof entry === "string") {
+                            values = entry.split("/"); // Normal case
+                        } else if (Array.isArray(entry)) {
+                            values = entry; // Use array directly
+                        } else {
+                            console.warn("Unexpected entry format:", entry);
+                            return; // Skip this entry
+                        }
+
+                        const parstartDate = paryantardashaInfo.paryantardasha_order[parrowIndex]?.[colIndex] || "N/A";
+                        values.forEach((value, i) => {
+                            const parrow = `<tr>
+                                    <td>${value || "-"}</td>
+                                    <td>${parstartDate[i] || "-"}</td>
+                                </tr>`;
+
+                            paryanttableBody.innerHTML += parrow;
+                        });
+                    });
+                });
+
+                // yoginiDasha
+                const yogintableBody = document.getElementById("yoginiDashaTableBody");
+                // yoginistartDate
+                // Display start date
+                document.getElementById("yoginistartDate").textContent = yoginidashaInfo.start_date;
+                yoginidashaInfo.dasha_list.forEach((dasha, index) => {
+                    const dashaEndDate = yoginidashaInfo.dasha_end_dates[index] || "-";
+                    const dashaLord = yoginidashaInfo.dasha_lord_list[index] || "-";
+
+                    const rowHTML = `<tr>
+                            <td>${dasha}</td>
+                            <td>${dashaLord}</td>
+                            <td>${dashaEndDate}</td>
+                        </tr>`;
+
+                    yogintableBody.innerHTML += rowHTML;
+                });
+
+                // yoginisub 
+
+                const yoginsubtableBody = document.getElementById("yoginiSubDashaTableBody");
+                yoginisubdashaInfo.forEach((mainDashaEntry, index) => {
+                    const mainDasha = mainDashaEntry.main_dasha || "-";
+                    const mainDashaLord = mainDashaEntry.main_dasha_lord || "-";
+                    let rowHTML = `<tr>
+                          <td rowspan="${mainDashaEntry.sub_dasha_list.length}">${mainDasha}</td>
+                          <td rowspan="${mainDashaEntry.sub_dasha_list.length}">${mainDashaLord}</td>`;
+
+                    mainDashaEntry.sub_dasha_list.forEach((subDasha, subIndex) => {
+                        const subDashaStart = mainDashaEntry.sub_dasha_start_dates[subIndex] || "-";
+                        const subDashaEnd = mainDashaEntry.sub_dasha_end_dates[subIndex] || "-";
+
+                        if (subIndex > 0) rowHTML += "<tr>";
+                        rowHTML += `<td>${subDasha}</td>
+                        <td>${subDashaStart}</td>
+                        <td>${subDashaEnd}</td>
+                    </tr>`;
+                    });
+                    yoginsubtableBody.innerHTML += rowHTML;
+                });
+            }
+
+            DashaData();
         }
         window.onload = async function () {
             await fetchAllData()

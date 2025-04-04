@@ -2115,6 +2115,7 @@
                     };
 
                     // console.log(params, "params")
+                    localStorage.setItem('params', JSON.stringify(params));
                     const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
                     const response2 = await fetch(horoscopeUrl);
                     if (!response2.ok) throw new Error("Failed to fetch horoscope data.");
@@ -2137,6 +2138,47 @@
                     const response4 = await fetch(chart2);
                     const chart2Url = await response4.text();
 
+                    // maha dasha
+                    const mahaDasha = `${baseUrl}/dashas/maha-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const maharesponse = await  fetch(mahaDasha);
+                    if (!maharesponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const mahaDashaData = await maharesponse.json();
+
+                    // antar dasha
+                    const antarDasha = `${baseUrl}/dashas/antar-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const antarresponse = await fetch(antarDasha);
+                    if (!antarresponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const antarDashaData = await antarresponse.json();
+
+                    // char dasha
+                    const charDasha = `${baseUrl}/dashas/char-dasha-main?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const charresponse = await fetch(charDasha);
+                    if (!charresponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const charDashaData = await charresponse.json();
+
+                    // charsub dasha
+                    const charsubDasha = `${baseUrl}/dashas/char-dasha-sub?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const charsubresponse = await fetch(charsubDasha);
+                    if (!charsubresponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const charsubDashaData = await charsubresponse.json();
+
+                    // yoginiDasha dasha
+                    const yoginiDasha = `${baseUrl}/dashas/yogini-dasha-main?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const yoginiresponse = await fetch(yoginiDasha);
+                    if (!yoginiresponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const yoginiDashaData = await yoginiresponse.json();
+
+                    // yoginiDashasub dasha
+                    const yoginisubDasha = `${baseUrl}/dashas/yogini-dasha-sub?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const yoginisubresponse = await fetch(yoginisubDasha);
+                    if (!yoginisubresponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const yoginisubDashaData = await yoginisubresponse.json();
+
+                    // char paryantarDasha
+                    const paryantarDasha = `${baseUrl}/dashas/paryantar-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
+                    const paryantarresponse = await fetch(paryantarDasha);
+                    if (!paryantarresponse.ok) throw new Error("Failed to fetch maharesponse data.");
+                    const paryantarDashaData = await paryantarresponse.json();
 
                     let rashiData = {};
 
@@ -2198,7 +2240,7 @@
                             "Content-Type": "application/json",
                             "auth-token": json.authToken
                         },
-                        body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url })
+                        body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url, mahaDashaData, antarDashaData, charDashaData, charsubDashaData, yoginiDashaData, yoginisubDashaData, paryantarDashaData })
                     });
 
                     const result = await response.json();

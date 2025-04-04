@@ -2848,3 +2848,22 @@ form {
 /* .Checkout-right-box{
   width: 100%;
 } */
+
+
+.kundali-dashaCards{
+  margin-top: 2rem;
+  /* border-radius: 8px; */
+  border: 1px solid #ccc;
+}
+.kundali-dashaCards h6{
+  background-color: #f9852d;
+  text-align: center;
+  color: white;
+  padding: 10px;
+}
+.kundali-dashaCards p{
+  text-align: center;
+  color: black;
+  padding: 5px;
+  font-size: 12px;
+}
