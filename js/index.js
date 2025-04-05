@@ -5,6 +5,7 @@ const haveAnAcnt =  document.querySelector('#signInBtn');
 const formComp = document.querySelector('.login-reg-comp');
 const closeForm = document.querySelector('.close-form-btn');
 const loginBtn =  document.querySelector('#login_btn');
+const loginBtn2 =  document.querySelector('#login_btn2');
 
 newAcntBtn.addEventListener("click", () => {
     formBx.classList.add('registeractive');
@@ -29,6 +30,9 @@ closeForm.addEventListener("click", () => {
 })
 
 loginBtn.addEventListener("click", () => {
+    formComp.classList.add('formactive')
+})
+loginBtn2.addEventListener("click", () => {
     formComp.classList.add('formactive')
 })
 
