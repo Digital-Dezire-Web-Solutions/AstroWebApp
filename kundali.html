@@ -1169,8 +1169,28 @@
                 }
 
                 const data = await response.json();
-                populatePTable(data)
-                populateName(data)
+                if (urlParams.size >= 1) {
+                    const responseAll = await fetch(`${host}/api/auth/getallusers`, {
+                        method: "GET",
+                        headers: {
+                            "auth-token": token,
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    if (!responseAll.ok) {
+                        throw new Error("Failed to fetch users");
+                    }
+
+                    const json = await responseAll.json();
+                    const data = json.find((i) => i._id === userIds)
+                    populatePTable(data)
+                    populateName(data)
+                }
+                else {
+                    populatePTable(data)
+                    populateName(data)
+                }
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
