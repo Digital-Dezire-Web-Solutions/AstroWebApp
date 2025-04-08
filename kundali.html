@@ -1137,8 +1137,23 @@
         </div>
     </footer>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        // const token = urlParams.get('token');
+        const userIds = urlParams.get('userIds');
+        // console.log(token, "token2")
+        // console.log(userIds, "userIds")
+        // console.log(urlParams,"urlParams")
+        let token = []
+        if (urlParams.size >= 1) {
+            token = urlParams.get('token');
+            // console.log(token,"token of admin")
+        }
+        else {
+            token = localStorage.getItem("token");
+            // console.log(token,"token of users")
+        }
+
         const host = "https://api.astronivesh.com";
-        const token = localStorage.getItem("token");
         async function fetchAllData() {
             try {
                 const response = await fetch(`${host}/api/auth/getuser`, {
@@ -1154,7 +1169,6 @@
                 }
 
                 const data = await response.json();
-                // console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
@@ -1200,7 +1214,7 @@
                 loginForm.style.display = "block";
                 regInfo.style.display = "block";
                 profileInfo.style.display = "none";
-                window.location.href = "./index.html";
+                // window.location.href = "./index.html";
             }
 
             // Logout functionality
@@ -1469,10 +1483,49 @@
                 if (!response.ok) {
                     throw new Error("Failed to fetch data");
                 }
-
                 const datass = await response.json();
-                // console.log(datass, "data")
-                initializeData(datass, gocharData)
+
+                // check users
+                if (urlParams.size >= 1) {
+                    const responseUser = await fetch(`${host}/api/auth/getuser`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token
+                        }
+                    });
+
+                    if (!responseUser.ok == true) {
+                        throw new Error("Failed to fetch data");
+                    }
+
+                    const dataUser = await responseUser.json();
+                    // console.log(dataUser, "data")
+                    if (dataUser.role === 'admin') {
+                        // console.log("admin")
+                        const responseUser2 = await fetch(`${host}/api/detail/fetchalluserdetails`, {
+                            method: "GET",
+                            headers: {
+                                "auth-token": token,
+                                "Content-Type": "application/json",
+                            },
+                        });
+                        if (!responseUser2.ok) {
+                            throw new Error("Failed to fetch users");
+                        }
+                        const userDatasss = await responseUser2.json();
+                        // console.log(userDatasss,"userDatasss")
+                        // console.log(userIds,"userIds")
+                        const datass = [userDatasss.find((i) => i.user === userIds)]
+                        // console.log(datass, "datass")
+                        initializeData(datass, gocharData)
+                    }
+                }
+                else {
+                    initializeData(datass, gocharData)
+                }
+                // initializeData(datass, gocharData)
+
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -1560,6 +1613,7 @@
         displayStatus();
 
         async function initializeData(datass, gocharData, selectedHouse = "1") {
+            // console.log(datass, "inside datass")
             let GocharData = gocharData;
             let horoscopeData = datass[0]?.horoscopeData || [];
             let dashas = datass[0]?.dashas || [];
