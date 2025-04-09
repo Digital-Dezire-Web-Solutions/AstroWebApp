@@ -2948,21 +2948,21 @@ form {
   transition: 500ms ease;
 }
 
-.home-left-box{
+.home-left-box {
   border-radius: 1.4rem;
   background-color: #ffe9dd;
   padding: 2rem;
   margin: 2rem 0;
   text-align: center;
 }
-.home-left-box p{
+.home-left-box p {
   width: 100%;
   padding: 1rem 0;
 }
 
-.homeleft-card{
+.homeleft-card {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 .homeleft-card-box {
@@ -2972,9 +2972,20 @@ form {
   flex-direction: column;
 }
 
-.rashi-card{
+.rashi-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 2rem;
+}
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+  .home-box {
+    flex-wrap: wrap;
+  }
+
+  .home-box-left ,
+  .home-box-right {
+    width: 100%;
+  }
 }

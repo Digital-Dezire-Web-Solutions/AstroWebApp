@@ -1237,7 +1237,7 @@
                 vowel: formData.get("vowel"),
             };
 
-            // console.log(customerData, "customerData");
+            console.log(customerData, "customerData");
 
             const response = await fetch(`${host}/api/auth/createuser`, {
                 method: "POST",
@@ -1248,7 +1248,7 @@
             });
 
             const json = await response.json();
-            // console.log(json);
+            console.log(json);
 
             if (json.success) {
                 showAlert("Account Created successfully", "success");

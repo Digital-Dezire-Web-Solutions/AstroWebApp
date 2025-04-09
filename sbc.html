@@ -641,6 +641,61 @@
     <!-- body section -->
 
     <section class="kundali-comp">
+        <!-- payment -->
+        <div id="renewModal" class="renewmodal" style="display:none;">
+            <div class="renewmodal-box">
+                <div class="modal-content" id="modalContent">
+                    <span onclick="document.getElementById('renewModal').style.display='none'">
+                        <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                    </span>
+                    <h5>Subscription</h5>
+                    <div class="payment-plan-box">
+                        <div class="payment-plan-head">
+                            <h6 id="planName">Basic</h6>
+                        </div>
+                        <div class="payment-plan-body">
+                            <div class="payment-price">
+                                <p>₹</p>
+                                <h5 id="planPrice">251</h5>
+                            </div>
+                            <div class="payment-plan-body-box">
+                                <p>/Per user</p>
+                                <p>/Per months</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="inpt-bx">
+                        <label for="coupon">Coupon</label>
+                        <div class="inpt payment-coupon">
+                            <input type="type" id="couponInput" name="couponInput" placeholder="Coupon code"
+                                autocomplete="off">
+                            <button type="button" onclick="applyCoupon()">Apply</button>
+                        </div>
+                        <p id="couponMessage" style="margin-top: 5px;"></p>
+                    </div> -->
+                    <p>100% Secure Payment method</p>
+                    <button class="form-btn" type="button" onclick="window.location.href='checkout.html'">
+                        Proceed to Checkout
+                    </button>
+                </div>
+
+                <!-- Success Message -->
+                <div class="subscription-message" id="successMessage"
+                    style="display:none; text-align:center; color:white;">
+                    <img src="./images/success.gif" alt="">
+                    <p>Payment Successful!</p>
+                    <p>Subscription from 18-03-2025 to 17-03-2025 is successfull!</p>
+                </div>
+
+                <!-- Failed Message -->
+                <div class="subscription-message" id="failedMessage"
+                    style="display:none; text-align:center; color:white;">
+                    <i class="fa-solid fa-circle-xmark"
+                        style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
+                    <p>Payment failed!</p>
+                </div>
+            </div>
+        </div>
         <div class="common-container3">
             <h5 class="page-title">SBC (Sarvatobhadra Chakra)</h5>
 
@@ -817,6 +872,11 @@
 
     </script>
     <script>
+         // Function to open modal (customize as per your modal setup)
+         function openRenewModal(subscriptionId) {
+            // Example: Show modal and populate hidden input with subscriptionId
+            document.getElementById('renewModal').style.display = 'block';
+        }
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
         async function fetchUserData() {
