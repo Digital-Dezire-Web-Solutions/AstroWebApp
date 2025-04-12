@@ -193,11 +193,8 @@
 
                 </div> -->
 
-                <button class="apnt-btn coming-soon">
+                <button class="apnt-btn">
                     Appointments
-                    <div class="card-info">
-                        <p class="title">Coming Soon</p>
-                    </div>
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -331,11 +328,8 @@
                 </div>
 
 
-                <button class="apnt-btn apnt-btn-mob coming-soon">
+                <button class="apnt-btn apnt-btn-mob">
                     Appointments
-                    <div class="card-info">
-                        <p class="title">Coming Soon</p>
-                    </div>
                 </button>
 
             </div>
@@ -671,6 +665,7 @@
                                         <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                                     </span> -->
                                     <!-- <h5>Renew Subscription</h5> -->
+                                    <p id="messageAp"></p>
                                     <p id="apdate"></p>
                                     <p id="apstarttime"></p>
                                     <p id="apendtime"></p>
@@ -880,9 +875,11 @@
             const dateElement = document.getElementById('apdate');
             const starttimeElement = document.getElementById('apstarttime');
             const endtimeElement = document.getElementById('apendtime');
+            const messageElement = document.getElementById('messageAp')
 
             if (applan) {
                 planNameElement.innerText = applan;
+                messageElement.innerText = "You will get the mail reqarding appointment"
             }
             if (apduration) {
                 durationElement.innerText = apduration;
