@@ -2984,8 +2984,31 @@ form {
     flex-wrap: wrap;
   }
 
-  .home-box-left ,
+  .home-box-left,
   .home-box-right {
     width: 100%;
   }
+}
+
+/* Appointments Page */
+
+.appoint-plan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.appoint-card {
+  background-color: white;
+  padding: 0 1rem 1rem;
+  border-radius: 1.4rem;
+  width: 30%;
+}
+
+.appointment-calender .calendar-box {
+  width: 50%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1.4rem;
 }

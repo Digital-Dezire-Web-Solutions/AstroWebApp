@@ -265,6 +265,11 @@
             border: none;
             padding: 1rem;
         }
+
+        label span{
+    color: red;
+    font-size: 12px;
+ }
     </style>
 
 
@@ -607,49 +612,49 @@
                         <h6>Billing Address</h6>
                         <div class="Checkout-left-box">
                             <div class="inpt-bx">
-                                <label for="coupon">Name</label>
+                                <label for="coupon">Name <span>*</span></label>
                                 <div class="inpt">
                                     <input type="type" id="name-checkout" placeholder="Enter your name.."
                                         name="name-checkout" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
-                                <label for="coupon">Email</label>
+                                <label for="coupon">Email <span>*</span></label>
                                 <div class="inpt">
                                     <input type="email" id="email-checkout" placeholder="Enter your email.."
                                         name="email-checkout" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
-                                <label for="coupon">Phone No.</label>
+                                <label for="coupon">Phone No. <span>*</span></label>
                                 <div class="inpt">
                                     <input type="number" id="phnum" placeholder="Enter your phonenumber.." name="phnum"
                                         autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
-                                <label for="coupon">Address</label>
+                                <label for="coupon">Address <span>*</span></label>
                                 <div class="textareainput">
                                     <textarea name="address-checkout" id="address-checkout"
                                         placeholder="Enter your Address" required></textarea>
                                 </div>
                             </div>
                             <div class="inpt-bx">
-                                <label for="coupon">Pin Code</label>
+                                <label for="coupon">Pin Code <span>*</span></label>
                                 <div class="inpt">
                                     <input type="number" id="pinc" placeholder="Enter your pincode " name="pinc"
                                         autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
-                                <label for="coupon">City</label>
+                                <label for="coupon">City <span>*</span></label>
                                 <div class="inpt">
                                     <input type="type" id="city" placeholder="Enter your ity" name="city"
                                         autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="inpt-bx">
-                                <label for="coupon">State</label>
+                                <label for="coupon">State <span>*</span></label>
                                 <div class="inpt">
                                     <input type="type" id="state" placeholder="Enter your state" name="state"
                                         autocomplete="off" required>
@@ -666,6 +671,9 @@
                                         <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                                     </span> -->
                                     <!-- <h5>Renew Subscription</h5> -->
+                                    <p id="apdate"></p>
+                                    <p id="apstarttime"></p>
+                                    <p id="apendtime"></p>
                                     <div class="payment-plan-box">
                                         <div class="payment-plan-head">
                                             <h6 id="planName">Basic</h6>
@@ -677,7 +685,7 @@
                                             </div>
                                             <div class="payment-plan-body-box">
                                                 <p>/Per user</p>
-                                                <p>/Per months</p>
+                                                <p id="duration">/Per months</p>
                                             </div>
                                         </div>
                                     </div>
@@ -700,7 +708,7 @@
                                     style="display:none; text-align:center; color:white;">
                                     <img src="./images/success.gif" alt="">
                                     <p>Payment Successful!</p>
-                                    <p>Subscription  is successfull!</p>
+                                    <p>Subscription is successfull!</p>
                                 </div>
 
                                 <!-- Failed Message -->
@@ -857,6 +865,47 @@
             `
         }
 
+        const query = new URLSearchParams(window.location.search);
+
+        const applan = query.get('plan');
+        const apprice = query.get('price');
+        const apduration = query.get('duration');
+        const apdate = query.get('date');
+        const apstartTime = query.get('startTime');
+        const apendTime = query.get('endTime');
+        if (query.size >= 1) {
+            const planNameElement = document.getElementById('planName');
+            const planPriceElement = document.getElementById('planPrice');
+            const durationElement = document.getElementById('duration');
+            const dateElement = document.getElementById('apdate');
+            const starttimeElement = document.getElementById('apstarttime');
+            const endtimeElement = document.getElementById('apendtime');
+
+            if (applan) {
+                planNameElement.innerText = applan;
+            }
+            if (apduration) {
+                durationElement.innerText = apduration;
+            }
+            if (apdate) {
+                dateElement.innerText = "Date :- " + apdate;
+            }
+            if (apstartTime) {
+                starttimeElement.innerText = "Start Time :- " + apstartTime;
+            }
+            if (apendTime) {
+                endtimeElement.innerText = "End Time :- " + apendTime;
+            }
+
+            if (apprice) {
+                planPriceElement.innerText = apprice;
+            } else {
+                const originalPrice = parseInt(planPriceElement.innerText);
+            }
+        }
+
+        // Example: display it
+        console.log({ applan, apprice, apduration, apdate, apstartTime, apendTime }, "data");
 
         // subscription
         let discountPercent = 0; // To store applied discount
@@ -903,24 +952,29 @@
             let coupon = document.getElementById('couponInput').value.trim().toUpperCase();
             let transactionId = Math.floor(Math.random() * 1000000000);
 
-            let finalPrice = price - (price * discountPercent / 100);
-            console.log(`Final Price after Discount: ₹${finalPrice}`);
+            // let finalPrice = price - (price * discountPercent / 100);
+            // console.log(`Final Price after Discount: ₹${finalPrice}`);
 
             document.getElementById('modalContent').style.display = 'none';
             const storingData = {
-                plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state
+                plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state, apduration, apdate, apstartTime, apendTime
             }
+            console.log(storingData, "storingData")
 
             // If 100% discount → no payment gateway, show success directly
             if (discountPercent === 100) {
                 let paymentMethod = "Free";
                 let transactionId = "00000000";
-                await assignSubscription(storingData, paymentMethod, transactionId);
+                if (query.size >= 1) {
+                    await assignAppointment(storingData, paymentMethod, transactionId);
+                } else {
+                    await assignSubscription(storingData, paymentMethod, transactionId);
+                }
                 document.getElementById('successMessage').style.display = 'block';
             } else {
                 localStorage.setItem("storingData", JSON.stringify(storingData));
                 const collectedData = {
-                 finalPrice
+                    finalPrice
                 }
                 // console.log(collectedData)
                 await axios.post(`${host}/api/payment/pay`, collectedData).then((response) => {
@@ -958,7 +1012,7 @@
                     document.getElementById('successMessage').style.display = 'none';
                     document.getElementById('failedMessage').style.display = 'none';
 
-                    if (parsedData.state === "COMPLETED") { 
+                    if (parsedData.state === "COMPLETED") {
                         document.getElementById('modalContent').style.display = 'none';
                         document.getElementById('successMessage').style.display = 'block';
 
@@ -968,7 +1022,13 @@
                         let paymentMethod = parsedData.paymentDetails?.[0]?.paymentMode || "Pending";
                         let transactionId = parsedData.paymentDetails?.[0]?.transactionId;
 
-                        await assignSubscription(storingData, paymentMethod, transactionId);
+                        if (query.size >= 1) {
+                            console.log(query,"this is query")
+                            await assignAppointment(storingData, paymentMethod, transactionId);
+                        } else {
+                            console.log("this is not query")
+                            await assignSubscription(storingData, paymentMethod, transactionId);
+                        }
                     } else {
                         document.getElementById('modalContent').style.display = 'none';
                         document.getElementById('failedMessage').style.display = 'block';
@@ -1016,6 +1076,71 @@
                     })
                 });
                 let data = await response.json();
+                console.log(data,"data")
+                if (data.success === true) {
+                    console.log("success")
+                }
+            } catch (err) {
+                console.error('Error assigning subscription:', err);
+            }
+            try {
+
+                let response2 = await fetch(`${host}/api/invoice/add`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify({
+                        price: storingData.finalPrice,
+                        name: storingData.name,
+                        email: storingData.email,
+                        phone: storingData.phone,
+                        address: storingData.address,
+                        pincode: storingData.pincode,
+                        city: storingData.city,
+                        state: storingData.state
+                    }),
+                });
+
+                console.log(response2, "response2")
+                let data2 = await response2.json();
+                console.log(data2, "data2")
+                if (data2.success === true) {
+                    console.log("success")
+                }
+                console.log("object")
+            } catch (error) {
+
+            }
+        }
+
+        // appointment submition
+
+        async function assignAppointment(storingData, paymentMethod, transactionId) {
+            console.log(storingData, "storingData")
+            try {
+                let response = await fetch(`${host}/api/appointment/add`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify({
+                        appointment: [
+                            {
+                                name: storingData.name,
+                                date: storingData.apdate,
+                                email: storingData.email,
+                                transactionId: transactionId,
+                                amount: storingData.finalPrice,
+                                preferedTime: storingData.apstartTime + "-" + storingData.apendTime,
+                                status: "Upcoming"
+                            }]
+                    })
+                });
+                let data = await response.json();
+                console.log(data,"data")
                 if (data.success === true) {
                     console.log("success")
                 }
@@ -1044,7 +1169,7 @@
 
                 // console.log(response2, "response2")
                 let data2 = await response2.json();
-                // console.log(data2, "data2")
+                console.log(data2, "data2")
                 if (data2.success === true) {
                     console.log("success")
                 }
