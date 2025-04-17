@@ -252,7 +252,7 @@
             margin-bottom: 1rem;
         }
 
-        /* .profile-person {
+        /* .a {
             width: 35%;
         }
 
@@ -260,7 +260,7 @@
             width: 65%;
         } */
 
-        .profile-person-card {
+        .a-card {
             background-color: #ffc599;
             /* padding: 2rem; */
             border-radius: 8px;
@@ -393,21 +393,205 @@
             outline: none;
         }
 
+        .profile {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .profile-left {
+            width: 65%;
+        }
+
+        .profile-right {
+            width: 35%;
+        }
+
+        .remedy-box {
+            background-color: #f8f8f8;
+            border: 1px solid #eeeeee;
+            border-radius: 1.4rem;
+        }
+
+        .accordion-card {
+            border-radius: 1.4rem;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eeeeee;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .accordion-header h6 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fe7000;
+            white-space: pre-wrap;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            background: #f8f8f8;
+        }
+
+        .accordion-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fe7000;
+        }
+
+        .accordion-body-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-body {
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .accordion-body p {
+            color: #5c5c5c;
+            font-weight: 400;
+            white-space: pre-wrap;
+        }
+
+        .accordion-body p:nth-child(2) {
+            color: #5c5c5c;
+            font-weight: 400;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .filter-buttons {
+            margin-bottom: 1rem;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            margin-right: 8px;
+            border: none;
+            background-color: #eee;
+            color: #333;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .filter-btn:hover {
+            background-color: #ddd;
+        }
+
+        .filter-btn.active {
+            background-color: #fe7000;
+            color: white;
+        }
+
+        .remedy-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .remedy-header .close-btn {
+            display: none;
+            border: none;
+            background-color: red;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
 
-        /* @media all and (min-width: 320px) and (max-width: 767px) {
-            .profile {
+        }
+
+        .profile-header button {
+            padding: 8px 16px;
+            margin-right: 8px;
+            border: none;
+            background-color: #fe7000;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+
+        @media all and (min-width: 320px) and (max-width: 767px) {
+            /* .profile {
                 flex-direction: column;
             }
 
-            .profile-person {
+            .a {
                 width: 100%;
             }
 
             .profile-subscription {
                 width: 100%;
+            } */
+
+            .profile {
+                flex-wrap: wrap;
             }
-        } */
+
+            .profile-left,
+            .profile-right {
+                width: 100%;
+            }
+
+            .profile-header button {
+                display: flex;
+            }
+
+            .profile-right {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 999;
+            }
+
+            .remedy-header .close-btn {
+                display: inline;
+            }
+
+            .profile-right:before {
+                content: "";
+                position: absolute;
+                background-color: #fffffff2;
+                top: 0;
+                left: 0;
+                transform: translateX(-5%);
+                width: 110%;
+                height: 100vh;
+                z-index: -1;
+            }
+        }
     </style>
 
 
@@ -798,124 +982,146 @@
             <!-- <h5 class="page-title">Profile</h5> -->
             <div class="kundali-container">
                 <div class="table-data">
-                    <div class="profile" id="profile-Person">
-                        <div class="profile-person" id="profileDetails">
-                            <div class="profile-person-card">
-                                <div class="subs-head">
-                                    <div class="profile-item">
-                                        <h5 id="name-display"></h5>
-                                        <input type="text" id="name-input" class="edit-input" style="display: none;">
-                                        <p class="edit-btn" onclick="enableEdit('name')">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </p>
-                                        <p class="save-btn" onclick="saveEdit('name')" style="display: none;">
-                                            <i class="fa-solid fa-check"></i>
-                                        </p>
-                                        <p class="cancel-btn" onclick="cancelEdit('name')" style="display: none;">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </p>
+                    <div class="profile" id="a">
+                        <div class="profile-left">
+                            <div class="a" id="profileDetails">
+                                <div class="profile-header">
+                                    <h5 class="profile-head">Profile</h5>
+                                    <button onclick="toggleProfileRight()">View Remedies</button>
+                                </div>
+                                <div class="a-card">
+                                    <div class="subs-head">
+                                        <div class="profile-item">
+                                            <h5 id="name-display"></h5>
+                                            <input type="text" id="name-input" class="edit-input"
+                                                style="display: none;">
+                                            <p class="edit-btn" onclick="enableEdit('name')">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </p>
+                                            <p class="save-btn" onclick="saveEdit('name')" style="display: none;">
+                                                <i class="fa-solid fa-check"></i>
+                                            </p>
+                                            <p class="cancel-btn" onclick="cancelEdit('name')" style="display: none;">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="subs-body">
+
+                                        <div class="profile-item">
+                                            <span>Email : </span>
+                                            <p id="email-display"></p>
+                                        </div>
+
+                                        <div class="profile-item">
+                                            <span>Date of Birth : </span>
+                                            <p id="dob-display"></p>
+                                        </div>
+
+                                        <div class="profile-item">
+                                            <span>Birth Time : </span>
+                                            <p id="birthtime-display"></p>
+                                        </div>
+
+                                        <div class="profile-item">
+                                            <span>Birth Place : </span>
+                                            <p id="birthplace-display"></p>
+                                        </div>
+
+                                        <div class="profile-item">
+                                            <span>Consonant : </span>
+                                            <p id="consonent-display"></p>
+                                            <select id="consonent-input" class="edit-input" style="display: none;">
+                                                <option value="Ka">Ka</option>
+                                                <option value="Kha">Kha</option>
+                                                <option value="Ga">Ga</option>
+                                                <option value="Cha">Cha</option>
+                                                <option value="Ya">Ya</option>
+                                                <option value="Va">Va</option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Da">Da</option>
+                                                <option value="La">La</option>
+                                                <option value="Na">Na</option>
+                                                <option value="Dha">Dha</option>
+                                                <option value="Sha">Sha</option>
+                                                <option value="Tha">Tha</option>
+                                                <option value="Kha">Kha</option>
+                                                <option value="Ra">Ra</option>
+                                                <option value="Ja">Ja</option>
+                                                <option value="Pa">Pa</option>
+                                                <option value="Bha">Bha</option>
+                                                <option value="Ta">Ta</option>
+                                                <option value="Ma">Ma</option>
+                                                <option value="SA">Sa</option>
+                                                <option value="Tau">Tau</option>
+                                            </select>
+                                            <p class="edit-btn" onclick="enableEdit('consonent')"> <i
+                                                    class="fa-solid fa-pen-to-square"></i></p>
+                                            <p class="save-btn" onclick="saveEdit('consonent')" style="display: none;">
+                                                <i class="fa-solid fa-check"></i>
+                                            </p>
+                                            <p class="cancel-btn" onclick="cancelEdit('consonent')"
+                                                style="display: none;">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </p>
+                                        </div>
+
+                                        <div class="profile-item">
+                                            <span>Vowel : </span>
+                                            <p id="vowel-display"></p>
+                                            <select id="vowel-input" class="edit-input" style="display: none;">
+                                                <option value="A">A</option>
+                                                <option value="AA">AA</option>
+                                                <option value="Ae">Ae</option>
+                                                <option value="Aei">Aei</option>
+                                                <option value="Da">Da</option>
+                                                <option value="E">E</option>
+                                                <option value="EE">EE</option>
+                                                <option value="O">O</option>
+                                                <option value="OO">OO</option>
+                                                <option value="Ou">Ou</option>
+                                                <option value="oo">oo</option>
+                                                <option value="Re">Re</option>
+                                                <option value="Ree">Ree</option>
+                                                <option value="Am">Am</option>
+                                                <option value="Aha">Aha</option>
+                                                <option value="Lri">Lri</option>
+                                                <option value="Lree">Lree</option>
+                                            </select>
+                                            <p class="edit-btn" onclick="enableEdit('vowel')">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </p>
+                                            <p class="save-btn" onclick="saveEdit('vowel')" style="display: none;">
+                                                <i class="fa-solid fa-check"></i>
+                                            </p>
+                                            <p class="cancel-btn" onclick="cancelEdit('vowel')" style="display: none;">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="subs-body">
-
-                                    <div class="profile-item">
-                                        <span>Email : </span>
-                                        <p id="email-display"></p>
-                                    </div>
-
-                                    <div class="profile-item">
-                                        <span>Date of Birth : </span>
-                                        <p id="dob-display"></p>
-                                    </div>
-
-                                    <div class="profile-item">
-                                        <span>Birth Time : </span>
-                                        <p id="birthtime-display"></p>
-                                    </div>
-
-                                    <div class="profile-item">
-                                        <span>Birth Place : </span>
-                                        <p id="birthplace-display"></p>
-                                    </div>
-
-                                    <div class="profile-item">
-                                        <span>Consonant : </span>
-                                        <p id="consonent-display"></p>
-                                        <select id="consonent-input" class="edit-input" style="display: none;">
-                                            <option value="Ka">Ka</option>
-                                            <option value="Kha">Kha</option>
-                                            <option value="Ga">Ga</option>
-                                            <option value="Cha">Cha</option>
-                                            <option value="Ya">Ya</option>
-                                            <option value="Va">Va</option>
-                                            <option value="Ha">Ha</option>
-                                            <option value="Da">Da</option>
-                                            <option value="La">La</option>
-                                            <option value="Na">Na</option>
-                                            <option value="Dha">Dha</option>
-                                            <option value="Sha">Sha</option>
-                                            <option value="Tha">Tha</option>
-                                            <option value="Kha">Kha</option>
-                                            <option value="Ra">Ra</option>
-                                            <option value="Ja">Ja</option>
-                                            <option value="Pa">Pa</option>
-                                            <option value="Bha">Bha</option>
-                                            <option value="Ta">Ta</option>
-                                            <option value="Ma">Ma</option>
-                                            <option value="SA">Sa</option>
-                                            <option value="Tau">Tau</option>
-                                        </select>
-                                        <p class="edit-btn" onclick="enableEdit('consonent')"> <i
-                                                class="fa-solid fa-pen-to-square"></i></p>
-                                        <p class="save-btn" onclick="saveEdit('consonent')" style="display: none;"><i
-                                                class="fa-solid fa-check"></i></p>
-                                        <p class="cancel-btn" onclick="cancelEdit('consonent')" style="display: none;">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </p>
-                                    </div>
-
-                                    <div class="profile-item">
-                                        <span>Vowel : </span>
-                                        <p id="vowel-display"></p>
-                                        <select id="vowel-input" class="edit-input" style="display: none;">
-                                            <option value="A">A</option>
-                                            <option value="AA">AA</option>
-                                            <option value="Ae">Ae</option>
-                                            <option value="Aei">Aei</option>
-                                            <option value="Da">Da</option>
-                                            <option value="E">E</option>
-                                            <option value="EE">EE</option>
-                                            <option value="O">O</option>
-                                            <option value="OO">OO</option>
-                                            <option value="Ou">Ou</option>
-                                            <option value="oo">oo</option>
-                                            <option value="Re">Re</option>
-                                            <option value="Ree">Ree</option>
-                                            <option value="Am">Am</option>
-                                            <option value="Aha">Aha</option>
-                                            <option value="Lri">Lri</option>
-                                            <option value="Lree">Lree</option>
-                                        </select>
-                                        <p class="edit-btn" onclick="enableEdit('vowel')">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </p>
-                                        <p class="save-btn" onclick="saveEdit('vowel')" style="display: none;">
-                                            <i class="fa-solid fa-check"></i>
-                                        </p>
-                                        <p class="cancel-btn" onclick="cancelEdit('vowel')" style="display: none;">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </p>
-                                    </div>
+                                <div class="profile-subscription">
+                                    <h5 class="profile-head">Subscription</h5>
+                                    <div id="profile-subscription"></div>
+                                    <h5 class="profile-head">Subscription History</h5>
+                                    <div id="profile-subscription-history"></div>
+                                    <h5 class="profile-head">Transactions History</h5>
+                                    <div id="profile-subscription-transition"></div>
                                 </div>
                             </div>
-                            <div class="profile-subscription">
-                                <h5 class="profile-head">Subscription</h5>
-                                <div id="profile-subscription"></div>
-                                <h5 class="profile-head">Subscription History</h5>
-                                <div id="profile-subscription-history"></div>
-                                <h5 class="profile-head">Transactions History</h5>
-                                <div id="profile-subscription-transition"></div>
+                        </div>
+                        <div class="profile-right">
+                            <div class="remedy-header">
+
+                                <h5 class="profile-head">Remedies</h5>
+                                <div class="filter-buttons">
+                                    <button id="btnAll" class="filter-btn active">All</button>
+                                    <button id="btnGlobal" class="filter-btn">Global</button>
+                                    <button id="btnParticular" class="filter-btn">Particular</button>
+                                </div>
+                                <button class="close-btn" onclick="toggleProfileRight()">✕</button>
                             </div>
+                            <div class="remedy-box" id="remedySelection"></div>
                         </div>
                     </div>
                 </div>
@@ -927,81 +1133,84 @@
           Our Footer Comp 
           -------------------- -->
 
-          <footer class="footer-comp">
-            <div class="common-container3">
-    
-                <div class="footer-flex-bx">
-    
-                    <div class="left-footer-bx">
-    
-                        <div class="left-header-logo flex item-start gap">
-                            <img src="./images/astrology.png" alt="">
-    
-                            <h6>Astro Nivesh</h6>
-    
-    
-                        </div>
-    
-    
-    
-    
-                        <p>
-                            Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
-                        </p>
-    
+    <footer class="footer-comp">
+        <div class="common-container3">
+
+            <div class="footer-flex-bx">
+
+                <div class="left-footer-bx">
+
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="">
+
+                        <h6>Astro Nivesh</h6>
+
+
                     </div>
-    
-    
-                    <div class="right-footer-bx">
-    
-                        <div class="footer-bx">
-                            <h6>Corporate Info</h6>
-                            <div class="footer-li">
-                                <li><a href="aboutus.html">About Us</a></li>
-                                <li><a href="contactus.html">Contact Us</a></li>
-                                <li><a href="termsconditions.html">Terms & Conditions</a></li>
-                                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
-                                <li><a href="refundpolicy.html">Refund Policy</a></li>
-                            </div>
+
+
+
+
+                    <p>
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
+                    </p>
+
+                </div>
+
+
+                <div class="right-footer-bx">
+
+                    <div class="footer-bx">
+                        <h6>Corporate Info</h6>
+                        <div class="footer-li">
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
                         </div>
-    
-    
-                        <div class="footer-bx">
-                            <h6>Contact Info</h6>
-                            <div class="footer-li">
-                                <li><a href="#"> We are available 24x7 on chat support</a></li>
-                                <li><a href="#">Email ID: contact@astronivesh.com</a></li>
-    
-                                <div class="soc-icons-flex">
-                                    <a href="#">
-                                        <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-youtube"></ion-icon>
-                                    </a>
-                                </div>
-    
-                            </div>
-                        </div>
-    
-    
                     </div>
-    
+
+
+                    <div class="footer-bx">
+                        <h6>Contact Info</h6>
+                        <div class="footer-li">
+                            <li><a href="#"> We are available 24x7 on chat support</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
+
+                            <div class="soc-icons-flex">
+                                <a href="#">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
-    
-                <div class="copyright-bx">
-                    <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
-                            href="https://digitaldezire.com/">Digital Dezire</a></p>
-                </div>
+
             </div>
-        </footer>
+
+            <div class="copyright-bx">
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All
+                    Rights Reserved | Dev. By: <a href="https://digitaldezire.com/">Digital Dezire</a></p>
+            </div>
+        </div>
+    </footer>
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -1025,6 +1234,7 @@
                 populateSubscription(data)
                 populateSubscriptionHistory(data)
                 populateTransitionHistory(data)
+                fetchData(data)
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
@@ -1133,7 +1343,7 @@
                 tableBody.innerHTML = `
             <div class="profile-subscription-card">
                 <div class="subs-body">
-                    <p style="text-align: center; font-weight: bold;">No Subscription History Found</p>
+                    <p style="text-align: center;">No Subscription History Found</p>
                 </div>
             </div>
         `;
@@ -1167,7 +1377,8 @@
                         .toISOString()
                         .split("T")[0]}</span></p>
                     <p>Status : <span>${item.status}</span></p>
-                    ${data.subscription.status !== "Active" ? `<div class="profile-renew">
+                    ${data.subscription.status !== "Active" ? `
+                    <div class="profile-renew">
                 <h6>Renew your plan to get your future updates!</h6>
                 <p class="renew-btn" data-id="${data._id}">Renew</p>
             </div>` : ""} 
@@ -1190,7 +1401,7 @@
                 tableBody.innerHTML = `
             <div class="profile-subscription-card">
                 <div class="subs-body">
-                    <p style="text-align: center; font-weight: bold;">No Subscription History Found</p>
+                    <p style="text-align: center;">No Subscription History Found</p>
                 </div>
             </div>
         `;
@@ -1256,8 +1467,7 @@
                 });
             }
         });
-    </script>
-    <script>
+
         document.addEventListener("DOMContentLoaded", async function () {
             if (!token) {
                 alert("User not authenticated");
@@ -1348,6 +1558,114 @@
                 document.querySelector(`[onclick="cancelEdit('${field}')"]`).style.display = "none";
             };
         });
+
+
+        function formatDateTime(dateString) {
+            const date = new Date(dateString);
+
+            const options = {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,
+            };
+
+            return date.toLocaleString('en-IN', options);
+        }
+
+        function toggleProfileRight() {
+            const el = document.querySelector('.profile-right');
+            el.style.display = (el.style.display === 'inline') ? 'none' : 'inline';
+        }
+
+
+        async function fetchData(data) {
+            try {
+                const response = await fetch(`${host}/api/admindetail/all`);
+                const datas = await response.json();
+                const remedy = datas[0]?.remedy?.slice().reverse() || [];
+
+                const filterButtons = {
+                    all: document.getElementById("btnAll"),
+                    global: document.getElementById("btnGlobal"),
+                    particular: document.getElementById("btnParticular")
+                };
+
+                let currentFilter = 'all';
+
+                Object.entries(filterButtons).forEach(([key, btn]) => {
+                    btn.addEventListener("click", () => {
+                        currentFilter = key;
+                        updateButtonStyles(key);
+                        renderRemedies();
+                    });
+                });
+
+                function updateButtonStyles(activeKey) {
+                    Object.entries(filterButtons).forEach(([key, btn]) => {
+                        btn.classList.toggle("active", key === activeKey);
+                    });
+                }
+
+                function renderRemedies() {
+                    const planContainer = document.getElementById("remedySelection");
+                    planContainer.innerHTML = "";
+
+                    let filteredRemedies = remedy.filter(p => {
+                        if (currentFilter === "global") return p.isGlobal === true;
+                        if (currentFilter === "particular") return p.user === data._id;
+                        return p.isGlobal === true || p.user === data._id; // default 'all'
+                    });
+
+                    filteredRemedies.forEach(p => {
+                        const card = document.createElement("div");
+                        card.className = "accordion-card";
+
+                        card.innerHTML = `
+                    <div class="accordion-header">
+                        <h6>${p.title}</h6>
+                        <button class="accordion-toggle">+</button>
+                    </div>
+                    <div class="accordion-body-wrapper">
+                        <div class="accordion-body">
+                            <p>${p.message}</p>
+                            <p>${formatDateTime(p.date)}</p>
+                        </div>
+                    </div>
+                `;
+
+                        planContainer.appendChild(card);
+                    });
+
+                    document.querySelectorAll(".accordion-toggle").forEach(button => {
+                        button.addEventListener("click", () => {
+                            const wrapper = button.closest(".accordion-card").querySelector(".accordion-body-wrapper");
+                            const body = wrapper.querySelector(".accordion-body");
+                            const isOpen = wrapper.classList.contains("open");
+
+                            if (isOpen) {
+                                wrapper.style.maxHeight = "0px";
+                                button.textContent = "+";
+                            } else {
+                                wrapper.style.maxHeight = body.scrollHeight + "px";
+                                button.textContent = "–";
+                            }
+
+                            wrapper.classList.toggle("open");
+                        });
+                    });
+                }
+
+                // Initial render with default filter and styling
+                updateButtonStyles(currentFilter);
+                renderRemedies();
+
+            } catch (error) {
+                console.error("Error fetching plans:", error);
+            }
+        }
     </script>
 
     <script>

@@ -2158,6 +2158,10 @@ form {
   padding: 10px 20px;
   cursor: pointer;
 }
+.profile-renew h6 {
+  font-size: 14px;
+  white-space: pre-wrap;
+}
 
 .renewmodal {
   position: fixed;
@@ -2495,6 +2499,40 @@ form {
 }
 
 @media all and (min-width: 320px) and (max-width: 767px) {
+  .right-footer-bx {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .home-input-box {
+    flex-wrap: wrap;
+  }
+
+  .time-box,
+  .appointment-calender .calendar-box {
+    width: 100% !important;
+  }
+
+  .renewmodal {
+    width: 75%;
+  }
+
+  .house-factors-selc-bx {
+    flex-wrap: wrap;
+  }
+
+  .nature {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .house-fact-sel-bx select  {
+    width: 100%;
+    height: 4rem;
+  }
+
+  .profile-renew {
+    margin-top: 1rem;
+  }
+
   html {
     font-size: 56.2%;
   }
@@ -3026,7 +3064,7 @@ form {
   .appoint-plan {
     flex-wrap: wrap;
   }
-  
+
   .appoint-card {
     width: 100%;
   }

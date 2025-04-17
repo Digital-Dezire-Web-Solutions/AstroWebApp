@@ -623,7 +623,7 @@
                                 Sign In
                             </button>
 
-                            <button style="display: none;" disabled type="button" class="form-btn form-btn2"
+                            <button type="button" class="form-btn form-btn2"
                                 id="newAcnt">
                                 Create Account
                             </button>
@@ -647,13 +647,150 @@
 
                 <div class="comn-heading">
                     <h4>Sign Up to Astro Nivesh </h4>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maxime est obcaecati.</p> -->
                 </div>
 
                 <div class="login-form">
-                    <button class="form-btn  form-btn3" type="button" id="signInBtn">
-                        I Already Have Account
-                    </button>
+                    <form onsubmit="handleCreate(event)">
+
+                        <div class="inpt-bx">
+                            <label for="name">Name</label>
+                            <div class="inpt">
+                                <input type="text" name="cname" placeholder="Enter your Name" autocomplete="off"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="name">Email</label>
+                            <div class="inpt">
+                                <input type="email" name="cemail" placeholder="Enter your email address..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Create Password</label>
+                            <div class="inpt">
+                                <input type="text" name="ccreatepassword" placeholder="Create your password..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+
+
+                        <div class="inpt-bx">
+                            <label for="password">Date Of Birth</label>
+                            <div class="inpt">
+                                <input type="text" id="calendarInput" name="calendarInput"
+                                    placeholder="Choose a date" />
+                            </div>
+                        </div>
+
+                        <div class="inpt-bx">
+                            <label for="password">Birth Time</label>
+                            <div class="inpt">
+                                <input type="text" id="timePicker" name="timePicker" class="time-picker"
+                                    placeholder="Select Time">
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="birthplace">Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" id="birthplace" name="birthplace"
+                                    placeholder="Enter your Birth Place..." autocomplete="off" required>
+                                <ul id="suggestions" class="suggestions-list"></ul>
+                            </div>
+                        </div>
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+                        <!-- <div class="inpt-bx">
+                            <label for="birthplace">Birth Place</label>
+                            <div class="inpt">
+                                <input type="text" name="birthplace" placeholder="Enter your Birth Place..."
+                                    autocomplete="off" required>
+                            </div>
+                        </div> -->
+                        <div class="inpt-bx">
+                            <label for="consonent">Consonent of your name</label>
+                            <span style="color: orange;">Eg:- (Rahul - Ra)</span>
+                            <div class="inpt">
+                                <!-- <input type="text" name="consonent" placeholder="Enter your Consonent..."
+                                    autocomplete="off" required> -->
+                                <select name="consonent">
+                                    <option value="" selected>Choose Your Consonent...</option>
+                                    <option value="">Choose Later</option>
+                                    <option value="Ka">Ka</option>
+                                    <option value="Kha">Kha</option>
+                                    <option value="Ga">Ga</option>
+                                    <option value="Cha">Cha</option>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Va">Va</option>
+                                    <option value="Ha">Ha</option>
+                                    <option value="Da">Da</option>
+                                    <option value="La">La</option>
+                                    <option value="Na">Na</option>
+                                    <option value="Dha">Dha</option>
+                                    <option value="Sha">Sha</option>
+                                    <option value="Tha">Tha</option>
+                                    <option value="Kha">Kha</option>
+                                    <option value="Ra">Ra</option>
+                                    <option value="Ja">Ja</option>
+                                    <option value="Pa">Pa</option>
+                                    <option value="Bha">Bha</option>
+                                    <option value="Ta">Ta</option>
+                                    <option value="Ma">Ma</option>
+                                    <option value="SA">Sa</option>
+                                    <option value="Tau">Tau</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="inpt-bx">
+                            <label for="vowel">Vowel of your name</label>
+                            <span style="color: orange;">Eg:- (Rahul - A)</span>
+                            <div class="inpt">
+                                <!-- <input type="text" name="vowel" placeholder="Enter your Vowel..." autocomplete="off"
+                                    required> -->
+                                <select name="vowel">
+                                    <option value="" selected>Choose Your Vowel...</option>
+                                    <option value="">Choose Later</option>
+                                    <option value="A">A</option>
+                                    <option value="AA">AA</option>
+                                    <option value="Ae">Ae</option>
+                                    <option value="Aei">Aei</option>
+                                    <option value="Da">Da</option>
+                                    <option value="E">E</option>
+                                    <option value="EE">EE</option>
+                                    <option value="O">O</option>
+                                    <option value="OO">OO</option>
+                                    <option value="Ou">Ou</option>
+                                    <option value="oo">oo</option>
+                                    <option value="Re">Re</option>
+                                    <option value="Ree">Ree</option>
+                                    <option value="Am">Am</option>
+                                    <option value="Aha">Aha</option>
+                                    <option value="Lri">Lri</option>
+                                    <option value="Lree">Lree</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-btns-flex">
+
+                            <button class="form-btn" type="submit">
+                                Create Account
+                            </button>
+
+                            <button class="form-btn  form-btn3" type="button" id="signInBtn">
+                                I Already Have Account
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
                 </div>
+
             </div>
 
             <div class="signup-loader home" style="display: none;">
@@ -892,7 +1029,7 @@
             padding: 0;
             margin: 0;
             background: white;
-            border: 1px solid #ccc;
+            /* border: 1px solid #ccc; */
             position: absolute;
             z-index: 1000;
             width: 100%;

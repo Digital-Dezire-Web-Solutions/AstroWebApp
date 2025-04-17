@@ -445,45 +445,7 @@
             </div>
 
             <!-- Plan Selection Cards -->
-            <div class="appoint-plan" id="planSelection">
-                <div class="appoint-card" onclick="selectPlan('Plan A', 251, '15 min')">
-                    <div class="payment-plan-box">
-                        <div class="payment-plan-head">
-                            <h6>Plan A</h6>
-                        </div>
-                        <div class="payment-plan-body">
-                            <div class="payment-price">
-                                <p>₹</p>
-                                <h5>251</h5>
-                            </div>
-                            <div class="payment-plan-body-box">
-                                <p>/ Per user</p>
-                                <p>/ 15 min</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="form-btn" type="button">Book Appointment</button>
-                </div>
-
-                <div class="appoint-card" onclick="selectPlan('Plan B', 2100, '60 min')">
-                    <div class="payment-plan-box">
-                        <div class="payment-plan-head">
-                            <h6>Plan B</h6>
-                        </div>
-                        <div class="payment-plan-body">
-                            <div class="payment-price">
-                                <p>₹</p>
-                                <h5>2100</h5>
-                            </div>
-                            <div class="payment-plan-body-box">
-                                <p>/ Per user</p>
-                                <p>/ 60 min</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="form-btn" type="button">Book Appointment</button>
-                </div>
-            </div>
+            <div class="appoint-plan" id="planSelection"></div>
 
             <style>
                 #calendar {
@@ -685,6 +647,45 @@
              
             `
         }
+
+        async function fetchData() {
+            try {
+                const response = await fetch(`${host}/api/admindetail/all`);
+                const data = await response.json();
+                const plans = data[0]?.plan;
+
+                const planContainer = document.getElementById("planSelection");
+                planContainer.innerHTML = ""; // Clear existing content
+
+                plans.forEach(p => {
+                    const card = `
+                <div class="appoint-card" onclick="selectPlan('${p.plan}', ${p.price}, '${p.duration} min')">
+                    <div class="payment-plan-box">
+                        <div class="payment-plan-head">
+                            <h6>${p.plan}</h6>
+                        </div>
+                        <div class="payment-plan-body">
+                            <div class="payment-price">
+                                <p>₹</p>
+                                <h5>${p.price}</h5>
+                            </div>
+                            <div class="payment-plan-body-box">
+                                <p>/ Per user</p>
+                                <p>/ ${p.duration} min</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="form-btn" type="button">Book Appointment</button>
+                </div>
+            `;
+                    planContainer.innerHTML += card;
+                });
+
+            } catch (error) {
+                console.error("Error fetching plans:", error);
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             // console.log(token, "token")
             const loginForm = document.querySelector(".login-info");
@@ -789,7 +790,7 @@
                 duration,
                 date,
                 startTime,
-                endTime,"dsta")
+                endTime, "dsta")
 
             // Construct query string
             const appointmentData = new URLSearchParams({
@@ -810,30 +811,31 @@
         window.onload = async () => {
             fetchAllData()
             generateCalendar()
+            fetchData()
         };
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    flatpickr("#startTime", {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "h:i K",
-        time_24hr: false
-    });
+            flatpickr("#startTime", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K",
+                time_24hr: false
+            });
 
-    flatpickr("#endTime", {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "h:i K",
-        time_24hr: false
-    });
+            flatpickr("#endTime", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K",
+                time_24hr: false
+            });
 
-    flatpickr("#calendarInput", {
-        dateFormat: "Y-m-d",
-        maxDate: "2025-12-31",
-        enableTime: false
-    });
-});
+            flatpickr("#calendarInput", {
+                dateFormat: "Y-m-d",
+                maxDate: "2025-12-31",
+                enableTime: false
+            });
+        });
     </script>
 
 
