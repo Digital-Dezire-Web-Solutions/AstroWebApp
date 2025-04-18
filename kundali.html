@@ -579,32 +579,31 @@
                 <div class="kundali-img-bx">
                     <!-- Charts -->
                     <div class="kundli-img">
+
                         <div class="kundali-img-nres">
-                            <div class="kundli-chart">
+                            <div id="lagnaChart" class="kundli-chart active">
                                 <div id="horoscope-chart1" class="chart-container1">
                                     <p>Lagna</p>
                                 </div>
                                 <p>Lagna</p>
                             </div>
-                            <div class="kundli-chart">
+                            <div id="navamsaChart" class="kundli-chart">
                                 <div id="horoscope-chart2" class="chart-container2">
                                     <p>Navamsa</p>
                                 </div>
                                 <p>Navamsa</p>
                             </div>
                         </div>
-                        <div class="kundali-img-res">
-                            <div id="horoscope-chart1" class="chart-container1">
-                            </div>
-                            <div id="horoscope-chart2" class="chart-container2" style="display: none;">
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Buttons to toggle -->
+                    <div class="kundali-buttons">
+                        <button id="lagnaBtn" class="active">Lagna</button>
+                        <button id="navamsaBtn">Navamsa</button>
+                    </div>
                     <div class="chart-toggle-buttons">
-                        <button id="lagna-btn" class="active" onclick="showChart('lagna')">Lagna</button>
-                        <button id="navamsa-btn" onclick="showChart('navamsa')">Navamsa</button>
+                        <!-- <button id="lagna-btn" class="active" onclick="showChart('lagna')">Lagna</button>
+                        <button id="navamsa-btn" onclick="showChart('navamsa')">Navamsa</button> -->
                         <!-- <button><a href="gochar.html">Gochar</a></button>
                         <button><a href="aspectratio.html">Aspect Ratio</a></button>
                         <button><a href="birthchart.html">Birth Chart</a></button> -->
@@ -651,15 +650,7 @@
                     text-align: center;
                 }
 
-                .kundali-img-nres {
-                    display: flex;
-                    align-items: center;
-                    gap: 2rem;
-                }
-
-                .kundali-img-res {
-                    display: none !important;
-                }
+            
 
                 .kundali-img-bx {
 
@@ -667,9 +658,6 @@
                     margin-bottom: 8rem;
                 }
 
-                .chart-toggle-buttons {
-                    display: none;
-                }
 
                 .kundli-img {
                     display: flex;
@@ -706,11 +694,6 @@
                     color: white;
                 }
 
-                .kundli-img svg {
-                    width: 100%;
-                    height: 100%;
-                }
-
                 .gochara-house {
                     display: flex;
                     flex-direction: column;
@@ -735,11 +718,6 @@
                     cursor: pointer;
                     background-color: lightgray;
                     transition: 0.3s;
-                }
-
-                .active {
-                    background-color: blue;
-                    color: white;
                 }
 
                 .section {
@@ -1329,26 +1307,51 @@
     </script>
 
     <script>
-        function showChart(chartType) {
-            // Get chart containers and buttons
-            const lagnaChart = document.getElementById("horoscope-chart1");
-            const navamsaChart = document.getElementById("horoscope-chart2");
-            const moreChart = document.getElementById("horoscope-chart3");
-            const lagnaBtn = document.getElementById("lagna-btn");
-            const navamsaBtn = document.getElementById("navamsa-btn");
+        // function showChart(chartType) {
+        //     // Get chart containers and buttons
+        //     const lagnaChart = document.getElementById("horoscope-chart1");
+        //     const navamsaChart = document.getElementById("horoscope-chart2");
+        //     const moreChart = document.getElementById("horoscope-chart3");
+        //     const lagnaBtn = document.getElementById("lagna-btn");
+        //     const navamsaBtn = document.getElementById("navamsa-btn");
 
-            if (chartType === "lagna") {
-                lagnaChart.style.display = "block";
-                navamsaChart.style.display = "none";
-                lagnaBtn.classList.add("active");
-                navamsaBtn.classList.remove("active");
-            } else if (chartType === "navamsa") {
-                lagnaChart.style.display = "none";
-                navamsaChart.style.display = "block";
-                navamsaBtn.classList.add("active");
-                lagnaBtn.classList.remove("active");
+        //     if (chartType === "lagna") {
+        //         lagnaChart.style.display = "block";
+        //         navamsaChart.style.display = "none";
+        //         lagnaBtn.classList.add("active");
+        //         navamsaBtn.classList.remove("active");
+        //     } else if (chartType === "navamsa") {
+        //         lagnaChart.style.display = "none";
+        //         navamsaChart.style.display = "block";
+        //         navamsaBtn.classList.add("active");
+        //         lagnaBtn.classList.remove("active");
+        //     }
+        // }
+        const lagnaBtn = document.getElementById('lagnaBtn');
+        const navamsaBtn = document.getElementById('navamsaBtn');
+        const lagnaChart = document.getElementById('lagnaChart');
+        const navamsaChart = document.getElementById('navamsaChart');
+
+        // Only apply toggle logic on mobile
+        function handleToggle(view) {
+            if (window.innerWidth < 768) {
+                if (view === 'lagna') {
+                    lagnaChart.classList.add('active');
+                    navamsaChart.classList.remove('active');
+                    lagnaBtn.classList.add('active');
+                    navamsaBtn.classList.remove('active');
+                } else {
+                    navamsaChart.classList.add('active');
+                    lagnaChart.classList.remove('active');
+                    navamsaBtn.classList.add('active');
+                    lagnaBtn.classList.remove('active');
+                }
             }
         }
+
+        lagnaBtn.addEventListener('click', () => handleToggle('lagna'));
+        navamsaBtn.addEventListener('click', () => handleToggle('navamsa'));
+
     </script>
     <script>
 

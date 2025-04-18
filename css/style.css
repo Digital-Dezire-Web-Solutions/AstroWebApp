@@ -706,6 +706,7 @@ Our main Comp CSS code
 ::-webkit-scrollbar {
   width: 0.647rem;
   background-color: transparent;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -2524,7 +2525,7 @@ form {
     width: 100%;
     margin-top: 1rem;
   }
-  .house-fact-sel-bx select  {
+  .house-fact-sel-bx select {
     width: 100%;
     height: 4rem;
   }
@@ -3025,6 +3026,34 @@ form {
   justify-content: space-between;
   margin-top: 2rem;
 }
+.rashi-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rashi-items img {
+  width: 15%;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+.rashi-card {
+  display: flex;
+  overflow: hidden; /* Hide scrollbar */
+  white-space: nowrap;
+  scroll-behavior: auto;
+  gap: 10px;
+}
+
+.rashi-items {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 100px;
+}
+
+.rashi-card::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
 
 @media all and (min-width: 320px) and (max-width: 767px) {
   .home-box {
@@ -3067,5 +3096,360 @@ form {
 
   .appoint-card {
     width: 100%;
+  }
+}
+
+/* index page */
+
+.home-know-head {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.home-know-head h2 {
+  color: #fe7000;
+  font-size: 35px;
+}
+.home-know-head p {
+  font-weight: 600;
+}
+
+.home-know-box {
+  display: flex;
+  gap: 2rem;
+  /* flex-wrap: wrap; */
+}
+
+.home-know-left {
+  width: 65%;
+}
+.home-know-left p {
+  font-weight: 300;
+}
+.home-know-left img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.home-know-left-title {
+  text-align: center;
+  margin-top: 2rem;
+}
+.home-know-left-title h4 {
+  font-size: 25px;
+  color: #fe7000;
+  font-weight: 600;
+}
+.home-know-left-title h6 {
+  font-size: 18px;
+  margin-top: 2rem;
+  color: #fe7000;
+}
+
+.home-know-right img {
+  width: 60%;
+  object-fit: cover;
+}
+.home-know-right {
+  width: 35%;
+  text-align: center;
+  position: relative;
+}
+.home-know-right span {
+  position: absolute;
+  left: -10%;
+  bottom: 25%;
+  font-size: 16px;
+}
+
+/* home features */
+
+.home-features-box {
+  display: flex;
+  gap: 2rem;
+}
+
+.home-features-left {
+  width: 35%;
+}
+.home-features-left h4 {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.home-features-left h4 span {
+  color: #fe7000;
+}
+.home-features-left p {
+  font-weight: 300;
+}
+.home-features-right {
+  position: relative;
+  width: 65%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2rem;
+  z-index: 1;
+}
+.home-features-right:after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 94%;
+  height: 65%;
+  background-color: #ffddcc;
+  border-radius: 1.4rem;
+  padding: 2rem;
+  z-index: -1;
+}
+
+.home-features-right img {
+  width: 100%;
+}
+
+/*  */
+.home-think-box {
+  position: relative;
+  width: 50%;
+  height: 400px;
+  margin: auto;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.home-think-boxin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 2rem;
+}
+
+.home-think-boxin img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin: 5px;
+}
+
+.home-think-circular {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border: 1px solid #cdcdcd;
+  border-radius: 50%;
+}
+
+.home-think-circular p {
+  position: absolute;
+  width: 120px;
+  text-align: center;
+  transform-origin: center center;
+}
+
+.home-think-circular p:nth-child(1) {
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-think-circular p:nth-child(2) {
+  top: 20%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+.home-think-circular p:nth-child(3) {
+  top: 70%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+}
+.home-think-circular p:nth-child(4) {
+  top: 100%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+.home-think-circular p:nth-child(5) {
+  top: 65%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+}
+.home-think-circular p:nth-child(6) {
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.home-think-box > p {
+  margin-top: 410px;
+}
+
+.home-think-box-par {
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+.home-think-box-par p {
+  font-weight: 300;
+}
+
+.looking {
+  background-color: #fe7000;
+}
+.looking .home-know-head h2 {
+  color: white;
+}
+.looking .home-know-head p {
+  color: white;
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.consultent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.consultent button {
+  background-color: white;
+  border: none;
+  border-radius: 1.4rem;
+  padding: 12px 24px;
+  color: #fe7000;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kundali-buttons {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kundali-buttons button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+}
+.kundli-chart {
+  display: block;
+}
+
+.kundali-buttons {
+  display: none;
+}
+.kundali-buttons {
+  margin-bottom: 10px;
+}
+
+.kundali-buttons button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+}
+
+.kundali-buttons button.active {
+  background-color: #fe7000;
+  color: white;
+}
+
+/* Optional: style layout for desktop */
+.kundali-img-nres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.kundli-chart {
+  flex: 1;
+  min-width: 300px;
+}
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+  .home-know-box {
+    flex-wrap: wrap;
+  }
+  .home-know-left,
+  .home-know-right {
+    width: 100%;
+  }
+
+  .home-know-right span {
+    position: relative;
+    left: 0%;
+    bottom: 0%;
+  }
+
+  .home-features-box {
+    flex-wrap: wrap;
+  }
+
+  .home-features-left,
+  .home-features-right {
+    width: 100%;
+  }
+
+  .home-think-box {
+    width: 75%;
+  }
+  .home-think-boxin img {
+    width: 40%;
+    margin: 5px;
+  }
+
+  .chart-toggle-buttons2 {
+    overflow: auto;
+  }
+  .table-data {
+    overflow: auto;
+  }
+  .cards-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .table-data table thead tr th {
+    padding: 10px;
+  }
+
+  .kundli-chart {
+    display: none;
+  }
+
+  .kundli-chart.active {
+    display: block;
+  }
+
+  .kundali-buttons {
+    display: flex;
+  }
+
+  /* .chart-container1 {
+    width: 400px;
+    height: 400px;
+  } */
+
+  .kundli-chart{
+    width: 400px;
+  }
+  
+  .chart-container1 svg {
+    transform: scale(0.8); /* scale to 200/500 = 0.4 */
+    transform-origin: top left;
+    display: block;
+  }
+
+  .chart-container2 svg {
+    transform: scale(0.8); /* scale to 200/500 = 0.4 */
+    transform-origin: top left;
+    display: block;
   }
 }
