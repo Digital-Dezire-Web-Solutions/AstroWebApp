@@ -192,7 +192,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -318,7 +318,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -812,9 +812,9 @@
                     </div>
                 </div>
 
-                <div class="profile-renew" id="renewDiv">
-                    <h6>Renew your Subscription to get your future updates!</h6>
-                    <p class="renew-btn" onclick="openRenewModal()">Renew Subscription</p>
+                <div class="profile-renew" id="renewDiv" style="display: none;">
+                    <h6 id="h6"></h6>
+                    <p class="renew-btn" id="renew-btn" onclick="openRenewModal()"></p>
                 </div>
             </div>
         </div>
@@ -928,11 +928,17 @@
                 const user = data
                 function getSubscriptionDates(user) {
                     let startDate, endDate;
+                    const h6 = document.getElementById('h6');
+                    const p = document.getElementById('renew-btn');
 
                     if (user.subscription.plan === "Free") {
                         startDate = user.subscription.startDate;
                         endDate = user.subscription.endDate;
+                        h6.textContent = "Get Premium to unlock all features!";
+                        p.textContent = "Get Premium";
                     } else {
+                        h6.textContent = "Renew your Subscription to get your future updates!";
+                        p.textContent = "Renew Subscription";
                         if (user.subscriptionHistory.length > 0) {
                             const startDates = user.subscriptionHistory.map(sub => new Date(sub.startDate));
                             const endDates = user.subscriptionHistory.map(sub => new Date(sub.endDate));

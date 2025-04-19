@@ -194,7 +194,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -267,7 +267,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -649,6 +649,8 @@
                                     placeholder="Enter your password..." autocomplete="off" required>
                             </div>
                         </div>
+                        <div id="alert" class="alert"></div>
+                        <p id="errorMsg" style="color: red; font-size: 12px; margin-bottom: 0;"></p>
 
                         <div class="form-btns-flex">
 
@@ -661,7 +663,7 @@
                             </button>
 
                         </div>
-                        <div id="alert" class="alert"></div>
+                        
 
 
                     </form>
@@ -1469,7 +1471,7 @@ Get kundali reading over the phone or in person. -->
             // console.log(json);
 
             if (json.success) {
-
+                document.getElementById("errorMsg").innerText = json.success;
                 showAlert("Logged in successfully", "success");
                 // Save the auth token and redirect
                 localStorage.setItem("token", json.authToken);
@@ -1484,6 +1486,8 @@ Get kundali reading over the phone or in person. -->
                 window.location.href = "/home.html";
             } else {
                 showAlert("Invalid Details", "danger");
+                // console.log(json.error, "error");
+                document.getElementById("errorMsg").innerText = json.error;
             }
         }
 

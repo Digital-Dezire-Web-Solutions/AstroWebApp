@@ -193,7 +193,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -304,7 +304,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -648,9 +648,9 @@
                     </div>
                 </a>
             </div>
-            <div class="profile-renew" id="renewDiv">
-                <h6>Renew your Subscription to get your future updates!</h6>
-                <p class="renew-btn" onclick="openRenewModal()">Renew Subscription</p>
+            <div class="profile-renew" id="renewDiv" style="display: none;">
+                <h6 id="h6"></h6>
+                <p class="renew-btn" id="renew-btn" onclick="openRenewModal()"></p>
             </div>
 
         </div>
@@ -660,81 +660,84 @@
           Our Footer Comp 
           -------------------- -->
 
-          <footer class="footer-comp">
-            <div class="common-container3">
-    
-                <div class="footer-flex-bx">
-    
-                    <div class="left-footer-bx">
-    
-                        <div class="left-header-logo flex item-start gap">
-                            <img src="./images/astrology.png" alt="">
-    
-                            <h6>Astro Nivesh</h6>
-    
-    
-                        </div>
-    
-    
-    
-    
-                        <p>
-                            Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
-                        </p>
-    
+    <footer class="footer-comp">
+        <div class="common-container3">
+
+            <div class="footer-flex-bx">
+
+                <div class="left-footer-bx">
+
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="">
+
+                        <h6>Astro Nivesh</h6>
+
+
                     </div>
-    
-    
-                    <div class="right-footer-bx">
-    
-                        <div class="footer-bx">
-                            <h6>Corporate Info</h6>
-                            <div class="footer-li">
-                                <li><a href="aboutus.html">About Us</a></li>
-                                <li><a href="contactus.html">Contact Us</a></li>
-                                <li><a href="termsconditions.html">Terms & Conditions</a></li>
-                                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
-                                <li><a href="refundpolicy.html">Refund Policy</a></li>
-                            </div>
+
+
+
+
+                    <p>
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
+                    </p>
+
+                </div>
+
+
+                <div class="right-footer-bx">
+
+                    <div class="footer-bx">
+                        <h6>Corporate Info</h6>
+                        <div class="footer-li">
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
                         </div>
-    
-    
-                        <div class="footer-bx">
-                            <h6>Contact Info</h6>
-                            <div class="footer-li">
-                                <li><a href="#"> We are available 24x7 on chat support</a></li>
-                                <li><a href="#">Email ID: contact@astronivesh.com</a></li>
-    
-                                <div class="soc-icons-flex">
-                                    <a href="#">
-                                        <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-youtube"></ion-icon>
-                                    </a>
-                                </div>
-    
-                            </div>
-                        </div>
-    
-    
                     </div>
-    
+
+
+                    <div class="footer-bx">
+                        <h6>Contact Info</h6>
+                        <div class="footer-li">
+                            <li><a href="#"> We are available 24x7 on chat support</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
+
+                            <div class="soc-icons-flex">
+                                <a href="#">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
-    
-                <div class="copyright-bx">
-                    <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
-                            href="https://digitaldezire.com/">Digital Dezire</a></p>
-                </div>
+
             </div>
-        </footer>
+
+            <div class="copyright-bx">
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All
+                    Rights Reserved | Dev. By: <a href="https://digitaldezire.com/">Digital Dezire</a></p>
+            </div>
+        </div>
+    </footer>
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -753,18 +756,24 @@
                 }
 
                 const data = await response.json();
-                // console.log(data, "data")
+                console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
 
                 const user = data
                 function getSubscriptionDates(user) {
                     let startDate, endDate;
+                    const h6 = document.getElementById('h6');
+                    const p = document.getElementById('renew-btn');
 
                     if (user.subscription.plan === "Free") {
                         startDate = user.subscription.startDate;
                         endDate = user.subscription.endDate;
+                        h6.textContent = "Get Premium to unlock all features!";
+                        p.textContent = "Get Premium";
                     } else {
+                        h6.textContent = "Renew your Subscription to get your future updates!";
+                        p.textContent = "Renew Subscription";
                         if (user.subscriptionHistory.length > 0) {
                             const startDates = user.subscriptionHistory.map(sub => new Date(sub.startDate));
                             const endDates = user.subscriptionHistory.map(sub => new Date(sub.endDate));

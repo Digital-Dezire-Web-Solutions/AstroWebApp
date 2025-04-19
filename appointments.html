@@ -193,7 +193,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                    Appointments
+                   Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -304,7 +304,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                    Appointments
+                   Talk to Astrologer
                 </button>
 
             </div>
@@ -445,7 +445,9 @@
             </div>
 
             <!-- Plan Selection Cards -->
-            <div class="appoint-plan" id="planSelection"></div>
+            <div class="appoint-plan" id="planSelection">
+
+            </div>
 
             <style>
                 #calendar {
@@ -599,6 +601,69 @@
             </div>
         </div>
     </footer>
+    <style>
+        .feature-title {
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-top: 1rem;
+        }
+
+        .feature-title p {
+            color: white;
+            font-size: 12px;
+            font-weight: 300;
+            padding: 1rem;
+            border: 1px solid white;
+            border-radius: 25px;
+        }
+
+        .payment-plan-box {
+            padding-bottom: 0;
+        }
+
+        .payment-features-box {
+            background-color: #f0f0f0;
+            border-radius: 0px 0px 8px 8px;
+            margin: 0 10px 10px 10px;
+            padding: 1rem;
+        }
+
+        .payment-features-head {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .payment-features-head h6 {
+            color: #fe7000;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 1px solid #fe7000;
+        }
+
+        .payment-features-body {
+            text-align: center;
+        }
+
+        .payment-features-body h6 {
+            /* color: #fe7000; */
+            text-align: center;
+            font-size: 16px;
+            /* margin-top: 1rem; */
+        }
+
+        .payment-features-body p {
+            /* color: #fe7000; */
+            text-align: center;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .payment-features-body img {
+            width: 10%;
+            object-fit: cover;
+            margin-top: 2rem;
+        }
+    </style>
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -651,41 +716,128 @@
             `
         }
 
+        // async function fetchData() {
+        //     try {
+        //         const response = await fetch(`${host}/api/admindetail/all`);
+        //         const data = await response.json();
+        //         const plans = data[0]?.plan;
+
+        //         const planContainer = document.getElementById("planSelection");
+        //         planContainer.innerHTML = ""; // Clear existing content
+
+        //         plans.forEach(p => {
+        //             const card = `
+        //         <div class="appoint-card" onclick="selectPlan('${p.plan}', ${p.price}, '${p.duration} min')">
+        //             <div class="payment-plan-box">
+        //                 <div class="payment-plan-head">
+        //                     <h6>${p.plan}</h6>
+        //                 </div>
+        //                 <div class="payment-plan-body">
+        //                     <div class="payment-price">
+        //                         <p>₹</p>
+        //                         <h5>${p.price}</h5>
+        //                     </div>
+        //                     <div class="payment-plan-body-box">
+        //                         <p>/ Per user</p>
+        //                         <p>/ ${p.duration} min</p>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //             <button class="form-btn" type="button">Book Appointment</button>
+        //         </div>
+        //     `;
+        //             planContainer.innerHTML += card;
+        //         });
+
+        //     } catch (error) {
+        //         console.error("Error fetching plans:", error);
+        //     }
+        // }
+
         async function fetchData() {
             try {
                 const response = await fetch(`${host}/api/admindetail/all`);
                 const data = await response.json();
-                const plans = data[0]?.plan;
+                const plans = data[0]?.plan || [];
 
-                const planContainer = document.getElementById("planSelection");
-                planContainer.innerHTML = ""; // Clear existing content
+                const container = document.getElementById('planSelection');
+                container.innerHTML = '';
 
-                plans.forEach(p => {
-                    const card = `
-                <div class="appoint-card" onclick="selectPlan('${p.plan}', ${p.price}, '${p.duration} min')">
+                plans.forEach((p, index) => {
+
+                    // Static features per plan index
+                    const staticFeatures = [
+                        {
+                            description: 'Any one aspect of your life',
+                            featuresHTML: `
+                        <img src="./images/appointment/salary.png" alt="">
+                        <h6>Affordable</h6>
+                        <p>Excellent budget-friendly option.</p>
+                        <img src="./images/appointment/loupe.png" alt="">
+                        <h6>Concise</h6>
+                        <p>Provide clear and succinct information.</p>
+                        <img src="./images/appointment/stopwatch.png" alt="">
+                        <h6>Quick Delivery</h6>
+                        <p>Designed for rapid answers to your questions.</p>
+                    `
+                        },
+                        {
+                            description: 'Complete analysis of family/relationships',
+                            featuresHTML: `
+                        <img src="./images/appointment/research.png" alt="">
+                        <h6>Deep Analysis</h6>
+                        <p>In-depth insights through natal charts.</p>
+                        <img src="./images/appointment/censored.png" alt="">
+                        <h6>Confidentiality</h6>
+                        <p>Secure and private discussions</p>
+                        <img src="./images/appointment/stopwatch.png" alt="">
+                        <h6>Quick Delivery</h6>
+                        <p>Detail reading. Timely replies.</p>
+                    `
+                        }
+                    ];
+
+                    // Fallback if index is out of range
+                    const { description, featuresHTML } = staticFeatures[index] || staticFeatures[0];
+
+                    const cardHTML = `
+                <div class="appoint-card">
                     <div class="payment-plan-box">
                         <div class="payment-plan-head">
                             <h6>${p.plan}</h6>
                         </div>
                         <div class="payment-plan-body">
                             <div class="payment-price">
-                                <p>₹</p>
-                                <h5>${p.price}</h5>
+                                <span></span>
+                                <p></p>
+                                <h5><del>₹${p.slprice} </del>&nbsp; ₹${p.price}</h5>
                             </div>
                             <div class="payment-plan-body-box">
                                 <p>/ Per user</p>
                                 <p>/ ${p.duration} min</p>
                             </div>
                         </div>
+                        <div class="feature-title">
+                            <p>${description}</p>
+                        </div>
                     </div>
-                    <button class="form-btn" type="button">Book Appointment</button>
+                    <div class="payment-features-box">
+                        <div class="payment-features-head">
+                            <h6>Features</h6>
+                        </div>
+                        <div class="payment-features-body">
+                            ${featuresHTML}
+                        </div>
+                    </div>
+                    <button class="form-btn" type="button" onclick="selectPlan('${p.plan}', ${p.price}, '${p.duration} min')">Book Appointment</button>
                 </div>
             `;
-                    planContainer.innerHTML += card;
+
+                    container.innerHTML += cardHTML;
                 });
 
             } catch (error) {
-                console.error("Error fetching plans:", error);
+                console.error('Error fetching plans:', error);
             }
         }
 

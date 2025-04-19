@@ -2206,7 +2206,7 @@ form {
   border-radius: 1.4rem;
   padding: 2rem 4rem;
   color: white;
-  margin: 1rem 0;
+  margin-top: 1rem;
 }
 
 .payment-plan-head h6 {
@@ -2236,6 +2236,16 @@ form {
   color: white;
   font-size: 20px;
   font-weight: 400;
+}
+.payment-plan-body .payment-price span {
+  color: white;
+  font-size: 30px;
+  margin-top: 15px;
+  font-weight: 300;
+}
+
+.appoint-card .payment-price h5 {
+  font-size: 35px;
 }
 
 .payment-coupon {
@@ -3079,7 +3089,7 @@ form {
   background-color: white;
   padding: 0 1rem 1rem;
   border-radius: 1.4rem;
-  width: 30%;
+  width: 35%;
 }
 
 .appointment-calender .calendar-box {
@@ -3375,6 +3385,13 @@ form {
   min-width: 300px;
 }
 
+.sub-btn {
+  flex-direction: row;
+}
+.sub-btn .profile-renew {
+  margin-left: 2rem;
+}
+
 @media all and (min-width: 320px) and (max-width: 767px) {
   .home-know-box {
     flex-wrap: wrap;
@@ -3437,10 +3454,10 @@ form {
     height: 400px;
   } */
 
-  .kundli-chart{
+  .kundli-chart {
     width: 400px;
   }
-  
+
   .chart-container1 svg {
     transform: scale(0.8); /* scale to 200/500 = 0.4 */
     transform-origin: top left;
@@ -3451,5 +3468,12 @@ form {
     transform: scale(0.8); /* scale to 200/500 = 0.4 */
     transform-origin: top left;
     display: block;
+  }
+
+  .sub-btn {
+    flex-direction: column;
+  }
+  .sub-btn .profile-renew {
+    margin-left: 0rem;
   }
 }

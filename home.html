@@ -194,7 +194,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -267,7 +267,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                    Appointments
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -907,6 +907,8 @@
         .suggestions-list li:hover {
             background-color: #f0f0f0;
         }
+
+        
     </style>
 
     <section class="our-cards-comp">
@@ -940,10 +942,10 @@
                         <h6>Grah Dosh</h6>
                     </div>
                 </a>
-                <a href="https://wa.me/9376241408">
+                <a href="javascript:void(0);" id="talkLink">
                     <div class="card-bx card1">
                         <div class="icon icon7">
-                            <img src="./images/iconwhats.png" alt="">
+                            <img src="./images/talk.png" alt="">
                         </div>
                         <h6>Talk to Astrologer</h6>
                     </div>
@@ -1265,8 +1267,11 @@
 
     <section class="our-cards-comp">
         <div class="common-container3">
-            <div class="comn-heading">
+            <div class="comn-heading sub-btn">
                 <h5>Get Market and life updates in less then Rs 10/day</h5>
+                <div class="profile-renew" id="renewDiv" style="display: none;">
+                    <p class="renew-btn" id="renew-btn" onclick="openRenewModal()"></p>
+                </div>
             </div>
         </div>
     </section>
@@ -1894,6 +1899,62 @@
                 }
 
                 const data = await response.json();
+                const user = data
+                function getSubscriptionDates(user) {
+                    let startDate, endDate;
+                    const h6 = document.getElementById('h6');
+                    const p = document.getElementById('renew-btn');
+
+                    if (user.subscription.plan === "Free") {
+                        startDate = user.subscription.startDate;
+                        endDate = user.subscription.endDate;
+                        p.textContent = "Get Premium";
+                    } else {
+                        p.textContent = "Renew Subscription";
+                        if (user.subscriptionHistory.length > 0) {
+                            const startDates = user.subscriptionHistory.map(sub => new Date(sub.startDate));
+                            const endDates = user.subscriptionHistory.map(sub => new Date(sub.endDate));
+
+                            const minStartDate = new Date(Math.min(...startDates));
+                            const maxEndDate = new Date(Math.max(...endDates));
+
+                            startDate = minStartDate.toISOString();
+                            endDate = maxEndDate.toISOString();
+                        } else {
+                            startDate = user.subscription.startDate;
+                            endDate = user.subscription.endDate;
+                        }
+                    }
+
+                    return { startDate, endDate };
+                }
+                const result = getSubscriptionDates(user);
+
+                function formatDateToISO(dateStr) {
+                    const dateObj = new Date(dateStr + " 12:00:00");
+                    return dateObj.toISOString().split('T')[0];
+                }
+
+                // Convert start & end to ISO
+                const startDateISO = result.startDate;
+                const endDateISO = result.endDate;
+
+                // Example: Replace this date with your fetched subscription end date
+                const subscriptionEndDate = new Date(endDateISO); // YYYY-MM-DD format
+                const today = new Date();
+
+                const timeDiff = subscriptionEndDate.getTime() - today.getTime();
+                const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                // Get the div
+                const renewDiv = document.getElementById('renewDiv');
+
+                // Logic to show/hide
+                if (dayDiff > 2) {
+                    renewDiv.style.display = 'none';
+                } else {
+                    renewDiv.style.display = 'flex';
+                }
                 populateTable(data);
                 populateName(data);
                 collectData(data)
@@ -2294,6 +2355,7 @@
             const marketLink = document.getElementById("marketLink");
             const sbcLink = document.getElementById("sbcLink");
             const profileLink = document.getElementById("profileLink");
+            const talkLink = document.getElementById("talkLink");
             const freeLink = document.getElementById("freeLink");
             const loginModal = document.getElementById("login_btn");
 
@@ -2328,6 +2390,15 @@
                 if (token) {
                     // Redirect to Kundali Form if token is present
                     window.location.href = "./profile.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+            talkLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./appointments.html";
                 } else {
                     // Open login modal if no token
                     loginModal.click();
