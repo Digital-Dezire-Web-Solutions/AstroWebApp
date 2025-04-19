@@ -194,7 +194,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -263,10 +263,10 @@
             padding: 1rem;
         }
 
-        label span{
-    color: red;
-    font-size: 12px;
- }
+        label span {
+            color: red;
+            font-size: 12px;
+        }
     </style>
 
 
@@ -329,7 +329,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -830,6 +830,7 @@
                 populateName(data)
                 const params = new URLSearchParams(window.location.search);
                 const paymentdata = params.get("data");
+                console.log(paymentdata, "params")
                 // Store response.data in localStorage before redirecting
                 localStorage.setItem("paymentData", JSON.stringify(paymentdata));
                 document.getElementById("name-checkout").value = data.name || "Not Set";
@@ -863,15 +864,16 @@
             `
         }
 
-        const query = new URLSearchParams(window.location.search);
+        const query = JSON.parse(localStorage.getItem("appointmentData"));
+        console.log(query, "query")
 
-        const applan = query.get('plan');
-        const apprice = query.get('price');
-        const apduration = query.get('duration');
-        const apdate = query.get('date');
-        const apstartTime = query.get('startTime');
-        const apendTime = query.get('endTime');
-        if (query.size >= 1) {
+        const applan = query.plan;
+        const apprice = query.price;
+        const apduration = query.duration;
+        const apdate = query.date;
+        const apstartTime = query.startTime;
+        const apendTime = query.endTime;
+        if (query.appointment === "appointment") {
             const planNameElement = document.getElementById('planName');
             const planPriceElement = document.getElementById('planPrice');
             const durationElement = document.getElementById('duration');
@@ -965,7 +967,7 @@
             if (discountPercent === 100) {
                 let paymentMethod = "Free";
                 let transactionId = "00000000";
-                if (query.size >= 1) {
+                if (query.appointment === "appointment") {
                     await assignAppointment(storingData, paymentMethod, transactionId);
                 } else {
                     await assignSubscription(storingData, paymentMethod, transactionId);
@@ -998,9 +1000,10 @@
         }
 
         async function paymentStatus() {
+            console.log("payment Status")
             // Retrieve in checkout.html
             const paymentData = JSON.parse(localStorage.getItem("paymentData"));
-            // console.log(paymentData, "paymentdata");
+            console.log(paymentData, "paymentdata");
 
             if (paymentData) {
                 try {
@@ -1022,8 +1025,8 @@
                         let paymentMethod = parsedData.paymentDetails?.[0]?.paymentMode || "Pending";
                         let transactionId = parsedData.paymentDetails?.[0]?.transactionId;
 
-                        if (query.size >= 1) {
-                            console.log(query,"this is query")
+                        if (query.appointment === "appointment") {
+                            console.log(query, "this is query")
                             await assignAppointment(storingData, paymentMethod, transactionId);
                         } else {
                             console.log("this is not query")
@@ -1076,7 +1079,7 @@
                     })
                 });
                 let data = await response.json();
-                console.log(data,"data")
+                console.log(data, "data")
                 if (data.success === true) {
                     console.log("success")
                 }
@@ -1140,7 +1143,7 @@
                     })
                 });
                 let data = await response.json();
-                console.log(data,"data")
+                console.log(data, "data")
                 if (data.success === true) {
                     console.log("success")
                 }
@@ -1171,6 +1174,7 @@
                 let data2 = await response2.json();
                 console.log(data2, "data2")
                 if (data2.success === true) {
+                    localStorage.removeItem(appointmentData)
                     console.log("success")
                 }
                 console.log("object")
@@ -1216,6 +1220,12 @@
         window.onload = async () => {
             fetchAllData()
         };
+        function clearAppointmentData() {
+            localStorage.removeItem("appointmentData");
+        }
+
+        window.addEventListener('beforeunload', clearAppointmentData);
+        window.addEventListener('pagehide', clearAppointmentData);
     </script>
 
 

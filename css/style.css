@@ -2927,7 +2927,7 @@ form {
 
 .home-box {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
 }
 
@@ -3392,6 +3392,143 @@ form {
   margin-left: 2rem;
 }
 
+/* home progress */
+.home-section1 {
+  width: 50%;
+  position: relative;
+}
+.home-section2 {
+  width: 50%;
+  position: relative;
+}
+.home-section2 .remedy-box {
+  margin-bottom: 2rem;
+}
+.progress-container {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.progress-bar {
+  position: relative;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background-color: #fe7000;
+  height: 100%;
+  width: 0;
+  border-radius: 20px;
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.progress-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  color: white;
+  font-weight: bold;
+  right: 5px;
+}
+
+.remedy-box {
+  border: 1px solid #fe7000;
+  /* background-color: #ededed; */
+  border-radius: 1.4rem;
+  padding: 1rem;
+}
+.remedy-box h6,
+.home-section-box h6 {
+  color: #fe7000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.accordion-card {
+  border-radius: 1.4rem;
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 15px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  background: #f8f8f8;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.accordion-header h6 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fe7000;
+  white-space: pre-wrap;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  background: #f8f8f8;
+}
+
+.accordion-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fe7000;
+}
+
+.accordion-body-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-body {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.accordion-body p {
+  color: #5c5c5c;
+  font-weight: 400;
+  white-space: pre-wrap;
+}
+
+.accordion-body p:nth-child(2) {
+  color: #5c5c5c;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: right;
+}
+
+.home-section-box {
+  border: 1px solid #fe7000;
+  border-radius: 1.4rem;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
 @media all and (min-width: 320px) and (max-width: 767px) {
   .home-know-box {
     flex-wrap: wrap;
@@ -3475,5 +3612,11 @@ form {
   }
   .sub-btn .profile-renew {
     margin-left: 0rem;
+  }
+
+  /* home progress */
+  .home-section1,
+  .home-section2 {
+    width: 100%;
   }
 }
