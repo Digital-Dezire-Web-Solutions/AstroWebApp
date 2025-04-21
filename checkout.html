@@ -866,14 +866,21 @@
 
         const query = JSON.parse(localStorage.getItem("appointmentData"));
         console.log(query, "query")
+        let applan = []
+        let apprice = []
+        let apduration = []
+        let apdate = []
+        let apstartTime = []
+        let apendTime = []
 
-        const applan = query.plan;
-        const apprice = query.price;
-        const apduration = query.duration;
-        const apdate = query.date;
-        const apstartTime = query.startTime;
-        const apendTime = query.endTime;
-        if (query.appointment === "appointment") {
+        if (query && query.appointment === "appointment") {
+            console.log("appointment")
+            applan = query.plan;
+            apprice = query.price;
+            apduration = query.duration;
+            apdate = query.date;
+            apstartTime = query.startTime;
+            apendTime = query.endTime;
             const planNameElement = document.getElementById('planName');
             const planPriceElement = document.getElementById('planPrice');
             const durationElement = document.getElementById('duration');
@@ -906,9 +913,6 @@
             }
         }
 
-        // Example: display it
-        console.log({ applan, apprice, apduration, apdate, apstartTime, apendTime }, "data");
-
         // subscription
         let discountPercent = 0; // To store applied discount
 
@@ -918,9 +922,11 @@
             NIVESH100: 100
         };
         const originalPrice = parseInt(document.getElementById('planPrice').innerText);
+        console.log(originalPrice, "originalPrice")
         let finalPrice = originalPrice;
 
         function applyCoupon() {
+            console.log(originalPrice, "originalPrice")
             let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
             let message = document.getElementById('couponMessage');
 
@@ -958,8 +964,15 @@
             // console.log(`Final Price after Discount: ₹${finalPrice}`);
 
             document.getElementById('modalContent').style.display = 'none';
-            const storingData = {
-                plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state, apduration, apdate, apstartTime, apendTime
+            let storingData = []
+            if (query && query.appointment === "appointment") {
+             storingData = {
+                    plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state, apduration, apdate, apstartTime, apendTime
+                }
+            } else {
+                 storingData = {
+                    plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state
+                }
             }
             console.log(storingData, "storingData")
 
@@ -967,8 +980,8 @@
             if (discountPercent === 100) {
                 let paymentMethod = "Free";
                 let transactionId = "00000000";
-                if (query.appointment === "appointment") {
-                    await assignAppointment(storingData, paymentMethod, transactionId);
+                if (query && query.appointment === "appointment") {
+                    await assignAppointment(storingData, paymentMethod, transactionId,);
                 } else {
                     await assignSubscription(storingData, paymentMethod, transactionId);
                 }
@@ -1025,7 +1038,7 @@
                         let paymentMethod = parsedData.paymentDetails?.[0]?.paymentMode || "Pending";
                         let transactionId = parsedData.paymentDetails?.[0]?.transactionId;
 
-                        if (query.appointment === "appointment") {
+                        if (query && query.appointment === "appointment") {
                             console.log(query, "this is query")
                             await assignAppointment(storingData, paymentMethod, transactionId);
                         } else {
