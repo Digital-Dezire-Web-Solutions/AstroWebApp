@@ -3443,13 +3443,20 @@ form {
   border-radius: 1.4rem;
   padding: 1rem;
 }
-.remedy-box h6,
+.remedy-box h6{
+  color: #fe7000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
 .home-section-box h6 {
   color: #fe7000;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 1rem;
+  border-bottom: 1px solid #fe7000;
 }
 
 .accordion-card {
@@ -3476,6 +3483,7 @@ form {
   font-weight: 600;
   color: #fe7000;
   white-space: pre-wrap;
+  
 }
 
 .accordion-header {
@@ -3527,6 +3535,59 @@ form {
   border-radius: 1.4rem;
   padding: 1rem;
   margin-top: 2rem;
+  text-align: center;
+}
+.home-section-box .row p{
+  font-size: 16px;
+  font-weight: 300;
+  /* color: gray; */
+}
+.home-section-box .row .label{
+  font-weight: 600;
+  color: black;
+}
+.nakshatra-box {
+  display: flex;
+  gap: 2rem;
+}
+
+.nakshatra-box-left {
+  width: 25%;
+  border-radius: 1.4rem;
+  border: 1px solid #fe7000;
+  padding: 1rem;
+  height: 100%;
+  background-color: white;
+}
+
+.nakshatra-box-left h6 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #fe7000;
+  padding: 5px;
+  margin-bottom: 1rem;
+}
+
+.nakshatra-box-left ul li .notactive {
+  border-radius: 1.4rem;
+  width: 100%;
+  padding: 10px;
+  color: black;
+  display: flex;
+}
+
+.nakshatra-box-left ul li .active {
+  background-color: #fe7000;
+  border-radius: 1.4rem;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  display: flex;
+}
+
+.nakshatra-box-right {
+  width: 75%;
 }
 
 @media all and (min-width: 320px) and (max-width: 767px) {
@@ -3618,5 +3679,22 @@ form {
   .home-section1,
   .home-section2 {
     width: 100%;
+  }
+
+  .nakshatra-box {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .nakshatra-box-left,
+  .nakshatra-box-right {
+    width: 100%;
+    overflow: hidden;
+  }
+  .nakshatra-box-left ul {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    overflow: auto;
   }
 }

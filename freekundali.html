@@ -1133,7 +1133,7 @@
         if (!token) {
             window.location.href = "./home.html";
         }
-        const params = JSON.parse(localStorage.getItem('params'));
+        const params = JSON.parse(localStorage.getItem('usercred'));
         async function fetchData() {
             try {
                 const response = await fetch(`${host}/api/admindetail/all`);
@@ -1392,7 +1392,7 @@
                 };
 
                 // console.log(params, "params")
-                localStorage.setItem('params', JSON.stringify(params));
+                localStorage.setItem('usercred', JSON.stringify(params));
                 const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
                 const response2 = await fetch(horoscopeUrl);
                 if (!response2.ok) throw new Error("Failed to fetch horoscope data.");

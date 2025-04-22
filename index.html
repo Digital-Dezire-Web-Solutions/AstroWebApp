@@ -1380,7 +1380,7 @@ Get kundali reading over the phone or in person. -->
         else {
             console.log("token not found")
         }
-        const params = JSON.parse(localStorage.getItem('params'));
+        const params = JSON.parse(localStorage.getItem('usercred'));
         // console.log(token, "token")
         // console.log(params, "params")
         async function fetchAllData() {
@@ -1798,7 +1798,7 @@ Get kundali reading over the phone or in person. -->
 
         async function collectData(data) {
             const token = localStorage.getItem("token");
-            const params = JSON.parse(localStorage.getItem('params'));
+            const params = JSON.parse(localStorage.getItem('usercred'));
 
             if (token) {
                 // api
@@ -1849,7 +1849,7 @@ Get kundali reading over the phone or in person. -->
                         D9: "D9",
                     };
                     // console.log(params, "params")
-                    localStorage.setItem('params', JSON.stringify(params));
+                    localStorage.setItem('usercred', JSON.stringify(params));
                 }
                 catch {
                     console.log("error")

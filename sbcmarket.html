@@ -1087,7 +1087,7 @@
     <script>
         async function fetchUserData(data) {
             // console.log(data,"data")
-            const params = JSON.parse(localStorage.getItem('params'));
+            const params = JSON.parse(localStorage.getItem('usercred'));
             // console.log(params,"params")
             const baseUrl = "https://api.vedicastroapi.com/v3-json";
             try {
@@ -3539,7 +3539,7 @@
                     let formattedTithiDate = formatDatePanchang(nextDate);
                     let formattedTime = `${String(currentHours).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`;
 
-                    const params = JSON.parse(localStorage.getItem('params'));
+                    const params = JSON.parse(localStorage.getItem('usercred'));
                     const baseUrl = "https://api.vedicastroapi.com/v3-json";
                     let panchangDetails = getPanchangForDate(formattedDate);
                     // console.log(formattedTime, "formattedTime")
