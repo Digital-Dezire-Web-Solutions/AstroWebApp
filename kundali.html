@@ -93,7 +93,7 @@
 
     <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
-            <div class="left-header-logo flex item-start gap">
+            <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
 
                 <h6>Astro Nivesh</h6>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-9376241408</span>
+                        <span>+91-8421616117</span>
                     </div>
                 </div>
 
@@ -251,7 +251,7 @@
                     <ion-icon name="close-circle"></ion-icon>
                 </button>
 
-                <div class="left-header-logo flex item-start gap mob-logo">
+                <div class="left-header-logo flex item-start gap mob-logo" onclick="window.location.href='home.html'">
                     <img src="./images/astrology.png" alt="">
 
                     <h6>Astro Nivesh</h6>
@@ -270,13 +270,13 @@
                         <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
+                        <li><a href="appointments.html">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
                 <div class="astrology-cont-info">
 
-                    <div class="top-hedr-bx flex item-center">
+                    <!-- <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
                             <ion-icon name="home"></ion-icon>
                         </div>
@@ -284,7 +284,7 @@
                             <h6>Reach Us</h6>
                             <span>601 , Ram Nagar Dewas</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
@@ -292,7 +292,7 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-9376241408</span>
+                            <span>+91-8421616117</span>
                         </div>
                     </div>
 
@@ -1038,7 +1038,7 @@
                 <div class="left-footer-bx">
 
                     <div class="left-header-logo flex item-start gap">
-                        <img src="./images/astrology.png" alt="">
+                        <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
 
                         <h6>Astro Nivesh</h6>
 
@@ -1789,6 +1789,7 @@
                         const padaIndex = (currentIndex + i) % nakshatraPadas.length;
                         const pada = nakshatraPadas[padaIndex];
                         // console.log(pada, "pada")
+                        // console.log(currentIndex,"currentIndex")
 
                         // Find all matching planets
                         const matchingPlanets = planets.filter(

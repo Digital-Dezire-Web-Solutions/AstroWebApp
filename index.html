@@ -93,7 +93,7 @@
 
     <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
-            <div class="left-header-logo flex item-start gap">
+            <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
 
                 <h6>Astro Nivesh</h6>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-9376241408</span>
+                        <span>+91-8421616117</span>
                     </div>
                 </div>
 
@@ -218,7 +218,7 @@
                     <ion-icon name="close-circle"></ion-icon>
                 </button>
 
-                <div class="left-header-logo flex item-start gap mob-logo">
+                <div class="left-header-logo flex item-start gap mob-logo" onclick="window.location.href='home.html'">
                     <img src="./images/astrology.png" alt="">
 
                     <h6>Astro Nivesh</h6>
@@ -237,13 +237,13 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
+                        <li><a href="appointments.html">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
                 <div class="astrology-cont-info">
 
-                    <div class="top-hedr-bx flex item-center">
+                    <!-- <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
                             <ion-icon name="home"></ion-icon>
                         </div>
@@ -251,7 +251,7 @@
                             <h6>Reach Us</h6>
                             <span>601 , Ram Nagar Dewas</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
@@ -259,7 +259,7 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-9376241408</span>
+                            <span>+91-8421616117</span>
                         </div>
                     </div>
 
@@ -654,6 +654,8 @@
 
                         <div class="form-btns-flex">
 
+                            <p style="color: #fe7000; margin: 0; text-align: center; cursor: pointer;"
+                                onclick="window.location.href='resetpassword.html'">Forgot Password</p>
                             <button class="form-btn" type="submit">
                                 Sign In
                             </button>
@@ -663,7 +665,7 @@
                             </button>
 
                         </div>
-                        
+
 
 
                     </form>
@@ -730,20 +732,13 @@
                         <div class="inpt-bx">
                             <label for="birthplace">Birth Place</label>
                             <div class="inpt">
-                                <input type="text" id="birthplace" name="birthplace"
+                                <input type="text" id="birthplace1" name="birthplace"
                                     placeholder="Enter your Birth Place..." autocomplete="off" required>
-                                <ul id="suggestions" class="suggestions-list"></ul>
+                                <ul id="suggestions1" class="suggestions-list"></ul>
                             </div>
                         </div>
-                        <input type="hidden" id="latitude" name="latitude">
-                        <input type="hidden" id="longitude" name="longitude">
-                        <!-- <div class="inpt-bx">
-                            <label for="birthplace">Birth Place</label>
-                            <div class="inpt">
-                                <input type="text" name="birthplace" placeholder="Enter your Birth Place..."
-                                    autocomplete="off" required>
-                            </div>
-                        </div> -->
+                        <input type="hidden" id="latitude1" name="latitude">
+                        <input type="hidden" id="longitude1" name="longitude">
                         <div class="inpt-bx">
                             <label for="consonent">Consonent of your name</label>
                             <span style="color: orange;">Eg:- (Rahul - Ra)</span>
@@ -1205,7 +1200,7 @@ Get kundali reading over the phone or in person. -->
                 <div class="left-footer-bx">
 
                     <div class="left-header-logo flex item-start gap">
-                        <img src="./images/astrology.png" alt="">
+                        <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
 
                         <h6>Astro Nivesh</h6>
 
@@ -1325,50 +1320,71 @@ Get kundali reading over the phone or in person. -->
         });
         // place search
         document.addEventListener("DOMContentLoaded", function () {
-            const birthplaceInput = document.getElementById("birthplace");
-            const suggestionsList = document.getElementById("suggestions");
-            const latitudeInput = document.getElementById("latitude");
-            const longitudeInput = document.getElementById("longitude");
+            function setupPlaceSearch(birthplaceId, suggestionsId, latitudeId, longitudeId) {
+                const birthplaceInput = document.getElementById(birthplaceId);
+                const suggestionsList = document.getElementById(suggestionsId);
+                const latitudeInput = document.getElementById(latitudeId);
+                const longitudeInput = document.getElementById(longitudeId);
+                let selectedPlace = null;
 
-            async function fetchPlaces(query) {
-                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
-                const data = await response.json();
-                return data.map(place => ({
-                    name: place.display_name,
-                    lat: place.lat,
-                    lon: place.lon
-                }));
+                async function fetchPlaces(query) {
+                    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
+                    const data = await response.json();
+                    return data.map(place => ({
+                        name: place.display_name,
+                        lat: place.lat,
+                        lon: place.lon
+                    }));
+                }
+
+                birthplaceInput.addEventListener("input", async function () {
+                    const query = birthplaceInput.value.trim();
+                    if (query.length < 3) {
+                        suggestionsList.innerHTML = "";
+                        return;
+                    }
+
+                    const places = await fetchPlaces(query);
+                    suggestionsList.innerHTML = "";
+                    selectedPlace = null;
+
+                    places.forEach(place => {
+                        const li = document.createElement("li");
+                        li.textContent = place.name;
+                        li.addEventListener("click", () => {
+                            birthplaceInput.value = place.name;
+                            latitudeInput.value = place.lat;
+                            longitudeInput.value = place.lon;
+                            selectedPlace = true;
+                            suggestionsList.innerHTML = "";
+                            console.log(`Selected Place: ${place.name}, Lat: ${place.lat}, Lon: ${place.lon}`);
+                        });
+                        suggestionsList.appendChild(li);
+                    });
+                });
+
+                document.addEventListener("click", (event) => {
+                    if (!suggestionsList.contains(event.target) && event.target !== birthplaceInput) {
+                        suggestionsList.innerHTML = "";
+                    }
+                });
+
+                birthplaceInput.addEventListener('blur', () => {
+                    setTimeout(() => {
+                        if (!selectedPlace) {
+                            birthplaceInput.value = '';
+                            latitudeInput.value = '';
+                            longitudeInput.value = '';
+                        }
+                    }, 200);
+                });
             }
 
-            birthplaceInput.addEventListener("input", async function () {
-                const query = birthplaceInput.value.trim();
-                if (query.length < 3) {
-                    suggestionsList.innerHTML = "";
-                    return;
-                }
+            // Setup for first place
+            setupPlaceSearch('birthplace1', 'suggestions1', 'latitude1', 'longitude1');
 
-                const places = await fetchPlaces(query);
-                suggestionsList.innerHTML = "";
-
-                places.forEach(place => {
-                    const li = document.createElement("li");
-                    li.textContent = place.name;
-                    li.addEventListener("click", () => {
-                        birthplaceInput.value = place.name;
-                        latitudeInput.value = place.lat;
-                        longitudeInput.value = place.lon;
-                        suggestionsList.innerHTML = ""; // Clear suggestions
-                        console.log(`Selected Place: ${place.name}, Lat: ${place.lat}, Lon: ${place.lon}`);
-                    });
-                    suggestionsList.appendChild(li);
-                });
-            });
-
-            document.addEventListener("click", (event) => {
-                if (!suggestionsList.contains(event.target) && event.target !== birthplaceInput) {
-                    suggestionsList.innerHTML = "";
-                }
-            });
+            // Setup for second place
+            setupPlaceSearch('birthplace', 'suggestions', 'latitude', 'longitude');
         });
 
         const host = "https://api.astronivesh.com";
@@ -1493,8 +1509,10 @@ Get kundali reading over the phone or in person. -->
 
         async function handleCreate(event) {
             event.preventDefault();
-            const latitude = document.getElementById("latitude").value;
-            const longitude = document.getElementById("longitude").value;
+            document.querySelector(".login-reg-comp").classList.remove("formactive");
+            const placeform = event.target; // This is the form that triggered the submit
+            const latitude = placeform.querySelector('input[name="latitude"]').value;
+            const longitude = placeform.querySelector('input[name="longitude"]').value;
 
             const regInfo = document.querySelector(".reg-info");
             regInfo.style.display = "none";
@@ -1611,7 +1629,7 @@ Get kundali reading over the phone or in person. -->
                         D9: "D9",
                     };
 
-                    // console.log(params, "params")
+                    console.log(params, "params")
                     localStorage.setItem('params', JSON.stringify(params));
                     const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
                     const response2 = await fetch(horoscopeUrl);
@@ -1821,8 +1839,6 @@ Get kundali reading over the phone or in person. -->
                     console.error("Error fetching API key:", error);
                 }
                 try {
-                    const latitude = document.getElementById("latitude").value;
-                    const longitude = document.getElementById("longitude").value;
                     const birthtime = data.birthtime;
                     const location = data.birthplace;
                     const date = new Date(`1970-01-01 ${birthtime}`);

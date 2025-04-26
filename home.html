@@ -93,7 +93,7 @@
 
     <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
-            <div class="left-header-logo flex item-start gap">
+            <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
 
                 <h6>Astro Nivesh</h6>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-9376241408</span>
+                        <span>+91-8421616117</span>
                     </div>
                 </div>
 
@@ -218,7 +218,7 @@
                     <ion-icon name="close-circle"></ion-icon>
                 </button>
 
-                <div class="left-header-logo flex item-start gap mob-logo">
+                <div class="left-header-logo flex item-start gap mob-logo" onclick="window.location.href='home.html'">
                     <img src="./images/astrology.png" alt="">
 
                     <h6>Astro Nivesh</h6>
@@ -237,13 +237,13 @@
                         <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="https://wa.me/9376241408">Talk to Astrologer</a></li>
+                        <li><a href="appointments.html">Talk to Astrologer</a></li>
                     </div>
                 </nav>
 
                 <div class="astrology-cont-info">
 
-                    <div class="top-hedr-bx flex item-center">
+                    <!-- <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
                             <ion-icon name="home"></ion-icon>
                         </div>
@@ -251,7 +251,7 @@
                             <h6>Reach Us</h6>
                             <span>601 , Ram Nagar Dewas</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
@@ -259,7 +259,7 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-9376241408</span>
+                            <span>+91-8421616117</span>
                         </div>
                     </div>
 
@@ -992,21 +992,7 @@
             </div>
             <div class="home-section2">
                 <div class="home-progress">
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="fill1">
-                                <span class="progress-label" id="label1">0%</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="fill2">
-                                <span class="progress-label" id="label2">0%</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="progressBars"></div>
                 </div>
                 <div id="remedySelection"></div>
             </div>
@@ -1535,7 +1521,7 @@
                 <div class="left-footer-bx">
 
                     <div class="left-header-logo flex item-start gap">
-                        <img src="./images/astrology.png" alt="">
+                        <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
 
                         <h6>Astro Nivesh</h6>
 
@@ -1631,14 +1617,6 @@
         </div>
     </footer>
     <script>
-        async function getEnvVariables(name = "X_API_KEY") {
-            const response = await fetch(window?.location?.href, { method: "HEAD" });
-            // console.log("its api key", response?.headers?.get("X_API_KEY"))
-            return response?.headers?.get(name)
-        }
-
-
-
         const host = "https://api.astronivesh.com";
         // const host = "https://astroweb-backend.onrender.com";
         const token = localStorage.getItem("token");
@@ -1866,7 +1844,7 @@
                 let formattedDate = formatDatePanchang(currentDate);
                 // console.log(formattedDate)
                 const params = JSON.parse(localStorage.getItem('usercred'));
-                console.log(params, "params")
+                // console.log(params, "params")
                 const baseUrl = "https://api.vedicastroapi.com/v3-json";
                 // Convert formattedDate ("Sat Mar 08 2025") to "08/03/2025"
                 const TithiPanchang = `${baseUrl}/panchang/panchang?api_key=${apiKey}&date=${formattedDate}&tz=5.5&lat=${params.lat}&lon=${params.lon}&lang=en`;
@@ -1876,7 +1854,7 @@
                 // console.log(tithiData, "thithidata")
                 if (tithiData.length !== 0) {
                     const tithiData2 = tithiData.response;
-                    console.log(tithiData2,"tithiData2")
+                    // console.log(tithiData2, "tithiData2")
                     const box = document.getElementById("panchangBox");
 
                     const renderRow = (label, name, end) => {
@@ -1901,6 +1879,204 @@
             }
         }
 
+        async function fetchAllData4() {
+            const nakshatraPadas = [];
+            const zodiacMap = {
+                Aries: 1,
+                Taurus: 2,
+                Gemini: 3,
+                Cancer: 4,
+                Leo: 5,
+                Virgo: 6,
+                Libra: 7,
+                Scorpio: 8,
+                Sagittarius: 9,
+                Capricorn: 10,
+                Aquarius: 11,
+                Pisces: 12,
+            };
+            const nakshatras = [
+                "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
+                "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
+                "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+                "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+                "PurvaBhadra", "UttaraBhadra", "Revati"
+            ];
+            const rashis = [
+                "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
+                "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+            ];
+
+            nakshatras.forEach((nakshatra, index) => {
+                for (let pada = 1; pada <= 4; pada++) {
+                    const rashiIndex = Math.floor((index * 4 + (pada - 1)) / 9) % 12;
+                    nakshatraPadas.push({ nakshatra, pada, rashi: rashis[rashiIndex] });
+                }
+            });
+            const response = await fetch(`${host}/api/detail/fetchalldetail`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": token
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Failed to fetch data");
+            }
+            const datass = await response.json();
+            let horoscopeData = datass[0]?.horoscopeData || [];
+            let planets = [];
+
+            if (horoscopeData && horoscopeData.response) {
+                const planetDatas = horoscopeData.response;
+                // console.log(planetDatas, "planetDatas")
+
+                const createHouses = (startZodiacNumber) => {
+                    const houses = [];
+                    let currentNumber = startZodiacNumber;
+                    for (let i = 0; i < 12; i++) {
+                        houses.push(currentNumber);
+                        currentNumber = currentNumber === 12 ? 1 : currentNumber + 1;
+                    }
+                    return houses;
+                };
+
+                // Map Planet Data
+                const mapHPlanetData = (data) => {
+                    if (Array.isArray(data)) {
+                        return data.map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                            zodiac: planet.zodiac,
+                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                        }));
+                    } else if (typeof data === "object" && data !== null) {
+                        return Object.values(data).map((planet) => ({
+                            name: planet.full_name,
+                            nakshatra: planet.nakshatra,
+                            pada: planet.nakshatra_pada,
+                            retro: planet.retro,
+                            is_combust: planet.is_combust,
+                            zodiac: planet.zodiac,
+                            zodiacNumber: zodiacMap[planet.zodiac] || "-",
+                            houses: createHouses(zodiacMap[planet.zodiac] || 1),
+                        }));
+                    } else {
+                        console.error("Unexpected data format for planets:", data);
+                        return [];
+                    }
+                };
+
+                planets = mapHPlanetData(planetDatas).slice(0, 10);
+            }
+            const defaultNakshatra = planets[0]?.nakshatra || "Ashvini";
+            const defaultPada = planets[0]?.pada || 1;
+
+            let currentIndex = nakshatraPadas.findIndex(
+                (n) => n.nakshatra === defaultNakshatra && n.pada === defaultPada
+            );
+            let comparisonData = []
+
+            for (let house = 1; house <= 12; house++) {
+                if (1 !== "all" && house !== parseInt(1, 10)) {
+                    currentIndex = (currentIndex + 9) % nakshatraPadas.length;
+                    continue;
+                }
+
+                const ascendant = planets[0];
+                const ascendantHouseValue = ascendant.houses[1 - 1];
+                // console.log(ascendant)
+
+                for (let i = 0; i < 9; i++) {
+                    const padaIndex = (currentIndex + i) % nakshatraPadas.length;
+                    const pada = nakshatraPadas[padaIndex];
+                    // console.log(pada, "pada")
+                    comparisonData.push({
+                        pada: pada,
+                    });
+                }
+            }
+            console.log(comparisonData, "comparisonData")
+
+            function setProgress(barId, labelId, percent, rashi) {
+                const fill = document.getElementById(barId);
+                const label = document.getElementById(labelId);
+
+                fill.style.width = percent + '%';
+                if (label.labelTextNode) {
+                    label.labelTextNode.nodeValue = ` ${rashi} - ${percent}%`;
+                }
+
+                fill.addEventListener('transitionend', () => {
+                    const fillWidth = fill.offsetWidth;
+                    // label.style.left = (fillWidth - label.offsetWidth - 5) + 'px';
+                });
+
+                setTimeout(() => {
+                    const fillWidth = fill.offsetWidth;
+                    // label.style.left = (fillWidth - label.offsetWidth - 5) + 'px';
+                }, 600);
+            }
+
+            // Count rashis
+            const rashiCount = {};
+            const totalItems = comparisonData.length;
+
+            comparisonData.forEach(item => {
+                const rashi = item.pada.rashi;
+                rashiCount[rashi] = (rashiCount[rashi] || 0) + 1;
+            });
+
+            // console.log(rashiCount, "Rashi Count");
+
+            // Dynamically create progress bars
+            const progressBarsContainer = document.getElementById('progressBars');
+
+            Object.keys(rashiCount).forEach((rashi, index) => {
+                const count = rashiCount[rashi];
+                const percent = Math.round((count / totalItems) * 100);
+
+                const container = document.createElement('div');
+                container.className = 'progress-container';
+
+                const progressBar = document.createElement('div');
+                progressBar.className = 'progress-bar';
+
+                const fill = document.createElement('div');
+                fill.className = 'fill';
+                fill.id = `fill${index + 1}`;
+
+                const label = document.createElement('div');
+                label.className = 'label';
+                label.id = `label${index + 1}`;
+
+                // Image part
+                const img = document.createElement('img');
+                img.src = `./images/Zodiac/${rashi.toLowerCase()}.png`;
+                img.alt = rashi;
+                img.style.height = '40px';
+                img.style.marginRight = '8px';
+                img.style.verticalAlign = 'middle';
+                label.appendChild(img);
+
+                const labelText = document.createTextNode('');
+                label.appendChild(labelText);
+
+                label.labelTextNode = labelText;
+
+                progressBar.appendChild(fill);
+                progressBar.appendChild(label);
+                container.appendChild(progressBar);
+                progressBarsContainer.appendChild(container);
+
+                setProgress(fill.id, label.id, percent, rashi);
+            });
+        }
+
         function populateTable(data) {
             const tableBody = document.getElementById("profile-body");
             tableBody.innerHTML = "";
@@ -1922,30 +2098,6 @@
             `
         }
 
-        function setProgress(barId, labelId, percent) {
-            console.log(barId, labelId, percent, "data")
-            const fill = document.getElementById(barId);
-            const label = document.getElementById(labelId);
-
-            fill.style.width = percent + '%';
-            label.textContent = percent + '%';
-
-            // Position label at end of fill
-            fill.addEventListener('transitionend', () => {
-                const fillWidth = fill.offsetWidth;
-                label.style.left = (fillWidth - label.offsetWidth - 5) + 'px';
-            });
-
-            // In case transition is too fast
-            setTimeout(() => {
-                const fillWidth = fill.offsetWidth;
-                label.style.left = (fillWidth - label.offsetWidth - 5) + 'px';
-            }, 600);
-        }
-
-        // Example usage:
-        setProgress('fill1', 'label1', 70);
-        setProgress('fill2', 'label2', 45);
 
         // Function to open modal (customize as per your modal setup)
         function openRenewModal(subscriptionId) {
@@ -2054,6 +2206,7 @@
         // Populate table on page load
         window.onload = async () => {
             fetchAllData()
+            fetchAllData4()
         };
 
     </script>
