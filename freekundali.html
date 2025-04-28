@@ -59,7 +59,7 @@
 
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -132,7 +132,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -1515,97 +1515,97 @@
                     horoscopeData, dashas, rashiData, chart1Url, chart2Url, mahaDashaData, antarDashaData, charDashaData, charsubDashaData, yoginiDashaData, yoginisubDashaData, paryantarDashaData
                 }
                 const nakshatraPadas = [];
-        const nakshatras = [
-            "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
-            "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
-            "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
-            "PurvaBhadra", "UttaraBhadra", "Revati"
-        ];
+                const nakshatras = [
+                    "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
+                    "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
+                    "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+                    "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+                    "PurvaBhadra", "UttaraBhadra", "Revati"
+                ];
 
-        const rashis = [
-            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
-            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-        ];
+                const rashis = [
+                    "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
+                    "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+                ];
 
-        const zodiacMap = {
-            Aries: 1,
-            Taurus: 2,
-            Gemini: 3,
-            Cancer: 4,
-            Leo: 5,
-            Virgo: 6,
-            Libra: 7,
-            Scorpio: 8,
-            Sagittarius: 9,
-            Capricorn: 10,
-            Aquarius: 11,
-            Pisces: 12,
-        };
-        const planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
-        const ucchaNeechaData = {
-            "Sun": { exalted: "Aries", debilitated: "Libra" },
-            "Moon": { exalted: "Taurus", debilitated: "Scorpio" },
-            "Mars": { exalted: "Capricorn", debilitated: "Cancer" },
-            "Mercury": { exalted: "Virgo", debilitated: "Pisces" },
-            "Jupiter": { exalted: "Cancer", debilitated: "Capricorn" },
-            "Venus": { exalted: "Pisces", debilitated: "Virgo" },
-            "Saturn": { exalted: "Libra", debilitated: "Aries" },
-            "Rahu": { exalted: "Gemini", debilitated: "Sagittarius" },
-            "Ketu": { exalted: "Sagittarius", debilitated: "Gemini" }
-        };
+                const zodiacMap = {
+                    Aries: 1,
+                    Taurus: 2,
+                    Gemini: 3,
+                    Cancer: 4,
+                    Leo: 5,
+                    Virgo: 6,
+                    Libra: 7,
+                    Scorpio: 8,
+                    Sagittarius: 9,
+                    Capricorn: 10,
+                    Aquarius: 11,
+                    Pisces: 12,
+                };
+                const planets = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"];
+                const ucchaNeechaData = {
+                    "Sun": { exalted: "Aries", debilitated: "Libra" },
+                    "Moon": { exalted: "Taurus", debilitated: "Scorpio" },
+                    "Mars": { exalted: "Capricorn", debilitated: "Cancer" },
+                    "Mercury": { exalted: "Virgo", debilitated: "Pisces" },
+                    "Jupiter": { exalted: "Cancer", debilitated: "Capricorn" },
+                    "Venus": { exalted: "Pisces", debilitated: "Virgo" },
+                    "Saturn": { exalted: "Libra", debilitated: "Aries" },
+                    "Rahu": { exalted: "Gemini", debilitated: "Sagittarius" },
+                    "Ketu": { exalted: "Sagittarius", debilitated: "Gemini" }
+                };
 
-        const planetaryRelations = {
-            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
-            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
-            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
-            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
-            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
-            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
-            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
-            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
-            "Ketu": { friends: ["Saturn"], enemies: ["Sun", "Moon"] }
-        };
+                const planetaryRelations = {
+                    "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+                    "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+                    "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+                    "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+                    "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+                    "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+                    "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+                    "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+                    "Ketu": { friends: ["Saturn"], enemies: ["Sun", "Moon"] }
+                };
 
-        const rashiLords = {
-            "Aries": "Mars", "Taurus": "Venus", "Gemini": "Mercury", "Cancer": "Moon",
-            "Leo": "Sun", "Virgo": "Mercury", "Libra": "Venus", "Scorpio": "Mars",
-            "Sagittarius": "Jupiter", "Capricorn": "Saturn", "Aquarius": "Saturn", "Pisces": "Jupiter"
-        };
+                const rashiLords = {
+                    "Aries": "Mars", "Taurus": "Venus", "Gemini": "Mercury", "Cancer": "Moon",
+                    "Leo": "Sun", "Virgo": "Mercury", "Libra": "Venus", "Scorpio": "Mars",
+                    "Sagittarius": "Jupiter", "Capricorn": "Saturn", "Aquarius": "Saturn", "Pisces": "Jupiter"
+                };
 
-        const nakshatraLords = {
-            "Ashvini": "Ketu", "Bharani": "Venus", "Krittika": "Sun", "Rohini": "Moon",
-            "Mrigashira": "Mars", "Ardra": "Rahu", "Punarvasu": "Jupiter", "Pushya": "Saturn",
-            "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
-            "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
-            "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
-            "UttraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
-            "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
-        };
+                const nakshatraLords = {
+                    "Ashvini": "Ketu", "Bharani": "Venus", "Krittika": "Sun", "Rohini": "Moon",
+                    "Mrigashira": "Mars", "Ardra": "Rahu", "Punarvasu": "Jupiter", "Pushya": "Saturn",
+                    "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
+                    "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
+                    "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
+                    "UttraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
+                    "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
+                };
 
-        const ucchaNeechaDegrees = {
-            "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } },
-            "Moon": { exalted: { nakshatra: "Krittika", pada: 1 }, debilitated: { nakshatra: "Anuradha", pada: 4 } },
-            "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } },
-            "Mercury": { exalted: { nakshatra: "UttaraPhalguni", pada: 4 }, debilitated: { nakshatra: "UttaraBhadra", pada: 2 } },
-            "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "Dhanista", pada: 2 } },
-            "Venus": { exalted: { nakshatra: "UttaraBhadra", pada: 4 }, debilitated: { nakshatra: "UttaraPhalguni", pada: 2 } },
-            "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } },
-            "Rahu": { exalted: { nakshatra: "Rohini", pada: 2 }, debilitated: { nakshatra: "Jyeshtha", pada: 1 } },
-            "Ketu": { exalted: { nakshatra: "Jyeshtha", pada: 4 }, debilitated: { nakshatra: "Rohini", pada: 3 } }
-        };
+                const ucchaNeechaDegrees = {
+                    "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } },
+                    "Moon": { exalted: { nakshatra: "Krittika", pada: 1 }, debilitated: { nakshatra: "Anuradha", pada: 4 } },
+                    "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } },
+                    "Mercury": { exalted: { nakshatra: "UttaraPhalguni", pada: 4 }, debilitated: { nakshatra: "UttaraBhadra", pada: 2 } },
+                    "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "Dhanista", pada: 2 } },
+                    "Venus": { exalted: { nakshatra: "UttaraBhadra", pada: 4 }, debilitated: { nakshatra: "UttaraPhalguni", pada: 2 } },
+                    "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } },
+                    "Rahu": { exalted: { nakshatra: "Rohini", pada: 2 }, debilitated: { nakshatra: "Jyeshtha", pada: 1 } },
+                    "Ketu": { exalted: { nakshatra: "Jyeshtha", pada: 4 }, debilitated: { nakshatra: "Rohini", pada: 3 } }
+                };
 
-        const planetaryRelations2 = {
-            "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
-            "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
-            "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
-            "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
-            "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
-            "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
-            "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
-            "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon"] },
-            "Ketu": { friends: ["Mars", "Venus", "Saturn"], enemies: ["Sun", "Moon"] }
-        };
+                const planetaryRelations2 = {
+                    "Sun": { friends: ["Moon", "Mars", "Jupiter"], enemies: ["Venus", "Saturn"] },
+                    "Moon": { friends: ["Sun", "Mercury"], enemies: ["Rahu", "Ketu"] },
+                    "Mars": { friends: ["Sun", "Moon", "Jupiter"], enemies: ["Mercury"] },
+                    "Mercury": { friends: ["Sun", "Venus"], enemies: ["Moon", "Mars"] },
+                    "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Venus", "Mercury"] },
+                    "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon"] },
+                    "Saturn": { friends: ["Venus", "Mercury"], enemies: ["Sun", "Moon", "Mars"] },
+                    "Rahu": { friends: ["Venus", "Saturn", "Mercury"], enemies: ["Sun", "Moon"] },
+                    "Ketu": { friends: ["Mars", "Venus", "Saturn"], enemies: ["Sun", "Moon"] }
+                };
                 async function fetchUserData() {
                     try {
                         const response = await fetch(`${host}/api/detail/fetchalldetail`, {
@@ -1623,28 +1623,28 @@
                             throw new Error("Invalid data format: 'gochar' is missing or not an array.");
                         }
 
-                        let gocharData = data[0].gochar;
-                        // console.log(gocharData, "gocharData")
-                        const normalizeDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
-                        const today = normalizeDate(new Date());
+                        let filteredData = data[0].gochar;
+                // console.log(gocharData, "gocharData")
+                const normalizeDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                const today = normalizeDate(new Date());
 
-                        let filteredData = gocharData.filter(entry => {
-                            const entryDate = normalizeDate(new Date(entry.date_of_entry));
-                            const exitDate = normalizeDate(new Date(entry.date_of_exit));
-                            return today >= entryDate && today <= exitDate;
-                        });
+                let gocharData = filteredData.filter(entry => {
+                    const entryDate = normalizeDate(new Date(entry.date_of_entry));
+                    const exitDate = normalizeDate(new Date(entry.date_of_exit));
+                    return today >= entryDate && today <= exitDate;
+                });
 
-                        filteredData = filteredData.reduce((unique, entry) => {
-                            const exitDate = normalizeDate(new Date(entry.date_of_exit));
+                gocharData = gocharData.reduce((unique, entry) => {
+                    const exitDate = normalizeDate(new Date(entry.date_of_exit));
 
-                            if (exitDate.getTime() === today.getTime()) {
-                                unique[entry.planet_name] = entry;
-                            } else if (!unique[entry.planet_name]) {
-                                unique[entry.planet_name] = entry;
-                            }
+                    if (exitDate.getTime() === today.getTime()) {
+                        unique[entry.planet_name] = entry;
+                    } else if (!unique[entry.planet_name]) {
+                        unique[entry.planet_name] = entry;
+                    }
 
-                            return unique;
-                        }, {});
+                    return unique;
+                }, {});
 
                         // Convert back to an array
                         filteredData = Object.values(filteredData);
@@ -1735,7 +1735,7 @@
                 }
                 displayStatus();
                 async function initializeData(FreeKundali, gocharData, selectedHouse = "1") {
-                    console.log(FreeKundali,"data");
+                    console.log(FreeKundali, "data");
                     let GocharData = gocharData;
                     let horoscopeData = FreeKundali.horoscopeData || [];
                     let dashas = FreeKundali.dashas || [];
@@ -2348,33 +2348,67 @@
                                     }
                                 });
                                 // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
-                                firstTableData.forEach(entry1 => {
+                                secondTableData.forEach(entry1 => {
 
                                     // console.log(entry1, "entry1")
 
                                     // console.log(GocharData,"gocharData")
-                                    let matchGocharPlanet = GocharData.find((i) => i.planet_name === entry1.planet && i.nakshatra === entry1.nakshatra && i.pada === entry1.pada)
+                                    let matchGocharPlanet = GocharData.find((i) => i.nakshatra === entry1.nakshatra && i.pada === entry1.pada)
                                     // console.log(matchGocharPlanet, "matchGocharPlanet")
 
                                     if (matchGocharPlanet) {
+                                        let positionValue = [];
+                                        let status = [];
+
+                                        if (selectedRasNak === "Rashi") {
+                                            positionValue = position.find((i) => i.planet === matchGocharPlanet.planet_name && i.rashi === matchGocharPlanet.rashi);
+
+                                            if (positionValue?.status === "Uccha (Exalted)") {
+                                                status = 'color-pos-bx1';
+                                            } else if (positionValue?.status === "Own") {
+                                                status = 'color-pos-bx2';
+                                            } else if (positionValue?.status === "Mitra (Friend)") {
+                                                status = 'color-pos-bx3';
+                                            } else if (positionValue?.status === "Neutral") {
+                                                status = 'color-pos-bx4';
+                                            } else if (positionValue?.status === "Shatru (Enemy)") {
+                                                status = 'color-pos-bx5';
+                                            } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                                status = 'color-pos-bx6';
+                                            }
+                                        } else {
+                                            positionValue = nakshatraPosition.find((i) => i.planet === matchGocharPlanet.planet_name && i.nakshatra === matchGocharPlanet.nakshatra && i.pada === matchGocharPlanet.pada);
+
+                                            if (positionValue?.status === "Uccha (Exalted)") {
+                                                status = 'color-pos-bx1';
+                                            } else if (positionValue?.status === "Mitra (Friend)") {
+                                                status = 'color-pos-bx3';
+                                            } else if (positionValue?.status === "Neutral") {
+                                                status = 'color-pos-bx4';
+                                            } else if (positionValue?.status === "Shatru (Enemy)") {
+                                                status = 'color-pos-bx5';
+                                            } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                                status = 'color-pos-bx6';
+                                            }
+                                        }
                                         fifthTableContent += `
-                                <tr>
-                                    <td class="td-span"><span>${entry1.nakshatra}(${entry1.pada})</span></td>
-                                    <td class="td-span"><span>${entry1.rashi}</span></td>
-                                    <td class="td-span"><span>${entry1.planet || "-"} ${entry1?.percentageText || " "} ${entry1?.retroPlanet || " "} ${entry1?.combustPlanet || " "} </span></td>
-                                    <td class="td-span">
-                                        <div class="color-bx ${entry1?.status || "-"}" data-tooltip="${entry1?.positionValue?.status ? entry1?.positionValue.status : '-'}"></div>
-                                    </td>
-                                    <td class="td-span">
-                                        <span>${entry1?.dashaForm || "-"}</span>
-                                    </td>
-                                    <td class="td-span">
-                                       <span>
-                                         ${matchGocharPlanet?.nakshatra
+    <tr>
+        <td class="td-span"><span>${entry1.nakshatra}(${entry1.pada})</span></td>
+        <td class="td-span"><span>${entry1.rashi}</span></td>
+        <td class="td-span"><span>${matchGocharPlanet.planet_name || "-"}  ${matchGocharPlanet?.motion === "retrograde" ? "&#8634;" : " "} ${matchGocharPlanet?.combust === "true" ? "&#128293" : " "} </span></td>
+        <td class="td-span">
+            <div class="color-bx ${status || "-"}" data-tooltip="${positionValue?.status ? positionValue.status : '-'}"></div>
+        </td>
+        <td class="td-span">
+            <span>${entry1?.dashaForm || "-"}</span>
+        </td>
+        <td class="td-span">
+           <span>
+             ${matchGocharPlanet?.nakshatra
                                                 ? `${matchGocharPlanet.nakshatra} (${matchGocharPlanet.pada || ""}) <i class="color-bx color-pos-bx4 fa-regular fa-eye mx-2" class="fa-regular fa-eye mx-2" data-tooltip="${matchGocharPlanet.date_of_entry} - ${matchGocharPlanet.date_of_exit}"></i>`
                                                 : "-"}</span>
-                                    </td>
-                                </tr>`;
+        </td>
+    </tr>`;
                                     }
                                 });
 

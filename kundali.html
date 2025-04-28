@@ -194,7 +194,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -300,7 +300,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -650,7 +650,7 @@
                     text-align: center;
                 }
 
-            
+
 
                 .kundali-img-bx {
 
@@ -1155,6 +1155,7 @@
                     }
 
                     const json = await responseAll.json();
+                    console.log(json)
                     const data = json.find((i) => i._id === userIds)
                     populatePTable(data)
                     populateName(data)
@@ -1469,18 +1470,18 @@
                     throw new Error("Invalid data format: 'gochar' is missing or not an array.");
                 }
 
-                let gocharData = data[0].gochar;
+                let filteredData = data[0].gochar;
                 // console.log(gocharData, "gocharData")
                 const normalizeDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
                 const today = normalizeDate(new Date());
 
-                let filteredData = gocharData.filter(entry => {
+                let gocharData = filteredData.filter(entry => {
                     const entryDate = normalizeDate(new Date(entry.date_of_entry));
                     const exitDate = normalizeDate(new Date(entry.date_of_exit));
                     return today >= entryDate && today <= exitDate;
                 });
 
-                filteredData = filteredData.reduce((unique, entry) => {
+                gocharData = gocharData.reduce((unique, entry) => {
                     const exitDate = normalizeDate(new Date(entry.date_of_exit));
 
                     if (exitDate.getTime() === today.getTime()) {
@@ -1493,7 +1494,7 @@
                 }, {});
 
                 // Convert back to an array
-                filteredData = Object.values(filteredData);
+                gocharData = Object.values(gocharData);
 
                 // console.log(filteredData, "Filtered gocharData");
 
@@ -1631,6 +1632,7 @@
 
         async function initializeData(datass, gocharData, selectedHouse = "1") {
             // console.log(datass, "inside datass")
+            // console.log(gocharData,"gocharData")
             let GocharData = gocharData;
             let horoscopeData = datass[0]?.horoscopeData || [];
             let dashas = datass[0]?.dashas || [];
@@ -2244,22 +2246,56 @@
                             }
                         });
                         // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
-                        firstTableData.forEach(entry1 => {
+                        secondTableData.forEach(entry1 => {
 
                             // console.log(entry1, "entry1")
 
                             // console.log(GocharData,"gocharData")
-                            let matchGocharPlanet = GocharData.find((i) => i.planet_name === entry1.planet && i.nakshatra === entry1.nakshatra && i.pada === entry1.pada)
+                            let matchGocharPlanet = GocharData.find((i) => i.nakshatra === entry1.nakshatra && i.pada === entry1.pada)
                             // console.log(matchGocharPlanet, "matchGocharPlanet")
 
                             if (matchGocharPlanet) {
+                                let positionValue = [];
+                                let status = [];
+
+                                if (selectedRasNak === "Rashi") {
+                                    positionValue = position.find((i) => i.planet === matchGocharPlanet.planet_name && i.rashi === matchGocharPlanet.rashi);
+
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        status = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Own") {
+                                        status = 'color-pos-bx2';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        status = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        status = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        status = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        status = 'color-pos-bx6';
+                                    }
+                                } else {
+                                    positionValue = nakshatraPosition.find((i) => i.planet === matchGocharPlanet.planet_name && i.nakshatra === matchGocharPlanet.nakshatra && i.pada === matchGocharPlanet.pada);
+
+                                    if (positionValue?.status === "Uccha (Exalted)") {
+                                        status = 'color-pos-bx1';
+                                    } else if (positionValue?.status === "Mitra (Friend)") {
+                                        status = 'color-pos-bx3';
+                                    } else if (positionValue?.status === "Neutral") {
+                                        status = 'color-pos-bx4';
+                                    } else if (positionValue?.status === "Shatru (Enemy)") {
+                                        status = 'color-pos-bx5';
+                                    } else if (positionValue?.status === "Neecha (Debilitated)") {
+                                        status = 'color-pos-bx6';
+                                    }
+                                }
                                 fifthTableContent += `
                                 <tr>
                                     <td class="td-span"><span>${entry1.nakshatra}(${entry1.pada})</span></td>
                                     <td class="td-span"><span>${entry1.rashi}</span></td>
-                                    <td class="td-span"><span>${entry1.planet || "-"} ${entry1?.percentageText || " "} ${entry1?.retroPlanet || " "} ${entry1?.combustPlanet || " "} </span></td>
+                                    <td class="td-span"><span>${matchGocharPlanet.planet_name || "-"}  ${matchGocharPlanet?.motion === "retrograde" ? "&#8634;" : " "} ${matchGocharPlanet?.combust === "true" ? "&#128293" : " "} </span></td>
                                     <td class="td-span">
-                                        <div class="color-bx ${entry1?.status || "-"}" data-tooltip="${entry1?.positionValue?.status ? entry1?.positionValue.status : '-'}"></div>
+                                        <div class="color-bx ${status || "-"}" data-tooltip="${positionValue?.status ? positionValue.status : '-'}"></div>
                                     </td>
                                     <td class="td-span">
                                         <span>${entry1?.dashaForm || "-"}</span>
