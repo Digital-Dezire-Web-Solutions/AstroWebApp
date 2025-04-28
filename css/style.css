@@ -2873,7 +2873,6 @@ form {
     font-size: 3.2rem;
   }
 
-
   .blogvideoSwiper .swiper-slide,
   .videoSlider .swiper-slide {
     padding-inline: 2rem;
@@ -3424,14 +3423,14 @@ form {
 .progress-container .label {
   position: absolute;
   top: 50%;
-  transform: translate(-0%,-50%);
+  transform: translate(-0%, -50%);
   font-weight: bold;
   white-space: nowrap;
   left: 15px;
   color: white;
   font-size: 14px;
 }
-.progress-container .label img{
+.progress-container .label img {
   filter: invert(1);
   border: 1px solid black;
   border-radius: 25px;
@@ -3444,7 +3443,7 @@ form {
   border-radius: 1.4rem;
   padding: 1rem;
 }
-.remedy-box h6{
+.remedy-box h6 {
   color: #fe7000;
   display: flex;
   align-items: center;
@@ -3484,7 +3483,6 @@ form {
   font-weight: 600;
   color: #fe7000;
   white-space: pre-wrap;
-  
 }
 
 .accordion-header {
@@ -3538,12 +3536,12 @@ form {
   margin-top: 2rem;
   text-align: center;
 }
-.home-section-box .row p{
+.home-section-box .row p {
   font-size: 16px;
   font-weight: 300;
   /* color: gray; */
 }
-.home-section-box .row .label{
+.home-section-box .row .label {
   font-weight: 600;
   color: black;
 }
@@ -3701,14 +3699,14 @@ form {
 
   #legend {
     display: grid !important;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-  #legend p{
+  #legend p {
     line-height: 0.8;
   }
 
-.banner-img img {
+  .banner-img img {
     position: absolute;
     bottom: -4.5rem;
     right: 0;
@@ -3716,8 +3714,12 @@ form {
     height: 100%;
     object-fit: contain;
     transform: scaleX(-1);
-}
-.right-banner-info h3 {
-  text-align: center;
-}
+  }
+  .right-banner-info h3 {
+    text-align: center;
+  }
+
+  .forgotpass-box .container {
+    width: 100%;
+  }
 }
