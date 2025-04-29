@@ -1155,7 +1155,7 @@
                     }
 
                     const json = await responseAll.json();
-                    console.log(json)
+                    // console.log(json)
                     const data = json.find((i) => i._id === userIds)
                     populatePTable(data)
                     populateName(data)
@@ -1521,7 +1521,7 @@
                     // console.log(dataUser, "data")
                     if (dataUser.role === 'admin') {
                         // console.log("admin")
-                        const responseUser2 = await fetch(`${host}/api/detail/fetchalluserdetails`, {
+                        const responseUser2 = await fetch(`${host}/api/detail/fetchuserdetails/${userIds}`, {
                             method: "GET",
                             headers: {
                                 "auth-token": token,
@@ -1534,7 +1534,7 @@
                         const userDatasss = await responseUser2.json();
                         // console.log(userDatasss,"userDatasss")
                         // console.log(userIds,"userIds")
-                        const datass = [userDatasss.find((i) => i.user === userIds)]
+                        const datass = userDatasss;
                         // console.log(datass, "datass")
                         initializeData(datass, gocharData)
                     }
