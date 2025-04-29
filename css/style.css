@@ -3656,13 +3656,12 @@ form {
   }
 
   .chart-container1 svg {
-    transform: scale(0.8); /* scale to 200/500 = 0.4 */
     transform-origin: top left;
     display: block;
   }
 
   .chart-container2 svg {
-    transform: scale(0.8); /* scale to 200/500 = 0.4 */
+    transform: scale(0.75);
     transform-origin: top left;
     display: block;
   }
@@ -3723,3 +3722,21 @@ form {
     width: 100%;
   }
 }
+
+/* Small Mobile: 320px - 479px */
+@media (min-width: 320px) and (max-width: 412px) {
+  .chart-container1 svg,
+  .chart-container2 svg {
+    transform: scale(0.65);
+  }
+}
+
+/* Large Mobile: 480px - 767px */
+@media (min-width: 412px) and (max-width: 767px) {
+  .chart-container1 svg,
+  .chart-container2 svg {
+    transform: scale(0.75);
+  }
+}
+
+
