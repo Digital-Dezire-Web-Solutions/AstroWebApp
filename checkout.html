@@ -967,11 +967,11 @@
             let storingData = []
             if (query && query.appointment === "appointment") {
                 storingData = {
-                    plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state, apduration, apdate, apstartTime, apendTime
+                    type: 'appointment', plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state, apduration, apdate, apstartTime, apendTime
                 }
             } else {
                 storingData = {
-                    plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state
+                    type: 'subscription', plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state
                 }
             }
             console.log(storingData, "storingData")
@@ -980,9 +980,12 @@
             if (discountPercent === 100) {
                 let paymentMethod = "Free";
                 let transactionId = "00000000";
-                if (query && query.appointment === "appointment") {
+                if (storingData.type === "appointment") {
+                    console.log("appointment part")
                     await assignAppointment(storingData, paymentMethod, transactionId,);
-                } else {
+                }
+                if (storingData.type === "subscription") {
+                    console.log("subscription part")
                     await assignSubscription(storingData, paymentMethod, transactionId);
                 }
                 document.getElementById('successMessage').style.display = 'block';
