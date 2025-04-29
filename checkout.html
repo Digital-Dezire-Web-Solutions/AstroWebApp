@@ -601,122 +601,124 @@
         <div class="common-container3">
             <h5 class="page-title">Checkout</h5>
             <div class="kundali-container">
-                <div class="Checkout">
-                    <div class="Checkout-left">
-                        <h6>Billing Address</h6>
-                        <div class="Checkout-left-box">
-                            <div class="inpt-bx">
-                                <label for="coupon">Name <span>*</span></label>
-                                <div class="inpt">
-                                    <input type="type" id="name-checkout" placeholder="Enter your name.."
-                                        name="name-checkout" autocomplete="off" required>
+                <form id="checkoutForm" onsubmit="handleFormSubmit(event)">
+                    <div class="Checkout">
+                        <div class="Checkout-left">
+                            <h6>Billing Address</h6>
+                            <div class="Checkout-left-box">
+                                <div class="inpt-bx">
+                                    <label for="coupon">Name <span>*</span></label>
+                                    <div class="inpt">
+                                        <input type="text" id="name-checkout" placeholder="Enter your name.."
+                                            name="name-checkout" autocomplete="off" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <label for="coupon">Email <span>*</span></label>
-                                <div class="inpt">
-                                    <input type="email" id="email-checkout" placeholder="Enter your email.."
-                                        name="email-checkout" autocomplete="off" required>
+                                <div class="inpt-bx">
+                                    <label for="coupon">Email <span>*</span></label>
+                                    <div class="inpt">
+                                        <input type="email" id="email-checkout" placeholder="Enter your email.."
+                                            name="email-checkout" autocomplete="off" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <label for="coupon">Phone No. <span>*</span></label>
-                                <div class="inpt">
-                                    <input type="number" id="phnum" placeholder="Enter your phonenumber.." name="phnum"
-                                        autocomplete="off" required>
+                                <div class="inpt-bx">
+                                    <label for="coupon">Phone No. <span>*</span></label>
+                                    <div class="inpt">
+                                        <input type="number" id="phnum" placeholder="Enter your phonenumber.."
+                                            name="phnum" autocomplete="off" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <label for="coupon">Address <span>*</span></label>
-                                <div class="textareainput">
-                                    <textarea name="address-checkout" id="address-checkout"
-                                        placeholder="Enter your Address" required></textarea>
+                                <div class="inpt-bx">
+                                    <label for="coupon">Address <span>*</span></label>
+                                    <div class="textareainput">
+                                        <textarea name="address-checkout" id="address-checkout"
+                                            placeholder="Enter your Address" required></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <label for="coupon">Pin Code <span>*</span></label>
-                                <div class="inpt">
-                                    <input type="number" id="pinc" placeholder="Enter your pincode " name="pinc"
-                                        autocomplete="off" required>
+                                <div class="inpt-bx">
+                                    <label for="coupon">Pin Code <span>*</span></label>
+                                    <div class="inpt">
+                                        <input type="number" id="pinc" placeholder="Enter your pincode " name="pinc"
+                                            autocomplete="off" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <label for="coupon">City <span>*</span></label>
-                                <div class="inpt">
-                                    <input type="type" id="city" placeholder="Enter your ity" name="city"
-                                        autocomplete="off" required>
+                                <div class="inpt-bx">
+                                    <label for="coupon">City <span>*</span></label>
+                                    <div class="inpt">
+                                        <input type="text" id="city" placeholder="Enter your ity" name="city"
+                                            autocomplete="off" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <label for="coupon">State <span>*</span></label>
-                                <div class="inpt">
-                                    <input type="type" id="state" placeholder="Enter your state" name="state"
-                                        autocomplete="off" required>
+                                <div class="inpt-bx">
+                                    <label for="coupon">State <span>*</span></label>
+                                    <div class="inpt">
+                                        <input type="text" id="state" placeholder="Enter your state" name="state"
+                                            autocomplete="off" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="Checkout-right">
-                        <h6>Plan</h6>
-                        <div id="renewModal" class="Checkout-right-box">
-                            <div class="Checkout-box">
-                                <div class="modal-content" id="modalContent">
-                                    <!-- <span onclick="document.getElementById('renewModal').style.display='none'">
+                        <div class="Checkout-right">
+                            <h6>Plan</h6>
+                            <div id="renewModal" class="Checkout-right-box">
+                                <div class="Checkout-box">
+                                    <div class="modal-content" id="modalContent">
+                                        <!-- <span onclick="document.getElementById('renewModal').style.display='none'">
                                         <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                                     </span> -->
-                                    <!-- <h5>Renew Subscription</h5> -->
-                                    <p id="messageAp"></p>
-                                    <p id="apdate"></p>
-                                    <p id="apstarttime"></p>
-                                    <p id="apendtime"></p>
-                                    <div class="payment-plan-box">
-                                        <div class="payment-plan-head">
-                                            <h6 id="planName">Basic</h6>
-                                        </div>
-                                        <div class="payment-plan-body">
-                                            <div class="payment-price">
-                                                <p>₹</p>
-                                                <h5 id="planPrice">251</h5>
+                                        <!-- <h5>Renew Subscription</h5> -->
+                                        <p id="messageAp"></p>
+                                        <p id="apdate"></p>
+                                        <p id="apstarttime"></p>
+                                        <p id="apendtime"></p>
+                                        <div class="payment-plan-box">
+                                            <div class="payment-plan-head">
+                                                <h6 id="planName">Basic</h6>
                                             </div>
-                                            <div class="payment-plan-body-box">
-                                                <p>/Per user</p>
-                                                <p id="duration">/Per months</p>
+                                            <div class="payment-plan-body">
+                                                <div class="payment-price">
+                                                    <p>₹</p>
+                                                    <h5 id="planPrice">251</h5>
+                                                </div>
+                                                <div class="payment-plan-body-box">
+                                                    <p>/Per user</p>
+                                                    <p id="duration">/Per months</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="inpt-bx">
-                                        <label for="coupon">Coupon</label>
-                                        <div class="inpt payment-coupon">
-                                            <input type="type" id="couponInput" name="couponInput"
-                                                placeholder="Coupon code" autocomplete="off">
-                                            <button type="button" onclick="applyCoupon()">Apply</button>
+                                        <div class="inpt-bx">
+                                            <label for="coupon">Coupon</label>
+                                            <div class="inpt payment-coupon">
+                                                <input type="type" id="couponInput" name="couponInput"
+                                                    placeholder="Coupon code" autocomplete="off">
+                                                <button type="button" onclick="applyCoupon()">Apply</button>
+                                            </div>
+                                            <p id="couponMessage" style="margin-top: 5px;"></p>
                                         </div>
-                                        <p id="couponMessage" style="margin-top: 5px;"></p>
+                                        <p>100% Secure Payment method</p>
+                                        <button class="form-btn" type="submit">Proceed to
+                                            Payment</button>
                                     </div>
-                                    <p>100% Secure Payment method</p>
-                                    <button class="form-btn" type="button" onclick="processPayment(true)">Proceed to
-                                        Payment</button>
-                                </div>
 
-                                <!-- Success Message -->
-                                <div class="subscription-message" id="successMessage"
-                                    style="display:none; text-align:center; color:white;">
-                                    <img src="./images/success.gif" alt="">
-                                    <p>Payment Successful!</p>
-                                    <p>Subscription is successfull!</p>
-                                </div>
+                                    <!-- Success Message -->
+                                    <div class="subscription-message" id="successMessage"
+                                        style="display:none; text-align:center; color:white;">
+                                        <img src="./images/success.gif" alt="">
+                                        <p>Payment Successful!</p>
+                                        <p>Subscription is successfull!</p>
+                                    </div>
 
-                                <!-- Failed Message -->
-                                <div class="subscription-message" id="failedMessage"
-                                    style="display:none; text-align:center; color:white;">
-                                    <i class="fa-solid fa-circle-xmark"
-                                        style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
-                                    <p>Payment failed!</p>
+                                    <!-- Failed Message -->
+                                    <div class="subscription-message" id="failedMessage"
+                                        style="display:none; text-align:center; color:white;">
+                                        <i class="fa-solid fa-circle-xmark"
+                                            style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
+                                        <p>Payment failed!</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -825,7 +827,7 @@
                 }
 
                 const data = await response.json();
-                // console.log(data, "data")
+                console.log(data.invoices, "data")
                 populatePTable(data)
                 populateName(data)
                 const params = new URLSearchParams(window.location.search);
@@ -836,6 +838,20 @@
                 document.getElementById("name-checkout").value = data.name || "Not Set";
                 document.getElementById("email-checkout").value = data.email || "Not Set";
                 document.getElementById("address-checkout").value = data.birthplace || "Not Set";
+                // Assuming 'data' is already defined and has the structure you showed
+                const invoices = data?.invoices;
+                const lastInvoice = invoices && invoices.length > 0 ? invoices[invoices.length - 1] : null;
+                console.log(lastInvoice, "lastInvoice")
+
+                if (lastInvoice) {
+                    document.getElementById("name-checkout").value = lastInvoice.name || '';
+                    document.getElementById("email-checkout").value = lastInvoice.email || '';
+                    document.getElementById("phnum").value = lastInvoice.phone || '';
+                    document.getElementById("address-checkout").value = lastInvoice.address || '';
+                    document.getElementById("pinc").value = lastInvoice.pincode || '';
+                    document.getElementById("city").value = lastInvoice.city || '';
+                    document.getElementById("state").value = lastInvoice.state || '';
+                }
                 paymentStatus()
             } catch (error) {
                 console.error(error);
@@ -942,6 +958,20 @@
                 message.style.color = 'red';
                 message.innerText = `Invalid Coupon Code.`;
             }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault(); // prevent default form submit
+
+            const form = event.target;
+
+            if (!form.checkValidity()) {
+                form.reportValidity(); // shows validation errors
+                return;
+            }
+
+            // Form is valid, now call your payment function
+            processPayment(true);
         }
 
         async function processPayment() {
