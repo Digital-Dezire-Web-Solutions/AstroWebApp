@@ -1042,11 +1042,12 @@
                         let paymentMethod = parsedData.paymentDetails?.[0]?.paymentMode || "Pending";
                         let transactionId = parsedData.paymentDetails?.[0]?.transactionId;
 
-                        if (query && query.appointment === "appointment") {
-                            console.log(query, "this is query")
+                        if (storingData.type === "appointment") {
+                            console.log("appointment part")
                             await assignAppointment(storingData, paymentMethod, transactionId);
-                        } else {
-                            console.log("this is not query")
+                        }
+                        if (storingData.type === "subscription") {
+                            console.log("subscription part")
                             await assignSubscription(storingData, paymentMethod, transactionId);
                         }
                     } else {
