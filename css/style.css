@@ -3721,6 +3721,13 @@ form {
   .forgotpass-box .container {
     width: 100%;
   }
+
+  .subscription-message {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* Small Mobile: 320px - 479px */
@@ -3738,5 +3745,3 @@ form {
     transform: scale(0.75);
   }
 }
-
-

@@ -1028,8 +1028,8 @@
                                     </div>
                                 </div>
                                 <div class="profile-subscription">
-                                    <h5 class="profile-head">Subscription</h5>
-                                    <div id="profile-subscription"></div>
+                                    <!-- <h5 class="profile-head">Subscription</h5>
+                                    <div id="profile-subscription"></div> -->
                                     <h5 class="profile-head">Subscription History</h5>
                                     <div id="profile-subscription-history"></div>
                                     <h5 class="profile-head">Transactions History</h5>
@@ -1156,9 +1156,10 @@
                 }
 
                 const data = await response.json();
+                // console.log(data,"data")
                 populatePTable(data)
                 populateName(data)
-                populateSubscription(data)
+                // populateSubscription(data)
                 populateSubscriptionHistory(data)
                 populateTransitionHistory(data)
                 fetchData(data)
@@ -1189,66 +1190,66 @@
              
             `
         }
-        function populateSubscription(data) {
-            // console.log(data, 'data')
-            const tableBody = document.getElementById("profile-subscription");
-            tableBody.innerHTML = "";
+        // function populateSubscription(data) {
+        //     // console.log(data, 'data')
+        //     const tableBody = document.getElementById("profile-subscription");
+        //     tableBody.innerHTML = "";
 
-            let price = 251;
-            let discount = data.subscription?.appliedCoupon?.discount || 0;
-            // console.log(discount, "discount")
+        //     let price = 251;
+        //     let discount = data.subscription?.appliedCoupon?.discount || 0;
+        //     // console.log(discount, "discount")
 
-            if (data.subscription.plan === "Free") {
-                price = 0;
-            }
+        //     if (data.subscription.plan === "Free") {
+        //         price = 0;
+        //     }
 
-            let discountPer = (discount / 100) * price;
-            let discounted = price - discountPer;
-            // console.log(discounted, "discounted")
+        //     let discountPer = (discount / 100) * price;
+        //     let discounted = price - discountPer;
+        //     // console.log(discounted, "discounted")
 
-            tableBody.innerHTML = `
-                                <div class="profile-subscription-card">
-                                    <div class="subs-head">
-                                        <h5>${data.subscription.plan} <span>(Subscription) ${data.subscription.status === "Active" ? `<i class="fa-solid fa-circle" style="color: #00ff11;"></i>` : `<i class="fa-solid fa-circle" style="color: #ff0000;"></i>`}  </span></h5>
-                                        <h6>${data.subscription?.appliedCoupon?.discount
-                    ? `<span>-${data.subscription.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
-                    : `${price}`
-                }</h6>
-                                    </div>
-                                    <div class="subs-body">
-                                        ${data.subscription.plan === "Free" ? "" :
-                    `<p>TransactionId. : <span>${data.subscription.transactionId}</span> <button><i class="fa-solid fa-download"></i></button></p>`}
+        //     tableBody.innerHTML = `
+        //                         <div class="profile-subscription-card">
+        //                             <div class="subs-head">
+        //                                 <h5>${data.subscription.plan} <span>(Subscription) ${data.subscription.status === "Active" ? `<i class="fa-solid fa-circle" style="color: #00ff11;"></i>` : `<i class="fa-solid fa-circle" style="color: #ff0000;"></i>`}  </span></h5>
+        //                                 <h6>${data.subscription?.appliedCoupon?.discount
+        //             ? `<span>-${data.subscription.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
+        //             : `${price}`
+        //         }</h6>
+        //                             </div>
+        //                             <div class="subs-body">
+        //                                 ${data.subscription.plan === "Free" ? "" :
+        //             `<p>TransactionId. : <span>${data.subscription.transactionId}</span> <button><i class="fa-solid fa-download"></i></button></p>`}
                                         
-                                        <p>Subscription Start: <span> ${new Date(data.subscription.startDate)
-                    .toISOString()
-                    .split("T")[0]}</span></p>
-                                        <p>Subscription End: <span> ${data.subscription.endDate !== ""
-                    ? new Date(data.subscription.endDate)
-                        .toISOString()
-                        .split("T")[0]
-                    : new Date(data.subscription.start)
-                        .toISOString()
-                        .split("T")[0]}</span></p>
-                                        <p>Status : <span>${data.subscription.status}</span></p>
-                                        ${data.subscription.status !== "Active" ? `<div class="profile-renew">
-                <h6>Renew your plan to get your future updates!</h6>
-                <p class="renew-btn" data-id="${data._id}">Renew</p>
-            </div>` : ""}                                    
-                                    </div>             
-            `
+        //                                 <p>Subscription Start: <span> ${new Date(data.subscription.startDate)
+        //             .toISOString()
+        //             .split("T")[0]}</span></p>
+        //                                 <p>Subscription End: <span> ${data.subscription.endDate !== ""
+        //             ? new Date(data.subscription.endDate)
+        //                 .toISOString()
+        //                 .split("T")[0]
+        //             : new Date(data.subscription.start)
+        //                 .toISOString()
+        //                 .split("T")[0]}</span></p>
+        //                                 <p>Status : <span>${data.subscription.status}</span></p>
+        //                                 ${data.subscription.status !== "Active" ? `<div class="profile-renew">
+        //         <h6>Renew your plan to get your future updates!</h6>
+        //         <p class="renew-btn" data-id="${data._id}">Renew</p>
+        //     </div>` : ""}                                    
+        //                             </div>             
+        //     `
 
-            // After inserting, attach event listeners
-            const renewButtons = document.querySelectorAll('.renew-btn');
+        //     // After inserting, attach event listeners
+        //     const renewButtons = document.querySelectorAll('.renew-btn');
 
-            renewButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const subscriptionId = e.target.dataset.id;
-                    // Open modal logic here
-                    openRenewModal(subscriptionId);
-                });
-            });
+        //     renewButtons.forEach(button => {
+        //         button.addEventListener('click', (e) => {
+        //             const subscriptionId = e.target.dataset.id;
+        //             // Open modal logic here
+        //             openRenewModal(subscriptionId);
+        //         });
+        //     });
 
-        }
+        // }
 
 
         // Function to open modal (customize as per your modal setup)
@@ -1289,7 +1290,7 @@
                 tableBody.innerHTML += `
             <div class="profile-subscription-card">
                 <div class="subs-head">
-                    <h5>${item.plan} <span>(Subscription)</span></h5>
+                     <h5>${item.plan} <span>(Subscription) ${item.status === "Active" ? `<i class="fa-solid fa-circle" style="color: #00ff11;"></i>` : `<i class="fa-solid fa-circle" style="color: #ff0000;"></i>`}  </span></h5>
                     <h6>${item?.appliedCoupon?.discount
                         ? `<span>-${item.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
                         : `${price}`
@@ -1319,12 +1320,13 @@
             const tableBody = document.getElementById("profile-subscription-transition");
             tableBody.innerHTML = "";
 
-            let subscriptionHistoryData = data.subscriptionHistory;
-            subscriptionHistoryData = subscriptionHistoryData.reverse();
-            // console.log(subscriptionHistoryData, "subscriptionHistoryData");
+            let transitionHistoryData = data.invoices;
+            transitionHistoryData = transitionHistoryData.reverse();
+            // console.log(transitionHistoryData, "transitionHistoryData");
+            console.log(transitionHistoryData,"transitionHistoryData")
 
             // If no data, show message
-            if (!subscriptionHistoryData || subscriptionHistoryData.length === 0) {
+            if (!transitionHistoryData || transitionHistoryData.length === 0) {
                 tableBody.innerHTML = `
             <div class="profile-subscription-card">
                 <div class="subs-body">
@@ -1334,9 +1336,9 @@
         `;
                 return;
             }
-            subscriptionHistoryData.forEach((item, index) => {
+            transitionHistoryData.forEach((item, index) => {
                 // console.log(item, "item");
-                const price = 251;
+                const price = item?.price;
                 let discount = item?.appliedCoupon?.discount || 0;
                 let discountPer = (discount / 100) * price;
                 let discounted = price - discountPer;
@@ -1346,14 +1348,11 @@
                     tableBody.innerHTML += `
             <div class="profile-subscription-card">
                                         <div class="subs-head">
-                                            <h5>${item.plan} <span>(Subscription)</span></h5>
-                        <h6>${item?.appliedCoupon?.discount
-                            ? `<span>-${item.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
-                            : `${price}`
-                        }</h6>
+                                            <h5>${item?.type} <span>(${item?.plan})</span></h5>
+                        <h6>₹ ${price}</h6>
                                         </div>
                                         <div class="subs-body">
-                                                                <p>Invoice No. : <span>${item.transactionId || "N/A"}</span> <button><i class="fa-solid fa-download"></i></button></p>
+                                                                <p>Invoice No. : <span>${item.invoiceNumber || "N/A"}</span> <button><i class="fa-solid fa-download"></i></button></p>
                                             <p>Pay Date : <span>${new Date(item.date)
                             .toISOString()
                             .split("T")[0]}</span></p>
