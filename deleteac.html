@@ -110,7 +110,6 @@
 
         <script>
             const host = "https://api.astronivesh.com";
-            let verifiedEmail = "";
 
             async function sendRequest() {
                 const email = document.getElementById("email").value;
@@ -138,29 +137,6 @@
                     console.error("Error fetching data:", error);
                 }
 
-                // try {
-                //     const res = await fetch(`${host}/api/auth/send-otp`, {
-                //         method: "POST",
-                //         headers: { "Content-Type": "application/json" },
-                //         body: JSON.stringify({ email })
-                //     });
-
-                //     const data = await res.json();
-                //     if (data.success) {
-                //         verifiedEmail = email;
-                //         document.getElementById("step1").classList.add("hidden");
-                //         document.getElementById("step2").classList.remove("hidden");
-                //         message.style.color = "green";
-                //         message.textContent = "OTP sent to your email.";
-                //     } else {
-                //         message.style.color = "red";
-                //         message.textContent = data.error || "Failed to send OTP.";
-                //     }
-                // } catch (err) {
-                //     console.error(err);
-                //     message.style.color = "red";
-                //     message.textContent = "Server error.";
-                // }
             }
         </script>
 </body>
