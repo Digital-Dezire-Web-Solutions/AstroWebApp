@@ -99,7 +99,7 @@
 
                     <div id="step1">
                         <input type="email" id="email" placeholder="Enter your email" required />
-                        <button onclick="sendRequest()">Submit</button>
+                        <button onclick="deleteReques()">Send Request</button>
                     </div>
 
                     <p id="message" class="message"></p>
@@ -131,12 +131,43 @@
                     const data = await response.json();
                     if (data) {
                         message.textContent = `name :- ${data.name}`;
+                        document.getElementById("email").value = data.email || "Not Set";
                     }
 
                 } catch (error) {
                     console.error("Error fetching data:", error);
                 }
+            }
+            sendRequest()
 
+            async function deleteReques() {
+                let email = document.getElementById('email').value.trim();
+                const message = document.getElementById("message");
+                try {
+                    const token = localStorage.getItem("token");
+                    const response = await fetch(`${host}/api/auth/request-delete`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token
+                        },
+                        body: JSON.stringify({
+                            email: email
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch data");
+                    }
+
+                    const data = await response.json();
+                    if (data) {
+                        message.textContent = `Request sent successfully`;
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
             }
         </script>
 </body>

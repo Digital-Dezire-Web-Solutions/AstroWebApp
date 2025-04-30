@@ -193,7 +193,7 @@
                 </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
                 <div class="profile-bx" id="login_btn">
@@ -406,7 +406,7 @@
             width: 35%;
         }
 
-        
+
 
         .filter-buttons {
             margin-bottom: 1rem;
@@ -581,7 +581,7 @@
 
 
                 <button class="apnt-btn apnt-btn-mob" onclick="window.location.href='appointments.html'">
-                   Talk to Astrologer
+                    Talk to Astrologer
                 </button>
 
             </div>
@@ -1028,10 +1028,10 @@
                                     </div>
                                 </div>
                                 <div class="profile-subscription">
-                                    <!-- <h5 class="profile-head">Subscription</h5>
-                                    <div id="profile-subscription"></div> -->
                                     <h5 class="profile-head">Subscription History</h5>
                                     <div id="profile-subscription-history"></div>
+                                    <h5 class="profile-head">Appointment History</h5>
+                                    <div id="profile-Appointment"></div>
                                     <h5 class="profile-head">Transactions History</h5>
                                     <div id="profile-subscription-transition"></div>
                                 </div>
@@ -1159,11 +1159,11 @@
                 // console.log(data,"data")
                 populatePTable(data)
                 populateName(data)
-                // populateSubscription(data)
                 populateSubscriptionHistory(data)
                 populateTransitionHistory(data)
                 fetchData(data)
-                // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
+                // console.log(data._id,"id")
+                localStorage.setItem("user_id", data._id);
             } catch (error) {
                 console.error(error);
                 // alert("Error fetching data: " + error.message);
@@ -1190,67 +1190,6 @@
              
             `
         }
-        // function populateSubscription(data) {
-        //     // console.log(data, 'data')
-        //     const tableBody = document.getElementById("profile-subscription");
-        //     tableBody.innerHTML = "";
-
-        //     let price = 251;
-        //     let discount = data.subscription?.appliedCoupon?.discount || 0;
-        //     // console.log(discount, "discount")
-
-        //     if (data.subscription.plan === "Free") {
-        //         price = 0;
-        //     }
-
-        //     let discountPer = (discount / 100) * price;
-        //     let discounted = price - discountPer;
-        //     // console.log(discounted, "discounted")
-
-        //     tableBody.innerHTML = `
-        //                         <div class="profile-subscription-card">
-        //                             <div class="subs-head">
-        //                                 <h5>${data.subscription.plan} <span>(Subscription) ${data.subscription.status === "Active" ? `<i class="fa-solid fa-circle" style="color: #00ff11;"></i>` : `<i class="fa-solid fa-circle" style="color: #ff0000;"></i>`}  </span></h5>
-        //                                 <h6>${data.subscription?.appliedCoupon?.discount
-        //             ? `<span>-${data.subscription.appliedCoupon.discount}%</span> ${discounted} <del>${price}</del>`
-        //             : `${price}`
-        //         }</h6>
-        //                             </div>
-        //                             <div class="subs-body">
-        //                                 ${data.subscription.plan === "Free" ? "" :
-        //             `<p>TransactionId. : <span>${data.subscription.transactionId}</span> <button><i class="fa-solid fa-download"></i></button></p>`}
-                                        
-        //                                 <p>Subscription Start: <span> ${new Date(data.subscription.startDate)
-        //             .toISOString()
-        //             .split("T")[0]}</span></p>
-        //                                 <p>Subscription End: <span> ${data.subscription.endDate !== ""
-        //             ? new Date(data.subscription.endDate)
-        //                 .toISOString()
-        //                 .split("T")[0]
-        //             : new Date(data.subscription.start)
-        //                 .toISOString()
-        //                 .split("T")[0]}</span></p>
-        //                                 <p>Status : <span>${data.subscription.status}</span></p>
-        //                                 ${data.subscription.status !== "Active" ? `<div class="profile-renew">
-        //         <h6>Renew your plan to get your future updates!</h6>
-        //         <p class="renew-btn" data-id="${data._id}">Renew</p>
-        //     </div>` : ""}                                    
-        //                             </div>             
-        //     `
-
-        //     // After inserting, attach event listeners
-        //     const renewButtons = document.querySelectorAll('.renew-btn');
-
-        //     renewButtons.forEach(button => {
-        //         button.addEventListener('click', (e) => {
-        //             const subscriptionId = e.target.dataset.id;
-        //             // Open modal logic here
-        //             openRenewModal(subscriptionId);
-        //         });
-        //     });
-
-        // }
-
 
         // Function to open modal (customize as per your modal setup)
         function openRenewModal(subscriptionId) {
@@ -1323,7 +1262,7 @@
             let transitionHistoryData = data.invoices;
             transitionHistoryData = transitionHistoryData.reverse();
             // console.log(transitionHistoryData, "transitionHistoryData");
-            console.log(transitionHistoryData,"transitionHistoryData")
+            // console.log(transitionHistoryData,"transitionHistoryData")
 
             // If no data, show message
             if (!transitionHistoryData || transitionHistoryData.length === 0) {
@@ -1511,6 +1450,7 @@
             try {
                 const response = await fetch(`${host}/api/admindetail/all`);
                 const datas = await response.json();
+                populateAppointment(datas)
                 const remedy = datas[0]?.remedy?.slice().reverse() || [];
 
                 const filterButtons = {
@@ -1591,6 +1531,36 @@
             } catch (error) {
                 console.error("Error fetching plans:", error);
             }
+        }
+        function populateAppointment(datas) {
+            // console.log(datas, 'data')
+            const tableBody = document.getElementById("profile-Appointment");
+            tableBody.innerHTML = "";
+            const user_id = localStorage.getItem("user_id");
+
+            let appointmentData = datas[0].appointment;
+            let appointments = [];
+
+            appointments = appointmentData.find((i) => i.user === user_id);
+
+            // console.log(appointments, "appointmentData");
+
+            tableBody.innerHTML = `
+                                <div class="profile-subscription-card">
+                                    <div class="subs-head">
+                                        <h5>${appointments.plan}</h5>
+                                        <h6>${appointments.amount}</h6>
+                                    </div>
+                                    <div class="subs-body">
+                    <p>TransactionId. : <span>${appointments.transactionId}</span> <button><i class="fa-solid fa-download"></i></button></p>
+                                        
+                                        <p>Prefered date : <span> ${appointments.date}</span></p>
+                                        <p>Prefered time : <span> ${appointments.preferedTime}</span></p>
+                                        <p>Status : <span>${appointments.status}</span></p>
+                                                                          
+                                    </div>             
+            `
+
         }
     </script>
 
