@@ -256,6 +256,30 @@
             display: flex;
             align-items: center;
         }
+
+        /* .house-top-box {
+            display: flex;
+            justify-content: space-between;
+        } */
+
+        #endTimeTable {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+        }
+
+        .endTime-item {
+            border: 1px solid rgb(207, 207, 207);
+        }
+
+        .endTime-item .label {
+            background-color: #f9852d;
+            padding: 5px;
+            color: white;
+        }
+
+        .endTime-item .value {
+            padding: 5px;
+        }
     </style>
 
 
@@ -651,7 +675,7 @@
             <h5 class="page-title">SBC (Sarvatobhadra Chakra)</h5>
             <div class="kundali-container">
                 <div class="section">
-                    <div class="house-fact-sel-bx" style="margin-bottom: 1rem;">
+                    <div class="house-top-box" style="margin-bottom: 1rem;">
                         <div class="date-select">
                             <h6>Dhrubank Calculator</h6>
                             <div class="bank-select-box">
@@ -750,13 +774,24 @@
                             </div>
                             <div class="dhrubankResult" id="dhrubankResult"></div>
                         </div>
+                        <div class="endTimeColapsableTable date-select">
+                            <button class="collapsible">Hide End Times</button>
+                            <div class="table-data">
+                                <table>
+                                    <tbody id="endTimeTable">
+                                        <!-- Data will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="house-factors-selc-bx">
                         <div class="house-fact-sel-bx">
                             <div class="date-select">
                                 <button id="prevBtnDate">
                                     << </button>
-                                        <label id="dateLabel"></label>
+                                        <!-- <label id="dateLabel"></label> -->
+                                        <input type="date" id="dateLabel" />
                                         <button id="nextBtnDate">>></button>
                             </div>
                         </div>
@@ -764,7 +799,8 @@
                             <div class="date-select">
                                 <button id="prevBtnTime">
                                     << </button>
-                                        <label id="timeLabel"></label>
+                                        <!-- <label id="timeLabel"></label> -->
+                                        <input type="time" id="timeLabel" step="1800" />
                                         <button id="nextBtnTime">>></button>
                             </div>
                         </div>
@@ -3574,8 +3610,85 @@
                         const tithiEnd = tithiPanchangData2.tithi.end;
                         const tithiStartTime = new Date(tithiStart);
                         const tithiEndTime = new Date(tithiEnd);
-                        console.log(tithiStartTime, "tithiStartTime")
-                        console.log(tithiEndTime, "tithiEndTime")
+                        // console.log(tithiEndTime, "tithiEndTime")
+                        function formatTithiEndTime(dateString) {
+                            const date = new Date(dateString);
+
+                            const year = date.getFullYear();
+                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                            const day = String(date.getDate()).padStart(2, '0');
+                            const hours = String(date.getHours()).padStart(2, '0');
+                            const minutes = String(date.getMinutes()).padStart(2, '0');
+                            const seconds = String(date.getSeconds()).padStart(2, '0');
+
+                            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                        }
+
+                        // Example usage:
+                        console.log(formatTithiEndTime(tithiEndTime));
+
+                        // For Next Nakshatra  
+                        let Nakshatra = [];
+                        const nextNakshatra = tithiPanchangData2.nakshatra.next_nakshatra
+                        const nakshatraStart = tithiPanchangData2.nakshatra.start;
+                        const nakshatraEnd = tithiPanchangData2.nakshatra.end;
+                        const nakshatraStartTime = new Date(nakshatraStart);
+                        const nakshatraEndTime = new Date(nakshatraEnd);
+
+                        // next yoga 
+                        let yoga = [];
+                        const nextYoga = tithiPanchangData2.yoga.next_yoga
+                        const yogaStart = tithiPanchangData2.yoga.start;
+                        const yogaEnd = tithiPanchangData2.yoga.end;
+                        const yogaStartTime = new Date(yogaStart);
+                        const yogaEndTime = new Date(yogaEnd);
+
+                        // next Karana
+                        let karana = [];
+                        const nextKarana = tithiPanchangData2.karana.next_karana
+                        const karanaStart = tithiPanchangData2.karana.start;
+                        const karanaEnd = tithiPanchangData2.karana.end;
+                        const karanaStartTime = new Date(karanaStart);
+                        const karanaEndTime = new Date(karanaEnd);
+
+                        function formatEndDate(value) {
+                            if (value instanceof Date) {
+                                const endday = value.getDate().toString().padStart(2, '0');
+                                const endmonth = (value.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
+                                const endyear = value.getFullYear();
+                                const endhours = value.getHours().toString().padStart(2, '0');
+                                const endminutes = value.getMinutes().toString().padStart(2, '0');
+                                const endseconds = value.getSeconds().toString().padStart(2, '0');
+                                return `${endday}/${endmonth}/${endyear}, ${endhours}:${endminutes}:${endseconds}`;
+                            }
+                            return value; // Return as-is if it's not a Date (e.g., Moon Degree is a number)
+                        }
+
+                        const data = [
+                            { type: "Tithi", end: tithiEndTime },
+                            { type: "Yoga", end: yogaEndTime },
+                            { type: "Karana", end: karanaEndTime },
+                            { type: "Nakshatra", end: nakshatraEndTime },
+                            { type: "Rahukaal", end: tithiPanchangData2.rahukaal },
+                            { type: "Gulika", end: tithiPanchangData2.gulika },
+                            { type: "Yamakanta", end: tithiPanchangData2.yamakanta },
+                            { type: "Moon Degree", end: tithiPanchangData2.moon_position.moon_degree },
+                        ];
+
+                        const box = document.getElementById("endTimeTable");
+                        box.innerHTML = "";
+
+                        data.forEach(item => {
+                            const div = document.createElement("div");
+                            div.className = "endTime-item";
+                            div.innerHTML = `<div class="label">${item.type}</div><div class="value">${formatEndDate(item.end)}</div>`;
+                            box.appendChild(div);
+                        });
+
+
+                        // console.log(tithiStartTime, "tithiStartTime")
+                        // console.log(tithiEndTime, "tithiEndTime")
+                        console.log(tithiPanchangData2, "tithiPanchangData2")
 
                         // Convert formattedTithiDate and formattedTime to a Date object
                         let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
@@ -3661,38 +3774,101 @@
 
                         // Extract hours and minutes from formattedTime ("17:00")
                         const [hours, minutes] = formattedTime.split(":").map(Number);
+                        // console.log("currentDateTime:", currentDateTime.toString());
 
                         // Create formattedTimeWithDate manually with tithiStart's date
-                        let formattedTimeWithDate = new Date(
-                            tithiStartTime.getFullYear(),
-                            tithiStartTime.getMonth(),
-                            tithiStartTime.getDate(),
-                            hours,
-                            minutes,
-                            0
-                        );
+                        // let formattedTimeWithDate = new Date(
+                        //     tithiStartTime.getFullYear(),
+                        //     tithiStartTime.getMonth(),
+                        //     tithiStartTime.getDate(),
+                        //     hours,
+                        //     minutes,
+                        //     0
+                        // );
+                        // let formattednakTimeWithDate = new Date(
+                        //     nakshatraStartTime.getFullYear(),
+                        //     nakshatraStartTime.getMonth(),
+                        //     nakshatraStartTime.getDate(),
+                        //     hours,
+                        //     minutes,
+                        //     0
+                        // );
+                        // let formattedyogTimeWithDate = new Date(
+                        //     yogaStartTime.getFullYear(),
+                        //     yogaStartTime.getMonth(),
+                        //     yogaStartTime.getDate(),
+                        //     hours,
+                        //     minutes,
+                        //     0
+                        // );
+                        // let formattedkaranaTimeWithDate = new Date(
+                        //     karanaStartTime.getFullYear(),
+                        //     karanaStartTime.getMonth(),
+                        //     karanaStartTime.getDate(),
+                        //     hours,
+                        //     minutes,
+                        //     0
+                        // );
 
                         // If time is after midnight but before 6 AM, move to next day
-                        if (hours < 24) {
-                            formattedTimeWithDate.setDate(formattedTimeWithDate.getDate() + 1);
-                        }
+                        // if (hours < 24) {
+                        //     formattedTimeWithDate.setDate(formattedTimeWithDate.getDate() + 1);
+                        //     formattednakTimeWithDate.setDate(formattednakTimeWithDate.getDate() + 1);
+                        //     formattedyogTimeWithDate.setDate(formattedyogTimeWithDate.getDate() + 1);
+                        //     formattedkaranaTimeWithDate.setDate(formattedkaranaTimeWithDate.getDate() + 1);
+                        // }
                         // Force to next day if formatted time is before tithiStartTime
                         // if (formattedTimeWithDate < tithiStartTime) {
                         //     formattedTimeWithDate.setDate(formattedTimeWithDate.getDate() + 1);
                         // }
 
-                        console.log("FormattedTime with Date:", formattedTimeWithDate);
-                        console.log("Tithi End Time:", tithiEndTime);
+                        // console.log("FormattedTime with Date:", formattedTimeWithDate);
+                        // console.log("Tithi End Time:", tithiEndTime);
+                        // console.log("FormattedTime with Date:", formattednakTimeWithDate);
+                        // console.log("nakshatra End Time:", nakshatraEndTime);
+                        // console.log("FormattedTime with Date:", formattedkaranaTimeWithDate);
+                        // console.log("karana End Time:", karanaEndTime);
+                        // console.log("FormattedTime with Date:", formattedyogTimeWithDate);
+                        // console.log("yoga End Time:", yogaEndTime);
 
                         // Compare
-                        if (formattedTimeWithDate <= tithiEndTime) {
-                            console.log(tithiPanchangData2.tithi.name, "tithi")
+                        if (currentDateTime <= tithiEndTime) {
+                            // console.log(tithiPanchangData2.tithi.name, "tithi")
                             tithiName = tithiPanchangData2.tithi.name;
                             tithiType = tithiPanchangData2.tithi.type;
                         } else {
-                            console.log(tithiPanchangData2.tithi.next_tithi, "next titi")
+                            // console.log(tithiPanchangData2.tithi.next_tithi, "next titi")
                             tithiName = tithiPanchangData2.tithi.next_tithi;
                             tithiType = null;
+                        }
+
+                        if (currentDateTime <= nakshatraEndTime) {
+                            // console.log(tithiPanchangData2.nakshatra.name, "nakshatra")
+                            Nakshatra = tithiPanchangData2.nakshatra.name;
+                        } else {
+                            // console.log(tithiPanchangData2.nakshatra.next_nakshatra, "next nakshatra")
+                            Nakshatra = tithiPanchangData2.nakshatra.next_nakshatra;
+                            // tithiType = null;
+                        }
+
+                        if (currentDateTime <= yogaEndTime) {
+                            // console.log(tithiPanchangData2.yoga.name, "yoga")
+                            yoga = tithiPanchangData2.yoga.name;
+                            // tithiType = tithiPanchangData2.tithi.type;
+                        } else {
+                            // console.log(tithiPanchangData2.yoga.next_yoga, "next yoga")
+                            yoga = tithiPanchangData2.yoga.next_yoga;
+                            // tithiType = null;
+                        }
+
+                        if (currentDateTime <= karanaEndTime) {
+                            // console.log(tithiPanchangData2.karana.name, "karana")
+                            karana = tithiPanchangData2.karana.name;
+                            // tithiType = tithiPanchangData2.tithi.type;
+                        } else {
+                            // console.log(tithiPanchangData2.karana.next_karana, "next karana")
+                            karana = tithiPanchangData2.karana.next_karana;
+                            // tithiType = null;
                         }
 
                         // console.log("Final tithiName:", tithiName);
@@ -3702,11 +3878,11 @@
                         // console.log(tithiName, "tithiName")
                         // console.log(tithiType, "tithiType")
                         // console.log(tithiPanchang.find(t => t.tithi === tithiName), "match")
-                        const tithi = panchangDetails.Tithi
+                        // const tithi = panchangDetails.Tithi
                         const Day_of_Birth = panchangDetails.Day;
-                        const yoga = panchangDetails.Yoga;
-                        const karana = panchangDetails.Karana;
-                        const Nakshatra = panchangDetails.Nakshatra;
+                        // const yoga = panchangDetails.Yoga;
+                        // const karana = panchangDetails.Karana;
+                        // const Nakshatra = panchangDetails.Nakshatra;
                         // console.log(Nakshatra, "Nakshatra")
                         // console.log(tithiPanchang, "tithiPanchang")
                         // console.log(tithi, "tithi")
@@ -4528,44 +4704,33 @@
                         console.error("not found");
                     }
                 };
+                const dateInput = document.getElementById('dateLabel');
+                const timeInput = document.getElementById('timeLabel');
+
+                dateInput.valueAsDate = currentDate;
+                timeInput.value = formatTimeInput(currentHours, currentMinutes);
+
+                // Date navigation
                 document.getElementById('nextBtnDate').addEventListener('click', () => {
                     currentDate.setDate(currentDate.getDate() + 1);
-                    document.getElementById('dateLabel').innerText = formatDate(currentDate);
-                    const tableData = document.getElementById('tableData');
-                    // Main Logic
-                    if (startDate <= currentDate && endDate >= currentDate) {
-                        renewDiv.style.display = 'none';
-                        tableData.style.display = 'block';
-                        updatePanchang();
-                    } else {
-                        tableData.style.display = 'none';
-                        renewDiv.style.display = 'flex';
-                    }
+                    dateInput.valueAsDate = currentDate;
+                    handleDateChange();
                 });
 
                 document.getElementById('prevBtnDate').addEventListener('click', () => {
                     currentDate.setDate(currentDate.getDate() - 1);
-                    document.getElementById('dateLabel').innerText = formatDate(currentDate);
-                    const tableData = document.getElementById('tableData');
-                    // Main Logic
-                    if (startDate <= currentDate && endDate >= currentDate) {
-                        renewDiv.style.display = 'none';
-                        tableData.style.display = 'block';
-                        updatePanchang();
-                    } else {
-                        tableData.style.display = 'none';
-                        renewDiv.style.display = 'flex';
-                    }
+                    dateInput.valueAsDate = currentDate;
+                    handleDateChange();
                 });
 
+                // Time navigation
                 document.getElementById('nextBtnTime').addEventListener('click', () => {
                     currentMinutes += 30;
                     if (currentMinutes >= 60) {
                         currentMinutes -= 60;
                         currentHours = (currentHours + 1) % 24;
                     }
-                    document.getElementById('timeLabel').innerText = formatTime(currentHours, currentMinutes);
-                    // Main Logic
+                    timeInput.value = formatTimeInput(currentHours, currentMinutes);
                     updatePanchang();
                 });
 
@@ -4575,10 +4740,39 @@
                         currentMinutes += 60;
                         currentHours = (currentHours - 1 + 24) % 24;
                     }
-                    document.getElementById('timeLabel').innerText = formatTime(currentHours, currentMinutes);
-                    // Main Logic
+                    timeInput.value = formatTimeInput(currentHours, currentMinutes);
                     updatePanchang();
                 });
+
+                // Input event listeners
+                dateInput.addEventListener('change', () => {
+                    currentDate = new Date(dateInput.value);
+                    handleDateChange();
+                });
+
+                timeInput.addEventListener('change', () => {
+                    const [hours, minutes] = timeInput.value.split(':').map(Number);
+                    currentHours = hours;
+                    currentMinutes = minutes;
+                    updatePanchang();
+                });
+
+                // Helper functions
+                function handleDateChange() {
+                    const tableData = document.getElementById('tableData');
+                    if (startDate <= currentDate && endDate >= currentDate) {
+                        renewDiv.style.display = 'none';
+                        tableData.style.display = 'block';
+                        updatePanchang();
+                    } else {
+                        tableData.style.display = 'none';
+                        renewDiv.style.display = 'flex';
+                    }
+                }
+
+                function formatTimeInput(hours, minutes) {
+                    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+                }
                 // Event listener for house selection
                 if (user.subscription.plan === "Free") {
                     const startDateOnly = new Date(startDate).toISOString().split("T")[0];
@@ -4603,6 +4797,17 @@
                 }
             }
         }
+        // Collapsible functionality
+        document.querySelector(".collapsible").addEventListener("click", function () {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            if (content.style.display === "none") {
+                this.textContent = "Show End Times";
+            } else {
+                this.textContent = "Hide End Times";
+            }
+        });
 
 
     </script>
