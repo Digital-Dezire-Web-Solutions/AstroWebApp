@@ -91,7 +91,7 @@
         </div>
      </header> -->
 
-    <section class="top-header-comp">
+     <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
             <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
@@ -127,71 +127,12 @@
                     <ion-icon name="menu"></ion-icon>
                 </button>
 
-
-                <!-- <div class="cart-bx cart-bx2">
-                    <button class="cart-btn cart-btn2">
-                        <span class="qty">4</span>
+                <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2" onclick="goToCart()">
+                        <span class="qty" id="cart-count2">0</span>
                         <ion-icon name="bag"></ion-icon>
                     </button>
-
-                    <div class="cart-lists-bx cart-lists-bx-mob">
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-                        <button class="apnt-btn chckout-btn">
-                            Check Out
-                        </button>
-
-                    </div>
-
-                </div> -->
+                </div>
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
                     Talk to Astrologer
@@ -206,68 +147,6 @@
 
         </div>
     </section>
-    <style>
-        .coming-soon {
-            filter: grayscale(5);
-        }
-
-        .coming-soon .card-info {
-            color: #ffffff;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-            border-radius: .7rem;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            background: #dcdcdc;
-            transition: ease-in-out
-        }
-
-        .coming-soon:hover .card-info {
-            color: white;
-            transition: color 1s;
-            display: flex;
-            transition: ease-in-out;
-        }
-
-        .coming-soon .card-info p {
-            color: white;
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .textareainput {
-            position: relative;
-            width: 100%;
-            height: 8.5rem;
-            background-color: #fff;
-            border: 0.1rem solid #ddd;
-            border-radius: 2rem;
-        }
-
-        .textareainput textarea {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            border-radius: 2rem;
-            border: none;
-            padding: 1rem;
-        }
-
-        label span {
-            color: red;
-            font-size: 12px;
-        }
-    </style>
 
 
     <header class="header">
@@ -280,7 +159,7 @@
                     <ion-icon name="close-circle"></ion-icon>
                 </button>
 
-                <div class="left-header-logo flex item-start gap mob-logo">
+                <div class="left-header-logo flex item-start gap mob-logo" onclick="window.location.href='home.html'">
                     <img src="./images/astrology.png" alt="">
 
                     <h6>Astro Nivesh</h6>
@@ -296,10 +175,11 @@
 
                 <nav class="nav">
                     <div class="nav-lists flex item-start">
-                        <li><a href="home.html">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
                         <li><a href="appointments.html">Talk to Astrologer</a></li>
+                        <li><a href="product.html">Astromall</a></li>
                     </div>
                 </nav>
 
@@ -341,74 +221,12 @@
                         <ion-icon name="search"></ion-icon>
                     </button>
                 </div>
-
-
-                <!-- <div class="cart-bx">
-                    <button class="cart-btn">
-                        <span class="qty">4</span>
+                <div class="cart-bx">
+                    <button class="cart-btn" onclick="goToCart()">
+                        <span class="qty" id="cart-count">0</span>
                         <ion-icon name="bag"></ion-icon>
                     </button>
-
-                    <div class="cart-lists-bx">
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-                        <button class="apnt-btn chckout-btn">
-                            Check Out
-                        </button>
-
-                    </div>
-
-                </div> -->
-
-
+                </div>
 
             </div>
 
@@ -679,7 +497,7 @@
                                                     <p>₹</p>
                                                     <h5 id="planPrice">251</h5>
                                                 </div>
-                                                <div class="payment-plan-body-box">
+                                                <div id="payment-plan-body-box" class="payment-plan-body-box">
                                                     <p>/Per user</p>
                                                     <p id="duration">/Per months</p>
                                                 </div>
@@ -882,6 +700,42 @@
             `
         }
 
+        let ctPlan = []
+        let ctPrice = []
+
+        const type = localStorage.getItem("checkoutType");
+        if (type && type === "cartItem") {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            const orderPrice = localStorage.getItem("orderPrice");
+            // console.log(cart, "cart")
+            // console.log(orderPrice, "orderPrice")
+            ctPlan = type;
+            ctPrice = orderPrice;
+            const planNameElement = document.getElementById('planName');
+            const planPriceElement = document.getElementById('planPrice');
+            const paymentBody = document.getElementById('payment-plan-body-box');
+            paymentBody.style.display = "none"
+            if (ctPlan) {
+                planNameElement.innerText = ctPlan;
+            }
+            if (ctPrice) {
+                planPriceElement.innerText = ctPrice;
+            }
+
+            const items = cart.map(item => ({
+                productId: item.id,
+                variantAttributes: item.variantAttributes,
+                quantity: item.qty
+            }));
+
+            const orderData = {
+                userId: "USER_ID_FROM_SESSION", // or however you're managing user login
+                paymentMethod: "cod", // or "card"
+                shippingAddress: "User's address",
+                items
+            };
+
+        }
         const query = JSON.parse(localStorage.getItem("appointmentData"));
         // console.log(query, "query")
         let applan = []
@@ -997,7 +851,12 @@
 
             document.getElementById('modalContent').style.display = 'none';
             let storingData = []
-            if (query && query.appointment === "appointment") {
+            if (type && type === "cartItem") {
+                storingData = {
+                    type: 'cartItem', plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state
+                }
+            }
+            else if (query && query.appointment === "appointment") {
                 storingData = {
                     type: 'appointment', plan, transactionId, coupon, finalPrice, name, email, phone, address, pincode, city, state, apduration, apdate, apstartTime, apendTime
                 }
@@ -1012,6 +871,11 @@
             if (discountPercent === 100) {
                 let paymentMethod = "Free";
                 let transactionId = "00000000";
+
+                if (storingData.type === "cartItem") {
+                    console.log("order part")
+                    await assignOrder(storingData, paymentMethod, transactionId,);
+                }
                 if (storingData.type === "appointment") {
                     console.log("appointment part")
                     await assignAppointment(storingData, paymentMethod, transactionId,);
@@ -1044,7 +908,7 @@
                 discountPercent = 0;
                 document.getElementById('couponInput').value = '';
                 window.location.href = "/home.html";
-                // location.reload();
+                location.reload();
             }, 3000);
         }
 
@@ -1074,6 +938,10 @@
                         let paymentMethod = parsedData.paymentDetails?.[0]?.paymentMode || "Pending";
                         let transactionId = parsedData.paymentDetails?.[0]?.transactionId;
 
+                        if (storingData.type === "cartItem") {
+                            console.log("order part")
+                            await assignOrder(storingData, paymentMethod, transactionId,);
+                        }
                         if (storingData.type === "appointment") {
                             console.log("appointment part")
                             await assignAppointment(storingData, paymentMethod, transactionId);
@@ -1111,6 +979,84 @@
 
         }
 
+        async function assignOrder(storingData, paymentMethod, transactionId) {
+            console.log(storingData, "storingData")
+            const user_Id = JSON.parse(localStorage.getItem("user_Id"));
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            const items = cart.map(item => ({
+                productId: item.id,
+                variantAttributes: item.variantAttributes,
+                quantity: item.qty,
+
+            }));
+            const orderData = {
+                userId: user_Id,
+                paymentMethod: paymentMethod,
+                shippingAddress: {
+                    name: storingData.name,
+                    phone: storingData.phone,
+                    address: storingData.address,
+                    city: storingData.city,
+                    pincode: storingData.pincode,
+                    state: storingData.state
+                },
+                items,
+                orderAmount: storingData.finalPrice
+            };
+            // console.log(user_Id, "userid")
+            console.log(orderData, "prderData")
+            try {
+                let response = await fetch(`${host}/api/order/create`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                let data = await response.json();
+                console.log(data, "data")
+                if (data.success === true) {
+                    console.log("success")
+                    try {
+
+                        let response2 = await fetch(`${host}/api/invoice/add`, {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "auth-token": token
+                            },
+                            body: JSON.stringify({
+                                type: storingData.type,
+                                plan: storingData.plan,
+                                price: storingData.finalPrice,
+                                name: storingData.name,
+                                email: storingData.email,
+                                phone: storingData.phone,
+                                address: storingData.address,
+                                pincode: storingData.pincode,
+                                city: storingData.city,
+                                state: storingData.state
+                            }),
+                        });
+
+                        // console.log(response2, "response2")
+                        let data2 = await response2.json();
+                        // console.log(data2, "data2")
+                        if (data2.success === true) {
+                            // localStorage.removeItem(cart)
+                            localStorage.removeItem("cart");
+                            console.log("success")
+                        }
+                    } catch (error) {
+                        console.log("object")
+                    }
+                }
+            } catch (err) {
+                console.error('Error assigning subscription:', err);
+            }
+
+        }
 
 
         async function assignSubscription(storingData, paymentMethod, transactionId) {
@@ -1191,6 +1137,7 @@
                                 name: storingData.name,
                                 date: storingData.apdate,
                                 email: storingData.email,
+                                phone: storingData.phone,
                                 transactionId: transactionId,
                                 amount: storingData.finalPrice,
                                 preferedTime: storingData.apstartTime + "-" + storingData.apendTime,
@@ -1243,6 +1190,7 @@
         }
 
 
+
         document.addEventListener("DOMContentLoaded", function () {
             // console.log(token, "token")
             const loginForm = document.querySelector(".login-info");
@@ -1281,6 +1229,8 @@
         };
         function clearAppointmentData() {
             localStorage.removeItem("appointmentData");
+            localStorage.removeItem("checkoutType");
+            localStorage.removeItem("orderPrice");
         }
 
         window.addEventListener('beforeunload', clearAppointmentData);

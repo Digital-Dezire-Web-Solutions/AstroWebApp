@@ -128,70 +128,12 @@
                 </button>
 
 
-                <!-- <div class="cart-bx cart-bx2">
-                    <button class="cart-btn cart-btn2">
-                        <span class="qty">4</span>
+                <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2" onclick="goToCart()">
+                        <span class="qty" id="cart-count2">0</span>
                         <ion-icon name="bag"></ion-icon>
                     </button>
-
-                    <div class="cart-lists-bx cart-lists-bx-mob">
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-                        <button class="apnt-btn chckout-btn">
-                            Check Out
-                        </button>
-
-                    </div>
-
-                </div> -->
+                </div>
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
                     Talk to Astrologer
@@ -238,6 +180,7 @@
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
                         <li><a href="appointments.html">Talk to Astrologer</a></li>
+                        <li><a href="product.html">Astromall</a></li>
                     </div>
                 </nav>
 
@@ -279,75 +222,12 @@
                         <ion-icon name="search"></ion-icon>
                     </button>
                 </div>
-
-
-                <!-- <div class="cart-bx">
-                    <button class="cart-btn">
-                        <span class="qty">4</span>
+                <div class="cart-bx">
+                    <button class="cart-btn" onclick="goToCart()">
+                        <span class="qty" id="cart-count">0</span>
                         <ion-icon name="bag"></ion-icon>
                     </button>
-
-                    <div class="cart-lists-bx">
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-
-                        </li>
-
-
-                        <li>
-                            <div class="item-img">
-                                <img src="./images/astro-book.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <h6>Astro Book</h6>
-                                <p>Quantity : 2 x $45</p>
-
-                                <h5>$90</h5>
-                            </div>
-                            <div class="delet-item-btn">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                        </li>
-
-                        <button class="apnt-btn chckout-btn">
-                            Check Out
-                        </button>
-
-                    </div>
-
-                </div> -->
-
-
-
+                </div>
             </div>
 
         </div>
@@ -965,28 +845,22 @@
                             <h6>Generate More Kundali</h6>
                         </div>
                     </a>
-
-
-                    <div class="card-bx card1 coming-soon">
-                        <div class="icon icon5">
-                            <img src="./images/icon-5.png" alt="">
+                    <a href="javascript:void(0);" id="shopLink">
+                        <div class="card-bx card1">
+                            <div class="icon icon5">
+                                <img src="./images/icon-5.png" alt="">
+                            </div>
+                            <h6>Astromall Shop</h6>
                         </div>
-                        <h6>Astromall Shop</h6>
-                        <div class="card-info">
-                            <p class="title">Coming Soon</p>
+                    </a>
+                    <a href="javascript:void(0);" id="poojaLink">
+                        <div class="card-bx card1">
+                            <div class="icon icon8">
+                                <img src="./images/icon-8.png" alt="">
+                            </div>
+                            <h6>Book Pooja</h6>
                         </div>
-                    </div>
-
-                    <div class="card-bx card1 coming-soon">
-                        <div class="icon icon8">
-                            <img src="./images/icon-8.png" alt="">
-                        </div>
-                        <h6>Book Pooja</h6>
-                        <div class="card-info">
-                            <p class="title">Coming Soon</p>
-                        </div>
-                    </div>
-
+                    </a>
 
                 </div>
             </div>
@@ -2145,6 +2019,8 @@
             const profileLink = document.getElementById("profileLink");
             const talkLink = document.getElementById("talkLink");
             const freeLink = document.getElementById("freeLink");
+            const shopLink = document.getElementById("shopLink");
+            const poojaLink = document.getElementById("poojaLink");
             const loginModal = document.getElementById("login_btn");
 
             kundaliLink.addEventListener("click", function (event) {
@@ -2196,6 +2072,24 @@
                 if (token) {
                     // Redirect to Kundali Form if token is present
                     window.location.href = "./freekundali.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+            shopLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./product.html";
+                } else {
+                    // Open login modal if no token
+                    loginModal.click();
+                }
+            });
+            poojaLink.addEventListener("click", function (event) {
+                if (token) {
+                    // Redirect to Kundali Form if token is present
+                    window.location.href = "./pooja.html";
                 } else {
                     // Open login modal if no token
                     loginModal.click();

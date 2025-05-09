@@ -41,6 +41,16 @@
 
             <div class="right-top-header-flex-bx flex item-start gap">
 
+                <!-- <div class="top-hedr-bx flex item-center">
+                    <div class="left-hedr-icon">
+                        <ion-icon name="home"></ion-icon>
+                    </div>
+                    <div class="right-hedr-inof">
+                        <h6>Reach Us</h6>
+                        <span>601 , Ram Nagar Dewas</span>
+                    </div>
+                </div> -->
+
                 <div class="top-hedr-bx flex item-center">
                     <div class="left-hedr-icon">
                         <ion-icon name="call"></ion-icon>
@@ -56,7 +66,12 @@
                     <ion-icon name="menu"></ion-icon>
                 </button>
 
-
+                <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2" onclick="goToCart()">
+                        <span class="qty" id="cart-count2">0</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+                </div>
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
                     Talk to Astrologer
@@ -103,6 +118,7 @@
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
                         <li><a href="appointments.html">Talk to Astrologer</a></li>
+                        <li><a href="product.html">Astromall</a></li>
                     </div>
                 </nav>
 
@@ -144,8 +160,12 @@
                         <ion-icon name="search"></ion-icon>
                     </button>
                 </div>
-
-
+                <div class="cart-bx">
+                    <button class="cart-btn" onclick="goToCart()">
+                        <span class="qty" id="cart-count">0</span>
+                        <ion-icon name="bag"></ion-icon>
+                    </button>
+                </div>
 
             </div>
 

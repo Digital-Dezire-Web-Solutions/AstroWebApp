@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Shipping Policy | Astro Nivesh</title>
+    <title>Cart | Astro Nivesh</title>
     <!-- swiper slider css CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -16,16 +16,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="/images/astrology.png" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZF2CQTE5JG"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZF2CQTE5JG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-ZF2CQTE5JG');
-</script>
-<script src="https://cdn.pagesense.io/js/astronivesh/b70b9482d2454a09ac5feadc3675f35c.js"></script>
+        gtag('config', 'G-ZF2CQTE5JG');
+    </script>
+    <script src="https://cdn.pagesense.io/js/astronivesh/b70b9482d2454a09ac5feadc3675f35c.js"></script>
+
 </head>
 
 <body>
@@ -412,158 +413,126 @@
     </section>
 
     <!-- body section -->
+    <style>
+
+    </style>
 
     <section class="why-astrologer-comp">
         <div class="common-container3">
-
             <div class="comn-heading">
-                <h3>Shipping Policy</h3>
-                <p>Effective Date: March 19, 2025</p>
+                <h3>Cart</h3>
+                <!-- <p>Astrology reveals the will of the God</p> -->
             </div>
-
-            <div class="para-info">
-
-                <p>At Astro Nivesh, we strive to ensure timely and efficient delivery of our products and services. This Shipping Policy outlines the terms under which we process and deliver orders.</p>
-
-                <Strong>1. General Shipping Terms</Strong>
-
-                <p>- We offer shipping for physical products purchased through our platform.</p>
-
-                <p>- Digital products, such as astrology reports, are delivered electronically and do not require physical shipping.</p>
-
-                <p>- Shipping services are available across the country.</p>
-                <p>- Orders are processed and shipped only on business days (Monday to Saturday, excluding public holidays).</p>
-
-                <strong>2. Shipping Time & Delivery</strong>
-
-                <p>- Orders are typically processed within 24 to 48 hours after payment confirmation.</p>
-
-                <p>- Estimated delivery times:</p>
-                <p>- Standard Shipping: 4 to 5 Business Days</p>
-                <p>- Express Shipping: 2 to 3 Business Days (available at an additional cost)</p>
-                <p>- Delivery times may vary depending on location, courier delays, and unforeseen circumstances.</p>
-                <p>- Once shipped, customers will receive tracking details via email or SMS.</p>
-
-                <strong>3. Shipping Charges</strong>
-
-                <p>- Shipping charges vary based on the delivery location and selected shipping method.</p>
-
-                <p>- Any additional shipping charges (such as express shipping or international delivery) will be displayed at checkout.</p>
-                <p>- Free shipping may be available for orders above a certain value, as per promotional offers.</p>
-
-                <strong>4. International Shipping</strong>
-                <p>- We currently do not offer international shipping.</p>
-
-                <p>- For international shipments, customs duties, taxes, and import fees may apply and are the responsibility of the customer.</p>
-
-                <strong>5. Order Tracking</strong>
-                <p>- Customers will receive a tracking number once the order has been dispatched.</p>
-
-                <p>- Orders can be tracked via the courier’s website using the provided tracking number.</p>
-
-
-                <strong>6. Delays & Issues</strong>
-                <p>- If an order is delayed beyond the estimated delivery time, customers can contact our support team for assistance.</p>
-
-                <p>- Astro Nivesh is not responsible for delays caused by natural disasters, courier service disruptions, or unforeseen circumstances.</p>
-                <p>- In case of a lost or undelivered order, we will work with the courier to resolve the issue. A replacement or refund may be issued based on the resolution.</p>
-
-
-                <strong>7. Damaged or Incorrect Orders</strong>
-                <p>- If a product arrives damaged or is incorrect, customers must report the issue within 12 hours of delivery by emailing contact@astronivesh.com with images of the product.</p>
-
-                <p>- We will arrange for a replacement or refund as per our Return & Refund Policy.</p>
-
-                <strong>8. Contact Us</strong>
-                <p>For any shipping-related queries, please contact us at: contact@astronivesh.com</p>
-
-                <p>By placing an order with us, you acknowledge and agree to this Shipping Policy.</p>
+            <div class="cart-box">
+                <div class="cart-left" id="cart-container"></div>
+                <div class="cart-right">
+                    <div class="cart-right-box">
+                        <div class="cart-prices">
+                            <span>Total :</span>
+                            <p id="total-price"></p>
+                        </div>
+                        <!-- <div class="cart-prices">
+                        <span>Delivery Charges</span>
+                        <p id="delivery-price"></p>
+                        </div> -->
+                        <div class="cart-prices grand">
+                            <span>Sub Total</span>
+                            <h6>₹<span id="ordered-price"></span></h6>
+                        </div>
+                    </div>
+                    <div class="cart-procced">
+                        <p onclick=proceedCheckout()>Proceed to Checkout</p>
+                    </div>
+                </div>
 
             </div>
 
         </div>
     </section>
-   
+
 
     <!-- ____________________________
           Our Footer Comp 
           -------------------- -->
 
-          <footer class="footer-comp">
-            <div class="common-container3">
-    
-                <div class="footer-flex-bx">
-    
-                    <div class="left-footer-bx">
-    
-                        <div class="left-header-logo flex item-start gap">
-                            <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
-    
-                            <h6>Astro Nivesh</h6>
-    
-    
-                        </div>
-    
-    
-    
-    
-                        <p>
-                            Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
-                        </p>
-    
+    <footer class="footer-comp">
+        <div class="common-container3">
+
+            <div class="footer-flex-bx">
+
+                <div class="left-footer-bx">
+
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
+
+                        <h6>Astro Nivesh</h6>
+
+
                     </div>
-    
-    
-                    <div class="right-footer-bx">
-    
-                        <div class="footer-bx">
-                            <h6>Corporate Info</h6>
-                            <div class="footer-li">
-                                <li><a href="aboutus.html">About Us</a></li>
-                                <li><a href="contactus.html">Contact Us</a></li>
-                                <li><a href="termsconditions.html">Terms & Conditions</a></li>
-                                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
-                                <li><a href="refundpolicy.html">Refund Policy</a></li>
-                            </div>
+
+
+
+
+                    <p>
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
+                    </p>
+
+                </div>
+
+
+                <div class="right-footer-bx">
+
+                    <div class="footer-bx">
+                        <h6>Corporate Info</h6>
+                        <div class="footer-li">
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
                         </div>
-    
-    
-                        <div class="footer-bx">
-                            <h6>Contact Info</h6>
-                            <div class="footer-li">
-                                <li><a href="#"> We are available 24x7 on chat support</a></li>
-                                <li><a href="#">Email ID: contact@astronivesh.com</a></li>
-    
-                                <div class="soc-icons-flex">
-                                    <a href="#">
-                                        <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-youtube"></ion-icon>
-                                    </a>
-                                </div>
-    
-                            </div>
-                        </div>
-    
-    
                     </div>
-    
+
+
+                    <div class="footer-bx">
+                        <h6>Contact Info</h6>
+                        <div class="footer-li">
+                            <li><a href="#"> We are available 24x7 on chat support</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
+
+                            <div class="soc-icons-flex">
+                                <a href="#">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
-    
-                <div class="copyright-bx">
-                    <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
-                            href="https://digitaldezire.com/">Digital Dezire</a></p>
-                </div>
+
             </div>
-        </footer>
+
+            <div class="copyright-bx">
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All
+                    Rights Reserved | Dev. By: <a href="https://digitaldezire.com/">Digital Dezire</a></p>
+            </div>
+        </div>
+    </footer>
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -637,16 +606,101 @@
                     localStorage.removeItem("token");
                     localStorage.removeItem('params');
                     location.reload();
-                    // window.location.href = "./index.html";
+                    window.location.href = "./index.html";
                 });
             }
         });
+
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            const container = document.getElementById("cart-container");
+            container.innerHTML = "";
+
+            if (cart.length === 0) {
+                container.innerHTML = "<p>Your cart is empty.</p>";
+                document.getElementById("total-price").textContent = "";
+                return;
+            }
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+
+                const div = document.createElement("div");
+                div.className = "cart-card";
+                div.innerHTML = `
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="${item.mainImage}" alt="${item.title}">
+                    </div>
+                    <div class="cart-item-detail">
+                        <h6>${item.title}</h6>
+                        <p>Price: ₹${item.price}</p>
+                    </div>
+                </div>
+                  <div class="cart-item-quantity">
+                        <p>
+                  Quantity:
+                  <button onclick="changeQty(${index}, -1)">-</button>
+                  <span>${item.qty}</span>
+                  <button onclick="changeQty(${index}, 1)">+</button>
+                  </p>
+                    </div>
+                
+                  <div class="cart-item-remove">
+                        <ion-icon name="trash" onclick="removeItem(${index})"></ion-icon>
+                    </div>
+    `;
+                container.appendChild(div);
+            });
+
+            document.getElementById("total-price").textContent = `₹${total}`;
+            let deliveryPrice = 25
+            // document.getElementById("delivery-price").textContent = `₹${deliveryPrice}`;
+            // let orderAmount = total + deliveryPrice;
+            document.getElementById("ordered-price").textContent = `${total}`;
+        }
+
+        function changeQty(index, delta) {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        function proceedCheckout() {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+            if (cart.length === 0) {
+                alert("Your cart is empty.");
+                return;
+            }
+
+            const orderedPrice = document.getElementById('ordered-price').textContent;
+            localStorage.setItem("checkoutType", "cartItem");
+            localStorage.setItem("orderPrice", orderedPrice);
+
+            window.location.href = "checkout.html";
+        }
+
+        // Initial render
+        renderCart();
     </script>
 
     <script>
         // Populate table on page load
         window.onload = async () => {
             fetchAllData()
+            updateCartCount();
         };
     </script>
 
