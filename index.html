@@ -328,7 +328,7 @@
                             </div>
                             <div class="home-input-box">
                                 <div class="inpt-bx">
-                                    <!-- <label for="password">Date Of Birth</label> -->
+                                    <label class="respon-lable" for="password">Date Of Birth</label>
                                     <div class="inpt">
                                         <input type="text" id="calendarInput" name="calendarInput"
                                             placeholder="Choose a date">
@@ -336,7 +336,7 @@
                                 </div>
 
                                 <div class="inpt-bx">
-                                    <!-- <label for="password">Birth Time</label> -->
+                                    <label class="respon-lable" for="password">Birth Time</label>
                                     <div class="inpt">
                                         <input type="text" id="timePicker" name="timePicker" class="time-picker"
                                             placeholder="Select Time">
@@ -417,6 +417,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <p id="errorc2Msg" style="color: red; font-size: 12px; margin-bottom: 0;"></p>
                             <div class="inpt-bx">
                                 <!-- <label for="name">Email</label> -->
                                 <div class="inpt">
@@ -577,6 +578,7 @@
                             </div>
                         </div>
 
+                        <p id="errorc1Msg" style="color: red; font-size: 12px; margin-bottom: 0;"></p>
                         <div class="inpt-bx">
                             <label for="name">Email</label>
                             <div class="inpt">
@@ -1655,7 +1657,11 @@ Get kundali reading over the phone or in person. -->
                 window.location.href = "/home.html";
 
             } else {
+                document.getElementById("errorc1Msg").innerText = json.error;
+                document.getElementById("errorc2Msg").innerText = json.error;
                 showAlert("Invalid Details", "danger");
+                const modal = document.querySelector(".signup-loader");
+                modal.style.display = "none";
             }
         }
 
