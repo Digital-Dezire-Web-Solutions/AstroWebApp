@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Astromall | Astro Nivesh</title>
+    <title>Healing | Astro Nivesh</title>
     <!-- swiper slider css CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -126,7 +126,6 @@
                     <ion-icon name="menu"></ion-icon>
                 </button>
 
-
                 <div class="cart-bx cart-bx2">
                     <button class="cart-btn cart-btn2" onclick="goToCart()">
                         <span class="qty" id="cart-count2">0</span>
@@ -147,44 +146,6 @@
 
         </div>
     </section>
-    <style>
-        .coming-soon {
-            filter: grayscale(5);
-        }
-
-        .coming-soon .card-info {
-            color: #ffffff;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-            border-radius: .7rem;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            background: #dcdcdc;
-            transition: ease-in-out
-        }
-
-        .coming-soon:hover .card-info {
-            color: white;
-            transition: color 1s;
-            display: flex;
-            transition: ease-in-out;
-        }
-
-        .coming-soon .card-info p {
-            color: white;
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-    </style>
 
 
     <header class="header">
@@ -276,6 +237,7 @@
                         <ion-icon name="bag"></ion-icon>
                     </button>
                 </div>
+
             </div>
 
         </div>
@@ -468,179 +430,45 @@
 
     <section class="why-astrologer-comp">
         <div class="common-container3">
-            <div class="comn-heading products-head">
-                <h3>Astromall</h3>
-                <!-- <div class="product-category">
-                    <div class="category-item" id="shopItem">
-                        <div class="category-item-box">
-                            <div class="icon icon5">
-                                <img src="./images/icon-5.png" alt="">
-                            </div>
-                            <p>Shop</p>
-                        </div>
-                        <div class="dropdown">
-                            <p>Box/Remedy kit</p>
-                            <p> Gem stone (Bracelet/Pendent)</p>
-                            <p> Prasad delivery</label>
-                            <p> Rudraksh</p>
-                            <p> Murti</p>
-                            <p> Divine booster</p>
-
-                        </div>
-                    </div>
-                    <div class="category-item" id="poojaItem">
-                        <div class="category-item-box">
-                            <div class="icon icon8">
-                                <img src="./images/icon-8.png" alt="">
-                            </div>
-                            <p>Pooja</p>
-                        </div>
-                        <div class="dropdown">
-                            <p> Online pooja</p>
-                            <p> Offline pooja</p>
-                        </div>
-                    </div>
-                </div> -->
+            <div class="comn-heading">
+                <h3>Healing</h3>
+                <!-- <p>Astrology reveals the will of the God</p> -->
             </div>
-            <div class="product-box">
-                <!-- Sidebar -->
-                <aside id="sidebar">
-                    <button class="filter-close-btn close-btn" id="filterclose" onclick="togglePopup(this)"><ion-icon
-                            name="chevron-up"></ion-icon></button>
-                    <div class="side-header">
-                        <h5>Filters</h5>
-                        <ion-icon name="funnel"></ion-icon>
-                    </div>
-                    <!-- Category Filter -->
-                    <div class="filter-box">
-                        <div class="filter-group">
-                            <div class="filter-head open" onclick="toggleFilter(this)">
-                                <h6>Category</h6>
-                                <p><ion-icon name="chevron-up"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: block;">
-                                <label><input type="checkbox" name="category" value="Box/Remedy kit"> Box/Remedy
-                                    kit</label><br>
-                                <label><input type="checkbox" name="category" value="Gem stone (Bracelet/Pendent)"> Gem
-                                    stone (Bracelet/Pendent)</label><br>
-                                <label><input type="checkbox" name="category" value="Prasad delivery"> Prasad
-                                    delivery</label><br>
-                                <label><input type="checkbox" name="category" value="Rudraksh"> Rudraksh</label><br>
-                                <label><input type="checkbox" name="category" value="Murti"> Murti</label><br>
-                                <label><input type="checkbox" name="category" value="Divine booster"> Divine
-                                    booster</label><br>
-                                <label><input type="checkbox" name="category" value="Online pooja"> Online
-                                    pooja</label><br>
-                                <label><input type="checkbox" name="category" value="Offline pooja"> Offline
-                                    pooja</label><br>
-                                </div>
-                        </div>
-                        <div class="filter-group">
-                            <div class="filter-head open" onclick="toggleFilter(this)">
-                                <h6>Planet Category</h6>
-                                <p><ion-icon name="chevron-down"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: none;">
-                                <label><input type="checkbox" name="category" value="Sun"> Sun</label><br>
-                                <label><input type="checkbox" name="category" value="Moon"> Moon</label><br>
-                                <label><input type="checkbox" name="category" value="Mars"> Mars</label><br>
-                                <label><input type="checkbox" name="category" value="Mercury"> Mercury</label><br>
-                                <label><input type="checkbox" name="category" value="Jupiter"> Jupiter</label><br>
-                                <label><input type="checkbox" name="category" value="Venus"> Venus</label><br>
-                                <label><input type="checkbox" name="category" value="Saturn"> Saturn</label><br>
-                                <label><input type="checkbox" name="category" value="Rahu"> Rahu</label><br>
-                                <label><input type="checkbox" name="category" value="Ketu"> Ketu</label><br>
-                            </div>
-                        </div>
-
-                        <!-- Subcategory Filter -->
-                        <!-- <div class="filter-group">
-                            <div class="filter-head" onclick="toggleFilter(this)">
-                                <h6>Sub Category</h6>
-                                <p><ion-icon name="chevron-down"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: none;">
-                                <label><input type="checkbox" name="subcategory" value="sub-A"> sub-A</label><br>
-                                <label><input type="checkbox" name="subcategory" value="sub-B"> sub-B</label><br>
-                                <label><input type="checkbox" name="subcategory" value="sub-C"> sub-C</label><br>
-                                <label><input type="checkbox" name="subcategory" value="sub-D"> sub-D</label><br>
-                                <label><input type="checkbox" name="subcategory" value="sub-E"> sub-E</label><br>
-                                <label><input type="checkbox" name="subcategory" value="sub-F"> sub-F</label><br>
-                            </div>
-                        </div> -->
-
-                        <!-- Attribute Filters -->
-                        <div class="filter-group">
-                            <div class="filter-head" onclick="toggleFilter(this)">
-                                <h6>gender</h6>
-                                <p><ion-icon name="chevron-down"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: none;">
-                                <label><input type="checkbox" name="attribute" data-key="Gender" value="Men">
-                                    Men</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Gender" value="Women">
-                                    Women</label><br>
-                            </div>
-                        </div>
-
-                        <div class="filter-group">
-                            <div class="filter-head" onclick="toggleFilter(this)">
-                                <h6>Color</h6>
-                                <p><ion-icon name="chevron-down"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: none;">
-                                <label><input type="checkbox" name="attribute" data-key="Color" value="Red">
-                                    Red</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Color" value="White">
-                                    White</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Color" value="White">
-                                    Black</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Color" value="White">
-                                    Blue</label><br>
-                            </div>
-                        </div>
-                        <div class="filter-group">
-                            <div class="filter-head" onclick="toggleFilter(this)">
-                                <h6>Size</h6>
-                                <p><ion-icon name="chevron-down"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: none;">
-                                <label><input type="checkbox" name="attribute" data-key="Size" value="28">
-                                    28</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Size" value="30">
-                                    30</label><br>
-                            </div>
-                        </div>
-                        <div class="filter-group">
-                            <div class="filter-head" onclick="toggleFilter(this)">
-                                <h6>Weight</h6>
-                                <p><ion-icon name="chevron-down"></ion-icon></p>
-                            </div>
-                            <div class="filter-options" style="display: none;">
-                                <label><input type="checkbox" name="attribute" data-key="Weight" value="250g">
-                                    250g</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Weight" value="300g">
-                                    300g</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Weight" value="1l">
-                                    1l</label><br>
-                                <label><input type="checkbox" name="attribute" data-key="Weight" value="1kg">
-                                    1kg</label><br>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Main Content -->
-                <main class="product-container">
-                    <div class="product-top">
-                        <img src="/images/blog-img-1.jpg" alt="">
-                    </div>
-                    <div id="product-list" class="product-grid"></div>
-                </main>
+            <div class="Healing-box">
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
+                <div class="Healing-card">
+                    <img src="./images//bg-01.png" alt="">
+                </div>
             </div>
-            <!-- <div id="product-list" class="product-grid"></div> -->
-
-
         </div>
     </section>
 
@@ -804,191 +632,12 @@
                 });
             }
         });
-
-        let allProducts = [];
-        function toggleFilter(header) {
-            const currentlyOpen = document.querySelector('.filter-head.open');
-            if (currentlyOpen && currentlyOpen !== header) {
-                const icon = currentlyOpen.querySelector('ion-icon');
-                if (icon) icon.setAttribute('name', 'chevron-down');
-            }
-
-            const options = header.nextElementSibling;
-            const isVisible = options.style.display === 'block';
-            const icon = header.querySelector('ion-icon');
-
-            if (isVisible) {
-                header.classList.remove('open');
-                options.style.display = 'none';
-                if (icon) icon.setAttribute('name', 'chevron-down');
-            } else {
-                header.classList.add('open');
-                options.style.display = 'block';
-                if (icon) icon.setAttribute('name', 'chevron-up');
-            }
-        }
-
-        fetch(`${host}/api/product/all`)
-            .then(res => res.json())
-            .then(products => {
-                allProducts = products;
-                renderProducts(products);
-            });
-
-        // ---------- Render Products ----------
-        function renderProducts(products) {
-            const container = document.getElementById("product-list");
-            container.innerHTML = "";
-
-            if (products.length === 0) {
-                container.innerHTML = '<p>No products found</p>';
-                return;
-            }
-
-            products.forEach(product => {
-                const div = document.createElement("div");
-                div.className = "product-card";
-                div.innerHTML = `
-      <img src="${product.mainImage}" alt="${product.title}"/>
-      <div class="product-titles">
-        <h6>${product.title.split(" ").length > 5
-                        ? product.title.split(" ").slice(0, 5).join(" ") + "..."
-                        : product.title
-                    }</h6>
-        <p>₹${product.salePrice || '—'} <del>${product.costPrice}</del></p>
-        <button>View Details</button>
-        </div>
-    `;
-                div.addEventListener("click", () => {
-                    window.location.href = `productdetail.html?id=${product._id}`;
-                });
-                container.appendChild(div);
-            });
-        }
-
-        function getSelectedFilters() {
-            const category = Array.from(document.querySelectorAll('input[name="category"]:checked'))
-                .map(input => input.value);
-
-            const subcategory = Array.from(document.querySelectorAll('input[name="subcategory"]:checked'))
-                .map(input => input.value);
-
-            const attributes = Array.from(document.querySelectorAll('input[name="attribute"]:checked'))
-                .map(input => ({
-                    key: input.dataset.key,
-                    value: input.value
-                }));
-
-            return { category, subcategory, attributes };
-        }
-
-        function filterProducts() {
-            const { category, subcategory, attributes } = getSelectedFilters();
-
-            const groupedAttributes = attributes.reduce((acc, attr) => {
-                if (!acc[attr.key]) acc[attr.key] = [];
-                acc[attr.key].push(attr.value);
-                return acc;
-            }, {});
-
-            const filtered = allProducts.filter(product => {
-                // Category filter
-                if (category.length > 0) {
-                    const categories = product.category?.split(',').map(c => c.trim());
-                    if (!category.some(c => categories.includes(c))) return false;
-                }
-
-                // Subcategory filter
-                if (subcategory.length > 0) {
-                    const subcategories = product.subcategory?.split(',').map(s => s.trim());
-                    if (!subcategory.some(s => subcategories.includes(s))) return false;
-                }
-
-                // Attributes filter (more flexible logic)
-                if (Object.keys(groupedAttributes).length > 0) {
-                    const hasMatch = product.variants?.some(variant => {
-                        return Object.entries(groupedAttributes).every(([key, values]) =>
-                            variant.attributes.some(attr => attr.key === key && values.includes(attr.value))
-                        );
-                    });
-
-                    if (!hasMatch) return false;
-                }
-
-                return true;
-            });
-
-            // console.log(filtered, "filtered");
-            renderProducts(filtered);
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            // Add click listeners to category dropdown <p> elements
-            document.querySelectorAll('.category-item .dropdown p').forEach(p => {
-                p.addEventListener('click', function () {
-                    const value = p.textContent.trim();
-
-                    // Find the corresponding checkbox and check it
-                    const checkbox = document.querySelector(`input[type="checkbox"][name="category"][value="${value}"]`);
-                    if (checkbox) {
-                        checkbox.checked = !checkbox.checked; // Toggle selection
-                        filterProducts(); // Trigger filtering
-                    }
-                });
-            });
-        });
-
-
-        // Event listener for all filters
-        document.addEventListener('change', e => {
-            if (['category', 'subcategory', 'attribute'].includes(e.target.name)) {
-                filterProducts();
-            }
-        });
-
-        // ----------Pop up in responsive---------
-        function togglePopup(header) {
-            if (window.innerWidth <= 768) {
-                const icon = header.querySelector('ion-icon');
-                const sidebar = document.getElementById("sidebar");
-                if (sidebar.style.top === "49%") {
-                    sidebar.style.top = "92%";
-                    sidebar.style.height = "auto";
-                    if (icon) icon.setAttribute('name', 'chevron-up');
-                } else {
-                    sidebar.style.top = "49%";
-                    sidebar.style.height = "60%";
-                    if (icon) icon.setAttribute('name', 'chevron-down');
-                }
-            } else {
-                console.log("togglePopup disabled on desktop");
-            }
-        }
-
-        // // ---------- Add to Cart ----------
-        // function addToCart(id, title, price,mainImage) {
-        //     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-        //     const existing = cart.find(item => item.id === id);
-        //     if (existing) {
-        //         existing.qty += 1;
-        //     } else {
-        //         cart.push({ id, title, price,mainImage, qty: 1 });
-        //     }
-        //     localStorage.setItem("cart", JSON.stringify(cart));
-        //     updateCartCount();
-        //     alert("Added to cart!");
-        // }
-
-        function goToCart() {
-            window.location.href = "cart.html";
-        }
     </script>
 
     <script>
         // Populate table on page load
         window.onload = async () => {
             fetchAllData()
-            updateCartCount();
         };
     </script>
 

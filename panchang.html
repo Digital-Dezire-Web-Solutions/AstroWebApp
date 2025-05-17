@@ -473,9 +473,9 @@
             </div>
             <div class="panchang-box">
                 <div class="panchang-left">
-                    <h6>Todays panchang</h6>
+                    <!-- <h6>Todays panchang</h6> -->
                     <div class="panchang-left-box">
-
+                        <div id="panchangDetails"></div>
                     </div>
                 </div>
                 <div class="panchang-right">
@@ -556,13 +556,13 @@
                                 <a href="#">
                                     <ion-icon name="logo-facebook"></ion-icon>
                                 </a>
-                                <a href="#">
+                                <a href="https://www.instagram.com/astro_nivesh/">
                                     <ion-icon name="logo-instagram"></ion-icon>
                                 </a>
                                 <a href="#">
                                     <ion-icon name="logo-linkedin"></ion-icon>
                                 </a>
-                                <a href="#">
+                                <a href="https://www.youtube.com/@astronivesh">
                                     <ion-icon name="logo-youtube"></ion-icon>
                                 </a>
                             </div>
@@ -602,7 +602,7 @@
                 // console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
-                fetchMonthlyPanchang()
+                // fetchMonthlyPanchang()
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
@@ -676,43 +676,79 @@
                 }
 
                 dateElem.onclick = () => {
-                    selectedDate = new Date(year, month, i, 12); // <- fix applied here
-                    datePicker.value = selectedDate.toLocaleDateString('en-CA'); // safe, local timezone
+                    selectedDate = new Date(year, month, i, 12);
+                    datePicker.value = selectedDate.toLocaleDateString('en-CA');
                     renderCalendar(selectedDate);
+                    displayPanchangForSelectedDate(selectedDate);
                 };
 
                 calendarGrid.appendChild(dateElem);
             }
-            console.log(currentDate,"currentDate")
+            console.log(currentDate, "currentDate")
         }
 
         function changeMonth(offset) {
             currentDate.setMonth(currentDate.getMonth() + offset);
             selectedDate = new Date(currentDate);
             renderCalendar(currentDate);
-            
+
         }
 
         datePicker.addEventListener('change', (e) => {
             selectedDate = new Date(e.target.value);
-            currentDate = new Date(selectedDate); 
+            currentDate = new Date(selectedDate);
             renderCalendar(currentDate);
-            
+
         });
 
         // Initialize
         datePicker.value = selectedDate.toISOString().split('T')[0];
         renderCalendar(currentDate);
+        fetchMonthlyPanchang().then(() => {
+            displayPanchangForSelectedDate(selectedDate); // show today’s Panchang by default
+        });
 
+        let monthlyPanchang = [];
         async function fetchMonthlyPanchang() {
             try {
                 const response = await fetch(`${host}/api/admindetail/all`);
                 const datas = await response.json();
-                const monthlyPanchang = datas[0]?.monthlyPanchang.response;
-                console.log(monthlyPanchang,"datas")
+                monthlyPanchang = datas[0]?.monthlyPanchang.response;
+                console.log(monthlyPanchang, "datas")
 
             } catch (error) {
                 console.error("Error fetching plans:", error);
+            }
+        }
+
+        function displayPanchangForSelectedDate(date) {
+            const selectedStr = date.toDateString(); // e.g., "Sat May 17 2025"
+
+            const match = monthlyPanchang.find(day => {
+                const dayDate = new Date(day.date);
+                return dayDate.toDateString() === selectedStr;
+            });
+
+            const displayDiv = document.getElementById('panchangDetails');
+            displayDiv.innerHTML = ''; // Clear previous
+
+            if (match) {
+                displayDiv.innerHTML = `
+            <h5>${match.date}</h5>
+            <p><strong>Day:</strong> ${match.day?.name}</p>
+            <p><strong>Rasi:</strong> ${match.rasi}</p>
+            <p><strong>Sunrise:</strong> ${match.advanced_details?.sun_rise}</p>
+            <p><strong>Sunset:</strong> ${match.advanced_details?.sun_set}</p>
+            <p><strong>Tithi:</strong> ${match.tithi?.name}</p>
+            <p><strong>Nakshatra:</strong> ${match.nakshatra?.name}</p>
+            <p><strong>Karana:</strong> ${match.karana?.name}</p>
+            <p><strong>Yog:</strong> ${match.yoga?.name}</p>
+            <p><strong>Gulika:</strong> ${match.gulika}</p>
+            <p><strong>Rahukaal:</strong> ${match.rahukaal}</p>
+            <p><strong>Yamakanta:</strong> ${match.yamakanta}</p>
+        `;
+            } else {
+                displayDiv.innerHTML = `<p>No Panchang data found. <button onclick="window.location.href='checkout.html'">Renew Subscription</button></p>`;
             }
         }
 
@@ -741,7 +777,7 @@
                     localStorage.removeItem("token");
                     localStorage.removeItem('params');
                     location.reload();
-                    // window.location.href = "./index.html";
+                    window.location.href = "./index.html";
                 });
             }
         });

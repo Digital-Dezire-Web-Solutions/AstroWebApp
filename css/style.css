@@ -2909,6 +2909,7 @@ form {
   margin-top: 2rem;
   /* border-radius: 8px; */
   border: 1px solid #ccc;
+  overflow: auto;
 }
 .kundali-dashaCards h6 {
   background-color: #f9852d;
@@ -4314,6 +4315,33 @@ label span {
   width: auto;
 }
 
+.panchang-left-box button {
+  border: none;
+  background-color: #fe7000;
+  color: white;
+  border-radius: 1.4rem;
+  padding: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+.panchang-left-box h5 {
+  border-bottom: 1px solid #fe7000;
+  margin-bottom: 1rem;
+}
+
+.Healing-box {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+.Healing-card {
+  border-radius: 1.4rem;
+  background-color: white;
+}
+.Healing-card img {
+  width: 100%;
+  object-fit: cover;
+}
 @media all and (min-width: 320px) and (max-width: 767px) {
   .product-grid {
     display: grid;
@@ -4395,5 +4423,11 @@ label span {
   .panchang-left,
   .panchang-right {
     width: 100%;
+  }
+
+  .Healing-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }

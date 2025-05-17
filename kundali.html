@@ -941,13 +941,13 @@
                                 <a href="#">
                                     <ion-icon name="logo-facebook"></ion-icon>
                                 </a>
-                                <a href="#">
+                                <a href="https://www.instagram.com/astro_nivesh/">
                                     <ion-icon name="logo-instagram"></ion-icon>
                                 </a>
                                 <a href="#">
                                     <ion-icon name="logo-linkedin"></ion-icon>
                                 </a>
-                                <a href="#">
+                                <a href="https://www.youtube.com/@astronivesh">
                                     <ion-icon name="logo-youtube"></ion-icon>
                                 </a>
                             </div>
@@ -1222,7 +1222,7 @@
             "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
             "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
             "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+            "PurvaShadha", "UttaraShadha", "Sravana", "Dhanista", "Shatabhisha",
             "PurvaBhadra", "UttaraBhadra", "Revati"
         ];
 
@@ -1282,7 +1282,7 @@
             "Ashlesha": "Mercury", "Magha": "Ketu", "Purva Phalguni": "Venus", "UttaraPhalguni": "Sun",
             "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
             "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
-            "UttraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
+            "UttaraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
             "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury"
         };
 
@@ -2552,6 +2552,7 @@
 
                 const yoginsubtableBody = document.getElementById("yoginiSubDashaTableBody");
                 yoginisubdashaInfo.forEach((mainDashaEntry, index) => {
+                    // console.log(mainDashaEntry,"mainDashaEntry")
                     const mainDasha = mainDashaEntry.main_dasha || "-";
                     const mainDashaLord = mainDashaEntry.main_dasha_lord || "-";
                     let rowHTML = `<tr>
@@ -2559,8 +2560,11 @@
                           <td rowspan="${mainDashaEntry.sub_dasha_list.length}">${mainDashaLord}</td>`;
 
                     mainDashaEntry.sub_dasha_list.forEach((subDasha, subIndex) => {
-                        const subDashaStart = mainDashaEntry.sub_dasha_start_dates[subIndex] || "-";
-                        const subDashaEnd = mainDashaEntry.sub_dasha_end_dates[subIndex] || "-";
+                        // console.log(mainDashaEntry,"mainDashaEntry")
+                        const subDashaStart = mainDashaEntry.sub_dasha_start_dates || "-";
+                        const subDashaEnd = mainDashaEntry.sub_dasha_end_dates || "-";
+                        // console.log(subDashaStart,"subDashaStart")
+                        // console.log(subDashaEnd,"subDashaEnd")
 
                         if (subIndex > 0) rowHTML += "<tr>";
                         rowHTML += `<td>${subDasha}</td>
