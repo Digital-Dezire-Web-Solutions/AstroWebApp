@@ -558,7 +558,19 @@
                         <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="appointments.html">Talk to Astrologer</a></li>
+                        <li><a href="product.html">Astro Store</a></li>
+                        <li><a href="pooja.html">Pooja</a></li>
+                        <li>
+                            <div class="category-item">
+                                <div class="category-item-box">
+                                    <p>Items</p>
+                                </div>
+                                <div class="dropdown">
+                                    <p><a href="gochar.html" style="color: black;">Gochar</a></p>
+                                    <p><a href="panchang.html" style="color: black;">Panchang</a></p>
+                                </div>
+                            </div>
+                        </li>
                     </div>
                 </nav>
 
@@ -1043,6 +1055,8 @@
                                 <div class="profile-subscription">
                                     <h5 class="profile-head">Subscription History</h5>
                                     <div id="profile-subscription-history"></div>
+                                    <h5 class="profile-head">My Orders</h5>
+                                    <div id="profile-order"></div>
                                     <h5 class="profile-head">Appointment History</h5>
                                     <div id="profile-Appointment"></div>
                                     <h5 class="profile-head">Transactions History</h5>
@@ -1174,6 +1188,7 @@
                 populateName(data)
                 populateSubscriptionHistory(data)
                 populateTransitionHistory(data)
+                populateOrders(data)
                 fetchData(data)
                 // console.log(data._id,"id")
                 localStorage.setItem("user_id", data._id);
@@ -1313,6 +1328,78 @@
         `;
                 }
             })
+        }
+        async function populateOrders(data) {
+            console.log(data, "data")
+            try {
+                const response = await fetch(`${host}/api/order/user/${data._id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    }
+                });
+
+                if (!response.ok == true) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data2 = await response.json();
+                console.log(data2, "data")
+                const tableBody = document.getElementById("profile-order");
+                tableBody.innerHTML = "";
+
+                let transitionHistoryData = data2;
+                transitionHistoryData = transitionHistoryData.reverse();
+
+                // If no data, show message
+                if (!transitionHistoryData || transitionHistoryData.length === 0) {
+                    tableBody.innerHTML = `
+            <div class="profile-subscription-card">
+                <div class="subs-body">
+                    <p style="text-align: center;">No Orders Found</p>
+                </div>
+            </div>
+        `;
+                    return;
+                }
+                transitionHistoryData.forEach((item, index) => {
+                    // console.log(item, "item");
+                    const price = item?.price;
+                    let discount = item?.appliedCoupon?.discount || 0;
+                    let discountPer = (discount / 100) * price;
+                    let discounted = price - discountPer;
+                    // console.log(discounted, "discounted")
+
+                    tableBody.innerHTML += `
+            <div class="profile-subscription-card">
+                                        <div class="subs-head">
+                                            
+                        <h6> ${item.status}</h6>
+                                        </div>
+                                        <div class="subs-body">
+                                                                <p>Payment Method : <span>${item.paymentMethod || "N/A"}</span></p>
+                                                                <p>Total Amount : <span>${item.totalAmount}</span> </p>
+                                                                <p>Payable Amount : <span>${item.orderAmount}</span></p>
+                                                                <p>Ordered At : <span>${new Date(item.orderedAt)
+                            .toISOString()
+                            .split("T")[0]}</span></p>
+                                                                    <p>Item: <span>${item.items.map((j => (
+                                j.title
+                            )))}</span></p>
+                                                                    <p>Quantity: <span>${item.items.map((j => (
+                                j.quantity
+                            )))}</span></p>
+
+                                        </div>
+                                    </div>
+        `;
+                })
+
+            } catch (error) {
+                console.error(error);
+                // alert("Error fetching data: " + error.message);
+            }
         }
 
 

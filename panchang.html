@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contact Us | Astro Nivesh</title>
+    <title>About Us | Astro Nivesh</title>
     <!-- swiper slider css CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -90,7 +90,7 @@
         </div>
      </header> -->
 
-     <section class="top-header-comp">
+    <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
             <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
@@ -424,114 +424,163 @@
     </section>
 
     <!-- body section -->
+    <style>
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .calendar-header button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .day {
+            font-weight: bold;
+            background-color: #fe7000;
+            padding: 5px;
+            color: white;
+        }
+
+        .date {
+            padding: 10px;
+            background-color: #ffddcc;
+            border-radius: 1.4rem;
+            text-align: center;
+            height: 80px;
+            font-size: 20px;
+        }
+
+        .today {
+            background-color: #fe7000 !important;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
 
     <section class="why-astrologer-comp">
         <div class="common-container3">
-
             <div class="comn-heading">
-                <h3>Contact Us</h3>
-                <p>Astrology reveals the will of the God</p>
+                <h3>Panchang</h3>
             </div>
+            <div class="panchang-box">
+                <div class="panchang-left">
+                    <h6>Todays panchang</h6>
+                    <div class="panchang-left-box">
 
-            <div class="para-info">
-
-                <Strong>Mobile</Strong>
-
-                <p>+91 93762 41408</p>
-
-                <strong>Email</strong>
-
-                <p>contact@astronivesh.com</p>
-
-                <strong>Address</strong>
-
-                <p>Javahar Chouk, Tuljapur, Osmanabad, Maharashtra - 413601</p>
-
+                    </div>
+                </div>
+                <div class="panchang-right">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <div class="inpt-bx panchang-date">
+                                <label for="name">Select Date</label>
+                                <div class="inpt">
+                                    <input type="date" id="datePicker" />
+                                </div>
+                            </div>
+                            <button onclick="changeMonth(-1)">Prev</button>
+                            <h6 id="monthYear"></h6>
+                            <button onclick="changeMonth(1)">Next</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+                </div>
             </div>
-
         </div>
     </section>
-   
+
 
     <!-- ____________________________
           Our Footer Comp 
           -------------------- -->
 
-          <footer class="footer-comp">
-            <div class="common-container3">
-    
-                <div class="footer-flex-bx">
-    
-                    <div class="left-footer-bx">
-    
-                        <div class="left-header-logo flex item-start gap">
-                            <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
-    
-                            <h6>Astro Nivesh</h6>
-    
-    
-                        </div>
-    
-    
-    
-    
-                        <p>
-                            Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on call and get answers to all your worries by seeing the future life through Astrology Kundli Predictions from the best Astrologers from India. Get best future predictions related to Marriage, love life, Career or Health over call, chat, query or report.
-                        </p>
-    
+    <footer class="footer-comp">
+        <div class="common-container3">
+
+            <div class="footer-flex-bx">
+
+                <div class="left-footer-bx">
+
+                    <div class="left-header-logo flex item-start gap">
+                        <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
+
+                        <h6>Astro Nivesh</h6>
+
+
                     </div>
-    
-    
-                    <div class="right-footer-bx">
-    
-                        <div class="footer-bx">
-                            <h6>Corporate Info</h6>
-                            <div class="footer-li">
-                                <li><a href="aboutus.html">About Us</a></li>
-                                <li><a href="contactus.html">Contact Us</a></li>
-                                <li><a href="termsconditions.html">Terms & Conditions</a></li>
-                                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
-                                <li><a href="refundpolicy.html">Refund Policy</a></li>
-                            </div>
+
+
+
+
+                    <p>
+                        Astro Nivesh is best astrology website for online Astrology predictions. Talk to Astrologer on
+                        call and get answers to all your worries by seeing the future life through Astrology Kundli
+                        Predictions from the best Astrologers from India. Get best future predictions related to
+                        Marriage, love life, Career or Health over call, chat, query or report.
+                    </p>
+
+                </div>
+
+
+                <div class="right-footer-bx">
+
+                    <div class="footer-bx">
+                        <h6>Corporate Info</h6>
+                        <div class="footer-li">
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="termsconditions.html">Terms & Conditions</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <!-- <li><a href="shippingpolicy.html">Shipping Policy</a></li> -->
+                            <li><a href="refundpolicy.html">Refund Policy</a></li>
                         </div>
-    
-    
-                        <div class="footer-bx">
-                            <h6>Contact Info</h6>
-                            <div class="footer-li">
-                                <li><a href="#"> We are available 24x7 on chat support</a></li>
-                                <li><a href="#">Email ID: contact@astronivesh.com</a></li>
-    
-                                <div class="soc-icons-flex">
-                                    <a href="#">
-                                        <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
-                                    <a href="#">
-                                        <ion-icon name="logo-youtube"></ion-icon>
-                                    </a>
-                                </div>
-    
-                            </div>
-                        </div>
-    
-    
                     </div>
-    
+
+
+                    <div class="footer-bx">
+                        <h6>Contact Info</h6>
+                        <div class="footer-li">
+                            <li><a href="#"> We are available 24x7 on chat support</a></li>
+                            <li><a href="#">Email ID: contact@astronivesh.com</a></li>
+
+                            <div class="soc-icons-flex">
+                                <a href="#">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                                <a href="#">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
-    
-                <div class="copyright-bx">
-                    <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All Rights Reserved | Dev. By: <a
-                            href="https://digitaldezire.com/">Digital Dezire</a></p>
-                </div>
+
             </div>
-        </footer>
+
+            <div class="copyright-bx">
+                <p>Copyright 2025 Astro Nivesh (This website is owned and managed by Shriram Lalasaheb Magar) | All
+                    Rights Reserved | Dev. By: <a href="https://digitaldezire.com/">Digital Dezire</a></p>
+            </div>
+        </div>
+    </footer>
     <script>
         const host = "https://api.astronivesh.com";
         const token = localStorage.getItem("token");
@@ -553,6 +602,7 @@
                 // console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
+                fetchMonthlyPanchang()
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
@@ -580,6 +630,92 @@
              
             `
         }
+
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const monthYear = document.getElementById('monthYear');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const datePicker = document.getElementById('datePicker');
+
+        let currentDate = new Date();
+        let selectedDate = new Date();
+
+        function renderCalendar(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth();
+
+            monthYear.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+            calendarGrid.innerHTML = '';
+
+            // Render day headers
+            for (let day of days) {
+                const dayElem = document.createElement('div');
+                dayElem.className = 'day';
+                dayElem.textContent = day;
+                calendarGrid.appendChild(dayElem);
+            }
+
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const totalDays = new Date(year, month + 1, 0).getDate();
+
+            // Fill blanks before the first day
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                calendarGrid.appendChild(document.createElement('div'));
+            }
+
+            for (let i = 1; i <= totalDays; i++) {
+                const dateElem = document.createElement('div');
+                dateElem.className = 'date';
+                dateElem.textContent = i;
+
+                if (
+                    i === selectedDate.getDate() &&
+                    month === selectedDate.getMonth() &&
+                    year === selectedDate.getFullYear()
+                ) {
+                    dateElem.classList.add('today');
+                }
+
+                dateElem.onclick = () => {
+                    selectedDate = new Date(year, month, i, 12); // <- fix applied here
+                    datePicker.value = selectedDate.toLocaleDateString('en-CA'); // safe, local timezone
+                    renderCalendar(selectedDate);
+                };
+
+                calendarGrid.appendChild(dateElem);
+            }
+            console.log(currentDate,"currentDate")
+        }
+
+        function changeMonth(offset) {
+            currentDate.setMonth(currentDate.getMonth() + offset);
+            selectedDate = new Date(currentDate);
+            renderCalendar(currentDate);
+            
+        }
+
+        datePicker.addEventListener('change', (e) => {
+            selectedDate = new Date(e.target.value);
+            currentDate = new Date(selectedDate); 
+            renderCalendar(currentDate);
+            
+        });
+
+        // Initialize
+        datePicker.value = selectedDate.toISOString().split('T')[0];
+        renderCalendar(currentDate);
+
+        async function fetchMonthlyPanchang() {
+            try {
+                const response = await fetch(`${host}/api/admindetail/all`);
+                const datas = await response.json();
+                const monthlyPanchang = datas[0]?.monthlyPanchang.response;
+                console.log(monthlyPanchang,"datas")
+
+            } catch (error) {
+                console.error("Error fetching plans:", error);
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             // console.log(token, "token")
             const loginForm = document.querySelector(".login-info");

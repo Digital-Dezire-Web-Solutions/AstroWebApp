@@ -216,8 +216,19 @@
                         <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="appointments.html">Talk to Astrologer</a></li>
-                        <li><a href="product.html">Astromall</a></li>
+                        <li><a href="product.html">Astro Store</a></li>
+                        <li><a href="pooja.html">Pooja</a></li>
+                        <li>
+                            <div class="category-item">
+                                <div class="category-item-box">
+                                    <p>Items</p>
+                                </div>
+                                <div class="dropdown">
+                                    <p><a href="gochar.html" style="color: black;">Gochar</a></p>
+                                    <p><a href="panchang.html" style="color: black;">Panchang</a></p>
+                                </div>
+                            </div>
+                        </li>
                     </div>
                 </nav>
 
@@ -481,6 +492,14 @@
                                     pooja</label><br>
                                 <label><input type="checkbox" name="category" value="Offline pooja"> Offline
                                     pooja</label><br>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-head open" onclick="toggleFilter(this)">
+                                <h6>Planet Category</h6>
+                                <p><ion-icon name="chevron-down"></ion-icon></p>
+                            </div>
+                            <div class="filter-options" style="display: none;">
                                 <label><input type="checkbox" name="category" value="Sun"> Sun</label><br>
                                 <label><input type="checkbox" name="category" value="Moon"> Moon</label><br>
                                 <label><input type="checkbox" name="category" value="Mars"> Mars</label><br>
@@ -572,6 +591,9 @@
 
                 <!-- Main Content -->
                 <main class="product-container">
+                    <div class="product-top">
+                        <img src="/images/blog-img-1.jpg" alt="">
+                    </div>
                     <div id="product-list" class="product-grid"></div>
                 </main>
             </div>
@@ -793,9 +815,14 @@
                 div.className = "product-card";
                 div.innerHTML = `
       <img src="${product.mainImage}" alt="${product.title}"/>
-      <h6>${product.title}</h6>
-      <p>₹${product.salePrice || '—'}</p>
-      <button>View Details</button>
+      <div class="product-titles">
+        <h6>${product.title.split(" ").length > 5
+                        ? product.title.split(" ").slice(0, 5).join(" ") + "..."
+                        : product.title
+                    }</h6>
+        <p>₹${product.salePrice || '—'} <del>${product.costPrice}</del></p>
+        <button>View Details</button>
+        </div>
     `;
                 div.addEventListener("click", () => {
                     window.location.href = `productdetail.html?id=${product._id}`;

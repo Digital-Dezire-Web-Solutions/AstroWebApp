@@ -175,11 +175,22 @@
 
                 <nav class="nav">
                     <div class="nav-lists flex item-start">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="appointments.html">Talk to Astrologer</a></li>
-                        <li><a href="product.html">Astromall</a></li>
+                        <li><a href="product.html">Astro Store</a></li>
+                        <li><a href="pooja.html">Pooja</a></li>
+                        <li>
+                            <div class="category-item">
+                                <div class="category-item-box">
+                                    <p>Items</p>
+                                </div>
+                                <div class="dropdown">
+                                    <p><a href="gochar.html" style="color: black;">Gochar</a></p>
+                                    <p><a href="panchang.html" style="color: black;">Panchang</a></p>
+                                </div>
+                            </div>
+                        </li>
                     </div>
                 </nav>
 
@@ -1449,8 +1460,8 @@ Get kundali reading over the phone or in person. -->
                         throw new Error("Failed to fetch API data");
                     }
 
-                    const data = await response.json();
-                    api = data[0]?.apiKey || []; // Store fetched API key
+                    const data2 = await response.json();
+                    api = data2[0]?.apiKey || []; // Store fetched API key
                     // console.log(api, "Fetched API key");
                 } catch (error) {
                     console.error("Error fetching API key:", error);
@@ -1514,18 +1525,18 @@ Get kundali reading over the phone or in person. -->
                     console.log(params, "params")
                     localStorage.setItem('params', JSON.stringify(params));
                     const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
-                    const response2 = await fetch(horoscopeUrl);
-                    if (!response2.ok) throw new Error("Failed to fetch horoscope data.");
-                    const horoscopeData = await response2.json();
+                    const horoscopeResponse = await fetch(horoscopeUrl);
+                    if (!horoscopeResponse.ok) throw new Error("Failed to fetch horoscope data.");
+                    const horoscopeData = await horoscopeResponse.json();
                     // console.log(horoscopeData,"horoscopeData")
 
                     const DashaUrl = `${baseUrl}/dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
-                    const responseAll = await fetch(DashaUrl);
-                    if (!responseAll.ok) {
+                    const dashaResponse = await fetch(DashaUrl);
+                    if (!dashaResponse.ok) {
                         throw new Error("Failed to fetch Dasha data.");
                     }
 
-                    const DashaData = await responseAll.json();
+                    const DashaData = await dashaResponse.json();
                     const dashas = DashaData.response.order_of_dashas || [];
 
                     const chart1 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
@@ -1631,17 +1642,65 @@ Get kundali reading over the phone or in person. -->
                     } catch (error) {
                         console.log("error")
                     }
-                    const response = await fetch(`${host}/api/detail/adddetail`, {
+                    // const dataResponse = await fetch(`${host}/api/detail/adddetail`, {
+                    //     method: "POST",
+                    //     headers: {
+                    //         "Content-Type": "application/json",
+                    //         "auth-token": json.authToken
+                    //     },
+                    //     body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url, mahaDashaData, antarDashaData, charDashaData, charsubDashaData, yoginiDashaData, yoginisubDashaData, paryantarDashaData })
+                    // });
+                    const horoData = await fetch(`${host}/api/detail/adddetail`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                             "auth-token": json.authToken
                         },
-                        body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url, mahaDashaData, antarDashaData, charDashaData, charsubDashaData, yoginiDashaData, yoginisubDashaData, paryantarDashaData })
+                        body: JSON.stringify({
+                            step: "horoscope",
+                            horoscopeData
+                        })
                     });
 
-                    const result = await response.json();
+                    const dashaData = await fetch(`${host}/api/detail/adddetail`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": json.authToken
+                        },
+                        body: JSON.stringify({
+                            step: "dashas",
+                            dashas,
+                            mahaDashaData,
+                            antarDashaData,
+                            charDashaData,
+                            charsubDashaData,
+                            yoginiDashaData,
+                            yoginisubDashaData,
+                            paryantarDashaData
+                        })
+                    });
+
+                    const cartData = await fetch(`${host}/api/detail/adddetail`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": json.authToken
+                        },
+                        body: JSON.stringify({
+                            step: "rashi",
+                            rashiData, 
+                            chart1Url, 
+                            chart2Url
+                        })
+                    });
+
+                    const result = await horoData.json();
+                    const result2 = await dashaData.json();
+                    const result3 = await cartData.json();
                     console.log(result);
+                    console.log(result2);
+                    console.log(result3);
                 }
                 catch (error) {
                     console.log(error, "error")

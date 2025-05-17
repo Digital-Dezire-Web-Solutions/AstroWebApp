@@ -174,11 +174,22 @@
 
                 <nav class="nav">
                     <div class="nav-lists flex item-start">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
-                        <li><a href="appointments.html">Talk to Astrologer</a></li>
-                        <li><a href="product.html">Astromall</a></li>
+                        <li><a href="product.html">Astro Store</a></li>
+                        <li><a href="pooja.html">Pooja</a></li>
+                        <li>
+                            <div class="category-item">
+                                <div class="category-item-box">
+                                    <p>Items</p>
+                                </div>
+                                <div class="dropdown">
+                                    <p><a href="gochar.html" style="color: black;">Gochar</a></p>
+                                    <p><a href="panchang.html" style="color: black;">Panchang</a></p>
+                                </div>
+                            </div>
+                        </li>
                     </div>
                 </nav>
 
@@ -767,8 +778,8 @@
 
 
                     <!-- Nakshatra Comparison Result -->
-                    <h6>Comparison Result:</h6>
-                    <p id="comparisonResult">Select two days to compare their Nakshatras.</p>
+                    <!-- <h6>Comparison Result:</h6>
+                    <p id="comparisonResult">Select two days to compare their Nakshatras.</p> -->
 
                     <div id="legend">
                         <p><span style="color: green;">&#9632;</span>Full Day Trade</p>
@@ -1276,7 +1287,7 @@
                         const result = compareNakshatraAndTradeableDays(entry1, entry2, tradeableDays);
 
                         // Show the result
-                        document.getElementById('comparisonResult').textContent = `Comparison Result: ${result}`;
+                        // document.getElementById('comparisonResult').textContent = `Comparison Result: ${result}`;
 
                         // Check if the calendar header already exists, if not, create it
                         const calendarContainer = document.getElementById("calendar");
