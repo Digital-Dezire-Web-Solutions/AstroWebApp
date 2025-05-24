@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+   <meta charset="UTF-8">
+
+   <title>Sector Astro Score Calculator</title>
+
+   <style>
+
+       body {
+
+           font-family: Arial, sans-serif;
+
+           margin: 40px;
+
+           background-color: #f9f9f9;
+
+       }
+
+       table {
+
+           width: 100%;
+
+           border-collapse: collapse;
+
+           margin-top: 20px;
+
+       }
+
+       th, td {
+
+           border: 1px solid #ccc;
+
+           padding: 10px;
+
+           text-align: center;
+
+       }
+
+       th {
+
+           background-color: #444;
+
+           color: white;
+
+       }
+
+       tr:nth-child(even) {
+
+           background-color: #eee;
+
+       }
+
+       h2 {
+
+           color: #333;
+
+       }
+
+       select, input[type='number'] {
+
+           padding: 6px;
+
+           margin-right: 10px;
+
+       }
+
+       label {
+
+           margin-right: 10px;
+
+       }
+
+       #trend {
+
+           font-size: 20px;
+
+           font-weight: bold;
+
+           color: #222;
+
+           margin-top: 20px;
+
+       }
+
+   </style>
+
+</head>
+
+<body>
+
+ 
+
+   <h2>Sector Astro Score Calculator</h2>
+
+ 
+
+   <label for="sector">Select Sector:</label>
+
+   <select id="sector" onchange="setPlanetWeights()">
+
+       <option value="banking">Banking & Finance</option>
+
+       <option value="metals">Metals & Mining</option>
+
+       <option value="fmcg">FMCG</option>
+
+   </select>
+
+ 
+
+   <div id="inputs">
+
+       <!-- Planet input rows will be injected here -->
+
+   </div>
+
+ 
+
+   <table id="results">
+
+       <thead>
+
+           <tr>
+
+               <th>Planet</th>
+
+               <th>Base Score</th>
+
+               <th>Conjunction</th>
+
+               <th>Retrograde</th>
+
+               <th>Weight</th>
+
+               <th>Weighted Score</th>
+
+           </tr>
+
+       </thead>
+
+       <tbody id="scoreTable">
+
+       </tbody>
+
+   </table>
+
+ 
+
+   <div id="trend"></div>
+
+ 
+
+   <script>
+
+       const sectorWeights = {
+
+           banking: {
+
+               Jupiter: 0.6,
+
+               Mercury: 0.3,
+
+               Venus: 0.1
+
+           },
+
+           metals: {
+
+               Saturn: 0.6,
+
+               Mars: 0.3,
+
+               Rahu: 0.1
+
+           },
+
+           fmcg: {
+
+               Venus: 0.6,
+
+               Moon: 0.3,
+
+               Mercury: 0.1
+
+           }
+
+       };
+
+ 
+
+       function setPlanetWeights() {
+
+           const sector = document.getElementById("sector").value;
+
+           const weights = sectorWeights[sector];
+
+           const inputContainer = document.getElementById("inputs");
+
+           inputContainer.innerHTML = '';
+
+ 
+
+           for (const planet in weights) {
+
+               inputContainer.innerHTML += `
+
+                   <h3>${planet}</h3>
+
+                   <label>Base Score:</label>
+
+                   <input type="number" id="base_${planet}" value="0" step="0.1">
+
+                   <label>Conjunction Modifier:</label>
+
+                   <input type="number" id="conj_${planet}" value="0" step="0.1">
+
+                   <label>Retrograde Modifier:</label>
+
+                   <input type="number" id="retro_${planet}" value="0" step="0.1">
+
+                   <label>Weight: ${weights[planet]}</label>
+
+                   <br/><br/>
+
+               `;
+
+           }
+
+           calculateScores(weights);
+
+       }
+
+ 
+
+       function calculateScores(weights) {
+
+           const tbody = document.getElementById("scoreTable");
+
+           const trendOutput = document.getElementById("trend");
+
+           tbody.innerHTML = '';
+
+           let totalScore = 0;
+
+ 
+
+           for (const planet in weights) {
+
+               const base = parseFloat(document.getElementById(`base_${planet}`).value);
+
+               const conj = parseFloat(document.getElementById(`conj_${planet}`).value);
+
+               const retro = parseFloat(document.getElementById(`retro_${planet}`).value);
+
+               const final = base + conj + retro;
+
+               const weighted = final * weights[planet];
+
+               totalScore += weighted;
+
+ 
+
+               tbody.innerHTML += `
+
+                   <tr>
+
+                       <td>${planet}</td>
+
+                       <td>${base}</td>
+
+                       <td>${conj}</td>
+
+                       <td>${retro}</td>
+
+                       <td>${weights[planet]}</td>
+
+                       <td>${weighted.toFixed(2)}</td>
+
+                   </tr>
+
+               `;
+
+           }
+
+ 
+
+           tbody.innerHTML += `
+
+               <tr>
+
+                   <th colspan="5">Total Sector Score</th>
+
+                   <th>${totalScore.toFixed(2)}</th>
+
+               </tr>
+
+           `;
+
+ 
+
+           let trend = "";
+
+           if (totalScore >= 2) trend = "Strongly Bullish";
+
+           else if (totalScore >= 0.5) trend = "Bullish";
+
+           else if (totalScore > -0.5) trend = "Neutral";
+
+           else if (totalScore > -2) trend = "Bearish";
+
+           else trend = "Strongly Bearish";
+
+ 
+
+           trendOutput.innerHTML = `Trend Outlook: <strong>${trend}</strong>`;
+
+       }
+
+ 
+
+       document.addEventListener("input", () => {
+
+           const sector = document.getElementById("sector").value;
+
+           calculateScores(sectorWeights[sector]);
+
+       });
+
+ 
+
+       setPlanetWeights();
+
+   </script>
+
+</body>
+
+</html>
