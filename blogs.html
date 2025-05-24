@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Market | Astro Nivesh</title>
+    <title>Blogs | Astro Nivesh</title>
     <!-- swiper slider css CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -89,9 +89,10 @@
             
         </div>
      </header> -->
-     <section class="top-header-comp">
+
+    <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
-            <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
+            <div class="left-header-logo flex item-start gap">
                 <img src="./images/astrology.png" alt="">
 
                 <h6>Astro Nivesh</h6>
@@ -116,7 +117,7 @@
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                        <span>+91-8421616117</span>
+                        <span>+91-9376241408</span>
                     </div>
                 </div>
 
@@ -125,12 +126,71 @@
                     <ion-icon name="menu"></ion-icon>
                 </button>
 
-                <div class="cart-bx cart-bx2">
-                    <button class="cart-btn cart-btn2" onclick="goToCart()">
-                        <span class="qty" id="cart-count2">0</span>
+
+                <!-- <div class="cart-bx cart-bx2">
+                    <button class="cart-btn cart-btn2">
+                        <span class="qty">4</span>
                         <ion-icon name="bag"></ion-icon>
                     </button>
-                </div>
+
+                    <div class="cart-lists-bx cart-lists-bx-mob">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div> -->
 
                 <button class="apnt-btn" onclick="window.location.href='appointments.html'">
                     Talk to Astrologer
@@ -145,6 +205,44 @@
 
         </div>
     </section>
+    <style>
+        .coming-soon {
+            filter: grayscale(5);
+        }
+
+        .coming-soon .card-info {
+            color: #ffffff;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            border-radius: .7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            background: #dcdcdc;
+            transition: ease-in-out
+        }
+
+        .coming-soon:hover .card-info {
+            color: white;
+            transition: color 1s;
+            display: flex;
+            transition: ease-in-out;
+        }
+
+        .coming-soon .card-info p {
+            color: white;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
 
 
     <header class="header">
@@ -157,7 +255,7 @@
                     <ion-icon name="close-circle"></ion-icon>
                 </button>
 
-                <div class="left-header-logo flex item-start gap mob-logo" onclick="window.location.href='home.html'">
+                <div class="left-header-logo flex item-start gap mob-logo">
                     <img src="./images/astrology.png" alt="">
 
                     <h6>Astro Nivesh</h6>
@@ -253,7 +351,7 @@
 
                 <div class="astrology-cont-info">
 
-                    <!-- <div class="top-hedr-bx flex item-center">
+                    <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
                             <ion-icon name="home"></ion-icon>
                         </div>
@@ -261,7 +359,7 @@
                             <h6>Reach Us</h6>
                             <span>601 , Ram Nagar Dewas</span>
                         </div>
-                    </div> -->
+                    </div>
 
                     <div class="top-hedr-bx flex item-center">
                         <div class="left-hedr-icon">
@@ -269,7 +367,7 @@
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                            <span>+91-8421616117</span>
+                            <span>+91-9376241408</span>
                         </div>
                     </div>
 
@@ -289,12 +387,74 @@
                         <ion-icon name="search"></ion-icon>
                     </button>
                 </div>
-                <div class="cart-bx">
-                    <button class="cart-btn" onclick="goToCart()">
-                        <span class="qty" id="cart-count">0</span>
+
+
+                <!-- <div class="cart-bx">
+                    <button class="cart-btn">
+                        <span class="qty">4</span>
                         <ion-icon name="bag"></ion-icon>
                     </button>
-                </div>
+
+                    <div class="cart-lists-bx">
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+
+                        </li>
+
+
+                        <li>
+                            <div class="item-img">
+                                <img src="./images/astro-book.jpg" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h6>Astro Book</h6>
+                                <p>Quantity : 2 x $45</p>
+
+                                <h5>$90</h5>
+                            </div>
+                            <div class="delet-item-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </div>
+                        </li>
+
+                        <button class="apnt-btn chckout-btn">
+                            Check Out
+                        </button>
+
+                    </div>
+
+                </div> -->
+
+
 
             </div>
 
@@ -480,92 +640,20 @@
         </div>
 
     </section>
-    <section class="our-cards-comp">
+
+    <!-- body section -->
+    <section class="why-astrologer-comp">
         <div class="common-container3">
-
-            <!-- payment -->
-            <div id="renewModal" class="renewmodal" style="display:none;">
-                <div class="renewmodal-box">
-                    <div class="modal-content" id="modalContent">
-                        <span onclick="document.getElementById('renewModal').style.display='none'">
-                            <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
-                        </span>
-                        <h5>Subscription</h5>
-                        <div class="payment-plan-box">
-                            <div class="payment-plan-head">
-                                <h6 id="planName">Basic</h6>
-                            </div>
-                            <div class="payment-plan-body">
-                                <div class="payment-price">
-                                    <p>₹</p>
-                                    <h5 id="planPrice">501</h5>
-                                </div>
-                                <div class="payment-plan-body-box">
-                                    <p>/Per user</p>
-                                    <p>/Per months</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="inpt-bx">
-                            <label for="coupon">Coupon</label>
-                            <div class="inpt payment-coupon">
-                                <input type="type" id="couponInput" name="couponInput" placeholder="Coupon code"
-                                    autocomplete="off">
-                                <button type="button" onclick="applyCoupon()">Apply</button>
-                            </div>
-                            <p id="couponMessage" style="margin-top: 5px;"></p>
-                        </div> -->
-                        <p>100% Secure Payment method</p>
-                        <button class="form-btn" type="button" onclick="window.location.href='checkout.html'">
-                            Proceed to Checkout
-                        </button>
-                    </div>
-
-                    <!-- Success Message -->
-                    <div class="subscription-message" id="successMessage"
-                        style="display:none; text-align:center; color:white;">
-                        <img src="./images/success.gif" alt="">
-                        <p>Payment Successful!</p>
-                        <p>Subscription from 18-03-2025 to 17-03-2025 is successfull!</p>
-                    </div>
-
-                    <!-- Failed Message -->
-                    <div class="subscription-message" id="failedMessage"
-                        style="display:none; text-align:center; color:white;">
-                        <i class="fa-solid fa-circle-xmark"
-                            style="font-size: 50px; color: #FF4C4C; margin-bottom: 15px;"></i>
-                        <p>Payment failed!</p>
-                    </div>
-                </div>
+            <div class="comn-heading">
+                <h3>Blogs</h3>
+                <!-- <p>Astrology reveals the will of the God</p> -->
             </div>
-
-            <h5 class="page-title">Market</h5>
-            <div class="cards-grid grid grid-four-col grid-gap">
-                <a href="/calendar.html" id="marketLink">
-                    <div class="card-bx card1">
-                        <div class="icon icon1">
-                            <img src="./images/calendar.png" alt="">
-                        </div>
-                        <h6>Calendar</h6>
-
-                    </div>
-                </a>
-                <a href="/sbcmarket.html">
-                    <div class="card-bx card1">
-                        <div class="icon icon2">
-                            <img src="./images/sbc.png" alt="">
-                        </div>
-                        <h6>Daily Update</h6>
-                    </div>
-                </a>
+            <div class="blog-box">
+                <div class="blog-list" id="blog-list"></div>
             </div>
-            <div class="profile-renew" id="renewDiv" style="display: none;">
-                <h6 id="h6"></h6>
-                <p class="renew-btn" id="renew-btn" onclick="openRenewModal()"></p>
-            </div>
-
         </div>
     </section>
+
 
     <!-- ____________________________
           Our Footer Comp 
@@ -579,7 +667,7 @@
                 <div class="left-footer-bx">
 
                     <div class="left-header-logo flex item-start gap">
-                        <img src="./images/astrology.png" alt="" onclick="window.location.href='home.html'">
+                        <img src="./images/astrology.png" alt="">
 
                         <h6>Astro Nivesh</h6>
 
@@ -624,13 +712,13 @@
                                 <a href="#">
                                     <ion-icon name="logo-facebook"></ion-icon>
                                 </a>
-                                <a href="https://www.instagram.com/astro_nivesh/">
+                                <a href="#">
                                     <ion-icon name="logo-instagram"></ion-icon>
                                 </a>
                                 <a href="#">
                                     <ion-icon name="logo-linkedin"></ion-icon>
                                 </a>
-                                <a href="https://www.youtube.com/@astronivesh">
+                                <a href="#">
                                     <ion-icon name="logo-youtube"></ion-icon>
                                 </a>
                             </div>
@@ -667,69 +755,9 @@
                 }
 
                 const data = await response.json();
-                console.log(data, "data")
+                // console.log(data, "data")
                 populatePTable(data)
                 populateName(data)
-
-                const user = data
-                function getSubscriptionDates(user) {
-                    let startDate, endDate;
-                    const h6 = document.getElementById('h6');
-                    const p = document.getElementById('renew-btn');
-
-                    if (user.subscription.plan === "Free") {
-                        startDate = user.subscription.startDate;
-                        endDate = user.subscription.endDate;
-                        h6.textContent = "Get Premium to unlock all features!";
-                        p.textContent = "Get Premium";
-                    } else {
-                        h6.textContent = "Renew your Subscription to get your future updates!";
-                        p.textContent = "Renew Subscription";
-                        if (user.subscriptionHistory.length > 0) {
-                            const startDates = user.subscriptionHistory.map(sub => new Date(sub.startDate));
-                            const endDates = user.subscriptionHistory.map(sub => new Date(sub.endDate));
-
-                            const minStartDate = new Date(Math.min(...startDates));
-                            const maxEndDate = new Date(Math.max(...endDates));
-
-                            startDate = minStartDate.toISOString();
-                            endDate = maxEndDate.toISOString();
-                        } else {
-                            startDate = user.subscription.startDate;
-                            endDate = user.subscription.endDate;
-                        }
-                    }
-
-                    return { startDate, endDate };
-                }
-                const result = getSubscriptionDates(user);
-
-                function formatDateToISO(dateStr) {
-                    const dateObj = new Date(dateStr + " 12:00:00");
-                    return dateObj.toISOString().split('T')[0];
-                }
-
-                // Convert start & end to ISO
-                const startDateISO = result.startDate;
-                const endDateISO = result.endDate;
-
-                // Example: Replace this date with your fetched subscription end date
-                const subscriptionEndDate = new Date(endDateISO); // YYYY-MM-DD format
-                const today = new Date();
-
-                const timeDiff = subscriptionEndDate.getTime() - today.getTime();
-                const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-                // Get the div
-                const renewDiv = document.getElementById('renewDiv');
-
-                // Logic to show/hide
-                if (dayDiff > 2) {
-                    renewDiv.style.display = 'none';
-                } else {
-                    renewDiv.style.display = 'flex';
-                }
-
                 // localStorage.setItem("admin_id", (data.map((entry) => (entry._id))))
             } catch (error) {
                 console.error(error);
@@ -773,7 +801,6 @@
                 loginForm.style.display = "block";
                 regInfo.style.display = "block";
                 profileInfo.style.display = "none";
-                window.location.href = "./index.html";
             }
 
             // Logout functionality
@@ -783,21 +810,34 @@
                     localStorage.removeItem("token");
                     localStorage.removeItem('params');
                     location.reload();
+                    // window.location.href = "./index.html";
                 });
             }
         });
 
-        // Function to open modal (customize as per your modal setup)
-        function openRenewModal(subscriptionId) {
-            // Example: Show modal and populate hidden input with subscriptionId
-            document.getElementById('renewModal').style.display = 'block';
+        async function fetchBlogs() {
+            const res = await fetch(`${host}/api/blogs`);
+            const blogs = await res.json();
+
+            const blogList = document.getElementById('blog-list');
+
+            blogs.forEach(blog => {
+                const div = document.createElement('div');
+                div.className = 'product-card';
+                div.innerHTML = `
+                <img src=${blog.blogImage} alt=${blog.title}>
+                <div class="product-titles">
+                    <h6>${blog.title}</h6>
+                    <p>${blog.description || ''}</p>
+                    <button><a href="blogdetail.html?id=${blog._id}">Read More</a></button>
+                    
+                </div>
+        `;
+                blogList.appendChild(div);
+            });
         }
-        // Auto open modal after 2 seconds on page load
-        // window.addEventListener('load', () => {
-        //     setTimeout(() => {
-        //         openRenewModal();
-        //     }, 1000); // 2000 ms = 2 sec
-        // });
+
+        fetchBlogs();
     </script>
 
     <script>
