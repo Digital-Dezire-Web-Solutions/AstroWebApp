@@ -91,7 +91,7 @@
         </div>
      </header> -->
 
-     <section class="top-header-comp">
+    <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
             <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
@@ -180,7 +180,7 @@
                         <li><a href="market.html">Market</a></li>
                         <li><a href="product.html">Astro Store</a></li>
                         <li><a href="pooja.html">Pooja</a></li>
-                         <li>
+                        <li>
                             <div class="category-item">
                                 <div class="category-item-box">
                                     <p>Items</p>
@@ -511,6 +511,12 @@
                                 <p>Navamsa</p>
                             </div>
                         </div>
+                        <div class="kundali-img-nres others">
+                            <div id="navamsaChart" class="kundli-chart active">
+                                <div id="horoscope-chart3" class="chart-container3">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Buttons to toggle -->
@@ -712,13 +718,9 @@
                             <label for="factors">Divisional Chart</label>
                             <select id="divisionalSelect">
                                 <option value="D1" selected>D1 - Lagna</option>
-                                <option value="D2">D2</option>
                                 <option value="D3">D3</option>
                                 <option value="D3-s">D3-s</option>
-                                <option value="D4">D4</option>
-                                <option value="D5">D5</option>
                                 <option value="D7">D7</option>
-                                <option value="D8">D8</option>
                                 <option value="D9">D9</option>
                                 <option value="D10">D10</option>
                                 <option value="D10-R">D10-R</option>
@@ -727,7 +729,6 @@
                                 <option value="D20">D20</option>
                                 <option value="D24">D24</option>
                                 <option value="D24-R">D24-R</option>
-                                <option value="D27">D27</option>
                                 <option value="D30">D30</option>
                                 <option value="D40">D40</option>
                                 <option value="D45">D45</option>
@@ -1556,6 +1557,20 @@
             let rashiData = datass[0]?.rashiData || [];
             let chart1Url = datass[0]?.chart1Url || [];
             let chart2Url = datass[0]?.chart2Url || datass[0]?.chart9Url || [];
+            let chart3Url = datass[0]?.chart3Url || []
+            let chart3sUrl = datass[0]?.chart3sUrl || []
+            let chart7Url = datass[0]?.chart7Url || []
+            let chart10Url = datass[0]?.chart10Url || []
+            let chart10rUrl = datass[0]?.chart10rUrl || []
+            let chart12Url = datass[0]?.chart12Url || []
+            let chart16Url = datass[0]?.chart16Url || []
+            let chart20Url = datass[0]?.chart20Url || []
+            let chart24Url = datass[0]?.chart24Url || []
+            let chart24rUrl = datass[0]?.chart24rUrl || []
+            let chart30Url = datass[0]?.chart30Url || []
+            let chart40Url = datass[0]?.chart40Url || []
+            let chart45Url = datass[0]?.chart45Url || []
+            let chart60Url = datass[0]?.chart60Url || []
             let mahaDashaData = datass[0]?.mahaDashaData || [];
             let antarDashaData = datass[0]?.antarDashaData || [];
             let charDashaData = datass[0]?.charDashaData || [];
@@ -1761,6 +1776,84 @@
                     updateTable(comparisonData, storedPadas, position, nakshatraPosition);
                     function updateTable(comparisonData, padas, position, nakshatraPosition) {
                         let divisionalData = rashiData[selectedDivisional];
+                        console.log(selectedDivisional)
+
+
+                        // Clear existing content
+                        const chartContainer3 = document.getElementById("horoscope-chart3");
+
+                        const lagnaNavamsaDiv = document.querySelector(".kundali-img-nres:not(.others)");
+                        const othersDiv = document.querySelector(".kundali-img-nres.others");
+                        const kundaliButtons = document.querySelector(".kundali-buttons");
+
+                        chartContainer1.innerHTML = "";
+                        chartContainer2.innerHTML = "";
+                        chartContainer3.innerHTML = "";
+
+                        if (selectedDivisional === "D1") {
+                            // Show Lagna/Navamsa
+                            lagnaNavamsaDiv.style.display = "block";
+                            othersDiv.style.display = "none";
+                            kundaliButtons.style.display = "flex"; // Or "block" based on your layout
+
+                            chartContainer1.innerHTML = chart1Url;
+                            chartContainer2.innerHTML = chart2Url;
+                        } else {
+                            // Show other charts
+                            lagnaNavamsaDiv.style.display = "none";
+                            othersDiv.style.display = "block";
+                            kundaliButtons.style.display = "none";
+
+                            switch (selectedDivisional) {
+                                case "D3":
+                                    chartContainer3.innerHTML = chart3Url;
+                                    break;
+                                case "D3-s":
+                                    chartContainer3.innerHTML = chart3sUrl;
+                                    break;
+                                case "D7":
+                                    chartContainer3.innerHTML = chart7Url;
+                                    break;
+                                case "D9":
+                                    chartContainer3.innerHTML = chart2Url;
+                                    break;
+                                case "D10":
+                                    chartContainer3.innerHTML = chart10Url;
+                                    break;
+                                case "D10-R":
+                                    chartContainer3.innerHTML = chart10rUrl;
+                                    break;
+                                case "D12":
+                                    chartContainer3.innerHTML = chart12Url;
+                                    break;
+                                case "D16":
+                                    chartContainer3.innerHTML = chart16Url;
+                                    break;
+                                case "D20":
+                                    chartContainer3.innerHTML = chart20Url;
+                                    break;
+                                case "D24":
+                                    chartContainer3.innerHTML = chart24Url;
+                                    break;
+                                case "D24-R":
+                                    chartContainer3.innerHTML = chart24rUrl;
+                                    break;
+                                case "D30":
+                                    chartContainer3.innerHTML = chart30Url;
+                                    break;
+                                case "D40":
+                                    chartContainer3.innerHTML = chart40Url;
+                                    break;
+                                case "D45":
+                                    chartContainer3.innerHTML = chart45Url;
+                                    break;
+                                case "D60":
+                                    chartContainer3.innerHTML = chart60Url;
+                                    break;
+                                default:
+                                    chartContainer3.innerHTML = "No chart available";
+                            }
+                        }
                         // console.log(rashiData, "rashiData")
                         // console.log(position, "position")
                         // console.log(nakshatraPosition, "nakshatraPosition")
