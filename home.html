@@ -947,6 +947,11 @@
                     <h6>Today's Panchang</h6>
                 </div>
             </div>
+            <div class="home-section1">
+                <div class="home-section-box" id="eventContainer">
+                    <h6>Upcoming Planetary Events</h6>
+                </div>
+            </div>
             <!-- <div class="home-section2">
                 <div class="home-section-box">
                     <h6>Major astrological event today</h6>
@@ -1702,6 +1707,12 @@
                 const datas = await response.json();
                 fetchAllData3(data, datas)
                 const remedy = datas[0]?.remedy?.slice().reverse() || [];
+                if (!Array.isArray(datas) || datas.length === 0 || !datas[0].gochar || !Array.isArray(datas[0].gochar)) {
+                    throw new Error("Invalid data format: 'gochar' is missing or not an array.");
+                }
+
+                let gocharData = datas[0].gochar;
+                // console.log(gocharData, "gocharData")
 
                 function renderRemedies() {
                     const mainContainer = document.getElementById("remedySelection");
@@ -1773,6 +1784,85 @@
                     });
                 }
                 renderRemedies();
+
+                function getCurrentDate() {
+                    const today = new Date();
+                    const year = today.getFullYear();
+                    const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+                    const day = String(today.getDate()).padStart(2, "0");
+                    return `${year}-${month}-${day}`;
+                }
+
+                function getUpcomingRetrogradeCombustEvents(gocharData, currentDateStr) {
+                    const currentDate = new Date(currentDateStr);
+                    const filteredEvents = [];
+
+                    const latestPlanetStatus = {};
+
+                    for (const entry of gocharData) {
+                        const entryDate = new Date(entry.date_of_entry);
+                        if (entryDate <= currentDate) {
+                            latestPlanetStatus[entry.planet_name] = entry;
+                        }
+                    }
+
+                    for (const entry of gocharData) {
+                        const entryDate = new Date(entry.date_of_entry);
+
+                        if (
+                            entryDate > currentDate &&
+                            entry.combust === true &&
+                            entry.motion === "retrograde"
+                        ) {
+                            const last = latestPlanetStatus[entry.planet_name];
+                            if (!last) continue;
+
+                            const rashiChanged = last.rashi !== entry.rashi;
+                            const nakshatraChanged = last.nakshatra !== entry.nakshatra;
+
+                            if (rashiChanged || nakshatraChanged) {
+                                const daysLeft = Math.ceil(
+                                    (entryDate - currentDate) / (1000 * 60 * 60 * 24)
+                                );
+
+                                filteredEvents.push({
+                                    planet: entry.planet_name,
+                                    from: currentDateStr,
+                                    to: entry.date_of_entry,
+                                    daysLeft,
+                                    rashi: entry.rashi,
+                                    nakshatra: entry.nakshatra,
+                                });
+                            }
+                        }
+                    }
+
+                    return filteredEvents;
+                }
+
+                const events = getUpcomingRetrogradeCombustEvents(gocharData, getCurrentDate());
+
+                const container = document.getElementById("eventContainer");
+
+                if (events.length === 0) {
+                    const div = document.createElement("div");
+                    div.className = "event";
+                    div.innerHTML = "<p>No upcoming events.</p>";
+                    container.appendChild(div);
+                } else {
+                    events.forEach(event => {
+                        const div = document.createElement("div");
+                        div.className = "event";
+                        div.innerHTML = `
+          <p><strong>Planet:</strong>${event.planet}</p>
+          <p><strong>Change Date:</strong> ${event.to}</p>
+          <p><strong>Rashi:</strong> ${event.rashi}</p>
+          <p><strong>Nakshatra:</strong> ${event.nakshatra}</p>
+          <p style="border-bottom: 1px solid #fe7000;"><strong>Days Left:</strong> ${event.daysLeft} days</p>
+        `;
+                        container.appendChild(div);
+                    });
+                }
 
             } catch (error) {
                 console.error("Error fetching plans:", error);
