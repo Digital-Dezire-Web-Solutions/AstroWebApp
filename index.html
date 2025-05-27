@@ -1448,7 +1448,6 @@ Get kundali reading over the phone or in person. -->
                 // Save the auth token and redirect
                 localStorage.setItem("token", json.authToken);
                 document.querySelector(".login-reg-comp").classList.remove("formactive");
-                // window.location.href = "/index.html";
                 const loginForm = document.querySelector(".login-info");
                 const regInfo = document.querySelector(".reg-info");
                 const profileInfo = document.querySelector(".profile-info");
@@ -1839,7 +1838,7 @@ Get kundali reading over the phone or in person. -->
                 modal.style.display = "none";
                 const profileInfo = document.querySelector(".profile-info");
                 profileInfo.style.display = "block";
-                // window.location.href = "/home.html";
+                window.location.href = "/home.html";
 
             } else {
                 document.getElementById("errorc1Msg").innerText = json.error;
