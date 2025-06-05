@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDF with Circular Centered Image</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <h1>Generate PDF with Custom Cover Page</h1>
+    <button onclick="generatePDF()">Download PDF</button>
+
+    <script>
+        function getCircularImage(imageSrc, diameterMM, callback) {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function () {
+                const dpi = 300; // high resolution
+                const pxPerMM = dpi / 25.4; // mm to pixels
+                const diameterPx = diameterMM * pxPerMM;
+
+                const canvas = document.createElement("canvas");
+                canvas.width = diameterPx;
+                canvas.height = diameterPx;
+
+                const ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(diameterPx / 2, diameterPx / 2, diameterPx / 2, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+                ctx.drawImage(img, 0, 0, diameterPx, diameterPx);
+
+                const highResImage = canvas.toDataURL("image/png", 1.0); // max quality
+                callback(highResImage);
+            };
+            img.src = imageSrc;
+        }
+
+        // Main function to generate PDF
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+
+            // ---------- First Page (Cover Page) ----------
+            const imageDiameterMM = 100;
+const imgX = (pageWidth - imageDiameterMM) / 2;
+const imgY = 50;
+
+            // Use getCircularImage to generate the circular version.
+            getCircularImage('./images/astrology.png', imageDiameterMM, function (circularImageData) {
+                doc.addImage(circularImageData, 'PNG', imgX, imgY, imageDiameterMM, imageDiameterMM);
+                doc.setFontSize(40);
+                doc.text('Astro Nivesh', pageWidth / 2, imgY + imageDiameterMM + 20, { align: 'center' });
+
+                doc.addPage();
+
+                // Example header and footer functions for subsequent pages:
+                const header = () => {
+                    doc.setFontSize(12);
+                    doc.text('Rahul', 10, 10);
+                    doc.text('Get free chart (kundli) at https://www.astronivesh.com', pageWidth - 10, 10, { align: 'right' });
+                    doc.setLineWidth(0.3);
+                    doc.line(10, 12, pageWidth - 10, 12);
+                };
+
+                const footer = (pageNum) => {
+                    const footerY = pageHeight - 10;
+
+                    // Draw a top border line for the footer
+                    doc.setLineWidth(0.3); // line thickness
+                    doc.line(10, footerY - 5, pageWidth - 10, footerY - 5); // from left to right margin
+
+                    // Footer text
+                    doc.setFontSize(10);
+                    doc.text(
+                        `https://www.astronivesh.com, E-mail: contact@astronivesh.com, Phone: +91 84216 16117, Page No. ${pageNum}`,
+                        pageWidth / 2,
+                        footerY,
+                        { align: 'center' }
+                    );
+                };
+
+                // For demonstration, add sample content on the second page with header/footer.
+                header();
+                footer(2);
+                const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Pellentesque vel mauris ac mauris tincidunt ullamcorper. 
+Suspendisse nec bibendum odio. Mauris laoreet sem ut lacus feugiat, ut tincidunt erat blandit.
+Ut id orci eget tellus gravida malesuada. Quisque sed risus nec lorem posuere tincidunt. 
+Integer nec erat ac nulla rutrum sodales. Cras ut lacus sit amet justo laoreet cursus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Pellentesque vel mauris ac mauris tincidunt ullamcorper. `;
+                const lines = doc.splitTextToSize(content, pageWidth - 20); // 10mm margin on each side
+                let y = 20;
+                let lineHeight = 7;
+                let pageNum = 2;
+                for (let i = 0; i < lines.length; i++) {
+                    if (y + lineHeight > pageHeight - 20) {
+                        doc.addPage();
+                        pageNum++;
+                        header();
+                        footer(pageNum);
+                        y = 20;
+                    }
+                    doc.text(lines[i], 10, y);
+                    y += lineHeight;
+                }
+
+                doc.save("custom-cover-pdf.pdf");
+            });
+        }
+    </script>
+</body>
+
+</html>

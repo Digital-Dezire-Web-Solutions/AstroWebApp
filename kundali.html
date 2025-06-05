@@ -26,6 +26,9 @@
         gtag('config', 'G-ZF2CQTE5JG');
     </script>
     <script src="https://cdn.pagesense.io/js/astronivesh/b70b9482d2454a09ac5feadc3675f35c.js"></script>
+    <!-- JS libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
 </head>
 
@@ -492,7 +495,8 @@
         <div class="common-container3">
 
             <div class="kundali-container">
-                <h5>Kundali Chart</h5>
+                <h5>Kundali Chart <button onclick="generatePDF()">Download PDF</button></h5>
+
                 <div class="kundali-img-bx">
                     <!-- Charts -->
                     <div class="kundli-img">
@@ -2733,6 +2737,501 @@
             await fetchAllData()
         };
     </script>
+    <script>
+        // Place this outside your generatePDF function, preferably at the top of your script
+        let pdfReadImageData = null;
+
+        function loadPdfReadImage(callback) {
+            const img = new Image();
+            img.crossOrigin = "Anonymous"; // Ensure cross-origin loading if image is not from the same domain
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                pdfReadImageData = canvas.toDataURL('image/png');
+                console.log("PDF Read Image Loaded successfully.");
+                callback();
+            };
+            img.onerror = function () {
+                console.error("Failed to load pdf-read.png image.");
+                callback(); // Call callback even if image fails to load
+            };
+            img.src = './images/pdf-read.png'; // **Verify this path is correct**
+        }
+
+        // Call this function once before generatePDF is ever called, e.g., on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPdfReadImage(() => {
+                // You can generate PDF here or just let the button click trigger it
+                console.log("Image pre-loading complete. PDF generation is ready.");
+            });
+        });
+
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            let pageNum = 1;
+            const userResponse = await fetch(`${host}/api/auth/getuser`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": token
+                }
+            });
+
+            if (!userResponse.ok == true) {
+                throw new Error("Failed to fetch data");
+            }
+
+            const userData = await userResponse.json();
+
+            const header = () => {
+                doc.setFontSize(10);
+                doc.text(`${userData.name}`, 10, 10);
+                doc.text('Get free chart (kundli) at https://www.astronivesh.com', pageWidth - 10, 10, { align: 'right' });
+                doc.line(10, 12, pageWidth - 10, 12);
+            };
+
+
+            const footer = () => {
+                const y = pageHeight - 10;
+                doc.setLineWidth(0.3);
+                doc.line(10, y - 5, pageWidth - 10, y - 5);
+                doc.setFontSize(10);
+                doc.text(`https://www.astronivesh.com, E-mail: contact@astronivesh.com, Phone: +91 84216 16117, Page No. ${pageNum}`, pageWidth / 2, y, { align: 'center' });
+            };
+
+            const addTableSection = (title, tableElement, yOffset = 25) => {
+                if (tableElement) {
+                    doc.setFontSize(14);
+                    doc.text(title, 10, 20);
+                    doc.autoTable({
+                        html: tableElement, startY: yOffset, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                }
+            };
+
+            const addTableToPage = async (title, tableElement, startY) => {
+                if (tableElement && tableElement.querySelector('tbody').innerHTML.trim() !== "") {
+                    doc.setFontSize(12);
+                    doc.text(title, 10, startY);
+                    await doc.autoTable({
+                        html: tableElement, startY: startY + 5, margin: { left: 10, right: 10 }, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    return doc.autoTable.previous.finalY + 10;
+                } else {
+                    console.log(`Table "${title}" is empty for the current house.`);
+                    return startY;
+                }
+            };
+            const addChartToPage = (elementId, x, y, width, height) => {
+                return new Promise(async (resolve, reject) => {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        try {
+                            const canvas = await html2canvas(element, { useCORS: true })
+                                .catch(error => {
+                                    console.error("Error during html2canvas:", error);
+                                    resolve(null); // Resolve with null on error
+                                });
+
+                            if (canvas) {
+                                const imgData = canvas.toDataURL('image/png');
+                                doc.addImage(imgData, 'PNG', x, y, width, height);
+                                resolve({ y: y + height + 5 });
+                            } else {
+                                resolve({ y });
+                            }
+                        } catch (error) {
+                            console.error(`Error processing chart "${elementId}":`, error);
+                            resolve({ y });
+                        }
+                    } else {
+                        console.log(`Chart element with ID "${elementId}" not found.`);
+                        resolve({ y });
+                    }
+                });
+            };
+
+            // New helper function to add the image if space permits
+            const addImageIfSpace = (lastContentY) => {
+                if (!pdfReadImageData) {
+                    console.log("Image data not loaded, skipping image addition.");
+                    return;
+                }
+
+                const imgWidth = 185;
+                const originalImgWidthPx = 500;
+                const originalImgHeightPx = 150;
+                const imgHeight = (imgWidth / originalImgWidthPx) * originalImgHeightPx;
+
+                const imgX = pageWidth - 10 - imgWidth;
+                const footerHeight = 20;
+                const minSpaceRequired = imgHeight;
+
+                // Check if there's enough space between the last content and the footer
+                if (pageHeight - lastContentY - footerHeight >= minSpaceRequired) {
+                    const imgY = pageHeight - footerHeight - imgHeight; // 5mm padding from the footer area
+                    doc.addImage(pdfReadImageData, 'PNG', imgX, imgY, imgWidth, imgHeight);
+                    console.log(`Image added at Y: ${imgY} on Page ${pageNum}`);
+                } else {
+                    console.log(`Not enough space on page ${pageNum}. Last content Y: ${lastContentY}, Required space: ${minSpaceRequired}, Available: ${pageHeight - lastContentY - footerHeight}`);
+                }
+            };
+
+            const addNewPage = () => {
+                doc.addPage();
+                pageNum++;
+                header();
+                footer();
+            };
+
+            // First Page
+            await new Promise((resolve) => {
+                getCircularImage('./images/astrology.png', 100, function (circularImageData) {
+                    const imgX = (pageWidth - 100) / 2;
+                    const imgY = 50;
+                    doc.addImage(circularImageData, 'PNG', imgX, imgY, 100, 100);
+                    doc.setFontSize(20);
+                    doc.text("Astro Nivesh", pageWidth / 2, imgY + 120, { align: 'center' });
+                    resolve();
+                });
+            });
+
+            // Second Page: Panchang Details and Planetary Positions
+            addNewPage();
+            let currentY = 20;
+
+            const panchangElement = document.getElementById("panchang-section");
+            if (panchangElement) {
+                const table = panchangElement.querySelector("table");
+                if (table) {
+                    doc.setFontSize(14);
+                    doc.text("Panchang Details", 10, currentY);
+                    doc.autoTable({
+                        html: table, startY: currentY + 5, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    currentY = doc.autoTable.previous.finalY + 10;
+                }
+            }
+
+            const planetElement = document.getElementById("planet-section");
+            if (planetElement) {
+                const table = planetElement.querySelector("table");
+                if (table) {
+                    doc.setFontSize(14);
+                    doc.text("Planetary Positions", 10, currentY);
+                    doc.autoTable({
+                        html: table, startY: currentY + 5, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                }
+            }
+            addImageIfSpace(currentY);
+
+            // Next Pages: House Details (House 1 to House 12)
+            const houseSection = document.getElementById('house-section');
+            const houseDropdown = document.getElementById('houseDropdown');
+            const tableDataContainer = houseSection.querySelector(".table-data");
+
+            if (houseSection && houseDropdown && tableDataContainer) {
+                for (let i = 1; i <= 12; i++) {
+                    addNewPage();
+                    doc.setFontSize(14);
+                    doc.text(`House ${i} Details`, 10, 20);
+                    let yPosition = 25;
+
+                    console.log(`Processing House: ${i}`);
+                    const originalValue = houseDropdown.value;
+                    houseDropdown.value = i;
+                    houseDropdown.dispatchEvent(new Event('change'));
+
+                    await new Promise((resolve) => setTimeout(resolve, 500));
+
+                    const thirdTableElement = tableDataContainer.querySelector("#thirdTable").closest("table");
+                    if (thirdTableElement) {
+                        yPosition = await addTableToPage(`Nakshatra(Pada), Rashi, Planets, Nature, Dasha`, thirdTableElement, yPosition);
+                    }
+
+                    const fourthTableElement = tableDataContainer.querySelector("#fourthTable").closest("table");
+                    if (fourthTableElement) {
+                        yPosition = await addTableToPage(`Planet Aspect`, fourthTableElement, yPosition);
+                    }
+
+                    const fifthTableElement = tableDataContainer.querySelector("#fifthTable").closest("table");
+                    if (fifthTableElement) {
+                        await addTableToPage(`Gochar`, fifthTableElement, yPosition);
+                    }
+                    addImageIfSpace(yPosition);
+
+                    houseDropdown.value = originalValue;
+                }
+
+                // New page(s) for charts
+                addNewPage();
+                doc.setFontSize(14);
+                doc.text("Kundli Charts", 10, 20);
+                let chartY = 25;
+                const chartWidth = pageWidth / 3 - 15;
+                const chartHeight = 70;
+                const chartXStart = 10;
+                let chartRow = 0;
+                let chartCol = 0;
+                let chartIndex = 0;
+
+                const divisionalSelectElement = document.getElementById('divisionalSelect');
+                const divisionalOptions = Array.from(divisionalSelectElement.options).map(opt => opt.value);
+                const othersDivElement = document.querySelector(".kundali-img-nres.others"); // Get the reference here
+
+                async function fetchChartUrls() {
+                    const response = await fetch(`${host}/api/detail/fetchalldetail`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token
+                        }
+                    });
+                    const data = await response.json();
+                    return data?.[0] || {};
+                }
+
+                const allChartUrls = await fetchChartUrls();
+
+                const chartsToProcess = [...divisionalOptions.map(divisional => ({
+                    id: `divisional-${divisional}`,
+                    label: divisional,
+                    setVisible: (div) => {
+                        document.querySelector(".kundali-img-nres:not(.others)").style.display = 'none';
+                        if (othersDivElement) {
+                            othersDivElement.style.display = 'block';
+                            const chartContainer = document.getElementById("horoscope-chart3");
+                            switch (div) {
+                                case "D1": chartContainer.innerHTML = allChartUrls?.chart1Url || ''; break;
+                                case "D3": chartContainer.innerHTML = allChartUrls?.chart3Url || ''; break;
+                                case "D3-s": chartContainer.innerHTML = allChartUrls?.chart3sUrl || ''; break;
+                                case "D7": chartContainer.innerHTML = allChartUrls?.chart7Url || ''; break;
+                                case "D9": chartContainer.innerHTML = allChartUrls?.chart2Url || ''; break;
+                                case "D10": chartContainer.innerHTML = allChartUrls?.chart10Url || ''; break;
+                                case "D10-R": chartContainer.innerHTML = allChartUrls?.chart10rUrl || ''; break;
+                                case "D12": chartContainer.innerHTML = allChartUrls?.chart12Url || ''; break;
+                                case "D16": chartContainer.innerHTML = allChartUrls?.chart16Url || ''; break;
+                                case "D20": chartContainer.innerHTML = allChartUrls?.chart20Url || ''; break;
+                                case "D24": chartContainer.innerHTML = allChartUrls?.chart24Url || ''; break;
+                                case "D24-R": chartContainer.innerHTML = allChartUrls?.chart24rUrl || ''; break;
+                                case "D30": chartContainer.innerHTML = allChartUrls?.chart30Url || ''; break;
+                                case "D40": chartContainer.innerHTML = allChartUrls?.chart40Url || ''; break;
+                                case "D45": chartContainer.innerHTML = allChartUrls?.chart45Url || ''; break;
+                                case "D60": chartContainer.innerHTML = allChartUrls?.chart60Url || ''; break;
+                                default: chartContainer.innerHTML = '';
+                            }
+                        } else {
+                            console.error("Element with class '.kundali-img-nres.others' not found (in setVisible).");
+                        }
+                    },
+                    getContainerId: () => 'horoscope-chart3'
+                }))
+                ];
+
+                for (const chartInfo of chartsToProcess) {
+                    if (chartInfo.setVisible) {
+                        chartInfo.setVisible(chartInfo.label);
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, 800));
+
+                    const containerId = chartInfo.getContainerId();
+                    const elementToCapture = document.getElementById(containerId === 'navamsaChart' && othersDivElement?.style.display === 'block' ? 'horoscope-chart3' : containerId);
+
+                    if (elementToCapture && elementToCapture.innerHTML.trim() !== "") {
+                        const x = chartXStart + chartCol * (chartWidth + 5);
+                        const y = 25 + chartRow * (chartHeight + 10);
+                        try {
+                            const result = await addChartToPage(elementToCapture.id, x, y, chartWidth, chartHeight);
+                            if (result) {
+                                chartY = Math.max(chartY, y + chartHeight + 5); // Keep track of max Y for charts
+                                if (chartCol < 2) {
+                                    chartCol++;
+                                } else {
+                                    chartCol = 0;
+                                    chartRow++;
+                                }
+                                if ((chartIndex + 1) % 6 === 0) {
+                                    addImageIfSpace(chartY);
+                                    addNewPage();
+                                    doc.setFontSize(14);
+                                    doc.text("Kundli Charts (Continued)", 10, 20);
+                                    chartY = 25;
+                                    chartRow = 0;
+                                    chartCol = 0;
+                                }
+                                chartIndex++;
+                            }
+                        } catch (error) {
+                            console.error("Error adding chart:", chartInfo.label, error);
+                        }
+                    }
+                }
+                addImageIfSpace(chartY);
+            }
+            // Next Pages: Dasha Details
+            addNewPage();
+            const dasaTitle = "Dasha Details";
+            const dasaElement = document.getElementById("dasa-section");
+            if (dasaElement) {
+                doc.setFontSize(14);
+                doc.text(dasaTitle, 10, 20);
+                let dasaYOffset = 25;
+
+                const dasaDetailsTable = dasaElement.querySelector("table");
+                if (dasaDetailsTable) {
+                    doc.autoTable({
+                        html: dasaDetailsTable, startY: dasaYOffset, headStyles: {
+                            fillColor: '#fe7000'
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+
+                const mahaDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(1) table");
+                if (mahaDashaTable) {
+                    doc.setFontSize(12);
+                    doc.text("Maha Dasha", 10, dasaYOffset);
+                    doc.autoTable({
+                        html: mahaDashaTable, startY: dasaYOffset + 5, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+
+                const charDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(2) table");
+                if (charDashaTable) {
+                    doc.setFontSize(12);
+                    doc.text("Char Dasha", 10, dasaYOffset);
+                    doc.autoTable({
+                        html: charDashaTable, startY: dasaYOffset + 5, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+                addImageIfSpace(dasaYOffset);
+
+                const antarDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(3) table");
+                if (antarDashaTable) {
+                    addNewPage();
+                    doc.setFontSize(14);
+                    doc.text("Dasha Details (Continued)", 10, 20);
+                    doc.setFontSize(12);
+                    doc.text("Antar Dasha", 10, 25);
+                    doc.autoTable({
+                        html: antarDashaTable, startY: 30, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+                addImageIfSpace(dasaYOffset);
+
+                const yoginiDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(4) table");
+                if (yoginiDashaTable) {
+                    addNewPage();
+                    doc.setFontSize(14);
+                    doc.text("Dasha Details (Continued)", 10, 20);
+                    doc.setFontSize(12);
+                    doc.text("Yogini Dasha", 10, 25);
+                    doc.autoTable({
+                        html: yoginiDashaTable, startY: 30, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+                addImageIfSpace(dasaYOffset);
+
+                const charSubDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(5) table");
+                if (charSubDashaTable) {
+                    addNewPage();
+                    doc.setFontSize(14);
+                    doc.text("Dasha Details (Continued)", 10, 20);
+                    doc.setFontSize(12);
+                    doc.text("Char Dasha Sub", 10, 25);
+                    doc.autoTable({
+                        html: charSubDashaTable, startY: 30, headStyles: {
+                            fillColor: '#fe7000' // Apply orange background to the header row
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+                addImageIfSpace(dasaYOffset);
+
+                const yoginiSubDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(6) table");
+                if (yoginiSubDashaTable) {
+                    addNewPage();
+                    doc.setFontSize(14);
+                    doc.text("Dasha Details (Continued)", 10, 20);
+                    doc.setFontSize(12);
+                    doc.text("Yogini Dasha Sub", 10, 25);
+                    doc.autoTable({
+                        html: yoginiSubDashaTable, startY: 30, headStyles: {
+                            fillColor: '#fe7000'
+                        }
+                    });
+                    dasaYOffset = doc.autoTable.previous.finalY + 10;
+                }
+                addImageIfSpace(dasaYOffset);
+
+                const paryantarDashaTable = dasaElement.querySelector(".kundali-dashaCards:nth-child(7) table");
+                if (paryantarDashaTable) {
+                    addNewPage();
+                    doc.setFontSize(14);
+                    doc.text("Dasha Details (Continued)", 10, 20);
+                    doc.setFontSize(12);
+                    doc.text("Paryantar Dasha", 10, 25);
+                    doc.autoTable({
+                        html: paryantarDashaTable, startY: 30, headStyles: {
+                            fillColor: '#fe7000'
+                        }
+                    });
+                }
+                addImageIfSpace(dasaYOffset);
+            }
+            doc.save("kundli-report.pdf");
+        }
+
+        function getCircularImage(imageSrc, diameterMM, callback) {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function () {
+                const dpi = 300;
+                const pxPerMM = dpi / 25.4;
+                const diameterPx = diameterMM * pxPerMM;
+                const canvas = document.createElement("canvas");
+                canvas.width = diameterPx;
+                canvas.height = diameterPx;
+                const ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(diameterPx / 2, diameterPx / 2, diameterPx / 2, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+                ctx.drawImage(img, 0, 0, diameterPx, diameterPx);
+                const highResImage = canvas.toDataURL("image/png", 1.0);
+                callback(highResImage);
+            };
+            img.src = imageSrc;
+        }
+    </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -2740,6 +3239,9 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- script file -->
     <script src="./js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
 </body>
 
 </html>
