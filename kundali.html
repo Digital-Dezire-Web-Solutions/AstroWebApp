@@ -495,7 +495,7 @@
         <div class="common-container3">
 
             <div class="kundali-container">
-                <h5>Kundali Chart <button class="pdf-download" onclick="generatePDF()">Download PDF</button></h5>
+                <h5>Kundali Chart <button class="pdf-download" id="downloadPdfBtn">Download PDF</button></h5>
 
                 <div class="kundali-img-bx">
                     <!-- Charts -->
@@ -2740,6 +2740,7 @@
     <script>
         // Place this outside your generatePDF function, preferably at the top of your script
         let pdfReadImageData = null;
+        let generatedDoc = null;
 
         function loadPdfReadImage(callback) {
             const img = new Image();
@@ -2763,10 +2764,17 @@
 
         // Call this function once before generatePDF is ever called, e.g., on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('downloadPdfBtn');
+            btn.disabled = true;
+            btn.style.backgroundColor = 'gray';
             loadPdfReadImage(() => {
                 // You can generate PDF here or just let the button click trigger it
                 console.log("Image pre-loading complete. PDF generation is ready.");
+                setTimeout(() => {
+                    generatePDF();
+                }, 1000);
             });
+            document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
         });
 
         async function generatePDF() {
@@ -2832,34 +2840,13 @@
                     return startY;
                 }
             };
-            const addChartToPage = (elementId, x, y, width, height) => {
-                return new Promise(async (resolve, reject) => {
-                    const element = document.getElementById(elementId);
-                    if (element) {
-                        try {
-                            const canvas = await html2canvas(element, { useCORS: true })
-                                .catch(error => {
-                                    console.error("Error during html2canvas:", error);
-                                    resolve(null); // Resolve with null on error
-                                });
-
-                            if (canvas) {
-                                const imgData = canvas.toDataURL('image/png');
-                                doc.addImage(imgData, 'PNG', x, y, width, height);
-                                resolve({ y: y + height + 5 });
-                            } else {
-                                resolve({ y });
-                            }
-                        } catch (error) {
-                            console.error(`Error processing chart "${elementId}":`, error);
-                            resolve({ y });
-                        }
-                    } else {
-                        console.log(`Chart element with ID "${elementId}" not found.`);
-                        resolve({ y });
-                    }
-                });
-            };
+            async function addChartToPage(element, x, y, width, height) {
+                // Use html2canvas or similar to capture from element directly
+                const canvas = await html2canvas(element);
+                const imgData = canvas.toDataURL('image/png');
+                doc.addImage(imgData, 'PNG', x, y, width, height);
+                return true;
+            }
 
             // New helper function to add the image if space permits
             const addImageIfSpace = (lastContentY) => {
@@ -3008,79 +2995,79 @@
 
                 const allChartUrls = await fetchChartUrls();
 
-                const chartsToProcess = [...divisionalOptions.map(divisional => ({
-                    id: `divisional-${divisional}`,
-                    label: divisional,
-                    setVisible: (div) => {
-                        document.querySelector(".kundali-img-nres:not(.others)").style.display = 'none';
-                        if (othersDivElement) {
-                            othersDivElement.style.display = 'block';
-                            const chartContainer = document.getElementById("horoscope-chart3");
-                            switch (div) {
-                                case "D1": chartContainer.innerHTML = allChartUrls?.chart1Url || ''; break;
-                                case "D3": chartContainer.innerHTML = allChartUrls?.chart3Url || ''; break;
-                                case "D3-s": chartContainer.innerHTML = allChartUrls?.chart3sUrl || ''; break;
-                                case "D7": chartContainer.innerHTML = allChartUrls?.chart7Url || ''; break;
-                                case "D9": chartContainer.innerHTML = allChartUrls?.chart2Url || ''; break;
-                                case "D10": chartContainer.innerHTML = allChartUrls?.chart10Url || ''; break;
-                                case "D10-R": chartContainer.innerHTML = allChartUrls?.chart10rUrl || ''; break;
-                                case "D12": chartContainer.innerHTML = allChartUrls?.chart12Url || ''; break;
-                                case "D16": chartContainer.innerHTML = allChartUrls?.chart16Url || ''; break;
-                                case "D20": chartContainer.innerHTML = allChartUrls?.chart20Url || ''; break;
-                                case "D24": chartContainer.innerHTML = allChartUrls?.chart24Url || ''; break;
-                                case "D24-R": chartContainer.innerHTML = allChartUrls?.chart24rUrl || ''; break;
-                                case "D30": chartContainer.innerHTML = allChartUrls?.chart30Url || ''; break;
-                                case "D40": chartContainer.innerHTML = allChartUrls?.chart40Url || ''; break;
-                                case "D45": chartContainer.innerHTML = allChartUrls?.chart45Url || ''; break;
-                                case "D60": chartContainer.innerHTML = allChartUrls?.chart60Url || ''; break;
-                                default: chartContainer.innerHTML = '';
-                            }
-                        } else {
-                            console.error("Element with class '.kundali-img-nres.others' not found (in setVisible).");
-                        }
-                    },
-                    getContainerId: () => 'horoscope-chart3'
-                }))
-                ];
+                // Map divisional label to corresponding chart URL key in allChartUrls
+                const chartMap = {
+                    "D1": allChartUrls?.chart1Url,
+                    "D3": allChartUrls?.chart3Url,
+                    "D3-s": allChartUrls?.chart3sUrl,
+                    "D7": allChartUrls?.chart7Url,
+                    "D9": allChartUrls?.chart9Url || allChartUrls?.chart2Url,
+                    "D10": allChartUrls?.chart10Url,
+                    "D10-R": allChartUrls?.chart10rUrl,
+                    "D12": allChartUrls?.chart12Url,
+                    "D16": allChartUrls?.chart16Url,
+                    "D20": allChartUrls?.chart20Url,
+                    "D24": allChartUrls?.chart24Url,
+                    "D24-R": allChartUrls?.chart24rUrl,
+                    "D30": allChartUrls?.chart30Url,
+                    "D40": allChartUrls?.chart40Url,
+                    "D45": allChartUrls?.chart45Url,
+                    "D60": allChartUrls?.chart60Url,
+                };
 
-                for (const chartInfo of chartsToProcess) {
-                    if (chartInfo.setVisible) {
-                        chartInfo.setVisible(chartInfo.label);
+                for (const divisional of divisionalOptions) {
+                    const chartHtml = chartMap[divisional];
+                    if (!chartHtml || chartHtml.trim() === "") continue;
+
+                    // Parse the chart HTML string safely
+                    const parser = new DOMParser();
+                    const parsedDoc = parser.parseFromString(chartHtml, "text/html");
+
+                    // Create a temp div and append parsed content
+                    const tempDiv = document.createElement("div");
+                    tempDiv.style.position = "absolute";
+                    tempDiv.style.left = "-9999px";
+                    tempDiv.style.top = "0";
+                    tempDiv.style.width = "auto";
+                    tempDiv.style.height = "auto";
+                    tempDiv.style.background = "white"; // Optional: improve contrast
+                    tempDiv.append(...parsedDoc.body.childNodes);
+                    document.body.appendChild(tempDiv);
+
+                    await new Promise(resolve => setTimeout(resolve, 300)); // Give DOM time
+
+                    const x = chartXStart + chartCol * (chartWidth + 5);
+                    const y = 25 + chartRow * (chartHeight + 10);
+
+                    try {
+                        const result = await addChartToPage(tempDiv, x, y, chartWidth, chartHeight);
+                        if (result) {
+                            chartY = Math.max(chartY, y + chartHeight + 5);
+
+                            if (chartCol < 2) {
+                                chartCol++;
+                            } else {
+                                chartCol = 0;
+                                chartRow++;
+                            }
+
+                            if ((chartIndex + 1) % 6 === 0) {
+                                addImageIfSpace(chartY);
+                                addNewPage();
+                                doc.setFontSize(14);
+                                doc.text("Kundli Charts (Continued)", 10, 20);
+                                chartY = 25;
+                                chartRow = 0;
+                                chartCol = 0;
+                            }
+
+                            chartIndex++;
+                        }
+                    } catch (error) {
+                        console.error("Error adding chart:", divisional, error);
                     }
 
-                    await new Promise(resolve => setTimeout(resolve, 800));
-
-                    const containerId = chartInfo.getContainerId();
-                    const elementToCapture = document.getElementById(containerId === 'navamsaChart' && othersDivElement?.style.display === 'block' ? 'horoscope-chart3' : containerId);
-
-                    if (elementToCapture && elementToCapture.innerHTML.trim() !== "") {
-                        const x = chartXStart + chartCol * (chartWidth + 5);
-                        const y = 25 + chartRow * (chartHeight + 10);
-                        try {
-                            const result = await addChartToPage(elementToCapture.id, x, y, chartWidth, chartHeight);
-                            if (result) {
-                                chartY = Math.max(chartY, y + chartHeight + 5); // Keep track of max Y for charts
-                                if (chartCol < 2) {
-                                    chartCol++;
-                                } else {
-                                    chartCol = 0;
-                                    chartRow++;
-                                }
-                                if ((chartIndex + 1) % 6 === 0) {
-                                    addImageIfSpace(chartY);
-                                    addNewPage();
-                                    doc.setFontSize(14);
-                                    doc.text("Kundli Charts (Continued)", 10, 20);
-                                    chartY = 25;
-                                    chartRow = 0;
-                                    chartCol = 0;
-                                }
-                                chartIndex++;
-                            }
-                        } catch (error) {
-                            console.error("Error adding chart:", chartInfo.label, error);
-                        }
-                    }
+                    tempDiv.remove(); // Clean up
                 }
                 addImageIfSpace(chartY);
             }
@@ -3207,7 +3194,19 @@
                 }
                 addImageIfSpace(dasaYOffset);
             }
-            doc.save("kundli-report.pdf");
+            // doc.save("kundli-report.pdf");
+            generatedDoc = doc;
+            const btn = document.getElementById('downloadPdfBtn');
+            btn.disabled = false;
+            btn.style.backgroundColor = '#fe7000';
+        }
+        function downloadPDF() {
+            if (generatedDoc) {
+                generatedDoc.save("kundli-report.pdf");
+            } else {
+                console.warn("PDF not yet generated. Please wait.");
+                // Optionally, show a message to the user
+            }
         }
 
         function getCircularImage(imageSrc, diameterMM, callback) {
