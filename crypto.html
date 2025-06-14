@@ -485,7 +485,7 @@
         }
 
         #calculatePriceLevelsButton:hover {
-            background-color: #059669;
+            background-color: #fe7000;
             /* Tailwind green-600 */
         }
 
@@ -1036,7 +1036,7 @@
         <div class="common-container3">
 
             <div class="comn-heading">
-                <h3>Interactive Planetary & Crypto Score Calculator</h3>
+                <h3>Astrological Crypto Trend Score (ACTS)</h3>
                 <p>Calculate price levels, derive dignities, manage scores, analyze crypto trends, and view detailed
                     weightages.</p>
             </div>
@@ -1129,7 +1129,7 @@
                 </div>
 
 
-                <div class="mb-8">
+                <div class="mb-8" style="display: none;">
                     <h6 class="section-header">Step 1: Enter Current Planetary Positions</h6>
                     <p class="text-center text-gray-600 text-sm mb-2">Planetary positions below are automatically
                         fetched from
@@ -1153,7 +1153,7 @@
                     </div>
                 </div>
 
-                <div class="mb-8">
+                <div class="mb-8" style="display: none;">
                     <h6 class="section-header">Step 1B: Enter Future Planetary Positions (Next 5 Days)</h6>
                     <p class="text-center text-gray-600 mb-2 text-sm">Positions below are automatically fetched from
                         Gochar data
@@ -1171,7 +1171,7 @@
                     </div>
                 </div>
 
-                <div id="gochar-section" class="mb-8">
+                <div id="gochar-section" class="mb-8" style="display: none;">
                     <h6 class="section-header">Raw Gochar Data (for Today)</h6>
                     <div class="bg-white shadow-xl rounded-lg table-container p-4">
                         <table id="gocharTable" class="min-w-full positions-table">
@@ -1197,7 +1197,7 @@
                 </div>
 
 
-                <div class="mb-8">
+                <div class="mb-8" style="display: none;">
                     <h6 class="section-header">Step 2: Planetary Characteristics & Derived Dignities (Current Day)</h6>
                     <div class="bg-white shadow-xl rounded-lg table-container p-4">
                         <table class="min-w-full input-table">
@@ -1224,7 +1224,7 @@
                     </div>
                 </div>
 
-                <div class="mb-8">
+                <div class="mb-8" style="display: none;">
                     <h6 class="section-header">Step 3: Timing Factors (Tithi & Moon Phase)</h6>
                     <div class="bg-white shadow-xl rounded-lg p-4 timing-factor-container">
                         <div>
@@ -1244,7 +1244,7 @@
                 </div>
 
 
-                <div class="text-center mb-6">
+                <div class="text-center mb-6" style="display: none;">
                     <button id="calculateButton" onclick="initiateScoreCalculation()"
                         class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg shadow-md transition duration-150 ease-in-out text-sm md:text-base">
                         Calculate All Scores & Update Market Trends/Levels/Chart
@@ -1445,7 +1445,7 @@
                     </div>
                 </div>
 
-                <div class="w-full mt-8">
+                <div class="w-full mt-8" style="display: none;">
                     <h6 class="section-header">Detailed Crypto Category Weightages</h6>
                     <p class="text-center text-gray-600 mb-4">This section shows the predefined weightages of each
                         planet for
@@ -1927,10 +1927,11 @@
             const originalNameForLog = String(name);
             const sNameTrimmed = String(name).trim();
             if (["UttaraBhadra", "PurvaBhadra", "Uttara Bhadra", "Purva Bhadra", "Uttarabhadra", "Purvabhadra"].includes(sNameTrimmed)) {
-                console.log(`DEBUG: standardizeNakshatraName - INPUT for specific check: '${originalNameForLog}', Trimmed: '${sNameTrimmed}'`);
+                // console.log(`DEBUG: standardizeNakshatraName - INPUT for specific check: '${originalNameForLog}', Trimmed: '${sNameTrimmed}'`);
             }
             if (MASTER_NAKSHATRA_LIST.includes(sNameTrimmed)) {
-                if (["UttaraBhadra", "PurvaBhadra"].includes(sNameTrimmed)) console.log(`DEBUG: standardizeNakshatraName - Direct Match for '${sNameTrimmed}'`);
+                if (["UttaraBhadra", "PurvaBhadra"].includes(sNameTrimmed)) 
+                // console.log(`DEBUG: standardizeNakshatraName - Direct Match for '${sNameTrimmed}'`);
                 return sNameTrimmed;
             }
             const sNameLowerNospace = sNameTrimmed.replace(/\s+/g, '').toLowerCase();
@@ -1956,7 +1957,7 @@
                 if (["UttaraBhadra", "PurvaBhadra"].includes(canonicalName)) console.log(`DEBUG: standardizeNakshatraName - Case-Insensitive Match for '${originalNameForLog}' to '${canonicalName}'`);
                 return canonicalName;
             }
-            console.warn(`DEBUG: standardizeNakshatraName - Could not standardize: '${originalNameForLog}'. Input trimmed: '${sNameTrimmed}'. Returning null.`);
+            // console.warn(`DEBUG: standardizeNakshatraName - Could not standardize: '${originalNameForLog}'. Input trimmed: '${sNameTrimmed}'. Returning null.`);
             return null;
         }
         const formatDisplayKey = (key) => {
@@ -1983,28 +1984,172 @@
             }
             return null;
         };
-        async function fetchData() {
-            const gocharTableBody = document.querySelector("#gocharTable tbody");
-            if (!gocharTableBody) { console.error("DEBUG: Raw Gochar table body not found."); return; }
-            gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Fetching raw Gochar data...</td></tr>`;
-            if (host === "YOUR_API_HOST_URL_HERE" || !host || host.trim() === "") {
-                console.error("DEBUG: API host is not configured for raw Gochar fetch.");
-                gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">API Host Error.</td></tr>`; return;
+
+        async function fetchMoonData() {
+            const response = await fetch(`${host}/api/admindetail/all`);
+            if (!response.ok) {
+                throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`);
             }
+            const responseData = await response.json();
+
+            const panchangData = responseData[0].panchang;
+            const todayNormalized = normalizeDate(getFormattedDate(new Date()));
+
+            const getPanchangData = async (date) => {
+                let todaysPanchang = null;
+
+                if (panchangData && Array.isArray(panchangData)) {
+                    for (const month of panchangData) {
+                        const match = month.days.find(day => day.date === date);
+                        if (match) {
+                            todaysPanchang = match.data;
+                            break;
+                        }
+                    }
+                }
+                return todaysPanchang
+            };
+
+            function formatDatePanchang(date) {
+                let day = String(date.getDate()).padStart(2, '0');
+                let month = String(date.getMonth() + 1).padStart(2, '0');
+                let year = date.getFullYear();
+                return `${day}/${month}/${year}`;  // Converts to DD/MM/YYYY format
+            }
+            let formattedTithiDate = formatDatePanchang(todayNormalized);
+
+            // Fetch current day's Panchang data
+            const TithiPanchangResponse = await getPanchangData(formattedTithiDate);
+
+            // console.log(TithiPanchangResponse, "TithiPanchangResponse")
+            let moonNakshatra = TithiPanchangResponse.nakshatra.name;
+            let moonrashi = TithiPanchangResponse.rasi.name
+            let moonStart = new Date(TithiPanchangResponse.nakshatra.start);
+            let moonEnd = new Date(TithiPanchangResponse.nakshatra.end);
+
+            // Convert formattedTithiDate and formattedTime to a Date object
+            let currentDate = new Date();
+            let currentHours = currentDate.getHours();
+            let currentMinutes = currentDate.getMinutes();
+            let formattedTime = `${String(currentHours).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`;
+            let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
+            let [hoursmoon, minutesmoon] = formattedTime.split(":").map(Number);
+            let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon);
+
+            // Calculate total duration and divide into 4 Padas
+            let totalDuration = moonEnd - moonStart;
+            let partDuration = totalDuration / 4;
+            let part1 = new Date(moonStart.getTime() + partDuration);
+            let part2 = new Date(moonStart.getTime() + partDuration * 2);
+            let part3 = new Date(moonStart.getTime() + partDuration * 3);
+            let part4 = moonEnd;
+
+            function getPada(time) {
+                let dateTime = new Date(time);
+                if (dateTime >= moonStart && dateTime < part1) {
+                    return 1;
+                } else if (dateTime >= part1 && dateTime < part2) {
+                    return 2;
+                } else if (dateTime >= part2 && dateTime < part3) {
+                    return 3;
+                } else if (dateTime >= part3 && dateTime <= part4) {
+                    return 4;
+                } else {
+                    return "Out of range";
+                }
+            }
+
+            let moonpada = getPada(currentDateTime);
+
+            // If Pada is out of range, fetch the next day's Panchang
+            if (moonpada === "Out of range") {
+                let nextDate = new Date(yearmoon, monthmoon - 1, daymoon + 1);
+                let nextFormattedDate = nextDate.toLocaleDateString("en-GB").split("/").join("/"); // Convert to YYYY/MM/DD
+
+                const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
+                if (nextTithiPanchangResponse.length !== 0) {
+                    const nextTithiPanchangData = nextTithiPanchangResponse;
+                    console.log(nextTithiPanchangData, "nextTithiPanchangData")
+
+                    let nextMoonNakshatra = nextTithiPanchangData.nakshatra.name;
+                    let nextMoonStart = new Date(nextTithiPanchangData.nakshatra.start);
+                    let nextMoonEnd = new Date(nextTithiPanchangData.nakshatra.end);
+
+                    let nextTotalDuration = nextMoonEnd - nextMoonStart;
+                    let nextPartDuration = nextTotalDuration / 4;
+                    let nextPart1 = new Date(nextMoonStart.getTime() + nextPartDuration);
+                    let nextPart2 = new Date(nextMoonStart.getTime() + nextPartDuration * 2);
+                    let nextPart3 = new Date(nextMoonStart.getTime() + nextPartDuration * 3);
+                    let nextPart4 = nextMoonEnd;
+
+                    function getPada2(time) {
+                        let dateTime = new Date(time);
+
+                        if (dateTime >= moonStart && dateTime < nextPart1) {
+                            return 1;
+                        } else if (dateTime >= nextPart1 && dateTime < nextPart2) {
+                            return 2;
+                        } else if (dateTime >= nextPart2 && dateTime < nextPart3) {
+                            return 3;
+                        } else if (dateTime >= nextPart3 && dateTime <= nextPart4) {
+                            return 4;
+                        } else {
+                            return "Out of range";
+                        }
+                    }
+
+                    let nextMoonPada = getPada2(currentDateTime);
+                    moonpada = nextMoonPada
+                    moonNakshatra = nextMoonNakshatra
+                }
+            }
+            await fetchData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd)
+            await fetchAndProcessGocharData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd)
+        }
+
+        async function fetchData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd) {
+            console.log(moonNakshatra, "nakshatra")
+            console.log(moonpada, "pada")
+            console.log(moonrashi, "rashi")
+            console.log(moonStart, "start")
+            console.log(moonEnd, "end")
+            const gocharTableBody = document.querySelector("#gocharTable tbody");
+            if (!gocharTableBody) {
+                console.error("DEBUG: Raw Gochar table body not found.");
+                return;
+            }
+            gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Fetching raw Gochar data...</td></tr>`;
+
+            // if (host === "YOUR_API_HOST_URL_HERE" || !host || host.trim() === "") {
+            //     console.error("DEBUG: API host is not configured for raw Gochar fetch.");
+            //     gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">API Host Error.</td></tr>`;
+            //     return;
+            // }
+
             try {
+                // console.log("DEBUG: fetchData (for raw table) - Fetching from:", `${host}/api/admindetail/all`); 
                 const response = await fetch(`${host}/api/admindetail/all`);
-                if (!response.ok) { throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`); }
+                if (!response.ok) {
+                    throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`);
+                }
                 const responseData = await response.json();
+                console.log(responseData, "responseData")
+
                 if (!responseData || !responseData[0] || !Array.isArray(responseData[0].gochar)) {
-                    console.error("DEBUG: Invalid raw Gochar data format:", responseData);
-                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Invalid data format.</td></tr>`; return;
+                    // console.error("DEBUG: Invalid raw Gochar data format:", responseData);
+                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Invalid data format.</td></tr>`;
+                    return;
                 }
                 const gocharEntries = responseData[0].gochar;
                 const todayNormalized = normalizeDate(getFormattedDate(new Date()));
+                // console.log(todayNormalized, "todayNormalized")
+
                 if (!todayNormalized) {
-                    console.error("DEBUG: Could not normalize today's date for raw Gochar table.");
-                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Date error.</td></tr>`; return;
+                    // console.error("DEBUG: Could not normalize today's date for raw Gochar table.");
+                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Date error.</td></tr>`;
+                    return;
                 }
+
                 const todayEntries = gocharEntries.filter(entry => {
                     if (entry.date_of_entry && entry.date_of_exit) {
                         const entryStartDateNormalized = normalizeDate(entry.date_of_entry);
@@ -2014,9 +2159,23 @@
                     }
                     return false;
                 });
+
                 gocharTableBody.innerHTML = "";
+
+                // Insert Moon data as the first row
+                const moonRow = gocharTableBody.insertRow();
+                moonRow.insertCell().textContent = "Moon";
+                moonRow.insertCell().textContent = moonrashi || "N/A";
+                moonRow.insertCell().textContent = standardizeNakshatraName(moonNakshatra) || "N/A";
+                moonRow.insertCell().textContent = moonpada || "N/A";
+                moonRow.insertCell().textContent = "No";
+                moonRow.insertCell().textContent = "Direct";
+                moonRow.insertCell().textContent = moonStart.toLocaleDateString();
+                moonRow.insertCell().textContent = moonEnd.toLocaleDateString();
+
+                // Then loop through other planets
                 if (todayEntries.length === 0) {
-                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">No Gochar entries found for today.</td></tr>`;
+                    gocharTableBody.innerHTML += `<tr><td colspan="8" class="loading-text">No Gochar entries found for today.</td></tr>`;
                 } else {
                     todayEntries.forEach(entry => {
                         const row = gocharTableBody.insertRow();
@@ -2030,18 +2189,27 @@
                         row.insertCell().textContent = entry.date_of_exit ? new Date(entry.date_of_exit + "T00:00:00Z").toLocaleDateString() : "N/A";
                     });
                 }
+                // console.log(gocharTableBody, "gocharTableBody")
             } catch (error) {
-                console.error("DEBUG: Error in fetchData (for raw table):", error);
+                // console.error("DEBUG: Error in fetchData (for raw table):", error);
                 gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Error fetching raw Gochar.</td></tr>`;
             }
         }
-        async function fetchAndProcessGocharData() {
-            console.log("DEBUG: fetchAndProcessGocharData started at", new Date().toLocaleTimeString());
+
+        // --- Gochar Data Fetching and Processing (for Step 1 & Future Days) ---
+        async function fetchAndProcessGocharData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd) {
+            console.log(moonNakshatra, "nakshatra")
+            console.log(moonpada, "pada")
+            console.log(moonrashi, "rashi")
+            console.log(moonStart, "start")
+            console.log(moonEnd, "end")
+            // console.log("DEBUG: fetchAndProcessGocharData started at", new Date().toLocaleTimeString());
             const loadingTextCurrent = planetaryPositionsInputBody.querySelector('.loading-text');
             const loadingTextFuture = futurePlanetaryPositionsContainer.querySelector('.loading-text');
+
             console.log("DEBUG: API host is:", host);
             if (host === "YOUR_API_HOST_URL_HERE" || !host || host.trim() === "") {
-                console.error("DEBUG: API host is not configured properly! Please update the 'host' variable.");
+                // console.error("DEBUG: API host is not configured properly! Please update the 'host' variable.");
                 showCustomAlert("API host not configured. Using default planetary positions.");
                 if (loadingTextCurrent) loadingTextCurrent.textContent = "API Host Error. Using Defaults.";
                 if (loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
@@ -2051,28 +2219,39 @@
                 fetchedFutureDaysPositions = Array(5).fill(null).map(() => JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS)));
                 return false;
             }
+
             try {
-                console.log("DEBUG: fetchAndProcessGocharData - try block entered. Fetching from:", `${host}/api/admindetail/all`);
+                // console.log("DEBUG: fetchAndProcessGocharData - try block entered. Fetching from:", `${host}/api/admindetail/all`);
                 const response = await fetch(`${host}/api/admindetail/all`);
-                console.log("DEBUG: API Response Status:", response.status, response.statusText);
+                // console.log("DEBUG: API Response Status:", response.status, response.statusText);
+
                 if (!response.ok) {
-                    console.error("DEBUG: API response not OK. Status:", response.status);
+                    // console.error("DEBUG: API response not OK. Status:", response.status);
                     throw new Error(`HTTP error fetching Gochar data! Status: ${response.status} ${response.statusText}`);
                 }
+
                 const responseData = await response.json();
+                // console.log("DEBUG: API responseData (raw):", JSON.stringify(responseData).substring(0, 500)); 
+
                 if (!responseData || !responseData[0] || !Array.isArray(responseData[0].gochar)) {
-                    console.error("DEBUG: Invalid Gochar data format from API. Expected responseData[0].gochar to be an array. responseData[0]:", responseData ? JSON.stringify(responseData[0]).substring(0, 300) : "N/A");
+                    // console.error("DEBUG: Invalid Gochar data format from API. Expected responseData[0].gochar to be an array. responseData[0]:", responseData ? JSON.stringify(responseData[0]).substring(0,300) : "N/A");
                     throw new Error("Invalid Gochar data format received.");
                 }
                 const gocharEntries = responseData[0].gochar;
-                console.log("DEBUG: Gochar entries received (count):", gocharEntries.length);
+                // console.log("DEBUG: Gochar entries received (count):", gocharEntries.length);
+                // if (gocharEntries.length > 0) console.log("DEBUG: First Gochar entry example:", JSON.stringify(gocharEntries[0])); 
+
                 const datesToFetch = [];
-                const todayObj = new Date(); todayObj.setHours(0, 0, 0, 0);
+                const todayObj = new Date();
+                todayObj.setHours(0, 0, 0, 0);
+
                 for (let i = 0; i < 6; i++) {
-                    const dateObj = new Date(todayObj); dateObj.setDate(todayObj.getDate() + i);
+                    const dateObj = new Date(todayObj);
+                    dateObj.setDate(todayObj.getDate() + i);
                     datesToFetch.push(getFormattedDate(dateObj));
                 }
-                console.log("DEBUG: Dates to fetch:", datesToFetch);
+                // console.log("DEBUG: Dates to fetch:", datesToFetch);
+
                 const dailyPlanetaryData = {};
                 datesToFetch.forEach(dateStr => {
                     dailyPlanetaryData[dateStr] = ALL_PLANETS.map(planetName => {
@@ -2081,100 +2260,127 @@
                         return JSON.parse(JSON.stringify(initialPlanetFallback));
                     });
                 });
+
                 datesToFetch.forEach(dateStr => {
                     const targetDateNormalized = normalizeDate(dateStr);
-                    if (!targetDateNormalized) { console.error(`DEBUG: Could not normalize targetDate for dateStr: ${dateStr}`); return; }
+                    if (!targetDateNormalized) {
+                        // console.error(`DEBUG: Could not normalize targetDate for dateStr: ${dateStr}`);
+                        return;
+                    }
+                    // console.log(`DEBUG: Processing date: ${dateStr} (Normalized UTC: ${targetDateNormalized.toISOString()})`); 
+
                     ALL_PLANETS.forEach(planetName => {
                         const planetObjInDayData = dailyPlanetaryData[dateStr].find(p => p.name === planetName);
-                        if (!planetObjInDayData) { console.error(`DEBUG: Planet object for ${planetName} not found in dailyPlanetaryData for ${dateStr}`); return; }
-                        if (planetName === "Uranus" && !gocharEntries.some(entry => entry.planet_name === "Uranus")) {
-                            console.log(`DEBUG: No Gochar data found for Uranus on ${dateStr}. Using defaults.`); return;
+                        if (!planetObjInDayData) {
+                            return;
                         }
+
                         const relevantEntry = gocharEntries.find(entry => {
                             if (entry.planet_name !== planetName) return false;
                             if (!entry.date_of_entry || !entry.date_of_exit) return false;
+
                             const entryStartDateNormalized = normalizeDate(entry.date_of_entry);
                             const entryEndDateNormalized = normalizeDate(entry.date_of_exit);
+
                             if (!entryStartDateNormalized || !entryEndDateNormalized) return false;
+
                             return targetDateNormalized >= entryStartDateNormalized && targetDateNormalized <= entryEndDateNormalized;
                         });
+                        // console.log(relevantEntry, "relevantEntry")
+
                         if (relevantEntry) {
                             const rawNakshatraName = relevantEntry.nakshatra_name || relevantEntry.nakshatra;
-                            if (["Saturn", "Rahu", "Moon", "Uranus"].includes(planetName)) {
-                                console.log(`DEBUG: ASSIGNING for ${planetName} on ${dateStr}. Entry:`, JSON.stringify(relevantEntry));
-                                console.log(`DEBUG: Values for ${planetName}: rashi_name='${relevantEntry.rashi_name}', rashi='${relevantEntry.rashi}', RAW nak_name='${rawNakshatraName}', pada_val='${relevantEntry.nakshatra_pada}', pada_alt='${relevantEntry.pada}'`);
+                            if (planetName === "Saturn" || planetName === "Rahu" || planetName === "Moon") {
+                                // console.log(`DEBUG: ASSIGNING for ${planetName} on ${dateStr}. Entry:`, JSON.stringify(relevantEntry));
+                                // console.log(`DEBUG: Values for ${planetName}: rashi_name='${relevantEntry.rashi_name}', rashi='${relevantEntry.rashi}', RAW nak_name='${rawNakshatraName}', pada_val='${relevantEntry.nakshatra_pada}', pada_alt='${relevantEntry.pada}'`);
                             }
                             const rashiNameFromAPI = relevantEntry.rashi_name || relevantEntry.rashi;
                             const rashiNum = RASHI_NAMES.indexOf(rashiNameFromAPI);
                             planetObjInDayData.rashiNumber = (rashiNum !== -1) ? rashiNum + 1 : null;
-                            planetObjInDayData.nakshatraName = standardizeNakshatraName(rawNakshatraName);
+
+                            planetObjInDayData.nakshatraName = standardizeNakshatraName(rawNakshatraName); // Use standardized name
                             planetObjInDayData.nakshatraPada = parseInt(relevantEntry.nakshatra_pada || relevantEntry.pada, 10);
                             if (isNaN(planetObjInDayData.nakshatraPada)) planetObjInDayData.nakshatraPada = null;
+
                             if (relevantEntry.motion !== undefined && relevantEntry.motion !== null) {
                                 planetObjInDayData.isRetrograde = (String(relevantEntry.motion).toLowerCase() === 'retrograde');
                             }
                             if (relevantEntry.combust !== undefined && relevantEntry.combust !== null) {
                                 planetObjInDayData.isCombust = !!relevantEntry.combust;
                             }
-                            if (["Saturn", "Rahu", "Moon", "Uranus"].includes(planetName)) {
-                                console.log(`DEBUG: AFTER ASSIGNMENT for ${planetName} on ${dateStr}:`, JSON.stringify(planetObjInDayData));
+                            if (planetName === "Saturn" || planetName === "Rahu" || planetName === "Moon") {
+                                //  console.log(`DEBUG: AFTER ASSIGNMENT for ${planetName} on ${dateStr}:`, JSON.stringify(planetObjInDayData));
                             }
                         } else {
-                            if (dateStr === datesToFetch[0] && planetName !== "Uranus") {
-                                console.warn(`DEBUG: NO Gochar entry found for ${planetName} on ${dateStr}. Will use null/default values.`);
+                            if (dateStr === datesToFetch[0]) {
+                                // Add this patch for Moon on today's date
+                                if (planetName === "Moon" && moonNakshatra && moonpada && moonrashi && moonStart && moonEnd) {
+                                    const moonObj = planetObjInDayData;
+                                    moonObj.rashiNumber = RASHI_NAMES.indexOf(moonrashi) + 1 || null;
+                                    moonObj.nakshatraName = standardizeNakshatraName(moonNakshatra);
+                                    moonObj.nakshatraPada = parseInt(moonpada, 10);
+                                    moonObj.start = moonStart;
+                                    moonObj.end = moonEnd;
+                                }
                             }
                         }
                     });
                 });
+                // console.log("DEBUG: dailyPlanetaryData after processing Gochar entries:", JSON.parse(JSON.stringify(dailyPlanetaryData))); 
+
                 const todayDateStr = datesToFetch[0];
-                console.log("DEBUG: Today's date string for processing:", todayDateStr);
-                console.log("DEBUG: Checking data for isTodayDataComplete:");
+                // console.log("DEBUG: Today's date string for processing:", todayDateStr);
+                // console.log("DEBUG: dailyPlanetaryData for today BEFORE completeness check:", JSON.parse(JSON.stringify(dailyPlanetaryData[todayDateStr]))); 
+
+                // console.log("DEBUG: Checking data for isTodayDataComplete:");
                 dailyPlanetaryData[todayDateStr].forEach(p => {
+                    // p.nakshatraName should already be standardized or null here
                     const isPlanetComplete = p.rashiNumber !== null && p.rashiNumber >= 1 && p.rashiNumber <= 12 &&
                         p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) &&
                         p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4;
-                    if (!isPlanetComplete && (["Moon", "Saturn", "Rahu", "Uranus"].includes(p.name))) {
-                        console.warn(`DEBUG: INCOMPLETE DATA FOR ${p.name}: Rashi=${p.rashiNumber}, Nakshatra=${p.nakshatraName} (Is it in Master List: ${MASTER_NAKSHATRA_LIST.includes(p.nakshatraName)}), Pada=${p.nakshatraPada}`);
+                    if (!isPlanetComplete && (p.name === "Moon" || p.name === "Saturn" || p.name === "Rahu")) {
+                        // console.warn(`DEBUG: INCOMPLETE DATA FOR ${p.name}: Rashi=${p.rashiNumber}, Nakshatra=${p.nakshatraName} (Is it in Master List: ${MASTER_NAKSHATRA_LIST.includes(p.nakshatraName)}), Pada=${p.nakshatraPada}`);
                     }
                 });
+
                 const isTodayDataComplete = dailyPlanetaryData[todayDateStr] && dailyPlanetaryData[todayDateStr].every(p =>
-                    p.name === "Uranus" ||
-                    (p.rashiNumber !== null && p.rashiNumber >= 1 && p.rashiNumber <= 12 &&
-                        p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) &&
-                        p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4)
+                    p.rashiNumber !== null && p.rashiNumber >= 1 && p.rashiNumber <= 12 &&
+                    p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) && // Use already standardized p.nakshatraName
+                    p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4
                 );
-                console.log("DEBUG: isTodayDataComplete defined. Value:", isTodayDataComplete);
-                if (isTodayDataComplete || dailyPlanetaryData[todayDateStr].some(p => p.name !== "Uranus" && p.rashiNumber !== null)) {
+                // console.log("DEBUG: isTodayDataComplete defined. Value:", isTodayDataComplete); 
+
+                if (isTodayDataComplete) {
                     fetchedCurrentDayPositions = dailyPlanetaryData[todayDateStr];
                     if (loadingTextCurrent) loadingTextCurrent.innerHTML = '';
                 } else {
-                    console.warn(`DEBUG: Gochar data for today (${todayDateStr}) is largely incomplete. Displaying what was found or defaults.`);
+                    // console.warn(`DEBUG: Gochar data for today (${todayDateStr}) is incomplete. Some planets may be missing data. Displaying what was found.`);
                     fetchedCurrentDayPositions = dailyPlanetaryData[todayDateStr];
                     if (loadingTextCurrent) loadingTextCurrent.innerHTML = '';
                 }
+
                 fetchedFutureDaysPositions = [];
                 for (let i = 1; i <= 5; i++) {
                     const futureDateStr = datesToFetch[i];
                     const isFutureDayDataComplete = dailyPlanetaryData[futureDateStr] && dailyPlanetaryData[futureDateStr].every(p =>
-                        p.name === "Uranus" ||
-                        (p.rashiNumber !== null && p.rashiNumber >= 1 && p.rashiNumber <= 12 &&
-                            p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) &&
-                            p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4)
+                        p.rashiNumber !== null && p.rashiNumber >= 1 && p.rashiNumber <= 12 &&
+                        p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) &&
+                        p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4
                     );
-                    if (isFutureDayDataComplete || dailyPlanetaryData[futureDateStr].some(p => p.name !== "Uranus" && p.rashiNumber !== null)) {
+                    if (isFutureDayDataComplete) {
                         fetchedFutureDaysPositions.push(dailyPlanetaryData[futureDateStr]);
                     } else {
-                        console.warn(`DEBUG: Gochar data for future day ${i} (${futureDateStr}) is largely incomplete. Using fallback.`);
                         fetchedFutureDaysPositions.push(dailyPlanetaryData[futureDateStr] || JSON.parse(JSON.stringify(fetchedCurrentDayPositions)));
                     }
                 }
                 if (loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
                     futurePlanetaryPositionsContainer.querySelector('.loading-text').innerHTML = '';
                 }
-                console.log("DEBUG: fetchAndProcessGocharData finished successfully.");
+                // console.log("DEBUG: fetchAndProcessGocharData finished successfully.");
                 return true;
+
             } catch (error) {
-                console.error("DEBUG: CRITICAL ERROR in fetchAndProcessGocharData catch block:", error);
+                // console.error("DEBUG: CRITICAL ERROR in fetchAndProcessGocharData catch block:", error);
                 showCustomAlert(`Error fetching Gochar: ${error.message}. Using default positions.`);
                 fetchedCurrentDayPositions = JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS));
                 fetchedFutureDaysPositions = Array(5).fill(null).map(() => JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS)));
@@ -2182,16 +2388,17 @@
                 if (loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
                     futurePlanetaryPositionsContainer.querySelector('.loading-text').textContent = "Gochar Fetch Error. Using Defaults.";
                 }
-                console.log("DEBUG: fetchAndProcessGocharData finished with error.");
+                // console.log("DEBUG: fetchAndProcessGocharData finished with error.");
                 return false;
             }
         }
+
         function createPlanetaryPositionsInputTable() {
             planetaryPositionsInputBody.innerHTML = '';
             const dataToUse = fetchedCurrentDayPositions || INITIAL_PLANETARY_POSITIONS;
             dataToUse.forEach(planetData => {
                 if (["Saturn", "Rahu", "Moon", "Uranus"].includes(planetData.name)) {
-                    console.log(`DEBUG: createPlanetaryPositionsInputTable - Processing planetData for ${planetData.name}:`, JSON.parse(JSON.stringify(planetData)));
+                    // console.log(`DEBUG: createPlanetaryPositionsInputTable - Processing planetData for ${planetData.name}:`, JSON.parse(JSON.stringify(planetData)));
                 }
                 const row = planetaryPositionsInputBody.insertRow();
                 row.insertCell().textContent = planetData.name;
@@ -2247,64 +2454,166 @@
                 };
             });
         }
-        function createFuturePlanetaryPositionsInputTables() {
+        async function createFuturePlanetaryPositionsInputTables() {
+            const response = await fetch(`${host}/api/admindetail/all`);
+            if (!response.ok) {
+                throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`);
+            }
+            const responseData = await response.json();
+            const panchangData = responseData[0].panchang;
+
+            const getPanchangData = async (date) => {
+                let todaysPanchang = null;
+                if (panchangData && Array.isArray(panchangData)) {
+                    for (const month of panchangData) {
+                        const match = month.days.find(day => day.date === date);
+                        if (match) {
+                            todaysPanchang = match.data;
+                            break;
+                        }
+                    }
+                }
+                return todaysPanchang;
+            };
+
+            function formatDatePanchang(date) {
+                let day = String(date.getDate()).padStart(2, '0');
+                let month = String(date.getMonth() + 1).padStart(2, '0');
+                let year = date.getFullYear();
+                return `${day}/${month}/${year}`; // DD/MM/YYYY
+            }
+
+            // Get Moon data for 5 future days
+            let moonDataForFiveDays = [];
+
+            for (let i = 0; i < 5; i++) {
+                let futureDate = new Date();
+                futureDate.setDate(futureDate.getDate() + i);
+                let formattedDate = formatDatePanchang(futureDate);
+                let panchang = await getPanchangData(formattedDate);
+
+                if (panchang && panchang.nakshatra?.start && panchang.nakshatra?.end) {
+                    let moonStart = new Date(panchang.nakshatra.start);
+                    let moonEnd = new Date(panchang.nakshatra.end);
+                    let totalDuration = moonEnd - moonStart;
+                    let partDuration = totalDuration / 4;
+
+                    let part1 = new Date(moonStart.getTime() + partDuration);
+                    let part2 = new Date(moonStart.getTime() + partDuration * 2);
+                    let part3 = new Date(moonStart.getTime() + partDuration * 3);
+                    let part4 = moonEnd;
+
+                    let now = new Date(); // current time
+                    let pada;
+                    if (now >= moonStart && now < part1) pada = 1;
+                    else if (now < part2) pada = 2;
+                    else if (now < part3) pada = 3;
+                    else if (now <= part4) pada = 4;
+                    else pada = null;
+
+                    moonDataForFiveDays.push({
+                        rashi: panchang.rasi?.name || null,
+                        nakshatra: panchang.nakshatra?.name || null,
+                        pada: pada
+                    });
+                } else {
+                    moonDataForFiveDays.push({ rashi: null, nakshatra: null, pada: null });
+                }
+            }
+
+            // Generate the tables
             futurePlanetaryPositionsContainer.innerHTML = '';
             for (let day = 1; day <= 5; day++) {
                 const dayContainer = document.createElement('div');
                 dayContainer.className = 'bg-white shadow-md rounded-lg p-4 table-container';
-                const dayTitle = document.createElement('h6');
+
+                const dayTitle = document.createElement('h4');
                 dayTitle.className = 'text-md font-semibold text-center mb-2 text-gray-700';
                 dayTitle.textContent = `Future Day ${day}`;
                 dayContainer.appendChild(dayTitle);
+
                 const table = document.createElement('table');
                 table.className = 'min-w-full future-positions-table';
                 const thead = table.createTHead();
                 thead.className = 'future-positions-table-header';
                 const headerRow = thead.insertRow();
                 ['Planet', 'Rashi', 'Nakshatra', 'Pada'].forEach(text => {
-                    const th = document.createElement('th'); th.textContent = text; headerRow.appendChild(th);
+                    const th = document.createElement('th');
+                    th.textContent = text;
+                    headerRow.appendChild(th);
                 });
-                const tbody = table.createTBody(); tbody.id = `future-day-${day}-tbody`;
+
+                const tbody = table.createTBody();
+                tbody.id = `future-day-${day}-tbody`;
+
                 const dayDataToUse = (fetchedFutureDaysPositions && fetchedFutureDaysPositions[day - 1])
                     ? fetchedFutureDaysPositions[day - 1]
                     : (fetchedCurrentDayPositions || INITIAL_PLANETARY_POSITIONS);
+
                 ALL_PLANETS.forEach(planetName => {
                     const initialPlanetData = INITIAL_PLANETARY_POSITIONS.find(p => p.name === planetName) || {};
-                    const planetData = dayDataToUse.find(p => p.name === planetName) || initialPlanetData;
+                    let planetData = dayDataToUse.find(p => p.name === planetName) || initialPlanetData;
+
+                    if (planetName === "Moon") {
+                        const moonData = moonDataForFiveDays[day - 1];
+                        planetData = {
+                            name: "Moon",
+                            rashiNumber: moonData.rashi ? RASHI_NAMES.indexOf(moonData.rashi) + 1 : null,
+                            nakshatraName: moonData.nakshatra,
+                            nakshatraPada: moonData.pada
+                        };
+                    }
+
                     const row = tbody.insertRow();
                     row.insertCell().textContent = planetName;
+
+                    // Rashi select
                     const rashiCell = row.insertCell();
                     const rashiSelect = document.createElement('select');
                     rashiSelect.id = `future-d${day}-rashi-${planetName}`;
-                    let defaultRashiOpt = document.createElement('option'); defaultRashiOpt.value = ""; defaultRashiOpt.textContent = "-- Select --"; rashiSelect.appendChild(defaultRashiOpt);
+                    let defaultRashiOpt = document.createElement('option');
+                    defaultRashiOpt.value = ""; defaultRashiOpt.textContent = "-- Select --";
+                    rashiSelect.appendChild(defaultRashiOpt);
                     RASHI_NAMES.forEach((name, index) => {
                         const option = document.createElement('option');
-                        option.value = index + 1; option.textContent = name;
+                        option.value = index + 1;
+                        option.textContent = name;
                         rashiSelect.appendChild(option);
                     });
                     rashiSelect.value = planetData.rashiNumber !== null ? planetData.rashiNumber : "";
                     rashiCell.appendChild(rashiSelect);
+
+                    // Nakshatra select
                     const nakshatraCell = row.insertCell();
                     const nakshatraSelect = document.createElement('select');
                     nakshatraSelect.id = `future-d${day}-nakshatra-${planetName}`;
-                    let defaultNakOpt = document.createElement('option'); defaultNakOpt.value = ""; defaultNakOpt.textContent = "-- Select --"; nakshatraSelect.appendChild(defaultNakOpt);
+                    let defaultNakOpt = document.createElement('option');
+                    defaultNakOpt.value = ""; defaultNakOpt.textContent = "-- Select --";
+                    nakshatraSelect.appendChild(defaultNakOpt);
                     MASTER_NAKSHATRA_LIST.forEach(nakName => {
                         const option = document.createElement('option');
-                        option.value = nakName; option.textContent = nakName;
+                        option.value = nakName;
+                        option.textContent = nakName;
                         nakshatraSelect.appendChild(option);
                     });
                     nakshatraSelect.value = planetData.nakshatraName ? planetData.nakshatraName : "";
                     nakshatraCell.appendChild(nakshatraSelect);
+
+                    // Pada input
                     const padaCell = row.insertCell();
                     const padaInput = document.createElement('input');
-                    padaInput.type = 'number'; padaInput.id = `future-d${day}-pada-${planetName}`;
-                    padaInput.min = 1; padaInput.max = 4;
+                    padaInput.type = 'number';
+                    padaInput.id = `future-d${day}-pada-${planetName}`;
+                    padaInput.min = 1;
+                    padaInput.max = 4;
                     padaInput.value = planetData.nakshatraPada !== null ? planetData.nakshatraPada : '';
                     padaCell.appendChild(padaInput);
                 });
+
                 dayContainer.appendChild(table);
                 futurePlanetaryPositionsContainer.appendChild(dayContainer);
             }
+            initiateScoreCalculation()
         }
         function getPlanetaryPositionsFromTopTable() {
             const positions = {};
@@ -3323,8 +3632,8 @@
             populateTimingFactorDropdowns(); // Populate Tithi and Moon Phase dropdowns
             populateCoinFilterDropdown(); // Populate coin filter dropdown
 
-            await fetchAndProcessGocharData();
-            await fetchData();
+            await fetchMoonData();
+
             createPlanetaryPositionsInputTable();
             createFuturePlanetaryPositionsInputTables();
             createInputForm();

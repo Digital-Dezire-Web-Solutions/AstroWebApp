@@ -27,8 +27,8 @@
     </script>
     <script src="https://cdn.pagesense.io/js/astronivesh/b70b9482d2454a09ac5feadc3675f35c.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 
 </head>
 
@@ -928,9 +928,7 @@
         <div class="common-container3">
 
             <div class="comn-heading">
-                <h3>Interactive Planetary & Market Score
-                    Calculator
-                    (Price Sheet)</h3>
+                <h3>Astrological Sector Trend Score (ASTS)</h3>
                 <p>Calculate price levels, derive dignities, manage scores, analyze
                     market
                     trends, and view detailed weightages.</p>
@@ -938,257 +936,309 @@
 
             <div class="table-data">
                 <div class="price-levels-calculator-container">
-            <h6 class="section-header text-xl mb-4">Price Levels Calculator</h6>
-            <div class="price-levels-input-group">
-                <div>
-                    <label for="priceLevelInputPrice" class="block text-sm font-medium text-gray-700 mb-1">Enter Price:</label>
-                    <input type="number" id="priceLevelInputPrice" step="0.01" placeholder="e.g., 100.00">
+                    <h6 class="section-header text-xl mb-4">Price Levels Calculator</h6>
+                    <div class="price-levels-input-group">
+                        <div>
+                            <label for="priceLevelInputPrice" class="block text-sm font-medium text-gray-700 mb-1">Enter
+                                Price:</label>
+                            <input type="number" id="priceLevelInputPrice" step="0.01" placeholder="e.g., 100.00">
+                        </div>
+                        <div>
+                            <label for="priceLevelSectorSelect"
+                                class="block text-sm font-medium text-gray-700 mb-1">Select Sector:</label>
+                            <select id="priceLevelSectorSelect">
+                                <option value="">-- Select Sector --</option>
+                            </select>
+                        </div>
+                        <button id="calculatePriceLevelsButton" onclick="calculateAndDisplayPriceLevels()"
+                            class="self-end">Calculate Levels & Chart</button>
+                    </div>
+                    <div class="table-container">
+                        <h6 class="text-lg font-semibold text-center py-2 bg-gray-100 rounded-t-lg">Overall Perspective
+                            Levels & Targets (Based on Current Day Scores)</h6>
+                        <table class="min-w-full price-levels-table">
+                            <thead class="price-levels-table-header">
+                                <tr>
+                                    <th>Perspective</th>
+                                    <th>Level Name</th>
+                                    <th>Overall Weighted Score</th>
+                                    <th>Calculated Level/Target</th>
+                                </tr>
+                            </thead>
+                            <tbody id="priceLevelsTableBody">
+                                <tr>
+                                    <td colspan="4" class="loading-text">Enter price, select sector, and click
+                                        "Calculate Levels". Planetary scores must be calculated or entered first.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-container mt-6">
+                        <h6 id="individualPlanetLevelsTitle" class="individual-planet-levels-title">Individual Planet
+                            Target Prices for [Selected Sector] (Based on Current Day Scores)</h6>
+                        <table class="min-w-full price-levels-table">
+                            <thead class="price-levels-table-header">
+                                <tr>
+                                    <th>Planet</th>
+                                    <th>Perspective</th>
+                                    <th>Weighted Planet Score</th>
+                                    <th>Target Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="individualPlanetPriceLevelsTableBody">
+                                <tr>
+                                    <td colspan="4" class="loading-text">Levels will appear here after calculation.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div>
-                    <label for="priceLevelSectorSelect" class="block text-sm font-medium text-gray-700 mb-1">Select Sector:</label>
-                    <select id="priceLevelSectorSelect">
-                        <option value="">-- Select Sector --</option>
-                        </select>
+
+                <div id="priceForecastChartContainer">
+                    <h6 class="section-header text-xl mb-4">Price Forecast Chart (10-Day Astrological Projection)</h6>
+                    <canvas id="priceForecastChart"></canvas>
                 </div>
-                <button id="calculatePriceLevelsButton" onclick="calculateAndDisplayPriceLevels()" class="self-end">Calculate Levels & Chart</button>
-            </div>
-            <div class="table-container">
-                <h6 class="text-lg font-semibold text-center py-2 bg-gray-100 rounded-t-lg">Overall Perspective Levels & Targets (Based on Current Day Scores)</h6>
-                <table class="min-w-full price-levels-table">
-                    <thead class="price-levels-table-header">
-                        <tr>
-                            <th>Perspective</th>
-                            <th>Level Name</th>
-                            <th>Overall Weighted Score</th>
-                            <th>Calculated Level/Target</th>
-                        </tr>
-                    </thead>
-                    <tbody id="priceLevelsTableBody">
-                        <tr><td colspan="4" class="loading-text">Enter price, select sector, and click "Calculate Levels". Planetary scores must be calculated or entered first.</td></tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <div class="table-container mt-6">
-                <h6 id="individualPlanetLevelsTitle" class="individual-planet-levels-title">Individual Planet Target Prices for [Selected Sector] (Based on Current Day Scores)</h6>
-                <table class="min-w-full price-levels-table">
-                    <thead class="price-levels-table-header">
-                        <tr>
-                            <th>Planet</th>
-                            <th>Perspective</th>
-                            <th>Weighted Planet Score</th>
-                            <th>Target Price</th>
-                        </tr>
-                    </thead>
-                    <tbody id="individualPlanetPriceLevelsTableBody">
-                        <tr><td colspan="4" class="loading-text">Levels will appear here after calculation.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="priceForecastChartContainer">
-            <h6 class="section-header text-xl mb-4">Price Forecast Chart (10-Day Astrological Projection)</h6>
-            <canvas id="priceForecastChart"></canvas>
-        </div>
-
-        <div id="tradingviewChartContainer">
-            <h6 class="section-header text-xl mb-4">Live Stock Chart (TradingView)</h6>
-            <div id="tv_chart_container" style="width: 100%; height: 400px;"></div> 
-             <div class="text-center mt-2">
-                <label for="tvSymbolInput" class="text-sm font-medium text-gray-700 mr-2">TradingView Symbol:</label>
-                <input type="text" id="tvSymbolInput" value="NSE:RELIANCE" class="p-1 border-gray-300 rounded-md shadow-sm text-sm w-40">
-                <button onclick="loadTradingViewChart()" class="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md text-sm">Load Symbol</button>
-                <p class="tv-symbol-note">Examples: NSE:SBIN, BSE:TCS, NASDAQ:AAPL. Use symbol search in chart if direct load fails.</p>
-            </div>
-        </div>
-
-
-        <div class="mb-8">
-            <h6 class="section-header">Step 1: Enter Current Planetary Positions</h6>
-            <p class="text-center text-gray-600 text-sm mb-2">Planetary positions below are automatically fetched from Gochar data. You can manually adjust them if needed before deriving dignities.</p>
-            <div class="bg-white shadow-xl rounded-lg table-container p-4">
-                <table class="min-w-full positions-table">
-                    <thead class="positions-table-header">
-                        <tr>
-                            <th>Planet</th>
-                            <th>Rashi (Sign)</th>
-                            <th>Nakshatra</th>
-                            <th>Nakshatra Pada</th>
-                        </tr>
-                    </thead>
-                    <tbody id="planetaryPositionsInputBody">
-                        <tr><td colspan="4" class="loading-text">Fetching Gochar data for current day...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="mb-8">
-            <h6 class="section-header">Step 1B: Enter Future Planetary Positions (Next 5 Days)</h6>
-            <p class="text-center text-gray-600 mb-2 text-sm">Positions below are automatically fetched from Gochar data for the next 5 days. Adjust if necessary.</p>
-            <p class="text-center text-gray-600 mb-4 text-xs">These impact the 10-day forecast chart (Days 6-10).</p>
-            <div id="futurePlanetaryPositionsContainer" class="future-day-tables-grid">
-                <div class="loading-text">Fetching Gochar data for future days...</div>
-            </div>
-             <div class="text-center mt-4">
-                <button id="deriveDignitiesButton" onclick="deriveAndPopulateDignities()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
-                    Derive Dignities for Current Day & Populate Below
-                </button>
-            </div>
-        </div>
-
-        <div id="gochar-section" class="mb-8">
-            <h6 class="section-header">Raw Gochar Data (for Today)</h6>
-            <div class="bg-white shadow-xl rounded-lg table-container p-4">
-                <table id="gocharTable" class="min-w-full positions-table">
-                    <thead class="positions-table-header">
-                        <tr>
-                            <th>Planet Name</th>
-                            <th>Rashi</th>
-                            <th>Nakshatra</th>
-                            <th>Pada</th>
-                            <th>Combust</th>
-                            <th>Motion</th>
-                            <th>Date of Entry</th>
-                            <th>Date of Exit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td colspan="8" class="loading-text">Fetching raw Gochar data...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
-        <div class="mb-8">
-            <h6 class="section-header">Step 2: Planetary Characteristics & Derived Dignities (Current Day)</h6>
-            <div class="bg-white shadow-xl rounded-lg table-container p-4">
-                <table class="min-w-full input-table">
-                    <thead class="input-table-header">
-                        <tr>
-                            <th>Planet</th>
-                            <th>Derived Rashi Dignity</th>
-                            <th>Derived Nakshatra Influence</th>
-                            <th>Derived Nakshatra Pada Dignity</th>
-                            <th>Derived Conj. Relation</th>
-                            <th>Retrograde?</th>
-                            <th>Combust?</th>
-                            <th>Auto Vedh By</th>
-                            <th>Auto Sparsh By</th>
-                        </tr>
-                    </thead>
-                    <tbody id="planetaryInputsBody">
-                        <tr><td colspan="9" class="loading-text">Set positions in Step 1 and click "Derive Dignities...".</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="text-center mb-6">
-            <button id="calculateButton" onclick="initiateScoreCalculation()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg shadow-md transition duration-150 ease-in-out text-sm md:text-base">
-                Calculate All Scores & Update Market Trends/Levels/Chart
-            </button>
-        </div>
-
-        <div class="w-full mt-8">
-            <div class="bg-white shadow-xl rounded-lg table-container">
-                <h6 class="text-lg font-semibold text-center py-3 bg-gray-100 rounded-t-lg">Planetary Score Results (Current Day)</h6>
-                <p class="text-xs text-center text-gray-500 pb-2">Scores below can be manually adjusted. Market trends and Price Levels will update automatically.</p>
-                <table class="min-w-full results-table">
-                    <thead class="table-header">
-                        <tr>
-                            <th>Planet</th>
-                            <th>Rashi Dig.</th>
-                            <th>Nak. Influence</th>
-                            <th>Nak. Pada Dignity</th>
-                            <th>Relation (Conj.)</th>
-                            <th>Retro</th>
-                            <th>Combust</th>
-                            <th>Vedh (By)</th>
-                            <th>Sparsh (By)</th>
-                            <th>Rashi Total (Long-Term Base)</th>
-                            <th>Nak. Lord Total (Medium-Term Base)</th>
-                            <th>Pada Total (Short-Term Base)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultsBody">
-                        <tr><td colspan="12" class="loading-text">Enter data above and click "Calculate..." button.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="w-full mt-8">
-            <header class="mb-6 text-center">
-                <h6 class="section-header market-page-title text-xl md:text-2xl font-bold text-gray-800">Market Sector Astrological Trends (Based on Current Day Scores)</h6>
-                <p class="market-page-subtitle text-gray-600 mt-1">Trends are derived from the planetary scores and sector weightages.</p>
-            </header>
-
-            <div class="controls-main-container flex flex-wrap justify-center items-center gap-x-4 gap-y-3">
-                <div class="flex items-center gap-1">
-                    <label for="filterPerspectiveMarket" class="text-sm font-medium text-gray-700">Perspective:</label>
-                    <select id="filterPerspectiveMarket" class="p-2 border-gray-300 rounded-md shadow-sm">
-                        <option value="any">Any</option>
-                        <option value="long">Long-Term</option>
-                        <option value="medium">Medium-Term</option>
-                        <option value="short">Short-Term</option>
-                    </select>
+                <div id="tradingviewChartContainer">
+                    <h6 class="section-header text-xl mb-4">Live Stock Chart (TradingView)</h6>
+                    <div id="tv_chart_container" style="width: 100%; height: 400px;"></div>
+                    <div class="text-center mt-2">
+                        <label for="tvSymbolInput" class="text-sm font-medium text-gray-700 mr-2">TradingView
+                            Symbol:</label>
+                        <input type="text" id="tvSymbolInput" value="NSE:RELIANCE"
+                            class="p-1 border-gray-300 rounded-md shadow-sm text-sm w-40">
+                        <button onclick="loadTradingViewChart()"
+                            class="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md text-sm">Load
+                            Symbol</button>
+                        <p class="tv-symbol-note">Examples: NSE:SBIN, BSE:TCS, NASDAQ:AAPL. Use symbol search in chart
+                            if direct load fails.</p>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1">
-                    <label for="filterTrendMarket" class="text-sm font-medium text-gray-700">Trend:</label>
-                    <select id="filterTrendMarket" class="p-2 border-gray-300 rounded-md shadow-sm">
-                        <option value="all">All</option>
-                        <option value="Strongly Bullish">Strongly Bullish</option>
-                        <option value="Bullish">Bullish</option>
-                        <option value="Neutral">Neutral</option>
-                        <option value="Bearish">Bearish</option>
-                        <option value="Strongly Bearish">Strongly Bearish</option>
-                    </select>
+
+
+                <div class="mb-8" style="display: none;">
+                    <h6 class="section-header">Step 1: Enter Current Planetary Positions</h6>
+                    <p class="text-center text-gray-600 text-sm mb-2">Planetary positions below are automatically
+                        fetched from Gochar data. You can manually adjust them if needed before deriving dignities.</p>
+                    <div class="bg-white shadow-xl rounded-lg table-container p-4">
+                        <table class="min-w-full positions-table">
+                            <thead class="positions-table-header">
+                                <tr>
+                                    <th>Planet</th>
+                                    <th>Rashi (Sign)</th>
+                                    <th>Nakshatra</th>
+                                    <th>Nakshatra Pada</th>
+                                </tr>
+                            </thead>
+                            <tbody id="planetaryPositionsInputBody">
+                                <tr>
+                                    <td colspan="4" class="loading-text">Fetching Gochar data for current day...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <button id="applyFilterButtonMarket" onclick="applyFiltersAndSortMarket()" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md shadow-sm">Apply Filters/Sort</button>
-                <button id="updateMarketTrendsButton" onclick="initiateSectorTrendCalculation()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
-                    Refresh Market Trends
-                </button>
+
+                <div class="mb-8" style="display: none;">
+                    <h6 class="section-header">Step 1B: Enter Future Planetary Positions (Next 5 Days)</h6>
+                    <p class="text-center text-gray-600 mb-2 text-sm">Positions below are automatically fetched from
+                        Gochar data for the next 5 days. Adjust if necessary.</p>
+                    <p class="text-center text-gray-600 mb-4 text-xs">These impact the 10-day forecast chart (Days
+                        6-10).</p>
+                    <div id="futurePlanetaryPositionsContainer" class="future-day-tables-grid">
+                        <div class="loading-text">Fetching Gochar data for future days...</div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button id="deriveDignitiesButton" onclick="deriveAndPopulateDignities()"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+                            Derive Dignities for Current Day & Populate Below
+                        </button>
+                    </div>
+                </div>
+
+                <div id="gochar-section" class="mb-8" style="display: none;">
+                    <h6 class="section-header">Raw Gochar Data (for Today)</h6>
+                    <div class="bg-white shadow-xl rounded-lg table-container p-4">
+                        <table id="gocharTable" class="min-w-full positions-table">
+                            <thead class="positions-table-header">
+                                <tr>
+                                    <th>Planet Name</th>
+                                    <th>Rashi</th>
+                                    <th>Nakshatra</th>
+                                    <th>Pada</th>
+                                    <th>Combust</th>
+                                    <th>Motion</th>
+                                    <th>Date of Entry</th>
+                                    <th>Date of Exit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="8" class="loading-text">Fetching raw Gochar data...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="mb-8" style="display: none;">
+                    <h6 class="section-header">Step 2: Planetary Characteristics & Derived Dignities (Current Day)</h6>
+                    <div class="bg-white shadow-xl rounded-lg table-container p-4">
+                        <table class="min-w-full input-table">
+                            <thead class="input-table-header">
+                                <tr>
+                                    <th>Planet</th>
+                                    <th>Derived Rashi Dignity</th>
+                                    <th>Derived Nakshatra Influence</th>
+                                    <th>Derived Nakshatra Pada Dignity</th>
+                                    <th>Derived Conj. Relation</th>
+                                    <th>Retrograde?</th>
+                                    <th>Combust?</th>
+                                    <th>Auto Vedh By</th>
+                                    <th>Auto Sparsh By</th>
+                                </tr>
+                            </thead>
+                            <tbody id="planetaryInputsBody">
+                                <tr>
+                                    <td colspan="9" class="loading-text">Set positions in Step 1 and click "Derive
+                                        Dignities...".</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="text-center mb-6" style="display: none;">
+                    <button id="calculateButton" onclick="initiateScoreCalculation()"
+                        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg shadow-md transition duration-150 ease-in-out text-sm md:text-base">
+                        Calculate All Scores & Update Market Trends/Levels/Chart
+                    </button>
+                </div>
+
+                <div class="w-full mt-8">
+                    <div class="bg-white shadow-xl rounded-lg table-container">
+                        <h6 class="text-lg font-semibold text-center py-3 bg-gray-100 rounded-t-lg">Planetary Score
+                            Results (Current Day)</h6>
+                        <p class="text-xs text-center text-gray-500 pb-2">Scores below can be manually adjusted. Market
+                            trends and Price Levels will update automatically.</p>
+                        <table class="min-w-full results-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th>Planet</th>
+                                    <th>Rashi Dig.</th>
+                                    <th>Nak. Influence</th>
+                                    <th>Nak. Pada Dignity</th>
+                                    <th>Relation (Conj.)</th>
+                                    <th>Retro</th>
+                                    <th>Combust</th>
+                                    <th>Vedh (By)</th>
+                                    <th>Sparsh (By)</th>
+                                    <th>Rashi Total (Long-Term Base)</th>
+                                    <th>Nak. Lord Total (Medium-Term Base)</th>
+                                    <th>Pada Total (Short-Term Base)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody">
+                                <tr>
+                                    <td colspan="12" class="loading-text">Enter data above and click "Calculate..."
+                                        button.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="w-full mt-8">
+                    <header class="mb-6 text-center">
+                        <h6 class="section-header market-page-title text-xl md:text-2xl font-bold text-gray-800">Market
+                            Sector Astrological Trends (Based on Current Day Scores)</h6>
+                        <p class="market-page-subtitle text-gray-600 mt-1">Trends are derived from the planetary scores
+                            and sector weightages.</p>
+                    </header>
+
+                    <div class="controls-main-container flex flex-wrap justify-center items-center gap-x-4 gap-y-3">
+                        <div class="flex items-center gap-1">
+                            <label for="filterPerspectiveMarket"
+                                class="text-sm font-medium text-gray-700">Perspective:</label>
+                            <select id="filterPerspectiveMarket" class="p-2 border-gray-300 rounded-md shadow-sm">
+                                <option value="any">Any</option>
+                                <option value="long">Long-Term</option>
+                                <option value="medium">Medium-Term</option>
+                                <option value="short">Short-Term</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <label for="filterTrendMarket" class="text-sm font-medium text-gray-700">Trend:</label>
+                            <select id="filterTrendMarket" class="p-2 border-gray-300 rounded-md shadow-sm">
+                                <option value="all">All</option>
+                                <option value="Strongly Bullish">Strongly Bullish</option>
+                                <option value="Bullish">Bullish</option>
+                                <option value="Neutral">Neutral</option>
+                                <option value="Bearish">Bearish</option>
+                                <option value="Strongly Bearish">Strongly Bearish</option>
+                            </select>
+                        </div>
+                        <button id="applyFilterButtonMarket" onclick="applyFiltersAndSortMarket()"
+                            class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md shadow-sm">Apply
+                            Filters/Sort</button>
+                        <button id="updateMarketTrendsButton" onclick="initiateSectorTrendCalculation()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+                            Refresh Market Trends
+                        </button>
+                    </div>
+
+                    <div class="bg-white shadow-xl rounded-lg table-container">
+                        <h6 class="text-lg font-semibold text-center py-3 bg-gray-100 rounded-t-lg">Market Trend Results
+                        </h6>
+                        <table class="min-w-full market-results-table">
+                            <thead class="market-table-header">
+                                <tr>
+                                    <th class="sticky left-0 bg-gray-700 z-10">Sector</th>
+                                    <th id="headerLongTermScoreMarket" class="sortable-header"
+                                        data-sort-key="rashiScore">Rashi Score <span class="sort-indicator"></span></th>
+                                    <th id="headerLongTermTrendMarket" class="sortable-header"
+                                        data-sort-key="rashiTrend">Long-Term Trend <span class="sort-indicator"></span>
+                                    </th>
+                                    <th id="headerMediumTermScoreMarket" class="sortable-header"
+                                        data-sort-key="nlrScore">Nak. Score <span class="sort-indicator"></span></th>
+                                    <th id="headerMediumTermTrendMarket" class="sortable-header"
+                                        data-sort-key="nlrTrend">Medium-Term Trend <span class="sort-indicator"></span>
+                                    </th>
+                                    <th id="headerShortTermScoreMarket" class="sortable-header"
+                                        data-sort-key="padaScore">Pada Score <span class="sort-indicator"></span></th>
+                                    <th id="headerShortTermTrendMarket" class="sortable-header"
+                                        data-sort-key="padaTrend">Short-Term Trend (Swing) <span
+                                            class="sort-indicator"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="sectorTrendsBody">
+                                <tr>
+                                    <td colspan="7" class="loading-text">Calculate planetary scores first to see market
+                                        trends.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="w-full mt-8" style="display: none;">
+                    <h6 class="section-header">Detailed Sector Weightages (Price Sheet Data)</h6>
+                    <p class="text-center text-gray-600 mb-4">This section shows the predefined weightages of each
+                        planet for various market sectors, used in trend calculations.</p>
+                    <div id="detailedWeightagesSection" class="weightage-grid-container">
+                    </div>
+                </div>
+
             </div>
 
-            <div class="bg-white shadow-xl rounded-lg table-container">
-                 <h6 class="text-lg font-semibold text-center py-3 bg-gray-100 rounded-t-lg">Market Trend Results</h6>
-                <table class="min-w-full market-results-table">
-                    <thead class="market-table-header">
-                        <tr>
-                            <th class="sticky left-0 bg-gray-700 z-10">Sector</th>
-                            <th id="headerLongTermScoreMarket" class="sortable-header" data-sort-key="rashiScore">Rashi Score <span class="sort-indicator"></span></th>
-                            <th id="headerLongTermTrendMarket" class="sortable-header" data-sort-key="rashiTrend">Long-Term Trend <span class="sort-indicator"></span></th>
-                            <th id="headerMediumTermScoreMarket" class="sortable-header" data-sort-key="nlrScore">Nak. Score <span class="sort-indicator"></span></th>
-                            <th id="headerMediumTermTrendMarket" class="sortable-header" data-sort-key="nlrTrend">Medium-Term Trend <span class="sort-indicator"></span></th>
-                            <th id="headerShortTermScoreMarket" class="sortable-header" data-sort-key="padaScore">Pada Score <span class="sort-indicator"></span></th>
-                            <th id="headerShortTermTrendMarket" class="sortable-header" data-sort-key="padaTrend">Short-Term Trend (Swing) <span class="sort-indicator"></span></th>
-                        </tr>
-                    </thead>
-                    <tbody id="sectorTrendsBody">
-                        <tr><td colspan="7" class="loading-text">Calculate planetary scores first to see market trends.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <div class="w-full mt-8">
-            <h6 class="section-header">Detailed Sector Weightages (Price Sheet Data)</h6>
-            <p class="text-center text-gray-600 mb-4">This section shows the predefined weightages of each planet for various market sectors, used in trend calculations.</p>
-            <div id="detailedWeightagesSection" class="weightage-grid-container">
+            <div id="customModal" class="custom-modal-overlay">
+                <div class="custom-modal-content">
+                    <p id="customModalMessage">This is a custom alert message!</p>
+                    <button id="customModalCloseButton">OK</button>
                 </div>
-        </div>
-
-    </div>
-
-    <div id="customModal" class="custom-modal-overlay">
-        <div class="custom-modal-content">
-            <p id="customModalMessage">This is a custom alert message!</p>
-            <button id="customModalCloseButton">OK</button>
-        </div>
-    </div>
+            </div>
 
         </div>
     </section>
@@ -1358,39 +1408,39 @@
     <script>
         // --- Constants for Score Calculation (Comprehensive Set) ---
         const ALL_PLANETS = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Rahu", "Ketu"];
-        
-        const DIGNITY_SCORES_RASHI = { 
+
+        const DIGNITY_SCORES_RASHI = {
             exalted: 1.00, moolatrikona: 0.75, own_house: 0.50, friends_house: 0.25,
-            neutral_house: 0.00, enemies_house: -0.25, debilitated: -1.00, default_rashi: 0.00 
+            neutral_house: 0.00, enemies_house: -0.25, debilitated: -1.00, default_rashi: 0.00
         };
 
-        const NAKSHATRA_INFLUENCE_SCORES = { 
-            exalted_nakshatra: 1.00, moolatrikona_nakshatra: 0.75, own_nakshatra: 0.50,          
-            friend_nlr: 0.25, neutral_nlr: 0.00, default_nlr: 0.00, enemy_nlr: -0.25,             
-            debilitated_nakshatra: -1.00  
+        const NAKSHATRA_INFLUENCE_SCORES = {
+            exalted_nakshatra: 1.00, moolatrikona_nakshatra: 0.75, own_nakshatra: 0.50,
+            friend_nlr: 0.25, neutral_nlr: 0.00, default_nlr: 0.00, enemy_nlr: -0.25,
+            debilitated_nakshatra: -1.00
         };
-        
+
         const NAKSHATRA_PADA_DIGNITY_SCORES = {
             "Exalted": 1.00, "Own": 0.50, "Friend": 0.25, "Neutral": 0.00,
-            "Enemy": -0.25, "Debilitated": -1.00, "default_pada_dignity": 0.00 
+            "Enemy": -0.25, "Debilitated": -1.00, "default_pada_dignity": 0.00
         };
 
         const RELATIONSHIP_SCORES = { best_friend: 0.3, friend: 0.2, neutral: 0.0, enemy: -0.2, bitter_enemy: -0.3, no_conjunction: 0.0 };
         const PLANET_RETROGRADE_SCORES = { Sun: 0.0, Moon: 0.0, Mercury: -0.1, Venus: -0.2, Mars: -0.2, Jupiter: -0.2, Saturn: -0.3, Rahu: 0.0, Ketu: 0.0 };
         const PLANET_COMBUST_SCORES = { Sun: 0.0, Moon: 0.0, Mercury: -0.1, Venus: -0.3, Mars: -0.2, Jupiter: -0.2, Saturn: -0.3, Rahu: 0.0, Ketu: 0.0 };
-        
-        const PLANET_ASPECT_STRENGTHS = { Sun: 1.0, Moon: 0.4, Mars: 0.7, Mercury: 0.5, Jupiter: 0.8, Venus: 0.6, Saturn: 0.9, Rahu: 0.6, Ketu: 0.5 };
-        
-        const BENEFIC_PLANETS = ["Jupiter", "Venus", "Mercury", "Moon"]; 
-        const MALEFIC_PLANETS = ["Mars", "Saturn", "Rahu", "Ketu", "Sun"]; 
-        
-        const DIGNITY_ASPECT_STRENGTH_FACTOR = 0.5; 
-        const RETRO_BENEFIC_SPARSH_MULTIPLIER = 0.8; 
-        const RETRO_MALEFIC_VEDH_MULTIPLIER = 1.2;   
-        
-        const LEVEL_SENSITIVITY_FACTOR = 0.1; 
 
-        const sectorAdjustedWeights = { 
+        const PLANET_ASPECT_STRENGTHS = { Sun: 1.0, Moon: 0.4, Mars: 0.7, Mercury: 0.5, Jupiter: 0.8, Venus: 0.6, Saturn: 0.9, Rahu: 0.6, Ketu: 0.5 };
+
+        const BENEFIC_PLANETS = ["Jupiter", "Venus", "Mercury", "Moon"];
+        const MALEFIC_PLANETS = ["Mars", "Saturn", "Rahu", "Ketu", "Sun"];
+
+        const DIGNITY_ASPECT_STRENGTH_FACTOR = 0.5;
+        const RETRO_BENEFIC_SPARSH_MULTIPLIER = 0.8;
+        const RETRO_MALEFIC_VEDH_MULTIPLIER = 1.2;
+
+        const LEVEL_SENSITIVITY_FACTOR = 0.1;
+
+        const sectorAdjustedWeights = {
             Share_Market: { Sun: 0.05, Moon: 0.20, Mercury: 0.30, Venus: 0.05, Mars: 0.03, Jupiter: 0.15, Saturn: -0.05, Rahu: 0.10, Ketu: -0.02 },
             Banking: { Sun: 0.05, Moon: 0.05, Mercury: 0.25, Venus: 0.15, Mars: 0.00, Jupiter: 0.40, Saturn: 0.05, Rahu: -0.03, Ketu: -0.03 },
             PSU_Bank: { Sun: 0.20, Moon: 0.05, Mercury: 0.15, Venus: 0.05, Mars: 0.00, Jupiter: 0.30, Saturn: 0.20, Rahu: -0.05, Ketu: -0.03 },
@@ -1448,26 +1498,26 @@
             "Virgo": "Mercury", "Libra": "Venus", "Scorpio": "Mars", "Sagittarius": "Jupiter",
             "Capricorn": "Saturn", "Aquarius": "Saturn", "Pisces": "Jupiter"
         };
-        
+
         const nakshatraLords = { // Should use canonical names from CANONICAL_NAKSHATRA_ORDER
             "Ashvini": "Ketu", "Bharani": "Venus", "Krittika": "Sun", "Rohini": "Moon",
             "Mrigashira": "Mars", "Ardra": "Rahu", "Punarvasu": "Jupiter", "Pushya": "Saturn",
-            "Ashlesha": "Mercury", "Magha": "Ketu", "PurvaPhalguni": "Venus", "UttaraPhalguni": "Sun", 
+            "Ashlesha": "Mercury", "Magha": "Ketu", "PurvaPhalguni": "Venus", "UttaraPhalguni": "Sun",
             "Hasta": "Moon", "Chitra": "Mars", "Svati": "Rahu", "Vishakha": "Jupiter",
-            "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus", 
-            "UttaraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu", 
-            "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury", "Abhijit": "Sun" 
+            "Anuradha": "Saturn", "Jyeshtha": "Mercury", "Mula": "Ketu", "PurvaShadha": "Venus",
+            "UttaraShadha": "Sun", "Sravana": "Moon", "Dhanista": "Mars", "Shatabhisha": "Rahu",
+            "PurvaBhadra": "Jupiter", "UttaraBhadra": "Saturn", "Revati": "Mercury", "Abhijit": "Sun"
         };
-        
+
         const VEDH_TABLES = { // Keys and values should use canonical names from CANONICAL_NAKSHATRA_ORDER
-            right: {'Ashvini':'Jyeshtha','Bharani':'Anuradha','Krittika':'Vishakha','Rohini':'Svati','Mrigashira':'Chitra','Ardra':'Hasta','Punarvasu':'UttaraPhalguni','Pushya':'PurvaPhalguni','Ashlesha':'Magha','Magha':'Ashlesha','PurvaPhalguni':'Pushya','UttaraPhalguni':'Punarvasu','Hasta':'Ardra','Chitra':'Mrigashira','Svati':'Rohini','Vishakha':'Krittika','Anuradha':'Bharani','Jyeshtha':'Ashvini','Mula':'Revati','PurvaShadha':'UttaraBhadra','UttaraShadha':'PurvaBhadra','Sravana':'Dhanista','Dhanista':'Sravana','Shatabhisha':'Abhijit','PurvaBhadra':'UttaraShadha','UttaraBhadra':'PurvaShadha','Revati':'Mula','Abhijit':'PurvaPhalguni'},
-            left: {'Ashvini':'Rohini','Bharani':'Krittika','Krittika':'Bharani','Rohini':'Ashvini','Mrigashira':'Revati','Ardra':'UttaraBhadra','Punarvasu':'PurvaBhadra','Pushya':'Shatabhisha','Ashlesha':'Dhanista','Magha':'Sravana','PurvaPhalguni':'Abhijit','UttaraPhalguni':'UttaraShadha','Hasta':'PurvaShadha','Chitra':'Mula','Svati':'Jyeshtha','Vishakha':'Anuradha','Anuradha':'Vishakha','Jyeshtha':'Svati','Mula':'Chitra','PurvaShadha':'Hasta','UttaraShadha':'UttaraPhalguni','Sravana':'Magha','Dhanista':'Ashlesha','Shatabhisha':'Pushya','PurvaBhadra':'Punarvasu','UttaraBhadra':'Ardra','Revati':'Mrigashira','Abhijit':'Shatabhisha'},
-            front: {'Ashvini':'PurvaPhalguni','Bharani':'Magha','Krittika':'Sravana','Rohini':'Abhijit','Mrigashira':'UttaraShadha','Ardra':'PurvaShadha','Punarvasu':'Mula','Pushya':'Jyeshtha','Ashlesha':'Anuradha','Magha':'Bharani','PurvaPhalguni':'Ashvini','UttaraPhalguni':'Revati','Hasta':'UttaraBhadra','Chitra':'PurvaBhadra','Svati':'Shatabhisha','Vishakha':'Dhanista','Anuradha':'Ashlesha','Jyeshtha':'Pushya','Mula':'Punarvasu','PurvaShadha':'Ardra','UttaraShadha':'Mrigashira','Sravana':'Krittika','Dhanista':'Vishakha','Shatabhisha':'Svati','PurvaBhadra':'Chitra','UttaraBhadra':'Hasta','Revati':'UttaraPhalguni','Abhijit':'Rohini'}
+            right: { 'Ashvini': 'Jyeshtha', 'Bharani': 'Anuradha', 'Krittika': 'Vishakha', 'Rohini': 'Svati', 'Mrigashira': 'Chitra', 'Ardra': 'Hasta', 'Punarvasu': 'UttaraPhalguni', 'Pushya': 'PurvaPhalguni', 'Ashlesha': 'Magha', 'Magha': 'Ashlesha', 'PurvaPhalguni': 'Pushya', 'UttaraPhalguni': 'Punarvasu', 'Hasta': 'Ardra', 'Chitra': 'Mrigashira', 'Svati': 'Rohini', 'Vishakha': 'Krittika', 'Anuradha': 'Bharani', 'Jyeshtha': 'Ashvini', 'Mula': 'Revati', 'PurvaShadha': 'UttaraBhadra', 'UttaraShadha': 'PurvaBhadra', 'Sravana': 'Dhanista', 'Dhanista': 'Sravana', 'Shatabhisha': 'Abhijit', 'PurvaBhadra': 'UttaraShadha', 'UttaraBhadra': 'PurvaShadha', 'Revati': 'Mula', 'Abhijit': 'PurvaPhalguni' },
+            left: { 'Ashvini': 'Rohini', 'Bharani': 'Krittika', 'Krittika': 'Bharani', 'Rohini': 'Ashvini', 'Mrigashira': 'Revati', 'Ardra': 'UttaraBhadra', 'Punarvasu': 'PurvaBhadra', 'Pushya': 'Shatabhisha', 'Ashlesha': 'Dhanista', 'Magha': 'Sravana', 'PurvaPhalguni': 'Abhijit', 'UttaraPhalguni': 'UttaraShadha', 'Hasta': 'PurvaShadha', 'Chitra': 'Mula', 'Svati': 'Jyeshtha', 'Vishakha': 'Anuradha', 'Anuradha': 'Vishakha', 'Jyeshtha': 'Svati', 'Mula': 'Chitra', 'PurvaShadha': 'Hasta', 'UttaraShadha': 'UttaraPhalguni', 'Sravana': 'Magha', 'Dhanista': 'Ashlesha', 'Shatabhisha': 'Pushya', 'PurvaBhadra': 'Punarvasu', 'UttaraBhadra': 'Ardra', 'Revati': 'Mrigashira', 'Abhijit': 'Shatabhisha' },
+            front: { 'Ashvini': 'PurvaPhalguni', 'Bharani': 'Magha', 'Krittika': 'Sravana', 'Rohini': 'Abhijit', 'Mrigashira': 'UttaraShadha', 'Ardra': 'PurvaShadha', 'Punarvasu': 'Mula', 'Pushya': 'Jyeshtha', 'Ashlesha': 'Anuradha', 'Magha': 'Bharani', 'PurvaPhalguni': 'Ashvini', 'UttaraPhalguni': 'Revati', 'Hasta': 'UttaraBhadra', 'Chitra': 'PurvaBhadra', 'Svati': 'Shatabhisha', 'Vishakha': 'Dhanista', 'Anuradha': 'Ashlesha', 'Jyeshtha': 'Pushya', 'Mula': 'Punarvasu', 'PurvaShadha': 'Ardra', 'UttaraShadha': 'Mrigashira', 'Sravana': 'Krittika', 'Dhanista': 'Vishakha', 'Shatabhisha': 'Svati', 'PurvaBhadra': 'Chitra', 'UttaraBhadra': 'Hasta', 'Revati': 'UttaraPhalguni', 'Abhijit': 'Rohini' }
         };
 
         const SPARSH_CAUSING_PLANETS = ['Jupiter', 'Mercury', 'Venus', 'Moon'];
         const VEDH_CAUSING_PLANETS = ['Sun', 'Rahu', 'Ketu', 'Mars', 'Saturn'];
-        
+
         const CANONICAL_NAKSHATRA_ORDER = ["Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni", "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula", "PurvaShadha", "UttaraShadha", "Abhijit", "Sravana", "Dhanista", "Shatabhisha", "PurvaBhadra", "UttaraBhadra", "Revati"];
         const MASTER_NAKSHATRA_LIST = [...CANONICAL_NAKSHATRA_ORDER];
 
@@ -1517,7 +1567,7 @@
                 { nakshatra: "PurvaShadha", padas: [1, 2, 3, 4] },
                 { nakshatra: "UttaraShadha", padas: [1] }
             ],
-            "Capricorn": [ 
+            "Capricorn": [
                 { nakshatra: "UttaraShadha", padas: [2, 3, 4] },
                 { nakshatra: "Sravana", padas: [1, 2, 3, 4] },
                 { nakshatra: "Dhanista", padas: [1, 2] }
@@ -1543,8 +1593,8 @@
             "Jupiter": { friends: ["Sun", "Moon", "Mars"], enemies: ["Mercury", "Venus"], neutral: ["Saturn", "Rahu", "Ketu"] },
             "Venus": { friends: ["Mercury", "Saturn"], enemies: ["Sun", "Moon", "Jupiter"], neutral: ["Mars", "Rahu", "Ketu"] },
             "Saturn": { friends: ["Mercury", "Venus"], enemies: ["Sun", "Moon", "Mars"], neutral: ["Jupiter", "Rahu", "Ketu"] },
-            "Rahu": { friends: ["Mercury", "Venus", "Saturn"], enemies: ["Sun", "Moon", "Mars"], neutral: ["Jupiter", "Ketu"] }, 
-            "Ketu": { friends: ["Jupiter", "Mars"], enemies: ["Sun", "Moon", "Mercury"], neutral: ["Venus", "Saturn", "Rahu"] } 
+            "Rahu": { friends: ["Mercury", "Venus", "Saturn"], enemies: ["Sun", "Moon", "Mars"], neutral: ["Jupiter", "Ketu"] },
+            "Ketu": { friends: ["Jupiter", "Mars"], enemies: ["Sun", "Moon", "Mercury"], neutral: ["Venus", "Saturn", "Rahu"] }
         };
         const PLANET_DIGNITIES_IN_RASHI = {
             "Sun": { exaltedRashi: 1, debilitatedRashi: 7, moolatrikonaRashi: 5, ownRashi: [5] },
@@ -1554,34 +1604,34 @@
             "Jupiter": { exaltedRashi: 4, debilitatedRashi: 10, moolatrikonaRashi: 9, ownRashi: [9, 12] },
             "Venus": { exaltedRashi: 12, debilitatedRashi: 6, moolatrikonaRashi: 7, ownRashi: [2, 7] },
             "Saturn": { exaltedRashi: 7, debilitatedRashi: 1, moolatrikonaRashi: 11, ownRashi: [10, 11] },
-            "Rahu": { exaltedRashi: 2, debilitatedRashi: 8, moolatrikonaRashi: 3, ownRashi: [6, 11] }, 
-            "Ketu": { exaltedRashi: 8, debilitatedRashi: 2, moolatrikonaRashi: 9, ownRashi: [12, 3] }  
+            "Rahu": { exaltedRashi: 2, debilitatedRashi: 8, moolatrikonaRashi: 3, ownRashi: [6, 11] },
+            "Ketu": { exaltedRashi: 8, debilitatedRashi: 2, moolatrikonaRashi: 9, ownRashi: [12, 3] }
         };
-         const ucchaNeechaNakshatraPada = { 
-            "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } }, 
+        const ucchaNeechaNakshatraPada = {
+            "Sun": { exalted: { nakshatra: "Bharani", pada: 2 }, debilitated: { nakshatra: "Svati", pada: 1 } },
             "Moon": { exalted: { nakshatra: "Krittika", pada: 1 }, debilitated: { nakshatra: "Anuradha", pada: 4 } },
-            "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } }, 
-            "Mercury": { exalted: { nakshatra: "Hasta", pada: 3 }, debilitated: { nakshatra: "Revati", pada: 4 } }, 
-            "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "UttaraShadha", pada: 1 } }, 
-            "Venus": { exalted: { nakshatra: "Revati", pada: 1 }, debilitated: { nakshatra: "Chitra", pada: 3 } }, 
-            "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } }, 
-            "Rahu": { exalted: { nakshatra: "Ardra", pada: 4 }, debilitated: { nakshatra: "Mula", pada: 1 } }, 
+            "Mars": { exalted: { nakshatra: "Dhanista", pada: 1 }, debilitated: { nakshatra: "Pushya", pada: 4 } },
+            "Mercury": { exalted: { nakshatra: "Hasta", pada: 3 }, debilitated: { nakshatra: "Revati", pada: 4 } },
+            "Jupiter": { exalted: { nakshatra: "Punarvasu", pada: 4 }, debilitated: { nakshatra: "UttaraShadha", pada: 1 } },
+            "Venus": { exalted: { nakshatra: "Revati", pada: 1 }, debilitated: { nakshatra: "Chitra", pada: 3 } },
+            "Saturn": { exalted: { nakshatra: "Svati", pada: 3 }, debilitated: { nakshatra: "Ashvini", pada: 4 } },
+            "Rahu": { exalted: { nakshatra: "Ardra", pada: 4 }, debilitated: { nakshatra: "Mula", pada: 1 } },
             "Ketu": { exalted: { nakshatra: "Mula", pada: 4 }, debilitated: { nakshatra: "Ardra", pada: 1 } }
         };
 
         // Ensure PLANET_PADA_DIGNITIES_DATA is fully populated for all planets
-        const PLANET_PADA_DIGNITIES_DATA = { 
-          "Sun": [{"nakshatra": "Ashvini","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Ashvini","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Ashvini","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Ashvini","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "Bharani","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "Bharani","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "Bharani","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "Bharani","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Krittika","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Krittika","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Krittika","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Krittika","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Rohini","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Rohini","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Rohini","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Rohini","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "Mrigashira","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "Mrigashira","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "Mrigashira","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "Mrigashira","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Ardra","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Ardra","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Ardra","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Ardra","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Punarvasu","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Punarvasu","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Punarvasu","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Punarvasu","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "Pushya","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "Pushya","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "Pushya","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "Pushya","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Ashlesha","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Ashlesha","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Ashlesha","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Ashlesha","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Magha","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Magha","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Magha","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Magha","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "PurvaPhalguni","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "PurvaPhalguni","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "PurvaPhalguni","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "PurvaPhalguni","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "UttaraPhalguni","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "UttaraPhalguni","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "UttaraPhalguni","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "UttaraPhalguni","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Hasta","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Hasta","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Hasta","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Hasta","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "Chitra","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "Chitra","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "Chitra","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "Chitra","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Svati","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Svati","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Svati","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Svati","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Vishakha","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Vishakha","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Vishakha","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Vishakha","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "Anuradha","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "Anuradha","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "Anuradha","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "Anuradha","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Jyeshtha","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Jyeshtha","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Jyeshtha","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Jyeshtha","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Mula","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Mula","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Mula","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Mula","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "PurvaShadha","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "PurvaShadha","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "PurvaShadha","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "PurvaShadha","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "UttaraShadha","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "UttaraShadha","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "UttaraShadha","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "UttaraShadha","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "Sravana","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "Sravana","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "Sravana","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "Sravana","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "Dhanista","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "Dhanista","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "Dhanista","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "Dhanista","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Shatabhisha","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Shatabhisha","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Shatabhisha","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Shatabhisha","pada": 4,"navamsa": "Pisces","status": "Neutral"}, {"nakshatra": "PurvaBhadra","pada": 1,"navamsa": "Aries","status": "Exalted"}, {"nakshatra": "PurvaBhadra","pada": 2,"navamsa": "Taurus","status": "Neutral"}, {"nakshatra": "PurvaBhadra","pada": 3,"navamsa": "Gemini","status": "Neutral"}, {"nakshatra": "PurvaBhadra","pada": 4,"navamsa": "Cancer","status": "Neutral"}, {"nakshatra": "UttaraBhadra","pada": 1,"navamsa": "Leo","status": "Own"}, {"nakshatra": "UttaraBhadra","pada": 2,"navamsa": "Virgo","status": "Neutral"}, {"nakshatra": "UttaraBhadra","pada": 3,"navamsa": "Libra","status": "Debilitated"}, {"nakshatra": "UttaraBhadra","pada": 4,"navamsa": "Scorpio","status": "Neutral"}, {"nakshatra": "Revati","pada": 1,"navamsa": "Sagittarius","status": "Friend"}, {"nakshatra": "Revati","pada": 2,"navamsa": "Capricorn","status": "Neutral"}, {"nakshatra": "Revati","pada": 3,"navamsa": "Aquarius","status": "Enemy"}, {"nakshatra": "Revati","pada": 4,"navamsa": "Pisces","status": "Neutral"}],
-          "Moon": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Mars": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Mercury": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Jupiter": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Venus": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Saturn": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Rahu": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"}))), 
-          "Ketu": MASTER_NAKSHATRA_LIST.flatMap(nak => [1,2,3,4].map(pad => ({nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad -1) % 12)], status: "Neutral"})))  
+        const PLANET_PADA_DIGNITIES_DATA = {
+            "Sun": [{ "nakshatra": "Ashvini", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Ashvini", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Ashvini", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Ashvini", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "Bharani", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "Bharani", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "Bharani", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "Bharani", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Krittika", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Krittika", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Krittika", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Krittika", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Rohini", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Rohini", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Rohini", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Rohini", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "Mrigashira", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "Mrigashira", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "Mrigashira", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "Mrigashira", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Ardra", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Ardra", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Ardra", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Ardra", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Punarvasu", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Punarvasu", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Punarvasu", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Punarvasu", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "Pushya", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "Pushya", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "Pushya", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "Pushya", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Ashlesha", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Ashlesha", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Ashlesha", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Ashlesha", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Magha", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Magha", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Magha", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Magha", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "PurvaPhalguni", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "PurvaPhalguni", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "PurvaPhalguni", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "PurvaPhalguni", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "UttaraPhalguni", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "UttaraPhalguni", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "UttaraPhalguni", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "UttaraPhalguni", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Hasta", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Hasta", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Hasta", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Hasta", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "Chitra", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "Chitra", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "Chitra", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "Chitra", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Svati", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Svati", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Svati", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Svati", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Vishakha", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Vishakha", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Vishakha", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Vishakha", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "Anuradha", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "Anuradha", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "Anuradha", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "Anuradha", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Jyeshtha", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Jyeshtha", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Jyeshtha", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Jyeshtha", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Mula", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Mula", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Mula", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Mula", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "PurvaShadha", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "PurvaShadha", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "PurvaShadha", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "PurvaShadha", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "UttaraShadha", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "UttaraShadha", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "UttaraShadha", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "UttaraShadha", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "Sravana", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "Sravana", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "Sravana", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "Sravana", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "Dhanista", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "Dhanista", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "Dhanista", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "Dhanista", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Shatabhisha", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Shatabhisha", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Shatabhisha", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Shatabhisha", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }, { "nakshatra": "PurvaBhadra", "pada": 1, "navamsa": "Aries", "status": "Exalted" }, { "nakshatra": "PurvaBhadra", "pada": 2, "navamsa": "Taurus", "status": "Neutral" }, { "nakshatra": "PurvaBhadra", "pada": 3, "navamsa": "Gemini", "status": "Neutral" }, { "nakshatra": "PurvaBhadra", "pada": 4, "navamsa": "Cancer", "status": "Neutral" }, { "nakshatra": "UttaraBhadra", "pada": 1, "navamsa": "Leo", "status": "Own" }, { "nakshatra": "UttaraBhadra", "pada": 2, "navamsa": "Virgo", "status": "Neutral" }, { "nakshatra": "UttaraBhadra", "pada": 3, "navamsa": "Libra", "status": "Debilitated" }, { "nakshatra": "UttaraBhadra", "pada": 4, "navamsa": "Scorpio", "status": "Neutral" }, { "nakshatra": "Revati", "pada": 1, "navamsa": "Sagittarius", "status": "Friend" }, { "nakshatra": "Revati", "pada": 2, "navamsa": "Capricorn", "status": "Neutral" }, { "nakshatra": "Revati", "pada": 3, "navamsa": "Aquarius", "status": "Enemy" }, { "nakshatra": "Revati", "pada": 4, "navamsa": "Pisces", "status": "Neutral" }],
+            "Moon": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Mars": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Mercury": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Jupiter": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Venus": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Saturn": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Rahu": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" }))),
+            "Ketu": MASTER_NAKSHATRA_LIST.flatMap(nak => [1, 2, 3, 4].map(pad => ({ nakshatra: nak, pada: pad, navamsa: RASHI_NAMES[((MASTER_NAKSHATRA_LIST.indexOf(nak) * 4 + pad - 1) % 12)], status: "Neutral" })))
         };
-        
+
         // --- INITIAL_PLANETARY_POSITIONS (Minimal Fallback Structure) ---
         const INITIAL_PLANETARY_POSITIONS = ALL_PLANETS.map(planetName => ({
             name: planetName,
@@ -1605,84 +1655,85 @@
         // let token = urlParams.get('token') || localStorage.getItem("token");
 
         // --- Global variables ---
-        let fetchedCurrentDayPositions = null; 
-        let fetchedFutureDaysPositions = []; 
+        let fetchedCurrentDayPositions = null;
+        let fetchedFutureDaysPositions = [];
         let CURRENT_PLANETARY_CHARACTERISTICS = JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS));
-        let currentPlanetaryScoresForMarket = {}; 
-        let futurePlanetaryScoresData = []; 
+        let currentPlanetaryScoresForMarket = {};
+        let futurePlanetaryScoresData = [];
 
         // --- DOM Elements ---
-        const resultsBody = document.getElementById('resultsBody'); 
-        const calculateButton = document.getElementById('calculateButton'); 
-        const planetaryInputsBody = document.getElementById('planetaryInputsBody'); 
-        const planetaryPositionsInputBody = document.getElementById('planetaryPositionsInputBody'); 
+        const resultsBody = document.getElementById('resultsBody');
+        const calculateButton = document.getElementById('calculateButton');
+        const planetaryInputsBody = document.getElementById('planetaryInputsBody');
+        const planetaryPositionsInputBody = document.getElementById('planetaryPositionsInputBody');
         const futurePlanetaryPositionsContainer = document.getElementById('futurePlanetaryPositionsContainer');
-        const sectorTrendsBody = document.getElementById('sectorTrendsBody'); 
-        const updateMarketTrendsButton = document.getElementById('updateMarketTrendsButton'); 
+        const sectorTrendsBody = document.getElementById('sectorTrendsBody');
+        const updateMarketTrendsButton = document.getElementById('updateMarketTrendsButton');
         const filterPerspectiveMarket = document.getElementById('filterPerspectiveMarket');
         const filterTrendMarket = document.getElementById('filterTrendMarket');
         const applyFilterButtonMarket = document.getElementById('applyFilterButtonMarket');
-        const detailedWeightagesSection = document.getElementById('detailedWeightagesSection'); 
+        const detailedWeightagesSection = document.getElementById('detailedWeightagesSection');
         const priceLevelInputPrice = document.getElementById('priceLevelInputPrice');
         const priceLevelSectorSelect = document.getElementById('priceLevelSectorSelect');
         const priceLevelsTableBody = document.getElementById('priceLevelsTableBody');
-        const individualPlanetPriceLevelsTableBody = document.getElementById('individualPlanetPriceLevelsTableBody'); 
-        const individualPlanetLevelsTitle = document.getElementById('individualPlanetLevelsTitle'); 
-        const calculatePriceLevelsButton = document.getElementById('calculatePriceLevelsButton'); 
-        let priceForecastChartInstance = null; 
-        let tvWidgetInstance = null; 
+        const individualPlanetPriceLevelsTableBody = document.getElementById('individualPlanetPriceLevelsTableBody');
+        const individualPlanetLevelsTitle = document.getElementById('individualPlanetLevelsTitle');
+        const calculatePriceLevelsButton = document.getElementById('calculatePriceLevelsButton');
+        let priceForecastChartInstance = null;
+        let tvWidgetInstance = null;
         const customModal = document.getElementById('customModal');
         const customModalMessage = document.getElementById('customModalMessage');
         const customModalCloseButton = document.getElementById('customModalCloseButton');
 
         // --- Utility Functions ---
         function standardizeNakshatraName(name) {
-            if (!name) return null; 
-            const originalNameForLog = String(name); 
+            if (!name) return null;
+            const originalNameForLog = String(name);
             const sNameTrimmed = String(name).trim();
 
-            if (sNameTrimmed === "UttaraBhadra" || sNameTrimmed === "PurvaBhadra" || sNameTrimmed === "Uttara Bhadra" || sNameTrimmed === "Purva Bhadra" || sNameTrimmed === "Uttarabhadra" || sNameTrimmed === "Purvabhadra") { 
-                console.log(`DEBUG: standardizeNakshatraName - INPUT for Saturn/Rahu/Moon check: '${originalNameForLog}', Trimmed: '${sNameTrimmed}'`);
+            if (sNameTrimmed === "UttaraBhadra" || sNameTrimmed === "PurvaBhadra" || sNameTrimmed === "Uttara Bhadra" || sNameTrimmed === "Purva Bhadra" || sNameTrimmed === "Uttarabhadra" || sNameTrimmed === "Purvabhadra") {
+                // console.log(`DEBUG: standardizeNakshatraName - INPUT for Saturn/Rahu/Moon check: '${originalNameForLog}', Trimmed: '${sNameTrimmed}'`);
             }
 
             // 1. Direct match with canonical list (case-sensitive)
             if (MASTER_NAKSHATRA_LIST.includes(sNameTrimmed)) {
-                 if (sNameTrimmed === "UttaraBhadra" || sNameTrimmed === "PurvaBhadra") console.log(`DEBUG: standardizeNakshatraName - Direct Match for '${sNameTrimmed}'`);
-                return sNameTrimmed;
+                if (sNameTrimmed === "UttaraBhadra" || sNameTrimmed === "PurvaBhadra")
+                    //  console.log(`DEBUG: standardizeNakshatraName - Direct Match for '${sNameTrimmed}'`);
+                    return sNameTrimmed;
             }
 
             // 2. Check known variations (lowercase, no spaces)
             const sNameLowerNospace = sNameTrimmed.replace(/\s+/g, '').toLowerCase();
             const knownVariations = {
-                "ashwini": "Ashvini", 
+                "ashwini": "Ashvini",
                 "purvaphalguni": "PurvaPhalguni", "poorvaphalguni": "PurvaPhalguni",
                 "uttaraphalguni": "UttaraPhalguni", "uttarphalguni": "UttaraPhalguni",
                 "purvaashadha": "PurvaShadha", "purvashada": "PurvaShadha",
                 "uttaraashadha": "UttaraShadha", "uttarashada": "UttaraShadha",
-                "purvabhadrapada": "PurvaBhadra", "poorvabhadrapada": "PurvaBhadra", "purvabhadra": "PurvaBhadra", 
-                "uttarabhadrapada": "UttaraBhadra", "uttarbhadrapada": "UttaraBhadra", "uttarabhadra": "UttaraBhadra", 
-                "sravana": "Sravana", "shravana": "Sravana", 
-                "dhanishta": "Dhanista", 
-                "shatabhisha": "Shatabhisha", 
+                "purvabhadrapada": "PurvaBhadra", "poorvabhadrapada": "PurvaBhadra", "purvabhadra": "PurvaBhadra",
+                "uttarabhadrapada": "UttaraBhadra", "uttarbhadrapada": "UttaraBhadra", "uttarabhadra": "UttaraBhadra",
+                "sravana": "Sravana", "shravana": "Sravana",
+                "dhanishta": "Dhanista",
+                "shatabhisha": "Shatabhisha",
                 "mrigasira": "Mrigashira", "mrigashirsha": "Mrigashira", "mrigasirsa": "Mrigashira"
             };
             if (knownVariations[sNameLowerNospace]) {
-                 if (knownVariations[sNameLowerNospace] === "UttaraBhadra" || knownVariations[sNameLowerNospace] === "PurvaBhadra") console.log(`DEBUG: standardizeNakshatraName - Known Variation Match for '${originalNameForLog}' to '${knownVariations[sNameLowerNospace]}'`);
+                if (knownVariations[sNameLowerNospace] === "UttaraBhadra" || knownVariations[sNameLowerNospace] === "PurvaBhadra") console.log(`DEBUG: standardizeNakshatraName - Known Variation Match for '${originalNameForLog}' to '${knownVariations[sNameLowerNospace]}'`);
                 return knownVariations[sNameLowerNospace];
             }
 
             // 3. Case-insensitive match against MASTER_NAKSHATRA_LIST
             const sNameTrimmedLower = sNameTrimmed.toLowerCase();
             const masterListLower = MASTER_NAKSHATRA_LIST.map(n => n.toLowerCase());
-            const masterIndex = masterListLower.indexOf(sNameTrimmedLower); 
+            const masterIndex = masterListLower.indexOf(sNameTrimmedLower);
             if (masterIndex !== -1) {
-                const canonicalName = MASTER_NAKSHATRA_LIST[masterIndex]; 
+                const canonicalName = MASTER_NAKSHATRA_LIST[masterIndex];
                 if (canonicalName === "UttaraBhadra" || canonicalName === "PurvaBhadra") console.log(`DEBUG: standardizeNakshatraName - Case-Insensitive Match for '${originalNameForLog}' to '${canonicalName}'`);
-                return canonicalName; 
+                return canonicalName;
             }
-            
-            console.warn(`DEBUG: standardizeNakshatraName - Could not standardize: '${originalNameForLog}'. Input trimmed: '${sNameTrimmed}'. Returning null.`);
-            return null; 
+
+            // console.warn(`DEBUG: standardizeNakshatraName - Could not standardize: '${originalNameForLog}'. Input trimmed: '${sNameTrimmed}'. Returning null.`);
+            return null;
         }
 
 
@@ -1697,7 +1748,7 @@
             const day = String(dateObj.getDate()).padStart(2, '0');
             return `${year}-${month}-${day}`;
         }
-        
+
         function showCustomAlert(message) {
             customModalMessage.textContent = message; customModal.classList.add('active');
         }
@@ -1709,18 +1760,140 @@
             const parts = String(dateString).split('-');
             if (parts.length === 3) {
                 const year = parseInt(parts[0], 10);
-                const month = parseInt(parts[1], 10) - 1; 
+                const month = parseInt(parts[1], 10) - 1;
                 const day = parseInt(parts[2], 10);
                 if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
-                    return new Date(Date.UTC(year, month, day)); 
+                    return new Date(Date.UTC(year, month, day));
                 }
             }
-            return null; 
+            return null;
         };
+
+        async function fetchMoonData() {
+            const response = await fetch(`${host}/api/admindetail/all`);
+            if (!response.ok) {
+                throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`);
+            }
+            const responseData = await response.json();
+
+            const panchangData = responseData[0].panchang;
+            const todayNormalized = normalizeDate(getFormattedDate(new Date()));
+
+            const getPanchangData = async (date) => {
+                let todaysPanchang = null;
+
+                if (panchangData && Array.isArray(panchangData)) {
+                    for (const month of panchangData) {
+                        const match = month.days.find(day => day.date === date);
+                        if (match) {
+                            todaysPanchang = match.data;
+                            break;
+                        }
+                    }
+                }
+                return todaysPanchang
+            };
+
+            function formatDatePanchang(date) {
+                let day = String(date.getDate()).padStart(2, '0');
+                let month = String(date.getMonth() + 1).padStart(2, '0');
+                let year = date.getFullYear();
+                return `${day}/${month}/${year}`;  // Converts to DD/MM/YYYY format
+            }
+            let formattedTithiDate = formatDatePanchang(todayNormalized);
+
+            // Fetch current day's Panchang data
+            const TithiPanchangResponse = await getPanchangData(formattedTithiDate);
+
+            // console.log(TithiPanchangResponse, "TithiPanchangResponse")
+            let moonNakshatra = TithiPanchangResponse.nakshatra.name;
+            let moonrashi = TithiPanchangResponse.rasi.name
+            let moonStart = new Date(TithiPanchangResponse.nakshatra.start);
+            let moonEnd = new Date(TithiPanchangResponse.nakshatra.end);
+
+            // Convert formattedTithiDate and formattedTime to a Date object
+            let currentDate = new Date();
+            let currentHours = currentDate.getHours();
+            let currentMinutes = currentDate.getMinutes();
+            let formattedTime = `${String(currentHours).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`;
+            let [daymoon, monthmoon, yearmoon] = formattedTithiDate.split("/").map(Number);
+            let [hoursmoon, minutesmoon] = formattedTime.split(":").map(Number);
+            let currentDateTime = new Date(yearmoon, monthmoon - 1, daymoon, hoursmoon, minutesmoon);
+
+            // Calculate total duration and divide into 4 Padas
+            let totalDuration = moonEnd - moonStart;
+            let partDuration = totalDuration / 4;
+            let part1 = new Date(moonStart.getTime() + partDuration);
+            let part2 = new Date(moonStart.getTime() + partDuration * 2);
+            let part3 = new Date(moonStart.getTime() + partDuration * 3);
+            let part4 = moonEnd;
+
+            function getPada(time) {
+                let dateTime = new Date(time);
+                if (dateTime >= moonStart && dateTime < part1) {
+                    return 1;
+                } else if (dateTime >= part1 && dateTime < part2) {
+                    return 2;
+                } else if (dateTime >= part2 && dateTime < part3) {
+                    return 3;
+                } else if (dateTime >= part3 && dateTime <= part4) {
+                    return 4;
+                } else {
+                    return "Out of range";
+                }
+            }
+
+            let moonpada = getPada(currentDateTime);
+
+            // If Pada is out of range, fetch the next day's Panchang
+            if (moonpada === "Out of range") {
+                let nextDate = new Date(yearmoon, monthmoon - 1, daymoon + 1);
+                let nextFormattedDate = nextDate.toLocaleDateString("en-GB").split("/").join("/"); // Convert to YYYY/MM/DD
+
+                const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
+                if (nextTithiPanchangResponse.length !== 0) {
+                    const nextTithiPanchangData = nextTithiPanchangResponse;
+                    console.log(nextTithiPanchangData, "nextTithiPanchangData")
+
+                    let nextMoonNakshatra = nextTithiPanchangData.nakshatra.name;
+                    let nextMoonStart = new Date(nextTithiPanchangData.nakshatra.start);
+                    let nextMoonEnd = new Date(nextTithiPanchangData.nakshatra.end);
+
+                    let nextTotalDuration = nextMoonEnd - nextMoonStart;
+                    let nextPartDuration = nextTotalDuration / 4;
+                    let nextPart1 = new Date(nextMoonStart.getTime() + nextPartDuration);
+                    let nextPart2 = new Date(nextMoonStart.getTime() + nextPartDuration * 2);
+                    let nextPart3 = new Date(nextMoonStart.getTime() + nextPartDuration * 3);
+                    let nextPart4 = nextMoonEnd;
+
+                    function getPada2(time) {
+                        let dateTime = new Date(time);
+
+                        if (dateTime >= moonStart && dateTime < nextPart1) {
+                            return 1;
+                        } else if (dateTime >= nextPart1 && dateTime < nextPart2) {
+                            return 2;
+                        } else if (dateTime >= nextPart2 && dateTime < nextPart3) {
+                            return 3;
+                        } else if (dateTime >= nextPart3 && dateTime <= nextPart4) {
+                            return 4;
+                        } else {
+                            return "Out of range";
+                        }
+                    }
+
+                    let nextMoonPada = getPada2(currentDateTime);
+                    moonpada = nextMoonPada
+                    moonNakshatra = nextMoonNakshatra
+                }
+            }
+            await fetchData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd)
+            await fetchAndProcessGocharData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd)
+        }
 
 
         // --- Function to fetch and display raw Gochar data for the separate table ---
-        async function fetchData() {
+        async function fetchData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd) {
             const gocharTableBody = document.querySelector("#gocharTable tbody");
             if (!gocharTableBody) {
                 console.error("DEBUG: Raw Gochar table body not found.");
@@ -1728,11 +1901,11 @@
             }
             gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Fetching raw Gochar data...</td></tr>`;
 
-            if (host === "YOUR_API_HOST_URL_HERE" || !host || host.trim() === "") {
-                console.error("DEBUG: API host is not configured for raw Gochar fetch.");
-                gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">API Host Error.</td></tr>`;
-                return;
-            }
+            // if (host === "YOUR_API_HOST_URL_HERE" || !host || host.trim() === "") {
+            //     console.error("DEBUG: API host is not configured for raw Gochar fetch.");
+            //     gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">API Host Error.</td></tr>`;
+            //     return;
+            // }
 
             try {
                 // console.log("DEBUG: fetchData (for raw table) - Fetching from:", `${host}/api/admindetail/all`); 
@@ -1741,34 +1914,49 @@
                     throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`);
                 }
                 const responseData = await response.json();
+                console.log(responseData, "responseData")
 
                 if (!responseData || !responseData[0] || !Array.isArray(responseData[0].gochar)) {
-                    console.error("DEBUG: Invalid raw Gochar data format:", responseData);
+                    // console.error("DEBUG: Invalid raw Gochar data format:", responseData);
                     gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Invalid data format.</td></tr>`;
                     return;
                 }
                 const gocharEntries = responseData[0].gochar;
-                const todayNormalized = normalizeDate(getFormattedDate(new Date())); 
+                const todayNormalized = normalizeDate(getFormattedDate(new Date()));
+                // console.log(todayNormalized, "todayNormalized")
 
                 if (!todayNormalized) {
-                    console.error("DEBUG: Could not normalize today's date for raw Gochar table.");
-                     gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Date error.</td></tr>`;
+                    // console.error("DEBUG: Could not normalize today's date for raw Gochar table.");
+                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Date error.</td></tr>`;
                     return;
                 }
 
                 const todayEntries = gocharEntries.filter(entry => {
-                    if (entry.date_of_entry && entry.date_of_exit) { 
+                    if (entry.date_of_entry && entry.date_of_exit) {
                         const entryStartDateNormalized = normalizeDate(entry.date_of_entry);
                         const entryEndDateNormalized = normalizeDate(entry.date_of_exit);
                         if (!entryStartDateNormalized || !entryEndDateNormalized) return false;
                         return todayNormalized >= entryStartDateNormalized && todayNormalized <= entryEndDateNormalized;
                     }
-                    return false; 
+                    return false;
                 });
 
-                gocharTableBody.innerHTML = ""; 
+                gocharTableBody.innerHTML = "";
+
+                // Insert Moon data as the first row
+                const moonRow = gocharTableBody.insertRow();
+                moonRow.insertCell().textContent = "Moon";
+                moonRow.insertCell().textContent = moonrashi || "N/A";
+                moonRow.insertCell().textContent = standardizeNakshatraName(moonNakshatra) || "N/A";
+                moonRow.insertCell().textContent = moonpada || "N/A";
+                moonRow.insertCell().textContent = "No";
+                moonRow.insertCell().textContent = "Direct";
+                moonRow.insertCell().textContent = moonStart.toLocaleDateString();
+                moonRow.insertCell().textContent = moonEnd.toLocaleDateString();
+
+                // Then loop through other planets
                 if (todayEntries.length === 0) {
-                    gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">No Gochar entries found for today.</td></tr>`;
+                    gocharTableBody.innerHTML += `<tr><td colspan="8" class="loading-text">No Gochar entries found for today.</td></tr>`;
                 } else {
                     todayEntries.forEach(entry => {
                         const row = gocharTableBody.insertRow();
@@ -1782,25 +1970,31 @@
                         row.insertCell().textContent = entry.date_of_exit ? new Date(entry.date_of_exit + "T00:00:00Z").toLocaleDateString() : "N/A";
                     });
                 }
+                // console.log(gocharTableBody, "gocharTableBody")
             } catch (error) {
-                console.error("DEBUG: Error in fetchData (for raw table):", error);
+                // console.error("DEBUG: Error in fetchData (for raw table):", error);
                 gocharTableBody.innerHTML = `<tr><td colspan="8" class="loading-text">Error fetching raw Gochar.</td></tr>`;
             }
         }
 
 
         // --- Gochar Data Fetching and Processing (for Step 1 & Future Days) ---
-        async function fetchAndProcessGocharData() {
-            console.log("DEBUG: fetchAndProcessGocharData started at", new Date().toLocaleTimeString());
+        async function fetchAndProcessGocharData(moonNakshatra, moonpada, moonrashi, moonStart, moonEnd) {
+            console.log(moonNakshatra, "nakshatra")
+            console.log(moonpada, "pada")
+            console.log(moonrashi, "rashi")
+            console.log(moonStart, "start")
+            console.log(moonEnd, "end")
+            // console.log("DEBUG: fetchAndProcessGocharData started at", new Date().toLocaleTimeString());
             const loadingTextCurrent = planetaryPositionsInputBody.querySelector('.loading-text');
             const loadingTextFuture = futurePlanetaryPositionsContainer.querySelector('.loading-text');
 
             console.log("DEBUG: API host is:", host);
             if (host === "YOUR_API_HOST_URL_HERE" || !host || host.trim() === "") {
-                console.error("DEBUG: API host is not configured properly! Please update the 'host' variable.");
+                // console.error("DEBUG: API host is not configured properly! Please update the 'host' variable.");
                 showCustomAlert("API host not configured. Using default planetary positions.");
-                if(loadingTextCurrent) loadingTextCurrent.textContent = "API Host Error. Using Defaults.";
-                if(loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
+                if (loadingTextCurrent) loadingTextCurrent.textContent = "API Host Error. Using Defaults.";
+                if (loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
                     futurePlanetaryPositionsContainer.querySelector('.loading-text').textContent = "API Host Error. Using Defaults.";
                 }
                 fetchedCurrentDayPositions = JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS));
@@ -1809,12 +2003,12 @@
             }
 
             try {
-                console.log("DEBUG: fetchAndProcessGocharData - try block entered. Fetching from:", `${host}/api/admindetail/all`);
+                // console.log("DEBUG: fetchAndProcessGocharData - try block entered. Fetching from:", `${host}/api/admindetail/all`);
                 const response = await fetch(`${host}/api/admindetail/all`);
-                console.log("DEBUG: API Response Status:", response.status, response.statusText);
+                // console.log("DEBUG: API Response Status:", response.status, response.statusText);
 
                 if (!response.ok) {
-                    console.error("DEBUG: API response not OK. Status:", response.status);
+                    // console.error("DEBUG: API response not OK. Status:", response.status);
                     throw new Error(`HTTP error fetching Gochar data! Status: ${response.status} ${response.statusText}`);
                 }
 
@@ -1822,64 +2016,65 @@
                 // console.log("DEBUG: API responseData (raw):", JSON.stringify(responseData).substring(0, 500)); 
 
                 if (!responseData || !responseData[0] || !Array.isArray(responseData[0].gochar)) {
-                    console.error("DEBUG: Invalid Gochar data format from API. Expected responseData[0].gochar to be an array. responseData[0]:", responseData ? JSON.stringify(responseData[0]).substring(0,300) : "N/A");
+                    // console.error("DEBUG: Invalid Gochar data format from API. Expected responseData[0].gochar to be an array. responseData[0]:", responseData ? JSON.stringify(responseData[0]).substring(0,300) : "N/A");
                     throw new Error("Invalid Gochar data format received.");
                 }
                 const gocharEntries = responseData[0].gochar;
-                console.log("DEBUG: Gochar entries received (count):", gocharEntries.length);
+                // console.log("DEBUG: Gochar entries received (count):", gocharEntries.length);
                 // if (gocharEntries.length > 0) console.log("DEBUG: First Gochar entry example:", JSON.stringify(gocharEntries[0])); 
 
                 const datesToFetch = [];
-                const todayObj = new Date(); 
-                todayObj.setHours(0,0,0,0); 
+                const todayObj = new Date();
+                todayObj.setHours(0, 0, 0, 0);
 
-                for (let i = 0; i < 6; i++) { 
+                for (let i = 0; i < 6; i++) {
                     const dateObj = new Date(todayObj);
                     dateObj.setDate(todayObj.getDate() + i);
-                    datesToFetch.push(getFormattedDate(dateObj)); 
+                    datesToFetch.push(getFormattedDate(dateObj));
                 }
-                console.log("DEBUG: Dates to fetch:", datesToFetch);
+                // console.log("DEBUG: Dates to fetch:", datesToFetch);
 
                 const dailyPlanetaryData = {};
                 datesToFetch.forEach(dateStr => {
                     dailyPlanetaryData[dateStr] = ALL_PLANETS.map(planetName => {
                         const initialPlanetFallback = INITIAL_PLANETARY_POSITIONS.find(p => p.name === planetName) ||
-                                                     { name: planetName, rashiNumber: null, nakshatraName: null, nakshatraPada: null, isRetrograde: false, isCombust: false };
-                        return JSON.parse(JSON.stringify(initialPlanetFallback)); 
+                            { name: planetName, rashiNumber: null, nakshatraName: null, nakshatraPada: null, isRetrograde: false, isCombust: false };
+                        return JSON.parse(JSON.stringify(initialPlanetFallback));
                     });
                 });
 
                 datesToFetch.forEach(dateStr => {
-                    const targetDateNormalized = normalizeDate(dateStr); 
+                    const targetDateNormalized = normalizeDate(dateStr);
                     if (!targetDateNormalized) {
-                        console.error(`DEBUG: Could not normalize targetDate for dateStr: ${dateStr}`);
-                        return; 
+                        // console.error(`DEBUG: Could not normalize targetDate for dateStr: ${dateStr}`);
+                        return;
                     }
                     // console.log(`DEBUG: Processing date: ${dateStr} (Normalized UTC: ${targetDateNormalized.toISOString()})`); 
 
                     ALL_PLANETS.forEach(planetName => {
                         const planetObjInDayData = dailyPlanetaryData[dateStr].find(p => p.name === planetName);
                         if (!planetObjInDayData) {
-                             return;
+                            return;
                         }
-                        
+
                         const relevantEntry = gocharEntries.find(entry => {
                             if (entry.planet_name !== planetName) return false;
                             if (!entry.date_of_entry || !entry.date_of_exit) return false;
-                            
+
                             const entryStartDateNormalized = normalizeDate(entry.date_of_entry);
                             const entryEndDateNormalized = normalizeDate(entry.date_of_exit);
 
                             if (!entryStartDateNormalized || !entryEndDateNormalized) return false;
-                            
+
                             return targetDateNormalized >= entryStartDateNormalized && targetDateNormalized <= entryEndDateNormalized;
                         });
+                        // console.log(relevantEntry, "relevantEntry")
 
                         if (relevantEntry) {
                             const rawNakshatraName = relevantEntry.nakshatra_name || relevantEntry.nakshatra;
-                            if (planetName === "Saturn" || planetName === "Rahu" || planetName === "Moon") { 
-                                console.log(`DEBUG: ASSIGNING for ${planetName} on ${dateStr}. Entry:`, JSON.stringify(relevantEntry));
-                                console.log(`DEBUG: Values for ${planetName}: rashi_name='${relevantEntry.rashi_name}', rashi='${relevantEntry.rashi}', RAW nak_name='${rawNakshatraName}', pada_val='${relevantEntry.nakshatra_pada}', pada_alt='${relevantEntry.pada}'`);
+                            if (planetName === "Saturn" || planetName === "Rahu" || planetName === "Moon") {
+                                // console.log(`DEBUG: ASSIGNING for ${planetName} on ${dateStr}. Entry:`, JSON.stringify(relevantEntry));
+                                // console.log(`DEBUG: Values for ${planetName}: rashi_name='${relevantEntry.rashi_name}', rashi='${relevantEntry.rashi}', RAW nak_name='${rawNakshatraName}', pada_val='${relevantEntry.nakshatra_pada}', pada_alt='${relevantEntry.pada}'`);
                             }
                             const rashiNameFromAPI = relevantEntry.rashi_name || relevantEntry.rashi;
                             const rashiNum = RASHI_NAMES.indexOf(rashiNameFromAPI);
@@ -1895,12 +2090,20 @@
                             if (relevantEntry.combust !== undefined && relevantEntry.combust !== null) {
                                 planetObjInDayData.isCombust = !!relevantEntry.combust;
                             }
-                            if (planetName === "Saturn" || planetName === "Rahu" || planetName === "Moon") { 
-                                 console.log(`DEBUG: AFTER ASSIGNMENT for ${planetName} on ${dateStr}:`, JSON.stringify(planetObjInDayData));
+                            if (planetName === "Saturn" || planetName === "Rahu" || planetName === "Moon") {
+                                //  console.log(`DEBUG: AFTER ASSIGNMENT for ${planetName} on ${dateStr}:`, JSON.stringify(planetObjInDayData));
                             }
                         } else {
-                            if (dateStr === datesToFetch[0]) { 
-                                console.warn(`DEBUG: NO Gochar entry found for ${planetName} on ${dateStr}. Will use null/default values.`);
+                            if (dateStr === datesToFetch[0]) {
+                                // Add this patch for Moon on today's date
+                                if (planetName === "Moon" && moonNakshatra && moonpada && moonrashi && moonStart && moonEnd) {
+                                    const moonObj = planetObjInDayData;
+                                    moonObj.rashiNumber = RASHI_NAMES.indexOf(moonrashi) + 1 || null;
+                                    moonObj.nakshatraName = standardizeNakshatraName(moonNakshatra);
+                                    moonObj.nakshatraPada = parseInt(moonpada, 10);
+                                    moonObj.start = moonStart;
+                                    moonObj.end = moonEnd;
+                                }
                             }
                         }
                     });
@@ -1908,17 +2111,17 @@
                 // console.log("DEBUG: dailyPlanetaryData after processing Gochar entries:", JSON.parse(JSON.stringify(dailyPlanetaryData))); 
 
                 const todayDateStr = datesToFetch[0];
-                console.log("DEBUG: Today's date string for processing:", todayDateStr);
+                // console.log("DEBUG: Today's date string for processing:", todayDateStr);
                 // console.log("DEBUG: dailyPlanetaryData for today BEFORE completeness check:", JSON.parse(JSON.stringify(dailyPlanetaryData[todayDateStr]))); 
-                
-                console.log("DEBUG: Checking data for isTodayDataComplete:");
+
+                // console.log("DEBUG: Checking data for isTodayDataComplete:");
                 dailyPlanetaryData[todayDateStr].forEach(p => {
                     // p.nakshatraName should already be standardized or null here
                     const isPlanetComplete = p.rashiNumber !== null && p.rashiNumber >= 1 && p.rashiNumber <= 12 &&
-                                            p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) && 
-                                            p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4;
-                    if (!isPlanetComplete && (p.name === "Moon" || p.name === "Saturn" || p.name === "Rahu")) { 
-                        console.warn(`DEBUG: INCOMPLETE DATA FOR ${p.name}: Rashi=${p.rashiNumber}, Nakshatra=${p.nakshatraName} (Is it in Master List: ${MASTER_NAKSHATRA_LIST.includes(p.nakshatraName)}), Pada=${p.nakshatraPada}`);
+                        p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) &&
+                        p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4;
+                    if (!isPlanetComplete && (p.name === "Moon" || p.name === "Saturn" || p.name === "Rahu")) {
+                        // console.warn(`DEBUG: INCOMPLETE DATA FOR ${p.name}: Rashi=${p.rashiNumber}, Nakshatra=${p.nakshatraName} (Is it in Master List: ${MASTER_NAKSHATRA_LIST.includes(p.nakshatraName)}), Pada=${p.nakshatraPada}`);
                     }
                 });
 
@@ -1927,15 +2130,15 @@
                     p.nakshatraName !== null && MASTER_NAKSHATRA_LIST.includes(p.nakshatraName) && // Use already standardized p.nakshatraName
                     p.nakshatraPada !== null && !isNaN(p.nakshatraPada) && p.nakshatraPada >= 1 && p.nakshatraPada <= 4
                 );
-                console.log("DEBUG: isTodayDataComplete defined. Value:", isTodayDataComplete); 
+                // console.log("DEBUG: isTodayDataComplete defined. Value:", isTodayDataComplete); 
 
                 if (isTodayDataComplete) {
                     fetchedCurrentDayPositions = dailyPlanetaryData[todayDateStr];
-                    if(loadingTextCurrent) loadingTextCurrent.innerHTML = '';
+                    if (loadingTextCurrent) loadingTextCurrent.innerHTML = '';
                 } else {
-                    console.warn(`DEBUG: Gochar data for today (${todayDateStr}) is incomplete. Some planets may be missing data. Displaying what was found.`);
-                    fetchedCurrentDayPositions = dailyPlanetaryData[todayDateStr]; 
-                    if(loadingTextCurrent) loadingTextCurrent.innerHTML = ''; 
+                    // console.warn(`DEBUG: Gochar data for today (${todayDateStr}) is incomplete. Some planets may be missing data. Displaying what was found.`);
+                    fetchedCurrentDayPositions = dailyPlanetaryData[todayDateStr];
+                    if (loadingTextCurrent) loadingTextCurrent.innerHTML = '';
                 }
 
                 fetchedFutureDaysPositions = [];
@@ -1948,26 +2151,26 @@
                     );
                     if (isFutureDayDataComplete) {
                         fetchedFutureDaysPositions.push(dailyPlanetaryData[futureDateStr]);
-                    } else { 
-                        fetchedFutureDaysPositions.push(dailyPlanetaryData[futureDateStr] || JSON.parse(JSON.stringify(fetchedCurrentDayPositions))); 
+                    } else {
+                        fetchedFutureDaysPositions.push(dailyPlanetaryData[futureDateStr] || JSON.parse(JSON.stringify(fetchedCurrentDayPositions)));
                     }
                 }
-                if(loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
+                if (loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
                     futurePlanetaryPositionsContainer.querySelector('.loading-text').innerHTML = '';
                 }
-                console.log("DEBUG: fetchAndProcessGocharData finished successfully.");
+                // console.log("DEBUG: fetchAndProcessGocharData finished successfully.");
                 return true;
 
             } catch (error) {
-                console.error("DEBUG: CRITICAL ERROR in fetchAndProcessGocharData catch block:", error);
+                // console.error("DEBUG: CRITICAL ERROR in fetchAndProcessGocharData catch block:", error);
                 showCustomAlert(`Error fetching Gochar: ${error.message}. Using default positions.`);
                 fetchedCurrentDayPositions = JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS));
                 fetchedFutureDaysPositions = Array(5).fill(null).map(() => JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS)));
-                if(loadingTextCurrent) loadingTextCurrent.textContent = "Gochar Fetch Error. Using Defaults.";
-                if(loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
-                     futurePlanetaryPositionsContainer.querySelector('.loading-text').textContent = "Gochar Fetch Error. Using Defaults.";
+                if (loadingTextCurrent) loadingTextCurrent.textContent = "Gochar Fetch Error. Using Defaults.";
+                if (loadingTextFuture && futurePlanetaryPositionsContainer.querySelector('.loading-text')) {
+                    futurePlanetaryPositionsContainer.querySelector('.loading-text').textContent = "Gochar Fetch Error. Using Defaults.";
                 }
-                console.log("DEBUG: fetchAndProcessGocharData finished with error.");
+                // console.log("DEBUG: fetchAndProcessGocharData finished with error.");
                 return false;
             }
         }
@@ -1976,12 +2179,13 @@
         function createPlanetaryPositionsInputTable() {
             planetaryPositionsInputBody.innerHTML = '';
             const dataToUse = fetchedCurrentDayPositions || INITIAL_PLANETARY_POSITIONS;
+            // console.log(dataToUse, "dataToUse")
             // console.log("DEBUG: createPlanetaryPositionsInputTable - dataToUse (first 3):", JSON.stringify(dataToUse.slice(0,3), null, 2));
 
 
             dataToUse.forEach(planetData => {
                 if (planetData.name === "Saturn" || planetData.name === "Rahu" || planetData.name === "Moon") {
-                    console.log(`DEBUG: createPlanetaryPositionsInputTable - Processing planetData for ${planetData.name}:`, JSON.parse(JSON.stringify(planetData)));
+                    // console.log(`DEBUG: createPlanetaryPositionsInputTable - Processing planetData for ${planetData.name}:`, JSON.parse(JSON.stringify(planetData)));
                 }
                 const row = planetaryPositionsInputBody.insertRow();
                 row.insertCell().textContent = planetData.name;
@@ -2031,9 +2235,9 @@
                 const initialP = INITIAL_PLANETARY_POSITIONS.find(ip => ip.name === p.name) || {};
                 return {
                     name: p.name,
-                    rashiNumber: p.rashiNumber, 
+                    rashiNumber: p.rashiNumber,
                     nakshatraName: p.nakshatraName, // Already standardized or null
-                    nakshatraPada: p.nakshatraPada, 
+                    nakshatraPada: p.nakshatraPada,
                     isRetrograde: p.isRetrograde !== undefined ? p.isRetrograde : initialP.isRetrograde,
                     isCombust: p.isCombust !== undefined ? p.isCombust : initialP.isCombust,
                     derivedRashiDignityKey: p.derivedRashiDignityKey || initialP.derivedRashiDignityKey || 'default_rashi',
@@ -2046,12 +2250,79 @@
             });
         }
 
-        function createFuturePlanetaryPositionsInputTables() {
-            futurePlanetaryPositionsContainer.innerHTML = ''; 
+        async function createFuturePlanetaryPositionsInputTables() {
+            const response = await fetch(`${host}/api/admindetail/all`);
+            if (!response.ok) {
+                throw new Error(`HTTP error fetching raw Gochar! Status: ${response.status}`);
+            }
+            const responseData = await response.json();
+            const panchangData = responseData[0].panchang;
+
+            const getPanchangData = async (date) => {
+                let todaysPanchang = null;
+                if (panchangData && Array.isArray(panchangData)) {
+                    for (const month of panchangData) {
+                        const match = month.days.find(day => day.date === date);
+                        if (match) {
+                            todaysPanchang = match.data;
+                            break;
+                        }
+                    }
+                }
+                return todaysPanchang;
+            };
+
+            function formatDatePanchang(date) {
+                let day = String(date.getDate()).padStart(2, '0');
+                let month = String(date.getMonth() + 1).padStart(2, '0');
+                let year = date.getFullYear();
+                return `${day}/${month}/${year}`; // DD/MM/YYYY
+            }
+
+            // Get Moon data for 5 future days
+            let moonDataForFiveDays = [];
+
+            for (let i = 0; i < 5; i++) {
+                let futureDate = new Date();
+                futureDate.setDate(futureDate.getDate() + i);
+                let formattedDate = formatDatePanchang(futureDate);
+                let panchang = await getPanchangData(formattedDate);
+
+                if (panchang && panchang.nakshatra?.start && panchang.nakshatra?.end) {
+                    let moonStart = new Date(panchang.nakshatra.start);
+                    let moonEnd = new Date(panchang.nakshatra.end);
+                    let totalDuration = moonEnd - moonStart;
+                    let partDuration = totalDuration / 4;
+
+                    let part1 = new Date(moonStart.getTime() + partDuration);
+                    let part2 = new Date(moonStart.getTime() + partDuration * 2);
+                    let part3 = new Date(moonStart.getTime() + partDuration * 3);
+                    let part4 = moonEnd;
+
+                    let now = new Date(); // current time
+                    let pada;
+                    if (now >= moonStart && now < part1) pada = 1;
+                    else if (now < part2) pada = 2;
+                    else if (now < part3) pada = 3;
+                    else if (now <= part4) pada = 4;
+                    else pada = null;
+
+                    moonDataForFiveDays.push({
+                        rashi: panchang.rasi?.name || null,
+                        nakshatra: panchang.nakshatra?.name || null,
+                        pada: pada
+                    });
+                } else {
+                    moonDataForFiveDays.push({ rashi: null, nakshatra: null, pada: null });
+                }
+            }
+
+            // Generate the tables
+            futurePlanetaryPositionsContainer.innerHTML = '';
             for (let day = 1; day <= 5; day++) {
                 const dayContainer = document.createElement('div');
                 dayContainer.className = 'bg-white shadow-md rounded-lg p-4 table-container';
-                
+
                 const dayTitle = document.createElement('h4');
                 dayTitle.className = 'text-md font-semibold text-center mb-2 text-gray-700';
                 dayTitle.textContent = `Future Day ${day}`;
@@ -2063,58 +2334,84 @@
                 thead.className = 'future-positions-table-header';
                 const headerRow = thead.insertRow();
                 ['Planet', 'Rashi', 'Nakshatra', 'Pada'].forEach(text => {
-                    const th = document.createElement('th'); th.textContent = text; headerRow.appendChild(th);
+                    const th = document.createElement('th');
+                    th.textContent = text;
+                    headerRow.appendChild(th);
                 });
+
                 const tbody = table.createTBody();
                 tbody.id = `future-day-${day}-tbody`;
 
-                const dayDataToUse = (fetchedFutureDaysPositions && fetchedFutureDaysPositions[day - 1]) 
-                                   ? fetchedFutureDaysPositions[day - 1] 
-                                   : (fetchedCurrentDayPositions || INITIAL_PLANETARY_POSITIONS);
+                const dayDataToUse = (fetchedFutureDaysPositions && fetchedFutureDaysPositions[day - 1])
+                    ? fetchedFutureDaysPositions[day - 1]
+                    : (fetchedCurrentDayPositions || INITIAL_PLANETARY_POSITIONS);
 
                 ALL_PLANETS.forEach(planetName => {
                     const initialPlanetData = INITIAL_PLANETARY_POSITIONS.find(p => p.name === planetName) || {};
-                    const planetData = dayDataToUse.find(p => p.name === planetName) || initialPlanetData;
+                    let planetData = dayDataToUse.find(p => p.name === planetName) || initialPlanetData;
+
+                    if (planetName === "Moon") {
+                        const moonData = moonDataForFiveDays[day - 1];
+                        planetData = {
+                            name: "Moon",
+                            rashiNumber: moonData.rashi ? RASHI_NAMES.indexOf(moonData.rashi) + 1 : null,
+                            nakshatraName: moonData.nakshatra,
+                            nakshatraPada: moonData.pada
+                        };
+                    }
 
                     const row = tbody.insertRow();
                     row.insertCell().textContent = planetName;
 
+                    // Rashi select
                     const rashiCell = row.insertCell();
                     const rashiSelect = document.createElement('select');
                     rashiSelect.id = `future-d${day}-rashi-${planetName}`;
-                    let defaultRashiOpt = document.createElement('option'); defaultRashiOpt.value = ""; defaultRashiOpt.textContent = "-- Select --"; rashiSelect.appendChild(defaultRashiOpt);
+                    let defaultRashiOpt = document.createElement('option');
+                    defaultRashiOpt.value = ""; defaultRashiOpt.textContent = "-- Select --";
+                    rashiSelect.appendChild(defaultRashiOpt);
                     RASHI_NAMES.forEach((name, index) => {
                         const option = document.createElement('option');
-                        option.value = index + 1; option.textContent = name;
+                        option.value = index + 1;
+                        option.textContent = name;
                         rashiSelect.appendChild(option);
                     });
                     rashiSelect.value = planetData.rashiNumber !== null ? planetData.rashiNumber : "";
                     rashiCell.appendChild(rashiSelect);
 
+                    // Nakshatra select
                     const nakshatraCell = row.insertCell();
                     const nakshatraSelect = document.createElement('select');
                     nakshatraSelect.id = `future-d${day}-nakshatra-${planetName}`;
-                     let defaultNakOpt = document.createElement('option'); defaultNakOpt.value = ""; defaultNakOpt.textContent = "-- Select --"; nakshatraSelect.appendChild(defaultNakOpt);
+                    let defaultNakOpt = document.createElement('option');
+                    defaultNakOpt.value = ""; defaultNakOpt.textContent = "-- Select --";
+                    nakshatraSelect.appendChild(defaultNakOpt);
                     MASTER_NAKSHATRA_LIST.forEach(nakName => {
                         const option = document.createElement('option');
-                        option.value = nakName; option.textContent = nakName;
+                        option.value = nakName;
+                        option.textContent = nakName;
                         nakshatraSelect.appendChild(option);
                     });
-                    nakshatraSelect.value = planetData.nakshatraName ? planetData.nakshatraName : ""; // Already standardized
+                    nakshatraSelect.value = planetData.nakshatraName ? planetData.nakshatraName : "";
                     nakshatraCell.appendChild(nakshatraSelect);
 
+                    // Pada input
                     const padaCell = row.insertCell();
                     const padaInput = document.createElement('input');
-                    padaInput.type = 'number'; padaInput.id = `future-d${day}-pada-${planetName}`;
-                    padaInput.min = 1; padaInput.max = 4; 
+                    padaInput.type = 'number';
+                    padaInput.id = `future-d${day}-pada-${planetName}`;
+                    padaInput.min = 1;
+                    padaInput.max = 4;
                     padaInput.value = planetData.nakshatraPada !== null ? planetData.nakshatraPada : '';
                     padaCell.appendChild(padaInput);
                 });
+
                 dayContainer.appendChild(table);
                 futurePlanetaryPositionsContainer.appendChild(dayContainer);
             }
+            initiateScoreCalculation()
         }
-        
+
         function getPlanetaryPositionsFromTopTable() {
             const positions = {};
             ALL_PLANETS.forEach(planetName => {
@@ -2129,7 +2426,7 @@
             });
             return positions;
         }
-        
+
         // --- Dignity Calculation Functions ---
         function determineRashiDignity(planetName, rashiNumber) {
             const dignities = PLANET_DIGNITIES_IN_RASHI[planetName];
@@ -2145,7 +2442,7 @@
             if (relations && relations.friends.includes(lordOfRashi)) return 'friends_house';
             if (relations && relations.enemies.includes(lordOfRashi)) return 'enemies_house';
             if (relations && relations.neutral.includes(lordOfRashi)) return 'neutral_house';
-            return 'neutral_house'; 
+            return 'neutral_house';
         }
 
         function determineNakshatraInfluence(planetName, nakshatraName, nakshatraPada) {
@@ -2162,9 +2459,9 @@
                 }
             }
             const lordOfThisNakshatra = nakshatraLords[stdNakshatraName];
-            if (!lordOfThisNakshatra && stdNakshatraName === "Abhijit") return 'neutral_nlr'; 
+            if (!lordOfThisNakshatra && stdNakshatraName === "Abhijit") return 'neutral_nlr';
             if (!lordOfThisNakshatra) return 'default_nlr';
-            if (lordOfThisNakshatra === planetName) return 'own_nakshatra'; 
+            if (lordOfThisNakshatra === planetName) return 'own_nakshatra';
             const relations = planetaryRelations[planetName];
             if (relations && lordOfThisNakshatra) {
                 if (relations.friends.includes(lordOfThisNakshatra)) return 'friend_nlr';
@@ -2182,70 +2479,70 @@
             }
             const padaDataForPlanet = PLANET_PADA_DIGNITIES_DATA[planetName];
             const foundPada = padaDataForPlanet.find(p => standardizeNakshatraName(p.nakshatra) === stdNakshatraName && p.pada === nakshatraPada);
-            if (foundPada && foundPada.status) return foundPada.status; 
-            return "default_pada_dignity"; 
+            if (foundPada && foundPada.status) return foundPada.status;
+            return "default_pada_dignity";
         }
 
-        function createInputForm() { 
+        function createInputForm() {
             planetaryInputsBody.innerHTML = '<tr><td colspan="9" class="loading-text">Populating based on derived dignities...</td></tr>';
-             if (!CURRENT_PLANETARY_CHARACTERISTICS || CURRENT_PLANETARY_CHARACTERISTICS.length === 0 || !CURRENT_PLANETARY_CHARACTERISTICS.some(p => p.name)) {
+            if (!CURRENT_PLANETARY_CHARACTERISTICS || CURRENT_PLANETARY_CHARACTERISTICS.length === 0 || !CURRENT_PLANETARY_CHARACTERISTICS.some(p => p.name)) {
                 console.warn("CURRENT_PLANETARY_CHARACTERISTICS is empty or invalid in createInputForm. Re-initializing from INITIAL_PLANETARY_POSITIONS.");
                 CURRENT_PLANETARY_CHARACTERISTICS = JSON.parse(JSON.stringify(INITIAL_PLANETARY_POSITIONS));
             }
 
-            planetaryInputsBody.innerHTML = ''; 
+            planetaryInputsBody.innerHTML = '';
             CURRENT_PLANETARY_CHARACTERISTICS.forEach(planetData => {
                 const row = planetaryInputsBody.insertRow();
-                row.id = `input-row-${planetData.name}`; 
+                row.id = `input-row-${planetData.name}`;
                 row.insertCell().textContent = planetData.name;
-                
+
                 row.insertCell().id = `derived-rashi-${planetData.name}`;
                 row.insertCell().id = `derived-nakshatra-${planetData.name}`;
                 row.insertCell().id = `derived-nakshatra-pada-${planetData.name}`;
                 row.insertCell().id = `derived-conjunction-${planetData.name}`;
 
                 ['derivedRashiDignityKey', 'derivedNakshatraInfluenceKey', 'derivedNakshatraPadaDignityKey', 'derivedConjunctionKey'].forEach(keyName => {
-                    const cellId = `${keyName.replace(/Key$/, '').replace(/([A-Z])/g, '-$1').toLowerCase()}-${planetData.name}`; 
+                    const cellId = `${keyName.replace(/Key$/, '').replace(/([A-Z])/g, '-$1').toLowerCase()}-${planetData.name}`;
                     const cell = document.getElementById(cellId);
                     if (cell) {
-                         cell.textContent = formatDisplayKey(planetData[keyName] || (keyName === 'derivedConjunctionKey' ? 'no_conjunction' : 'N/A'));
-                         cell.classList.add('derived-dignity-cell');
+                        cell.textContent = formatDisplayKey(planetData[keyName] || (keyName === 'derivedConjunctionKey' ? 'no_conjunction' : 'N/A'));
+                        cell.classList.add('derived-dignity-cell');
                     }
                 });
-                
+
                 const retroCell = row.insertCell();
                 const retroCheckbox = document.createElement('input');
                 retroCheckbox.type = 'checkbox'; retroCheckbox.id = `isRetrograde-${planetData.name}`;
-                retroCheckbox.checked = planetData.isRetrograde || false; 
+                retroCheckbox.checked = planetData.isRetrograde || false;
                 retroCell.appendChild(retroCheckbox);
 
                 const combustCell = row.insertCell();
                 const combustCheckbox = document.createElement('input');
                 combustCheckbox.type = 'checkbox'; combustCheckbox.id = `isCombust-${planetData.name}`;
-                combustCheckbox.checked = planetData.isCombust || false; 
+                combustCheckbox.checked = planetData.isCombust || false;
                 combustCell.appendChild(combustCheckbox);
 
                 const vedhCell = row.insertCell();
                 const vedhDisplay = document.createElement('span'); vedhDisplay.id = `vedhBy-${planetData.name}`;
-                vedhDisplay.className = 'derived-text-field'; 
+                vedhDisplay.className = 'derived-text-field';
                 vedhDisplay.textContent = (planetData.vedhBy || []).join(', ') || '-';
                 vedhCell.appendChild(vedhDisplay);
 
                 const sparshCell = row.insertCell();
                 const sparshDisplay = document.createElement('span'); sparshDisplay.id = `sparshBy-${planetData.name}`;
-                sparshDisplay.className = 'derived-text-field'; 
+                sparshDisplay.className = 'derived-text-field';
                 sparshDisplay.textContent = (planetData.sparshBy || []).join(', ') || '-';
                 sparshCell.appendChild(sparshDisplay);
             });
         }
-        
+
         function getAbsolutePada(nakshatraName, nakshatraPada) {
             const stdNakshatraName = standardizeNakshatraName(nakshatraName); // Already standardized if coming from CURRENT_PLANETARY_CHARACTERISTICS
             if (!stdNakshatraName || nakshatraPada === null || isNaN(parseInt(nakshatraPada))) return -1;
             const nakshatraIndex = MASTER_NAKSHATRA_LIST.indexOf(stdNakshatraName);
             if (nakshatraIndex === -1) {
-                console.warn(`Nakshatra ${stdNakshatraName} not in MASTER_NAKSHATRA_LIST for getAbsolutePada`);
-                return -1; 
+                // console.warn(`Nakshatra ${stdNakshatraName} not in MASTER_NAKSHATRA_LIST for getAbsolutePada`);
+                return -1;
             }
             return (nakshatraIndex * 4) + parseInt(nakshatraPada);
         }
@@ -2256,21 +2553,21 @@
             const currentPlanetInfo = allPlanetPositions[currentPlanetName];
             if (!currentPlanetInfo || !currentPlanetInfo.nakshatraName || currentPlanetInfo.nakshatraPada === undefined || currentPlanetInfo.nakshatraPada === null) return "no_conjunction";
             const absPadaCurrentPlanet = getAbsolutePada(currentPlanetInfo.nakshatraName, currentPlanetInfo.nakshatraPada);
-            if (absPadaCurrentPlanet === -1) return "no_conjunction"; 
+            if (absPadaCurrentPlanet === -1) return "no_conjunction";
 
             for (const otherPlanetName of ALL_PLANETS) {
                 if (otherPlanetName === currentPlanetName) continue;
                 const otherPlanetInfo = allPlanetPositions[otherPlanetName];
-                if (!otherPlanetInfo || !otherPlanetInfo.nakshatraName || otherPlanetInfo.nakshatraPada === undefined || otherPlanetInfo.nakshatraPada === null) continue; 
+                if (!otherPlanetInfo || !otherPlanetInfo.nakshatraName || otherPlanetInfo.nakshatraPada === undefined || otherPlanetInfo.nakshatraPada === null) continue;
                 const absPadaOtherPlanet = getAbsolutePada(otherPlanetInfo.nakshatraName, otherPlanetInfo.nakshatraPada);
-                if (absPadaOtherPlanet === -1) continue; 
-                const totalPadasInCycle = MASTER_NAKSHATRA_LIST.length * 4; 
+                if (absPadaOtherPlanet === -1) continue;
+                const totalPadasInCycle = MASTER_NAKSHATRA_LIST.length * 4;
                 let diff = absPadaOtherPlanet - absPadaCurrentPlanet;
                 if (Math.abs(diff) > totalPadasInCycle / 2) diff > 0 ? diff -= totalPadasInCycle : diff += totalPadasInCycle;
 
-                if (Math.abs(diff) <= 3) { 
+                if (Math.abs(diff) <= 3) {
                     const relationsOfCurrent = planetaryRelations[currentPlanetName];
-                    let tempRel = "neutral"; 
+                    let tempRel = "neutral";
                     if (relationsOfCurrent) {
                         if (relationsOfCurrent.enemies && relationsOfCurrent.enemies.includes(otherPlanetName)) tempRel = "enemy";
                         else if (relationsOfCurrent.friends && relationsOfCurrent.friends.includes(otherPlanetName)) tempRel = "friend";
@@ -2316,17 +2613,17 @@
             return autoEffects;
         }
 
-        function deriveAndPopulateDignities() { 
-            const positions = getPlanetaryPositionsFromTopTable(); 
+        function deriveAndPopulateDignities() {
+            const positions = getPlanetaryPositionsFromTopTable();
             const autoVedhSparshData = calculateAutoVedhAndSparshForAllPlanets(positions);
-            
+
             CURRENT_PLANETARY_CHARACTERISTICS = CURRENT_PLANETARY_CHARACTERISTICS.map(planetChar => {
                 const planetName = planetChar.name;
                 const pos = positions[planetName];
                 if (!pos || pos.rashiNumber === null || !pos.nakshatraName || pos.nakshatraPada === null) {
-                    console.warn(`Incomplete position data for ${planetName} in Step 1 for deriving dignities. Using defaults.`);
-                    return { 
-                        ...planetChar, 
+                    // console.warn(`Incomplete position data for ${planetName} in Step 1 for deriving dignities. Using defaults.`);
+                    return {
+                        ...planetChar,
                         derivedRashiDignityKey: 'default_rashi',
                         derivedNakshatraInfluenceKey: 'default_nlr',
                         derivedNakshatraPadaDignityKey: 'default_pada_dignity',
@@ -2337,12 +2634,12 @@
                 }
                 const rashiDignityKey = determineRashiDignity(planetName, pos.rashiNumber);
                 const nakshatraInfluenceKey = determineNakshatraInfluence(planetName, pos.nakshatraName, pos.nakshatraPada);
-                const nakshatraPadaDignityKey = determineNakshatraPadaDignity(planetName, pos.nakshatraName, pos.nakshatraPada); 
-                const conjunctionKey = determineConjunctionRelationKey(planetName, positions); 
+                const nakshatraPadaDignityKey = determineNakshatraPadaDignity(planetName, pos.nakshatraName, pos.nakshatraPada);
+                const conjunctionKey = determineConjunctionRelationKey(planetName, positions);
 
                 return {
-                    ...planetChar, 
-                    rashiNumber: pos.rashiNumber, 
+                    ...planetChar,
+                    rashiNumber: pos.rashiNumber,
                     nakshatraName: pos.nakshatraName, // Already standardized from getPlanetaryPositionsFromTopTable
                     nakshatraPada: pos.nakshatraPada,
                     derivedRashiDignityKey: rashiDignityKey,
@@ -2353,129 +2650,129 @@
                     sparshBy: autoVedhSparshData[planetName] ? autoVedhSparshData[planetName].sparshBy : []
                 };
             });
-            
-            createInputForm(); 
+
+            createInputForm();
             showCustomAlert("Dignities, Vedh, and Sparsh derived for Current Day and populated in Step 2 table.");
         }
 
-        function getPlanetaryDataFromForm() { 
+        function getPlanetaryDataFromForm() {
             const planetDataArray = [];
             ALL_PLANETS.forEach(planetName => {
                 const planetChar = CURRENT_PLANETARY_CHARACTERISTICS.find(p => p.name === planetName);
                 if (!planetChar) {
-                    console.warn(`Planet ${planetName} not found in CURRENT_PLANETARY_CHARACTERISTICS in getPlanetaryDataFromForm.`);
+                    // console.warn(`Planet ${planetName} not found in CURRENT_PLANETARY_CHARACTERISTICS in getPlanetaryDataFromForm.`);
                     planetDataArray.push({
-                        name: planetName, rashiDignityKey: 'default_rashi', nakshatraLordRelationshipKey: 'default_nlr', 
-                        nakshatraPadaDignityKey: 'default_pada_dignity', relationshipKey: 'no_conjunction', 
+                        name: planetName, rashiDignityKey: 'default_rashi', nakshatraLordRelationshipKey: 'default_nlr',
+                        nakshatraPadaDignityKey: 'default_pada_dignity', relationshipKey: 'no_conjunction',
                         isRetrograde: false, isCombust: false, vedhBy: [], sparshBy: []
                     });
                     return;
                 }
                 planetDataArray.push({
-                    name: planetName, 
-                    rashiDignityKey: planetChar.derivedRashiDignityKey || 'default_rashi', 
-                    nakshatraLordRelationshipKey: planetChar.derivedNakshatraInfluenceKey || 'default_nlr', 
-                    nakshatraPadaDignityKey: planetChar.derivedNakshatraPadaDignityKey || 'default_pada_dignity', 
-                    relationshipKey: planetChar.derivedConjunctionKey || 'no_conjunction', 
-                    isRetrograde: document.getElementById(`isRetrograde-${planetName}`) ? document.getElementById(`isRetrograde-${planetName}`).checked : false, 
-                    isCombust: document.getElementById(`isCombust-${planetName}`) ? document.getElementById(`isCombust-${planetName}`).checked : false, 
-                    vedhBy: planetChar.vedhBy || [], 
+                    name: planetName,
+                    rashiDignityKey: planetChar.derivedRashiDignityKey || 'default_rashi',
+                    nakshatraLordRelationshipKey: planetChar.derivedNakshatraInfluenceKey || 'default_nlr',
+                    nakshatraPadaDignityKey: planetChar.derivedNakshatraPadaDignityKey || 'default_pada_dignity',
+                    relationshipKey: planetChar.derivedConjunctionKey || 'no_conjunction',
+                    isRetrograde: document.getElementById(`isRetrograde-${planetName}`) ? document.getElementById(`isRetrograde-${planetName}`).checked : false,
+                    isCombust: document.getElementById(`isCombust-${planetName}`) ? document.getElementById(`isCombust-${planetName}`).checked : false,
+                    vedhBy: planetChar.vedhBy || [],
                     sparshBy: planetChar.sparshBy || []
                 });
             });
             return planetDataArray;
         }
-        
+
         function calculateScoresForGivenPositions(planetaryPositionsData, isCurrentDay = true) {
             const calculatedScores = {};
-            const planetStates = {}; 
+            const planetStates = {};
 
-            const positionsToUse = {}; 
-            if (Array.isArray(planetaryPositionsData)) { 
+            const positionsToUse = {};
+            if (Array.isArray(planetaryPositionsData)) {
                 planetaryPositionsData.forEach(p => positionsToUse[p.name] = p);
-            } else { 
+            } else {
                 Object.assign(positionsToUse, planetaryPositionsData);
             }
 
             ALL_PLANETS.forEach(planetName => {
                 const pData = positionsToUse[planetName];
                 if (!pData || pData.rashiNumber === undefined || pData.rashiNumber === null || !pData.nakshatraName || pData.nakshatraPada === undefined || pData.nakshatraPada === null) {
-                    console.warn(`Missing position data for ${planetName} in calculateScoresForGivenPositions (pass 1)`);
+                    // console.warn(`Missing position data for ${planetName} in calculateScoresForGivenPositions (pass 1)`);
                     planetStates[planetName] = { compositeDignityScore: 0, isRetrograde: false };
                     return;
                 }
                 const rashiDignityKey = determineRashiDignity(planetName, pData.rashiNumber);
                 const nlrDignityKey = determineNakshatraInfluence(planetName, pData.nakshatraName, pData.nakshatraPada);
-                
+
                 const rashiScore = DIGNITY_SCORES_RASHI[rashiDignityKey] || DIGNITY_SCORES_RASHI.default_rashi;
                 const nlrScore = NAKSHATRA_INFLUENCE_SCORES[nlrDignityKey] || NAKSHATRA_INFLUENCE_SCORES.default_nlr;
-                
+
                 let isRetro = false;
                 if (isCurrentDay) {
                     const retroCheckbox = document.getElementById(`isRetrograde-${planetName}`);
                     isRetro = retroCheckbox ? retroCheckbox.checked : (pData.isRetrograde || false);
                 } else {
-                    isRetro = pData.isRetrograde || false; 
+                    isRetro = pData.isRetrograde || false;
                 }
                 planetStates[planetName] = { compositeDignityScore: rashiScore + nlrScore, isRetrograde: isRetro };
             });
 
 
             ALL_PLANETS.forEach(planetName => {
-                const pData = positionsToUse[planetName]; 
-                const charData = isCurrentDay ? CURRENT_PLANETARY_CHARACTERISTICS.find(p => p.name === planetName) : pData; 
+                const pData = positionsToUse[planetName];
+                const charData = isCurrentDay ? CURRENT_PLANETARY_CHARACTERISTICS.find(p => p.name === planetName) : pData;
 
                 if (!pData || !charData || pData.rashiNumber === undefined || pData.rashiNumber === null || !pData.nakshatraName || pData.nakshatraPada === undefined || pData.nakshatraPada === null) {
-                     console.warn(`Missing data for ${planetName} during score calculation for a day.`);
-                     calculatedScores[planetName] = { rashiTotal: 0, nlrTotal: 0, padaTotal: 0, rashiDignityKeyDisplay: 'N/A', nakshatraLordRelationshipKeyDisplay: 'N/A', nakshatraPadaDignityKeyDisplay: 'N/A', conjunctionKeyDisplay: 'N/A', isRetrogradeDisplay: false, isCombustDisplay: false, vedhByDisplay: [], sparshByDisplay: [] };
-                     return;
+                    //  console.warn(`Missing data for ${planetName} during score calculation for a day.`);
+                    calculatedScores[planetName] = { rashiTotal: 0, nlrTotal: 0, padaTotal: 0, rashiDignityKeyDisplay: 'N/A', nakshatraLordRelationshipKeyDisplay: 'N/A', nakshatraPadaDignityKeyDisplay: 'N/A', conjunctionKeyDisplay: 'N/A', isRetrogradeDisplay: false, isCombustDisplay: false, vedhByDisplay: [], sparshByDisplay: [] };
+                    return;
                 }
 
                 const rashiDignityKey = determineRashiDignity(planetName, pData.rashiNumber);
                 const nlrDignityKey = determineNakshatraInfluence(planetName, pData.nakshatraName, pData.nakshatraPada);
                 const padaDignityKey = determineNakshatraPadaDignity(planetName, pData.nakshatraName, pData.nakshatraPada);
-                
+
                 const conjunctionKey = isCurrentDay ? (charData.derivedConjunctionKey || 'no_conjunction') : determineConjunctionRelationKey(planetName, positionsToUse);
-                
+
                 let isRetrograde = false, isCombust = false;
                 if (isCurrentDay) {
                     const retroCheckbox = document.getElementById(`isRetrograde-${planetName}`);
                     const combustCheckbox = document.getElementById(`isCombust-${planetName}`);
                     isRetrograde = retroCheckbox ? retroCheckbox.checked : (charData.isRetrograde || false);
                     isCombust = combustCheckbox ? combustCheckbox.checked : (charData.isCombust || false);
-                } else { 
+                } else {
                     isRetrograde = pData.isRetrograde || false;
                     isCombust = pData.isCombust || false;
                 }
-                
+
                 const autoVedhSparshForDay = isCurrentDay ? { vedhBy: charData.vedhBy || [], sparshBy: charData.sparshBy || [] } : (calculateAutoVedhAndSparshForAllPlanets(positionsToUse)[planetName] || { vedhBy: [], sparshBy: [] });
 
                 const rashiScoreComponent = DIGNITY_SCORES_RASHI[rashiDignityKey] || DIGNITY_SCORES_RASHI.default_rashi;
-                const nlrScoreComponent = NAKSHATRA_INFLUENCE_SCORES[nlrDignityKey] || NAKSHATRA_INFLUENCE_SCORES.default_nlr; 
-                const nakshatraPadaScoreComponent = NAKSHATRA_PADA_DIGNITY_SCORES[padaDignityKey] || NAKSHATRA_PADA_DIGNITY_SCORES.default_pada_dignity; 
+                const nlrScoreComponent = NAKSHATRA_INFLUENCE_SCORES[nlrDignityKey] || NAKSHATRA_INFLUENCE_SCORES.default_nlr;
+                const nakshatraPadaScoreComponent = NAKSHATRA_PADA_DIGNITY_SCORES[padaDignityKey] || NAKSHATRA_PADA_DIGNITY_SCORES.default_pada_dignity;
 
                 let commonFactorsScore = 0;
-                commonFactorsScore += RELATIONSHIP_SCORES[conjunctionKey] || RELATIONSHIP_SCORES.no_conjunction; 
+                commonFactorsScore += RELATIONSHIP_SCORES[conjunctionKey] || RELATIONSHIP_SCORES.no_conjunction;
                 if (isRetrograde) commonFactorsScore += PLANET_RETROGRADE_SCORES[planetName] !== undefined ? PLANET_RETROGRADE_SCORES[planetName] : 0;
                 if (isCombust) commonFactorsScore += PLANET_COMBUST_SCORES[planetName] !== undefined ? PLANET_COMBUST_SCORES[planetName] : 0;
-                
+
                 (autoVedhSparshForDay.sparshBy || []).forEach(sparshPlanet => { // RENAMED PARAMETER
                     if (sparshPlanet && BENEFIC_PLANETS.includes(sparshPlanet) && PLANET_ASPECT_STRENGTHS[sparshPlanet] !== undefined) {
                         const inherentStrength = PLANET_ASPECT_STRENGTHS[sparshPlanet];
-                        const causingPlanetState = planetStates[sparshPlanet]; 
+                        const causingPlanetState = planetStates[sparshPlanet];
                         const dignityModifier = (1 + ((causingPlanetState?.compositeDignityScore || 0) * DIGNITY_ASPECT_STRENGTH_FACTOR));
-                        let sparshEffect = +1 * inherentStrength * dignityModifier; 
-                        if ((causingPlanetState?.isRetrograde || false) && !["Rahu", "Ketu", "Sun", "Moon"].includes(sparshPlanet)) sparshEffect *= RETRO_BENEFIC_SPARSH_MULTIPLIER; 
+                        let sparshEffect = +1 * inherentStrength * dignityModifier;
+                        if ((causingPlanetState?.isRetrograde || false) && !["Rahu", "Ketu", "Sun", "Moon"].includes(sparshPlanet)) sparshEffect *= RETRO_BENEFIC_SPARSH_MULTIPLIER;
                         commonFactorsScore += sparshEffect;
                     }
                 });
                 (autoVedhSparshForDay.vedhBy || []).forEach(vedhPlanet => { // RENAMED PARAMETER
                     if (vedhPlanet && MALEFIC_PLANETS.includes(vedhPlanet) && PLANET_ASPECT_STRENGTHS[vedhPlanet] !== undefined) {
                         const inherentStrength = PLANET_ASPECT_STRENGTHS[vedhPlanet];
-                        const causingPlanetState = planetStates[vedhPlanet]; 
+                        const causingPlanetState = planetStates[vedhPlanet];
                         const dignityModifier = (1 + ((causingPlanetState?.compositeDignityScore || 0) * DIGNITY_ASPECT_STRENGTH_FACTOR));
-                        let vedhEffect = -1 * inherentStrength * dignityModifier; 
-                        if ((causingPlanetState?.isRetrograde || false) && !["Rahu", "Ketu", "Sun", "Moon"].includes(vedhPlanet)) vedhEffect *= RETRO_MALEFIC_VEDH_MULTIPLIER; 
+                        let vedhEffect = -1 * inherentStrength * dignityModifier;
+                        if ((causingPlanetState?.isRetrograde || false) && !["Rahu", "Ketu", "Sun", "Moon"].includes(vedhPlanet)) vedhEffect *= RETRO_MALEFIC_VEDH_MULTIPLIER;
                         commonFactorsScore += vedhEffect;
                     }
                 });
@@ -2484,8 +2781,8 @@
                     rashiTotal: rashiScoreComponent + commonFactorsScore,
                     nlrTotal: nlrScoreComponent + commonFactorsScore,
                     padaTotal: nakshatraPadaScoreComponent + commonFactorsScore,
-                    rashiDignityKeyDisplay: rashiDignityKey, 
-                    nakshatraLordRelationshipKeyDisplay: nlrDignityKey, 
+                    rashiDignityKeyDisplay: rashiDignityKey,
+                    nakshatraLordRelationshipKeyDisplay: nlrDignityKey,
                     nakshatraPadaDignityKeyDisplay: padaDignityKey,
                     conjunctionKeyDisplay: conjunctionKey,
                     isRetrogradeDisplay: isRetrograde,
@@ -2497,27 +2794,27 @@
             return calculatedScores;
         }
 
-        function displayCurrentDayScores(scores) { 
-            resultsBody.innerHTML = ''; 
+        function displayCurrentDayScores(scores) {
+            resultsBody.innerHTML = '';
             ALL_PLANETS.forEach(planetName => {
                 const planetScoreData = scores[planetName];
                 if (!planetScoreData) {
-                    console.warn("No score data for planet:", planetName, "in displayCurrentDayScores");
+                    // console.warn("No score data for planet:", planetName, "in displayCurrentDayScores");
                     const row = resultsBody.insertRow();
                     row.insertCell().textContent = planetName;
-                    row.insertCell({colspan: 11}).textContent = "Score data missing.";
+                    row.insertCell({ colspan: 11 }).textContent = "Score data missing.";
                     return;
                 }
 
                 const getColorClass = (score) => score > 0.01 ? 'total-score-positive' : (score < -0.01 ? 'total-score-negative' : 'total-score-neutral');
                 const row = resultsBody.insertRow();
-                
+
                 const createScoreInputCell = (planet, scoreType, scoreValue) => {
                     const cell = row.insertCell();
                     const input = document.createElement('input');
-                    input.type = 'number'; input.step = '0.01'; 
+                    input.type = 'number'; input.step = '0.01';
                     input.className = `manual-score-input ${getColorClass(scoreValue)}`;
-                    input.dataset.planet = planet; input.dataset.scoreType = scoreType; 
+                    input.dataset.planet = planet; input.dataset.scoreType = scoreType;
                     input.value = scoreValue.toFixed(2);
                     input.addEventListener('input', handleManualScoreChange);
                     cell.appendChild(input);
@@ -2533,58 +2830,58 @@
                 row.insertCell().textContent = planetScoreData.isCombustDisplay ? 'Yes' : 'No';
                 row.insertCell().textContent = (planetScoreData.vedhByDisplay || []).join(', ') || '-';
                 row.insertCell().textContent = (planetScoreData.sparshByDisplay || []).join(', ') || '-';
-                
+
                 createScoreInputCell(planetName, 'rashiTotal', planetScoreData.rashiTotal);
                 createScoreInputCell(planetName, 'nlrTotal', planetScoreData.nlrTotal);
                 createScoreInputCell(planetName, 'padaTotal', planetScoreData.padaTotal);
             });
         }
-        
+
         function handleManualScoreChange(event) {
             const inputElement = event.target;
             const planetName = inputElement.dataset.planet;
-            const scoreType = inputElement.dataset.scoreType; 
+            const scoreType = inputElement.dataset.scoreType;
             const newValue = parseFloat(inputElement.value);
 
-            if (isNaN(newValue)) return; 
+            if (isNaN(newValue)) return;
 
-            if (currentPlanetaryScoresForMarket[planetName]) { 
+            if (currentPlanetaryScoresForMarket[planetName]) {
                 currentPlanetaryScoresForMarket[planetName][scoreType] = newValue;
             } else {
                 currentPlanetaryScoresForMarket[planetName] = { rashiTotal: 0, nlrTotal: 0, padaTotal: 0 };
                 currentPlanetaryScoresForMarket[planetName][scoreType] = newValue;
             }
-            
+
             const getColorClass = (score) => score > 0.01 ? 'total-score-positive' : (score < -0.01 ? 'total-score-negative' : 'total-score-neutral');
             inputElement.className = `manual-score-input ${getColorClass(newValue)}`;
 
-            initiateSectorTrendCalculation(); 
-            calculateAndDisplayPriceLevels(); 
+            initiateSectorTrendCalculation();
+            calculateAndDisplayPriceLevels();
         }
 
-        async function initiateScoreCalculation() { 
+        async function initiateScoreCalculation() {
             calculateButton.disabled = true; calculateButton.classList.add("opacity-50", "cursor-not-allowed");
             resultsBody.innerHTML = `<tr><td colspan="12" class="loading-text">Calculating current day scores...</td></tr>`;
-            sectorTrendsBody.innerHTML = `<tr><td colspan="7" class="loading-text">Planetary scores being updated...</td></tr>`; 
+            sectorTrendsBody.innerHTML = `<tr><td colspan="7" class="loading-text">Planetary scores being updated...</td></tr>`;
             priceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Planetary scores being updated...</td></tr>`;
-            individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Planetary scores being updated...</td></tr>`; 
-            
-            await new Promise(resolve => setTimeout(resolve, 100)); 
+            individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Planetary scores being updated...</td></tr>`;
+
+            await new Promise(resolve => setTimeout(resolve, 100));
             try {
-                const currentDayRawPositions = getPlanetaryPositionsFromTopTable(); 
-                currentPlanetaryScoresForMarket = calculateScoresForGivenPositions(currentDayRawPositions, true); 
+                const currentDayRawPositions = getPlanetaryPositionsFromTopTable();
+                currentPlanetaryScoresForMarket = calculateScoresForGivenPositions(currentDayRawPositions, true);
                 displayCurrentDayScores(currentPlanetaryScoresForMarket);
 
-                const futurePositionsInputArrays = getFuturePlanetaryPositionsFromInput(); 
-                futurePlanetaryScoresData = []; 
+                const futurePositionsInputArrays = getFuturePlanetaryPositionsFromInput();
+                futurePlanetaryScoresData = [];
                 for (let i = 0; i < 5; i++) {
                     const futureDayScores = calculateScoresForGivenPositions(futurePositionsInputArrays[i], false);
                     futurePlanetaryScoresData.push(futureDayScores);
                 }
-                
+
                 if (Object.keys(currentPlanetaryScoresForMarket).length > 0) {
-                    initiateSectorTrendCalculation(); 
-                    calculateAndDisplayPriceLevels(); 
+                    initiateSectorTrendCalculation();
+                    calculateAndDisplayPriceLevels();
                 } else {
                     showCustomAlert("Could not calculate current planetary scores. Please check inputs.");
                 }
@@ -2597,8 +2894,9 @@
                 calculateButton.disabled = false; calculateButton.classList.remove("opacity-50", "cursor-not-allowed");
             }
         }
-        
-        function getFuturePlanetaryPositionsFromInput() { 
+
+
+        function getFuturePlanetaryPositionsFromInput() {
             const futureData = [];
             for (let day = 1; day <= 5; day++) {
                 const dayPositions = {};
@@ -2607,24 +2905,24 @@
                     const nakshatraSelect = document.getElementById(`future-d${day}-nakshatra-${planetName}`);
                     const padaInput = document.getElementById(`future-d${day}-pada-${planetName}`);
                     dayPositions[planetName] = {
-                        name: planetName, 
+                        name: planetName,
                         rashiNumber: rashiSelect && rashiSelect.value ? parseInt(rashiSelect.value) : null,
                         nakshatraName: nakshatraSelect && nakshatraSelect.value ? standardizeNakshatraName(nakshatraSelect.value) : null,
                         nakshatraPada: padaInput && padaInput.value ? parseInt(padaInput.value) : null,
-                        isRetrograde: (fetchedFutureDaysPositions[day-1]?.find(p=>p.name === planetName)?.isRetrograde) || false,
-                        isCombust: (fetchedFutureDaysPositions[day-1]?.find(p=>p.name === planetName)?.isCombust) || false,
+                        isRetrograde: (fetchedFutureDaysPositions[day - 1]?.find(p => p.name === planetName)?.isRetrograde) || false,
+                        isCombust: (fetchedFutureDaysPositions[day - 1]?.find(p => p.name === planetName)?.isCombust) || false,
                     };
                 });
-                futureData.push(dayPositions); 
+                futureData.push(dayPositions);
             }
-            return futureData; 
+            return futureData;
         }
 
         // --- Market Trend Calculation & Display ---
-        let market_masterSectorData = []; let market_currentSortKey = null; let market_isSortAscending = true; 
+        let market_masterSectorData = []; let market_currentSortKey = null; let market_isSortAscending = true;
         const market_FIXED_TOP_SECTORS = ["Share Market", "Banking"]; // Corrected name for matching
 
-        function market_getTrendAndColor(score) { 
+        function market_getTrendAndColor(score) {
             let trend = "", trendColorClass = "";
             if (score >= 0.3) { trend = "Strongly Bullish"; trendColorClass = "trend-positive"; }
             else if (score >= 0.1) { trend = "Bullish"; trendColorClass = "trend-positive"; }
@@ -2633,11 +2931,11 @@
             else { trend = "Strongly Bearish"; trendColorClass = "trend-negative"; }
             return { trend, trendColorClass };
         }
-        function calculateAllSectorDataForMarket(planetFinalScores) { 
-             const allData = [];
+        function calculateAllSectorDataForMarket(planetFinalScores) {
+            const allData = [];
             for (const sector in sectorAdjustedWeights) {
                 const weights = sectorAdjustedWeights[sector];
-                let rashiScoreSector = 0, nlrScoreSector = 0, padaScoreSector = 0;  
+                let rashiScoreSector = 0, nlrScoreSector = 0, padaScoreSector = 0;
                 ALL_PLANETS.forEach(planetName => {
                     const pScores = planetFinalScores[planetName]; const pWeight = weights[planetName] || 0;
                     if (pScores) {
@@ -2658,7 +2956,7 @@
             }
             return allData;
         }
-        function renderMarketTrendTable(dataToRender) { 
+        function renderMarketTrendTable(dataToRender) {
             sectorTrendsBody.innerHTML = '';
             if (dataToRender.length === 0) {
                 sectorTrendsBody.innerHTML = `<tr><td colspan="7" class="loading-text">No sectors match or scores not calculated.</td></tr>`; return;
@@ -2674,7 +2972,7 @@
                 `;
             });
         }
-        function applyFiltersAndSortMarket() { 
+        function applyFiltersAndSortMarket() {
             if (market_masterSectorData.length === 0) { renderMarketTrendTable([]); return; }
             let processedData = [...market_masterSectorData];
             const selectedPerspective = filterPerspectiveMarket.value; const selectedTrend = filterTrendMarket.value;
@@ -2684,17 +2982,17 @@
                     if (selectedPerspective === "long") return item.rashiTrend === selectedTrend;
                     if (selectedPerspective === "medium") return item.nlrTrend === selectedTrend;
                     if (selectedPerspective === "short") return item.padaTrend === selectedTrend;
-                    return false; 
+                    return false;
                 });
             }
             const topSectorsData = []; const otherSectorsData = [];
             const fixedSectorNamesProcessed = market_FIXED_TOP_SECTORS.map(s => s.replace(/_/g, ' '));
             processedData.forEach(item => {
-                if (item.sectorName === fixedSectorNamesProcessed[0]) topSectorsData[0] = item; 
-                else if (item.sectorName === fixedSectorNamesProcessed[1]) topSectorsData[1] = item; 
+                if (item.sectorName === fixedSectorNamesProcessed[0]) topSectorsData[0] = item;
+                else if (item.sectorName === fixedSectorNamesProcessed[1]) topSectorsData[1] = item;
                 else otherSectorsData.push(item);
             });
-            const finalTopSectors = topSectorsData.filter(Boolean); 
+            const finalTopSectors = topSectorsData.filter(Boolean);
             if (market_currentSortKey) {
                 otherSectorsData.sort((a, b) => {
                     let valA, valB;
@@ -2702,68 +3000,70 @@
                         const trendOrder = ["Strongly Bullish", "Bullish", "Neutral", "Bearish", "Strongly Bearish"];
                         valA = trendOrder.indexOf(a[market_currentSortKey]); valB = trendOrder.indexOf(b[market_currentSortKey]);
                         if (valA < valB) return market_isSortAscending ? -1 : 1; if (valA > valB) return market_isSortAscending ? 1 : -1; return 0;
-                    } else { 
+                    } else {
                         valA = a[market_currentSortKey]; valB = b[market_currentSortKey];
-                        if (valA === undefined || valB === undefined) return 0; 
+                        if (valA === undefined || valB === undefined) return 0;
                         return market_isSortAscending ? valA - valB : valB - valA;
                     }
                 });
             }
             renderMarketTrendTable([...finalTopSectors, ...otherSectorsData]); updateSortIndicatorsMarket();
         }
-        function updateSortIndicatorsMarket() { 
-             document.querySelectorAll('.market-results-table .sortable-header .sort-indicator').forEach(span => span.textContent = '');
+        function updateSortIndicatorsMarket() {
+            document.querySelectorAll('.market-results-table .sortable-header .sort-indicator').forEach(span => span.textContent = '');
             if (market_currentSortKey) {
-                let headerIdMapping = { 'rashiScore': 'headerLongTermScoreMarket', 'rashiTrend': 'headerLongTermTrendMarket',
-                                        'nlrScore': 'headerMediumTermScoreMarket', 'nlrTrend': 'headerMediumTermTrendMarket',
-                                        'padaScore': 'headerShortTermScoreMarket', 'padaTrend': 'headerShortTermTrendMarket'};
+                let headerIdMapping = {
+                    'rashiScore': 'headerLongTermScoreMarket', 'rashiTrend': 'headerLongTermTrendMarket',
+                    'nlrScore': 'headerMediumTermScoreMarket', 'nlrTrend': 'headerMediumTermTrendMarket',
+                    'padaScore': 'headerShortTermScoreMarket', 'padaTrend': 'headerShortTermTrendMarket'
+                };
                 const indicatorSpan = document.querySelector(`#${headerIdMapping[market_currentSortKey]} .sort-indicator`);
                 if (indicatorSpan) indicatorSpan.textContent = market_isSortAscending ? ' ▲' : ' ▼';
             }
         }
-        async function initiateSectorTrendCalculation() { 
+        async function initiateSectorTrendCalculation() {
             updateMarketTrendsButton.disabled = true; updateMarketTrendsButton.classList.add("opacity-50");
             applyFilterButtonMarket.disabled = true;
             sectorTrendsBody.innerHTML = `<tr><td colspan="7" class="loading-text">Updating market trends...</td></tr>`;
-            await new Promise(resolve => setTimeout(resolve, 50)); 
+            await new Promise(resolve => setTimeout(resolve, 50));
             try {
                 if (currentPlanetaryScoresForMarket && Object.keys(currentPlanetaryScoresForMarket).length > 0) {
-                    market_masterSectorData = calculateAllSectorDataForMarket(currentPlanetaryScoresForMarket); 
-                    applyFiltersAndSortMarket(); 
+                    market_masterSectorData = calculateAllSectorDataForMarket(currentPlanetaryScoresForMarket);
+                    applyFiltersAndSortMarket();
                 } else sectorTrendsBody.innerHTML = `<tr><td colspan="7" class="loading-text">Calculate planetary scores first.</td></tr>`;
             } catch (error) {
-                console.error("Error in market score calculation:", error);
+                // console.error("Error in market score calculation:", error);
                 sectorTrendsBody.innerHTML = `<tr><td colspan="7" class="loading-text">Error updating. Check console.</td></tr>`;
             } finally {
                 updateMarketTrendsButton.disabled = false; updateMarketTrendsButton.classList.remove("opacity-50");
                 applyFilterButtonMarket.disabled = false;
             }
-         }
-        function displaySectorWeightages() { 
-            detailedWeightagesSection.innerHTML = ''; 
+        }
+        function displaySectorWeightages() {
+            detailedWeightagesSection.innerHTML = '';
             for (const sectorName in sectorAdjustedWeights) {
                 if (sectorAdjustedWeights.hasOwnProperty(sectorName)) {
                     const weights = sectorAdjustedWeights[sectorName];
                     const sectorContainer = document.createElement('div');
-                    sectorContainer.className = 'weightage-sector-container table-container'; 
+                    sectorContainer.className = 'weightage-sector-container table-container';
                     const title = document.createElement('h4');
                     title.className = 'weightage-sector-title';
                     title.textContent = sectorName.replace(/_/g, ' ');
                     sectorContainer.appendChild(title);
                     const table = document.createElement('table');
-                    table.className = 'min-w-full weightage-details-table'; 
+                    table.className = 'min-w-full weightage-details-table';
                     const thead = table.createTHead();
-                    thead.className = 'weightage-table-header'; 
+                    thead.className = 'weightage-table-header';
                     const headerRow = thead.insertRow();
                     headerRow.insertCell().textContent = 'Planet';
                     headerRow.insertCell().textContent = 'Weightage';
                     const tbody = table.createTBody();
-                    ALL_PLANETS.forEach(planet => { 
-                        const weight = weights[planet] !== undefined ? weights[planet] : 0; 
+                    ALL_PLANETS.forEach(planet => {
+                        const weight = weights[planet] !== undefined ? weights[planet] : 0;
                         const row = tbody.insertRow();
                         row.insertCell().textContent = planet;
                         const weightCell = row.insertCell();
-                        weightCell.textContent = weight.toFixed(3); 
+                        weightCell.textContent = weight.toFixed(3);
                         if (weight > 0) weightCell.classList.add('total-score-positive');
                         else if (weight < 0) weightCell.classList.add('total-score-negative');
                     });
@@ -2772,44 +3072,44 @@
                 }
             }
         }
-        function populateSectorDropdownForPriceLevels() { 
-            priceLevelSectorSelect.innerHTML = '<option value="">-- Select Sector --</option>'; 
+        function populateSectorDropdownForPriceLevels() {
+            priceLevelSectorSelect.innerHTML = '<option value="">-- Select Sector --</option>';
             for (const sectorKey in sectorAdjustedWeights) {
                 const option = document.createElement('option');
-                option.value = sectorKey; 
-                option.textContent = sectorKey.replace(/_/g, ' '); 
+                option.value = sectorKey;
+                option.textContent = sectorKey.replace(/_/g, ' ');
                 priceLevelSectorSelect.appendChild(option);
             }
         }
-        function calculateAndDisplayPriceLevels() { 
+        function calculateAndDisplayPriceLevels() {
             const inputPrice = parseFloat(priceLevelInputPrice.value);
-            const selectedSectorKey = priceLevelSectorSelect.value; 
+            const selectedSectorKey = priceLevelSectorSelect.value;
             const selectedSectorName = priceLevelSectorSelect.options[priceLevelSectorSelect.selectedIndex]?.text || "Selected Sector";
 
-            priceLevelsTableBody.innerHTML = ''; 
-            individualPlanetPriceLevelsTableBody.innerHTML = ''; 
+            priceLevelsTableBody.innerHTML = '';
+            individualPlanetPriceLevelsTableBody.innerHTML = '';
             individualPlanetLevelsTitle.textContent = `Individual Planet Target Prices for ${selectedSectorName} (Current Day Scores)`;
 
 
             if (isNaN(inputPrice) || inputPrice <= 0) {
                 const msg = `<tr><td colspan="4" class="loading-text">Please enter a valid price.</td></tr>`;
                 priceLevelsTableBody.innerHTML = msg;
-                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Enter valid price above.</td></tr>`; 
-                renderPriceChart(null, null, null, null); 
+                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Enter valid price above.</td></tr>`;
+                renderPriceChart(null, null, null, null);
                 return;
             }
             if (!selectedSectorKey) {
                 const msg = `<tr><td colspan="4" class="loading-text">Please select a sector.</td></tr>`;
                 priceLevelsTableBody.innerHTML = msg;
-                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Select sector above.</td></tr>`; 
-                renderPriceChart(null, null, null, null); 
+                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Select sector above.</td></tr>`;
+                renderPriceChart(null, null, null, null);
                 return;
             }
             if (Object.keys(currentPlanetaryScoresForMarket).length === 0) {
                 const msg = `<tr><td colspan="4" class="loading-text">Planetary scores not calculated. Please calculate scores first.</td></tr>`;
                 priceLevelsTableBody.innerHTML = msg;
-                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Calculate planetary scores first.</td></tr>`; 
-                renderPriceChart(null, null, null, null); 
+                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Calculate planetary scores first.</td></tr>`;
+                renderPriceChart(null, null, null, null);
                 return;
             }
 
@@ -2817,18 +3117,18 @@
             if (!sectorWeights) {
                 const msg = `<tr><td colspan="4" class="loading-text">Weightages for selected sector not found.</td></tr>`;
                 priceLevelsTableBody.innerHTML = msg;
-                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Sector weightages not found.</td></tr>`; 
-                renderPriceChart(null, null, null, null); 
+                individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Sector weightages not found.</td></tr>`;
+                renderPriceChart(null, null, null, null);
                 console.error("Weights not found for sector:", selectedSectorKey);
                 return;
             }
 
             const perspectives = [
-                { name: "Rashi", scoreKey: "rashiTotal", color: 'rgba(255, 99, 132, 1)' }, 
-                { name: "Nakshatra Lord", scoreKey: "nlrTotal", color: 'rgba(54, 162, 235, 1)' }, 
-                { name: "Nakshatra Pada", scoreKey: "padaTotal", color: 'rgba(75, 192, 192, 1)' } 
+                { name: "Rashi", scoreKey: "rashiTotal", color: 'rgba(255, 99, 132, 1)' },
+                { name: "Nakshatra Lord", scoreKey: "nlrTotal", color: 'rgba(54, 162, 235, 1)' },
+                { name: "Nakshatra Pada", scoreKey: "padaTotal", color: 'rgba(75, 192, 192, 1)' }
             ];
-            
+
             const chartDataForOverall = [];
             const chartDataForIndividual = [];
 
@@ -2843,7 +3143,7 @@
                 });
 
                 const baseOffset = inputPrice * combinedScorePerspective * LEVEL_SENSITIVITY_FACTOR;
-                const R_S_levels = [ 
+                const R_S_levels = [
                     { name: "R2 (Resistance 2)", value: inputPrice + 2 * baseOffset },
                     { name: "R1 (Resistance 1)", value: inputPrice + 1 * baseOffset },
                     { name: "Pivot", value: inputPrice },
@@ -2858,23 +3158,23 @@
                     row.insertCell().textContent = combinedScorePerspective.toFixed(3);
                     row.insertCell().textContent = level.value.toFixed(2);
                 });
-                
+
                 const overallTargetPrice = inputPrice * (1 + combinedScorePerspective);
                 const targetRow = priceLevelsTableBody.insertRow();
-                targetRow.classList.add('level-target'); 
+                targetRow.classList.add('level-target');
                 targetRow.insertCell().textContent = perspective.name;
                 targetRow.insertCell().textContent = "Overall Target Price";
                 targetRow.insertCell().textContent = combinedScorePerspective.toFixed(3);
                 targetRow.insertCell().textContent = overallTargetPrice.toFixed(2);
-                
+
                 chartDataForOverall.push({
                     label: `${perspective.name} Overall Target (Current)`,
                     targetPrice: overallTargetPrice,
                     color: perspective.color,
-                    isCurrent: true 
+                    isCurrent: true
                 });
             });
-            if(priceLevelsTableBody.innerHTML === '') {
+            if (priceLevelsTableBody.innerHTML === '') {
                 priceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Could not calculate overall levels.</td></tr>`;
             }
 
@@ -2882,11 +3182,11 @@
                 perspectives.forEach((perspective, perspectiveIndex) => {
                     const planetScores = currentPlanetaryScoresForMarket[planetName];
                     const planetWeightInSector = sectorWeights[planetName] || 0;
-                    
+
                     if (planetScores && planetScores[perspective.scoreKey] !== undefined) {
                         const planetScorePerspective = planetScores[perspective.scoreKey];
                         const weightedPlanetScore = planetScorePerspective * planetWeightInSector;
-                        const individualTargetPrice = inputPrice * (1 + weightedPlanetScore); 
+                        const individualTargetPrice = inputPrice * (1 + weightedPlanetScore);
 
                         const row = individualPlanetPriceLevelsTableBody.insertRow();
                         row.insertCell().textContent = planetName;
@@ -2909,7 +3209,7 @@
                     }
                 });
             });
-             if(individualPlanetPriceLevelsTableBody.innerHTML === '') {
+            if (individualPlanetPriceLevelsTableBody.innerHTML === '') {
                 individualPlanetPriceLevelsTableBody.innerHTML = `<tr><td colspan="4" class="loading-text">Could not calculate individual planet levels. Ensure scores are present.</td></tr>`;
             }
 
@@ -2955,7 +3255,7 @@
             });
             renderPriceChart(inputPrice, selectedSectorName, chartDataForOverall, chartDataForIndividual);
         }
-        function renderPriceChart(inputPrice, selectedSectorName, overallTargetDataForChart, individualPlanetTargetDataForChart) { 
+        function renderPriceChart(inputPrice, selectedSectorName, overallTargetDataForChart, individualPlanetTargetDataForChart) {
             const ctx = document.getElementById('priceForecastChart').getContext('2d');
             if (priceForecastChartInstance) {
                 priceForecastChartInstance.destroy();
@@ -2978,44 +3278,44 @@
             datasets.push({
                 label: 'Input Price',
                 data: Array(10).fill(inputPrice),
-                borderColor: 'rgba(128, 128, 128, 1)', 
-                borderDash: [5, 5], 
+                borderColor: 'rgba(128, 128, 128, 1)',
+                borderDash: [5, 5],
                 fill: false,
                 tension: 0.1,
-                pointRadius: 0, 
+                pointRadius: 0,
             });
 
             overallTargetDataForChart.forEach(data => {
                 const chartPoints = Array(10).fill(null);
-                if (data.isCurrent) { 
-                    for(let i=0; i<5; i++) chartPoints[i] = data.targetPrice;
-                } else { 
+                if (data.isCurrent) {
+                    for (let i = 0; i < 5; i++) chartPoints[i] = data.targetPrice;
+                } else {
                     chartPoints[5 + data.futureDayIndex] = data.targetPrice;
                 }
                 datasets.push({
-                    label: data.label.replace("(Current)","").replace("(Future D","(FD"), 
+                    label: data.label.replace("(Current)", "").replace("(Future D", "(FD"),
                     data: chartPoints,
                     borderColor: data.color,
                     fill: false,
                     tension: 0.1,
                     borderWidth: 2,
-                    spanGaps: true 
+                    spanGaps: true
                 });
             });
-            
+
             individualPlanetTargetDataForChart.forEach(data => {
                 const chartPoints = Array(10).fill(null);
-                 if (data.isCurrent) {
-                    for(let i=0; i<5; i++) chartPoints[i] = data.targetPrice;
+                if (data.isCurrent) {
+                    for (let i = 0; i < 5; i++) chartPoints[i] = data.targetPrice;
                 } else {
                     chartPoints[5 + data.futureDayIndex] = data.targetPrice;
                 }
-                 datasets.push({
-                    label: data.label.replace("(Current)","").replace("(Future D","(FD"), 
+                datasets.push({
+                    label: data.label.replace("(Current)", "").replace("(Future D", "(FD"),
                     data: chartPoints,
                     borderColor: data.color,
-                    borderWidth: 1, 
-                    hidden: true, 
+                    borderWidth: 1,
+                    hidden: true,
                     fill: false,
                     tension: 0.1,
                     spanGaps: true
@@ -3041,9 +3341,9 @@
                         legend: {
                             position: 'top',
                             labels: {
-                                font: { size: 10 }, 
+                                font: { size: 10 },
                                 boxWidth: 20,
-                                filter: function(legendItem, chartData) { 
+                                filter: function (legendItem, chartData) {
                                     return legendItem.text.includes('Overall Target') && !legendItem.text.includes('(FD');
                                 }
                             }
@@ -3058,43 +3358,43 @@
                             title: { display: true, text: 'Day' }
                         },
                         y: {
-                            beginAtZero: false, 
+                            beginAtZero: false,
                             title: { display: true, text: 'Price' },
                             ticks: {
-                                callback: function(value, index, values) {
-                                    return value.toFixed(2); 
+                                callback: function (value, index, values) {
+                                    return value.toFixed(2);
                                 }
                             }
                         }
                     },
                     animation: {
-                        duration: 0 
+                        duration: 0
                     }
                 }
             });
         }
-        function loadTradingViewChart(symbolToLoad) { 
+        function loadTradingViewChart(symbolToLoad) {
             const symbolInput = document.getElementById('tvSymbolInput');
-            const symbol = symbolToLoad || symbolInput.value || "NSE:RELIANCE"; 
-            symbolInput.value = symbol; 
+            const symbol = symbolToLoad || symbolInput.value || "NSE:RELIANCE";
+            symbolInput.value = symbol;
 
             const container = document.getElementById('tv_chart_container');
-            container.innerHTML = ''; 
+            container.innerHTML = '';
 
             if (typeof TradingView !== 'undefined') {
-                 tvWidgetInstance = new TradingView.widget({
+                tvWidgetInstance = new TradingView.widget({
                     "autosize": true,
                     "symbol": symbol,
-                    "interval": "D", 
+                    "interval": "D",
                     "timezone": "Etc/UTC",
                     "theme": "light",
-                    "style": "1", 
+                    "style": "1",
                     "locale": "en",
                     "toolbar_bg": "#f1f3f6",
                     "enable_publishing": false,
-                    "allow_symbol_change": true, 
+                    "allow_symbol_change": true,
                     "container_id": "tv_chart_container",
-                    "hide_top_toolbar": false, 
+                    "hide_top_toolbar": false,
                     "withdateranges": true
                 });
             } else {
@@ -3102,7 +3402,7 @@
                 container.innerHTML = '<p class="text-red-500 text-center">TradingView library could not be loaded. Please check script includes.</p>';
             }
         }
-        
+
         // --- Initialize Page & Event Listeners ---
         window.onload = async () => {
             console.log("DEBUG: window.onload started at", new Date().toLocaleTimeString());
@@ -3118,23 +3418,22 @@
             // INITIAL_PLANETARY_POSITIONS.forEach(p => { /* ... */ });
 
 
-            if (!PLANET_PADA_DIGNITIES_DATA || Object.keys(PLANET_PADA_DIGNITIES_DATA).length < ALL_PLANETS.length || !PLANET_PADA_DIGNITIES_DATA["Sun"] || PLANET_PADA_DIGNITIES_DATA["Sun"].length < 100) { 
+            if (!PLANET_PADA_DIGNITIES_DATA || Object.keys(PLANET_PADA_DIGNITIES_DATA).length < ALL_PLANETS.length || !PLANET_PADA_DIGNITIES_DATA["Sun"] || PLANET_PADA_DIGNITIES_DATA["Sun"].length < 100) {
                 console.error("CRITICAL: PLANET_PADA_DIGNITIES_DATA seems incomplete or missing for one or more planets.");
                 showCustomAlert("ERROR: Astrological Pada data is missing or incomplete. Calculations may be inaccurate. Please ensure all planets have full Pada data.");
             }
 
-            await fetchAndProcessGocharData(); 
-            await fetchData(); 
+            await fetchMoonData();
 
-            createPlanetaryPositionsInputTable(); 
-            createFuturePlanetaryPositionsInputTables(); 
-            createInputForm(); 
-            deriveAndPopulateDignities(); 
+            createPlanetaryPositionsInputTable();
+            createFuturePlanetaryPositionsInputTables();
+            createInputForm();
+            deriveAndPopulateDignities();
 
             displaySectorWeightages();
-            populateSectorDropdownForPriceLevels(); 
-            renderPriceChart(null, null, null, null); 
-            loadTradingViewChart(); 
+            populateSectorDropdownForPriceLevels();
+            renderPriceChart(null, null, null, null);
+            loadTradingViewChart();
 
             document.querySelectorAll('.market-results-table .sortable-header').forEach(header => {
                 header.addEventListener('click', () => {
@@ -3144,18 +3443,18 @@
                     applyFiltersAndSortMarket();
                 });
             });
-            
+
             customModalCloseButton.addEventListener('click', () => customModal.classList.remove('active'));
-            customModal.addEventListener('click', (event) => { 
+            customModal.addEventListener('click', (event) => {
                 if (event.target === customModal) customModal.classList.remove('active');
             });
 
             // Updated alert logic
             let alertMessage = "";
-            if (fetchedCurrentDayPositions) { 
+            if (fetchedCurrentDayPositions) {
                 let missingPlanets = [];
                 fetchedCurrentDayPositions.forEach(p => {
-                    if (p.rashiNumber === null || !p.nakshatraName || p.nakshatraPada === null) { 
+                    if (p.rashiNumber === null || !p.nakshatraName || p.nakshatraPada === null) {
                         missingPlanets.push(p.name);
                     }
                 });
@@ -3165,8 +3464,8 @@
                 } else {
                     alertMessage = `Page loaded. Gochar data for today is partially incomplete (missing/invalid data for: ${missingPlanets.join(', ')}). Please verify API or set positions manually.`;
                 }
-            } else { 
-                 alertMessage = "Page loaded. Gochar data fetch failed or was incomplete. Step 1 positions may be unselected. Please verify API or set positions manually.";
+            } else {
+                alertMessage = "Page loaded. Gochar data fetch failed or was incomplete. Step 1 positions may be unselected. Please verify API or set positions manually.";
             }
             showCustomAlert(alertMessage);
             console.log("DEBUG: window.onload finished at", new Date().toLocaleTimeString());
