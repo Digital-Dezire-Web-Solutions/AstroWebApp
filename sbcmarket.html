@@ -226,7 +226,7 @@
                         <li><a href="market.html">Market</a></li>
                         <li><a href="product.html">Astro Store</a></li>
                         <li><a href="pooja.html">Pooja</a></li>
-                         <li>
+                        <li>
                             <div class="category-item">
                                 <div class="category-item-box">
                                     <p>Items</p>
@@ -4360,21 +4360,21 @@
                                         nakshatra: gocharNakMatch,
                                         gocharNakshatra,
                                         // pada: gocharPada,
-                                        // frontVedh: {
-                                        //     nakshatra: nakshatraDay.front,
-                                        //     nakshatra1: getPadaDetail(frontnakshatra, frontVedhPada),
-                                        //     pada: frontVedhPada,
-                                        // },
-                                        // rightVedh: {
-                                        //     nakshatra: nakshatraDay.right,
-                                        //     nakshatra1: getPadaDetail(rightnakshatra, rightVedhPada),
-                                        //     pada: rightVedhPada,
-                                        // },
-                                        // leftVedh: {
-                                        //     nakshatra: nakshatraDay.left,
-                                        //     nakshatra1: getPadaDetail(leftnakshatra, leftVedhPada),
-                                        //     pada: leftVedhPada,
-                                        // },
+                                        frontVedh: {
+                                            nakshatra: nakshatraDay.front,
+                                            nakshatra1: getPadaDetail(frontnakshatra, frontVedhPada),
+                                            pada: frontVedhPada,
+                                        },
+                                        rightVedh: {
+                                            nakshatra: nakshatraDay.right,
+                                            nakshatra1: getPadaDetail(rightnakshatra, rightVedhPada),
+                                            pada: rightVedhPada,
+                                        },
+                                        leftVedh: {
+                                            nakshatra: nakshatraDay.left,
+                                            nakshatra1: getPadaDetail(leftnakshatra, leftVedhPada),
+                                            pada: leftVedhPada,
+                                        },
                                         frontnakVedh: frontVedhNakshatra,
                                         rightnakVedh: rightVedhNakshatra,
                                         leftnakVedh: leftVedhNakshatra,
@@ -4548,8 +4548,11 @@
                                     };
 
                                     // console.log(status, "status");
-
+                                    // console.log(lifeAspect, "lifeAspect")
                                     lifeAspect.forEach((i) => {
+                                        let frontVedhPlanet = lifeAspect.find((j) => j.gocharNakshatra === i.frontVedh.nakshatra);
+                                        let leftVedhPlanet = lifeAspect.find((j) => j.gocharNakshatra === i.leftVedh.nakshatra);
+                                        let rightVedhPlanet = lifeAspect.find((j) => j.gocharNakshatra === i.rightVedh.nakshatra);
                                         if (i.nakshatra && i.nakshatra.length > 0 && i.nakshatra.trim() !== '') {
                                             // console.log(i, "data")
                                             // console.log(i.gocharCombust, "gocharCombust")
@@ -4562,9 +4565,9 @@
             <td style="background-color: ${status}">${i.planet} ${retroPlanet ? retroPlanet : ""} ${combustPlanet ? combustPlanet : ""}</td>
             <td style="background-color: ${status}"><div class="color-bx ${i.natureStatus}" data-tooltip="${i.positionValue?.status}"></div></td>
             <td style="background-color: ${status}">${i.nakshatra ? i.nakshatra + "(" + i.gocharNakshatra + ")" : "-"}</td >
-            <td style="background-color: ${status}">${i.frontnakVedh}</td>
-            <td style="background-color: ${status}">${i.leftnakVedh}</td>
-            <td style="background-color: ${status}">${i.rightnakVedh}</td>
+            <td style="background-color: ${status}">${i.frontnakVedh} ${frontVedhPlanet ? `(${frontVedhPlanet.planet})` : ""}</td>
+            <td style="background-color: ${status}">${i.leftnakVedh} ${leftVedhPlanet ? `(${leftVedhPlanet.planet})` : ""}</td>
+            <td style="background-color: ${status}">${i.rightnakVedh} ${rightVedhPlanet ? `(${rightVedhPlanet.planet})` : ""}</td>
                                 `;
                                             lifeAspectBody.appendChild(row);
                                         }
