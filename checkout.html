@@ -91,7 +91,7 @@
         </div>
      </header> -->
 
-     <section class="top-header-comp">
+    <section class="top-header-comp">
         <div class="common-container3 top-header-flex flex item-between">
             <div class="left-header-logo flex item-start gap" onclick="window.location.href='home.html'">
                 <img src="./images/astrology.png" alt="">
@@ -173,14 +173,14 @@
                     </button>
                 </div>
 
-               <nav class="nav">
+                <nav class="nav">
                     <div class="nav-lists flex item-start">
                         <li><a href="home.html">Home</a></li>
                         <li><a href="kundali.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
                         <li><a href="product.html">Astro Store</a></li>
                         <li><a href="pooja.html">Pooja</a></li>
-                         <li>
+                        <li>
                             <div class="category-item">
                                 <div class="category-item-box">
                                     <p>Items</p>
@@ -860,31 +860,50 @@
         // subscription
         let discountPercent = 0; // To store applied discount
 
-        const couponCodes = {
-            NIVESH25: 25,
-            NIVESH50: 50,
-            NIVESH100: 100
-        };
+        // const couponCodes = await fetch(`${Host}/api/coupons`)
+
         const originalPrice = parseInt(document.getElementById('planPrice').innerText);
         // console.log(originalPrice, "originalPrice")
         let finalPrice = originalPrice;
 
-        function applyCoupon() {
-            console.log(originalPrice, "originalPrice")
+        async function applyCoupon() {
+            const res = await fetch(`${host}/api/coupons`);
+            const couponCodes = await res.json();
+            // console.log(couponCodes, "couponCodes");
+            // console.log(originalPrice, "originalPrice");
+
             let couponInput = document.getElementById('couponInput').value.trim().toUpperCase();
             let message = document.getElementById('couponMessage');
 
-            if (couponCodes[couponInput]) {
-                discountPercent = couponCodes[couponInput];
+            // Determine the expected type
+            let expectedType = null;
+            if (type && type === "cartItem") {
+                expectedType = "cart";
+            } else if (query && query.appointment === "appointment") {
+                expectedType = "appointment";
+            } else {
+                expectedType = "subscription"; // fallback or default
+            }
+
+            // console.log(expectedType, "expectedType");
+
+            // Find matching and enabled coupon with correct type
+            const coupon = couponCodes.find(
+                c => c.code === couponInput && c.status === "enable" && c.type === expectedType
+            );
+
+            if (coupon) {
+                const discountPercent = coupon.discount;
                 const discountAmount = (originalPrice * discountPercent) / 100;
                 finalPrice = originalPrice - discountAmount;
-                document.getElementById('planPrice').innerText = finalPrice;
+                document.getElementById('planPrice').innerText = finalPrice.toFixed(2);
                 message.style.color = 'green';
                 message.innerText = `Coupon applied! ${discountPercent}% discount.`;
             } else {
-                discountPercent = 0;
+                finalPrice = originalPrice;
+                document.getElementById('planPrice').innerText = finalPrice.toFixed(2);
                 message.style.color = 'red';
-                message.innerText = `Invalid Coupon Code.`;
+                message.innerText = `Invalid coupon type.`;
             }
         }
 

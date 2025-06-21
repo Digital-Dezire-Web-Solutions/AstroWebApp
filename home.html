@@ -1802,6 +1802,7 @@
                 // Main logic to find upcoming events
                 function getUpcomingRetrogradeCombustEvents(gocharData, currentDateStr) {
                     gocharData.sort((a, b) => new Date(a.date_of_entry) - new Date(b.date_of_entry));
+                    console.log(currentDateStr,"currentDateStr")
 
                     const currentDate = new Date(currentDateStr);
                     const upcomingEvents = [];
@@ -1838,7 +1839,7 @@
                     return upcomingEvents;
                 }
 
-                const events = getUpcomingRetrogradeCombustEvents(gocharData, getCurrentDateStr());
+                const events = getUpcomingRetrogradeCombustEvents(gocharData, "2025-03-18", getCurrentDateStr());
 
                 const container = document.getElementById("eventContainer");
 
