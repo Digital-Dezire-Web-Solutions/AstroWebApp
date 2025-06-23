@@ -1559,6 +1559,7 @@
             let horoscopeData = datass[0]?.horoscopeData || [];
             let dashas = datass[0]?.dashas || [];
             let rashiData = datass[0]?.rashiData || [];
+            console.log(rashiData,"rashiData")
             let chart1Url = datass[0]?.chart1Url || [];
             let chart2Url = datass[0]?.chart2Url || datass[0]?.chart9Url || [];
             let chart3Url = datass[0]?.chart3Url || []
@@ -1861,7 +1862,7 @@
                         // console.log(position, "position")
                         // console.log(nakshatraPosition, "nakshatraPosition")
                         // console.log(selectedRasNak, "selectedRasNak")
-                        console.log(comparisonData, "comparisonData")
+                        // console.log(comparisonData, "comparisonData")
 
                         // planetTable.innerHTML = ``;
 
@@ -1965,6 +1966,7 @@
                                     matchedD = divisionalData.find((i) => i.name === planetName);
                                 }
                                 let matchedRashis = matchedD?.zodiac || "";
+                                console.log(matchedRashis,"matchedRashis")
 
                                 let positionValue = [];
                                 let status = [];
@@ -2078,7 +2080,7 @@
 
                         // ADD PADA DETAILS EVEN IF NO PLANETS MATCH
                         comparisonData.forEach((data) => {
-                            console.log(data, "data");
+                            // console.log(data, "data");
 
                             let planetName = data.planetName && data.planetName !== "-" ? data.planetName : null;
 
@@ -2979,7 +2981,7 @@
 
                 const divisionalSelectElement = document.getElementById('divisionalSelect');
                 const divisionalOptions = Array.from(divisionalSelectElement.options).map(opt => opt.value);
-                const othersDivElement = document.querySelector(".kundali-img-nres.others"); // Get the reference here
+                // const othersDivElement = document.querySelector(".kundali-img-nres.others"); 
 
                 async function fetchChartUrls() {
                     const response = await fetch(`${host}/api/detail/fetchalldetail`, {
