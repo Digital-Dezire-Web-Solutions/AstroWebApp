@@ -1385,6 +1385,8 @@
                     }
                 });
 
+                console.log(response,"response")
+
                 const response2 = await fetch(`${host}/api/admindetail/all`);
                 const data = await response2.json();
 
@@ -1463,6 +1465,7 @@
                 }
                 else {
                     initializeData(datass, gocharData)
+                    console.log(datass)
                 }
                 // initializeData(datass, gocharData)
 
@@ -1553,7 +1556,7 @@
         displayStatus();
 
         async function initializeData(datass, gocharData, selectedHouse = "1") {
-            // console.log(datass, "inside datass")
+            console.log(datass, "inside datass")
             // console.log(gocharData,"gocharData")
             let GocharData = gocharData;
             let horoscopeData = datass[0]?.horoscopeData || [];
