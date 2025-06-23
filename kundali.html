@@ -1385,8 +1385,6 @@
                     }
                 });
 
-                console.log(response,"response")
-
                 const response2 = await fetch(`${host}/api/admindetail/all`);
                 const data = await response2.json();
 
@@ -1465,7 +1463,6 @@
                 }
                 else {
                     initializeData(datass, gocharData)
-                    console.log(datass)
                 }
                 // initializeData(datass, gocharData)
 
@@ -1556,13 +1553,12 @@
         displayStatus();
 
         async function initializeData(datass, gocharData, selectedHouse = "1") {
-            console.log(datass, "inside datass")
+            // console.log(datass, "inside datass")
             // console.log(gocharData,"gocharData")
             let GocharData = gocharData;
             let horoscopeData = datass[0]?.horoscopeData || [];
             let dashas = datass[0]?.dashas || [];
             let rashiData = datass[0]?.rashiData || [];
-            console.log(rashiData,"rashiData")
             let chart1Url = datass[0]?.chart1Url || [];
             let chart2Url = datass[0]?.chart2Url || datass[0]?.chart9Url || [];
             let chart3Url = datass[0]?.chart3Url || []
@@ -1969,7 +1965,6 @@
                                     matchedD = divisionalData.find((i) => i.name === planetName);
                                 }
                                 let matchedRashis = matchedD?.zodiac || "";
-                                console.log(matchedRashis,"matchedRashis")
 
                                 let positionValue = [];
                                 let status = [];
@@ -2243,7 +2238,7 @@
 
                         // Find Nakshatras in Table 1 that are not in Table 2 and exclude matched planets
                         firstTableData.forEach(entry1 => {
-                            console.log(entry1,"entry1")
+                            // console.log(entry1,"entry1")
                             // console.log(entry1.dashavalueForm.find((i) => i.end),"end")
                             if (!matchedNakshatras.has(entry1.nakshatra) && !matchedPlanets.has(entry1.planet)) {
                                 fourthTableContent += `
@@ -2984,7 +2979,7 @@
 
                 const divisionalSelectElement = document.getElementById('divisionalSelect');
                 const divisionalOptions = Array.from(divisionalSelectElement.options).map(opt => opt.value);
-                // const othersDivElement = document.querySelector(".kundali-img-nres.others"); 
+                const othersDivElement = document.querySelector(".kundali-img-nres.others"); // Get the reference here
 
                 async function fetchChartUrls() {
                     const response = await fetch(`${host}/api/detail/fetchalldetail`, {
