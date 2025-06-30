@@ -3730,66 +3730,7 @@
 
                         // Extract hours and minutes from formattedTime ("17:00")
                         const [hours, minutes] = formattedTime.split(":").map(Number);
-                        // console.log("currentDateTime:", currentDateTime.toString());
-
-                        // Create formattedTimeWithDate manually with tithiStart's date
-                        // let formattedTimeWithDate = new Date(
-                        //     tithiStartTime.getFullYear(),
-                        //     tithiStartTime.getMonth(),
-                        //     tithiStartTime.getDate(),
-                        //     hours,
-                        //     minutes,
-                        //     0
-                        // );
-                        // let formattednakTimeWithDate = new Date(
-                        //     nakshatraStartTime.getFullYear(),
-                        //     nakshatraStartTime.getMonth(),
-                        //     nakshatraStartTime.getDate(),
-                        //     hours,
-                        //     minutes,
-                        //     0
-                        // );
-                        // let formattedyogTimeWithDate = new Date(
-                        //     yogaStartTime.getFullYear(),
-                        //     yogaStartTime.getMonth(),
-                        //     yogaStartTime.getDate(),
-                        //     hours,
-                        //     minutes,
-                        //     0
-                        // );
-                        // let formattedkaranaTimeWithDate = new Date(
-                        //     karanaStartTime.getFullYear(),
-                        //     karanaStartTime.getMonth(),
-                        //     karanaStartTime.getDate(),
-                        //     hours,
-                        //     minutes,
-                        //     0
-                        // );
-
-                        // If time is after midnight but before 6 AM, move to next day
-                        // if (hours < 24) {
-                        //     formattedTimeWithDate.setDate(formattedTimeWithDate.getDate() + 1);
-                        //     formattednakTimeWithDate.setDate(formattednakTimeWithDate.getDate() + 1);
-                        //     formattedyogTimeWithDate.setDate(formattedyogTimeWithDate.getDate() + 1);
-                        //     formattedkaranaTimeWithDate.setDate(formattedkaranaTimeWithDate.getDate() + 1);
-                        // }
-                        // Force to next day if formatted time is before tithiStartTime
-                        // if (formattedTimeWithDate < tithiStartTime) {
-                        //     formattedTimeWithDate.setDate(formattedTimeWithDate.getDate() + 1);
-                        // }
-
-                        // console.log("FormattedTime with Date:", formattedTimeWithDate);
-                        // console.log("Tithi End Time:", tithiEndTime);
-                        // console.log("FormattedTime with Date:", formattednakTimeWithDate);
-                        // console.log("nakshatra End Time:", nakshatraEndTime);
-                        // console.log("FormattedTime with Date:", formattedkaranaTimeWithDate);
-                        // console.log("karana End Time:", karanaEndTime);
-                        // console.log("FormattedTime with Date:", formattedyogTimeWithDate);
-                        // console.log("yoga End Time:", yogaEndTime);
-
-                        // Compare
-
-                        // console.log(tithiPanchangData2, "data")
+                        
                         if (currentDateTime <= tithiEndTime) {
                             tithiName = tithiPanchangData2.tithi.name;
                             tithiType = tithiPanchangData2.tithi.type;
