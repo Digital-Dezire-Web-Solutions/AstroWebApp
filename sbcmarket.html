@@ -158,13 +158,14 @@
                 </div>
             </div> -->
 
-                 <div class="top-hedr-bx flex item-center" style="cursor: pointer;" onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
+                <div class="top-hedr-bx flex item-center" style="cursor: pointer;"
+                    onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
                     <div class="left-hedr-icon">
                         <img style="width: 60%;" src="./images/telegram.png" alt="">
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                         
+
                     </div>
                 </div>
 
@@ -311,13 +312,14 @@
                     </div>
                 </div> -->
 
-                     <div class="top-hedr-bx flex item-center" style="cursor: pointer;" onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
+                    <div class="top-hedr-bx flex item-center" style="cursor: pointer;"
+                        onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
                         <div class="left-hedr-icon">
                             <img style="width: 60%;" src="./images/telegram.png" alt="">
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                             
+
                         </div>
                     </div>
 
@@ -3691,7 +3693,6 @@
                             const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
                             if (nextTithiPanchangResponse.length !== 0) {
                                 const nextTithiPanchangData = nextTithiPanchangResponse;
-                                console.log(nextTithiPanchangData, "nextTithiPanchangData")
 
                                 let nextMoonNakshatra = nextTithiPanchangData.nakshatra.name;
                                 let nextMoonStart = new Date(nextTithiPanchangData.nakshatra.start);
@@ -3787,14 +3788,21 @@
                         // console.log("yoga End Time:", yogaEndTime);
 
                         // Compare
+
+                        // console.log(tithiPanchangData2, "data")
                         if (currentDateTime <= tithiEndTime) {
-                            // console.log(tithiPanchangData2.tithi.name, "tithi")
                             tithiName = tithiPanchangData2.tithi.name;
                             tithiType = tithiPanchangData2.tithi.type;
                         } else {
-                            // console.log(tithiPanchangData2.tithi.next_tithi, "next titi")
-                            tithiName = tithiPanchangData2.tithi.next_tithi;
-                            tithiType = null;
+                            let nextDate = new Date(yearmoon, monthmoon - 1, daymoon + 1);
+                            let nextFormattedDate = nextDate.toLocaleDateString("en-GB").split("/").join("/"); // Convert to YYYY/MM/DD
+                            const nextTithiPanchangResponse = await getPanchangData(nextFormattedDate);
+                            if (nextTithiPanchangResponse.length !== 0) {
+                                const nextTithiPanchangData = nextTithiPanchangResponse;
+                                // console.log(nextTithiPanchangData, "nextTithiPanchangData")
+                                tithiName = nextTithiPanchangData.tithi.name;
+                                tithiType = nextTithiPanchangData.tithi.type;
+                            }
                         }
 
                         if (currentDateTime <= nakshatraEndTime) {
@@ -3831,7 +3839,7 @@
                         const matchingTithi = tithiPanchang.find(t => t.tithi === tithiName && t.paksha === tithiType);
                         // console.log(matchingTithi, "matchingTithi")
                         // console.log(tithiName, "tithiName")
-                        // console.log(tithiType, "tithiType")
+                        console.log(tithiType, "tithiType")
                         // console.log(tithiPanchang.find(t => t.tithi === tithiName), "match")
                         // const tithi = panchangDetails.Tithi
                         const Day_of_Birth = tithiPanchangData2.day.name;
@@ -4395,7 +4403,7 @@
 
                                     // Check which column the tithiLordNumber matches in front, right, or left
                                     let matchColumn = '';
-                                    console.log(vedh,"vedh")
+                                    // console.log(vedh,"vedh")
                                     if (vedh.front.includes(tithiLordNumber)) {
                                         matchColumn = 'Front';
                                     } else if (vedh.right.includes(tithiLordNumber)) {
@@ -4423,7 +4431,7 @@
                                         return { sparsh, vedh };
                                     };
 
-                                    console.log(matchColumn, "matchColumn")
+                                    // console.log(matchColumn, "matchColumn")
 
                                     // Collect tithi data for a single row
                                     if (matchColumn) {
@@ -4434,7 +4442,7 @@
                                             vedh,
                                             matchColumn
                                         });
-                                    }else{
+                                    } else {
                                         const { sparsh, vedh } = getSparshAndVedh();
                                         tithiData.push({
                                             tithiLord,
@@ -4451,7 +4459,7 @@
                                             sparsh,
                                             vedh
                                         });
-                                    }else{
+                                    } else {
                                         const { sparsh, vedh } = getSparshAndVedh();
                                         varData.push({
                                             Day_of_Birth,
