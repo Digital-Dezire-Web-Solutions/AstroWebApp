@@ -4246,6 +4246,7 @@
                                     const tithiLordNumber = planetNumberMapping[tithiLord];
                                     // console.log(tithiLord,"tithiLord")
                                     const vedh = tithiVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
+                                    // console.log(nakshatra,"nakshatra")
                                     const varDay = daysVedhTable[nakshatra] || { front: '-', right: '-', left: '-' };
                                     const rashiDay = nakshatraToRashiVedh[gocharNakshatra] || { front: '-', right: '-', left: '-' };
                                     const letterDay = letterTable[gocharNakshatra] || { front: '-', right: '-', left: '-' };
@@ -4394,7 +4395,7 @@
 
                                     // Check which column the tithiLordNumber matches in front, right, or left
                                     let matchColumn = '';
-                                    // console.log(vedh,"vedh")
+                                    console.log(vedh,"vedh")
                                     if (vedh.front.includes(tithiLordNumber)) {
                                         matchColumn = 'Front';
                                     } else if (vedh.right.includes(tithiLordNumber)) {
@@ -4402,6 +4403,7 @@
                                     } else if (vedh.left.includes(tithiLordNumber)) {
                                         matchColumn = 'Left';
                                     }
+                                    // console.log(matchColumn,"matchColumn")
 
                                     let matchVar = '';
                                     if (varDay.front.includes(Day_of_Birth)) {
@@ -4421,7 +4423,7 @@
                                         return { sparsh, vedh };
                                     };
 
-                                    // console.log(matchColumn, "matchColumn")
+                                    console.log(matchColumn, "matchColumn")
 
                                     // Collect tithi data for a single row
                                     if (matchColumn) {
@@ -4432,6 +4434,14 @@
                                             vedh,
                                             matchColumn
                                         });
+                                    }else{
+                                        const { sparsh, vedh } = getSparshAndVedh();
+                                        tithiData.push({
+                                            tithiLord,
+                                            sparsh: "",
+                                            vedh: "",
+                                            matchColumn
+                                        });
                                     }
                                     // Collect var data for a single row
                                     if (matchVar) {
@@ -4440,6 +4450,13 @@
                                             Day_of_Birth,
                                             sparsh,
                                             vedh
+                                        });
+                                    }else{
+                                        const { sparsh, vedh } = getSparshAndVedh();
+                                        varData.push({
+                                            Day_of_Birth,
+                                            sparsh: "",
+                                            vedh: ""
                                         });
                                     }
 
