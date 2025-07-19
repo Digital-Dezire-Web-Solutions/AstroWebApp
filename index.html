@@ -112,13 +112,14 @@
                     </div>
                 </div> -->
 
-                 <div class="top-hedr-bx flex item-center" style="cursor: pointer;" onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
+                <div class="top-hedr-bx flex item-center" style="cursor: pointer;"
+                    onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
                     <div class="left-hedr-icon">
                         <img style="width: 60%;" src="./images/telegram.png" alt="">
                     </div>
                     <div class="right-hedr-inof">
                         <h6>Talk to Us</h6>
-                         
+
                     </div>
                 </div>
 
@@ -176,7 +177,7 @@
                 <nav class="nav">
                     <div class="nav-lists flex item-start">
                         <li><a href="home.html">Home</a></li>
-                        <li><a href="kundali.html">Kundali</a></li>
+                        <li><a href="kundaliform.html">Kundali</a></li>
                         <li><a href="market.html">Market</a></li>
                         <li><a href="product.html">Astro Store</a></li>
                         <li><a href="pooja.html">Pooja</a></li>
@@ -265,13 +266,14 @@
                         </div>
                     </div> -->
 
-                     <div class="top-hedr-bx flex item-center" style="cursor: pointer;" onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
+                    <div class="top-hedr-bx flex item-center" style="cursor: pointer;"
+                        onclick="window.location.href='https://t.me/+gSZt6LQkFtRmYjBl'">
                         <div class="left-hedr-icon">
                             <img style="width: 60%;" src="./images/telegram.png" alt="">
                         </div>
                         <div class="right-hedr-inof">
                             <h6>Talk to Us</h6>
-                             
+
                         </div>
                     </div>
 
@@ -385,7 +387,7 @@
                     </div>
                 </div>
                 <div class="home-box-right" id="main-section">
-                    <h6>Get Free Kundali</h6>
+                    <h6>Register for free kundali</h6>
                     <div class="login-form">
                         <form onsubmit="handleCreate(event)">
 
@@ -396,7 +398,7 @@
                                         required>
                                 </div>
                             </div>
-                            <div class="home-input-box">
+                            <!-- <div class="home-input-box">
                                 <div class="inpt-bx">
                                     <label class="respon-lable" for="password">Date Of Birth</label>
                                     <div class="inpt">
@@ -412,9 +414,8 @@
                                             placeholder="Select Time">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="inpt-bx">
-                                <!-- <label for="birthplace">Birth Place</label> -->
+                            </div> -->
+                            <!-- <div class="inpt-bx">
                                 <div class="inpt">
                                     <input type="text" id="birthplace" name="birthplace"
                                         placeholder="Enter your Birth Place..." autocomplete="off" required>
@@ -422,11 +423,11 @@
                                 </div>
                             </div>
                             <input type="hidden" id="latitude" name="latitude">
-                            <input type="hidden" id="longitude" name="longitude">
+                            <input type="hidden" id="longitude" name="longitude"> -->
 
-                            <button class="advanceOption-btn" type="button" id="toggleAdvanced">Advanced Options
+                            <button style="display: none;" class="advanceOption-btn" type="button" id="toggleAdvanced">Advanced Options
                                 +</button>
-                            <div id="advancedFields" style="display: none;">
+                            <!-- <div id="advancedFields" style="display: none;">
                                 <div class="inpt-bx">
                                     <label for="consonent">Consonent of your name</label>
                                     <span style="color: orange;">Eg:- (Rahul - Ra)</span>
@@ -486,7 +487,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <p id="errorc2Msg" style="color: red; font-size: 12px; margin-bottom: 0;"></p>
                             <div class="inpt-bx">
                                 <!-- <label for="name">Email</label> -->
@@ -507,9 +508,12 @@
                             <div class="form-btns-flex">
 
                                 <button class="form-btn" type="submit">
-                                    Generate kundali
+                                    Register
                                 </button>
-
+                                <!-- <span class="signup-dashss">OR</span>
+                                <button class="form-btn google-signup" type="button">
+                                   <ion-icon name="logo-google"></ion-icon> Register with Google
+                                </button> -->
 
                             </div>
 
@@ -1028,6 +1032,40 @@
         .suggestions-list li:hover {
             background-color: #f0f0f0;
         }
+
+        .google-signup{
+            background-color: white;
+            color: #fe7000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .google-signup .md.hydrated{
+            margin-right: 5px;
+            font-size: 20px;
+        }
+
+        .signup-dashss{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+            font-size: 14px;
+        }
+        .signup-dashss::before{
+           content: '';
+           height: 1px;
+           width: 50%;
+           background-color: #fe7000;
+           margin-right: 10px;
+        }
+        .signup-dashss::after{
+           content: '';
+           height: 1px;
+           width: 50%;
+           background-color: #fe7000;
+           margin-left: 10px;
+        }
     </style>
 
     <!-- know -->
@@ -1466,8 +1504,6 @@ Get kundali reading over the phone or in person. -->
             event.preventDefault();
             document.querySelector(".login-reg-comp").classList.remove("formactive");
             const placeform = event.target; // This is the form that triggered the submit
-            const latitude = placeform.querySelector('input[name="latitude"]').value;
-            const longitude = placeform.querySelector('input[name="longitude"]').value;
 
             const regInfo = document.querySelector(".reg-info");
             regInfo.style.display = "none";
@@ -1482,11 +1518,6 @@ Get kundali reading over the phone or in person. -->
                 name: formData.get("cname"),
                 email: formData.get("cemail"),
                 password: formData.get("ccreatepassword"),
-                dob: formData.get("calendarInput"),
-                birthtime: formData.get("timePicker"),
-                birthplace: formData.get("birthplace"),
-                consonent: formData.get("consonent"),
-                vowel: formData.get("vowel"),
             };
 
             console.log(customerData, "customerData");
@@ -1506,331 +1537,6 @@ Get kundali reading over the phone or in person. -->
                 showAlert("Account Created successfully", "success");
                 // Save the auth token and redirect
                 localStorage.setItem("token", json.authToken);
-                const data = customerData;
-
-                // api
-                let api = [];
-                try {
-                    const response = await fetch(`${host}/api/admindetail/all`, {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                        }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch API data");
-                    }
-
-                    const data2 = await response.json();
-                    api = data2[0]?.apiKey || []; // Store fetched API key
-                    // console.log(api, "Fetched API key");
-                } catch (error) {
-                    console.error("Error fetching API key:", error);
-                }
-                // console.log(api[0]?.apiKey, "api[0]?.apiKey")
-
-                try {
-                    // console.log(data, "data")
-                    const birthtime = data.birthtime;
-                    // console.log(birthtime, "birthtime")
-                    const location = data.birthplace;
-                    function convertTo24HourTime(time12h) {
-                        const match = time12h.match(/(\d+):(\d+) (\w+)/);
-                        if (!match) return null; // Handle invalid format
-
-                        let [_, hours, minutes, period] = match;
-                        hours = parseInt(hours, 10);
-                        minutes = parseInt(minutes, 10);
-
-                        if (period.toUpperCase() === "PM" && hours !== 12) {
-                            hours += 12; // Convert PM to 24-hour format
-                        } else if (period.toUpperCase() === "AM" && hours === 12) {
-                            hours = 0; // Convert 12 AM to 00
-                        }
-
-                        return { hours, minutes }; // Returning as an object
-                    }
-
-                    const time24 = convertTo24HourTime(birthtime);
-                    let timeformate24 = []
-
-                    if (time24) {
-                        const formattedTime = `${String(time24.hours).padStart(2, '0')}:${String(time24.minutes).padStart(2, '0')}`;
-                        // console.log(formattedTime, "formattedTime"); // Output: "17:32"
-                        timeformate24 = formattedTime
-                    } else {
-                        console.error("Invalid time format");
-                    }
-                    // console.log(timeformate24, "time24")
-                    const formattedDate = data.dob.split('-').reverse().join('/');
-                    // console.log(formattedDate,"formattedDate")
-                    // console.log(api[0]?.apiKey, "api")
-                    const apiKey = api[0]?.apiKey;
-                    const baseUrl = "https://api.vedicastroapi.com/v3-json";
-                    const lat = latitude;
-                    const lon = longitude;
-
-                    const params = {
-                        api_key: apiKey,
-                        dob: formattedDate,
-                        tob: timeformate24,
-                        lat,
-                        lon,
-                        location,
-                        tz: 5.5,
-                        lang: "en",
-                        // D1: "D1",
-                        // D9: "D9",
-                        // D3: "D3",
-                        // D3s: "D3-s",
-                        // D7: "D7",
-                        // D10: "D10",
-                        // D10r: "D10-R",
-                        // D12: "D12",
-                        // D16: "D16",
-                        // D20: "D20",
-                        // D24: "D24",
-                        // D24r: "D24-R",
-                        // D30: "D30",
-                        // D40: "D40",
-                        // D45: "D45",
-                        // D60: "D60",
-                    };
-
-                    console.log(params, "params")
-                    localStorage.setItem('params', JSON.stringify(params));
-                    const horoscopeUrl = `${baseUrl}/horoscope/planet-details?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
-                    const horoscopeResponse = await fetch(horoscopeUrl);
-                    if (!horoscopeResponse.ok) throw new Error("Failed to fetch horoscope data.");
-                    const horoscopeData = await horoscopeResponse.json();
-                    // console.log(horoscopeData,"horoscopeData")
-
-                    const DashaUrl = `${baseUrl}/dashas/current-mahadasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
-                    const dashaResponse = await fetch(DashaUrl);
-                    if (!dashaResponse.ok) {
-                        throw new Error("Failed to fetch Dasha data.");
-                    }
-
-                    const DashaData = await dashaResponse.json();
-                    const dashas = DashaData.response.order_of_dashas || [];
-
-                    // const chart1 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-                    // const response3 = await fetch(chart1);
-                    // const chart1Url = await response3.text();
-                    // const chart2 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-                    // const response4 = await fetch(chart2);
-                    // const chart9Url = await response4.text();
-                    // const chart3 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D3}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-                    // const response5 = await fetch(chart3);
-                    // const chart3Url = await response5.text();
-                    // const chart4 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D3s}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-                    // const response6 = await fetch(chart4);
-                    // const chart3sUrl = await response6.text();
-
-                    const divisionalCharts = [
-                        "D1", "D9", "D3", "D3-s", "D7", "D10", "D10-R", "D12", "D16",
-                        "D20", "D24", "D24-R", "D30", "D40", "D45", "D60"
-                    ];
-
-                    const chartUrls = {};
-
-                    for (const div of divisionalCharts) {
-                        const encodedDiv = encodeURIComponent(div); // for cases like D3-s, D10-R
-                        const chartUrl = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${encodedDiv}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-
-                        const response = await fetch(chartUrl);
-                        const imageUrl = await response.text();
-
-                        chartUrls[div] = imageUrl;
-                    }
-
-                    // maha dasha
-                    const mahaDasha = `${baseUrl}/dashas/maha-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const maharesponse = await fetch(mahaDasha);
-                    if (!maharesponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const mahaDashaData = await maharesponse.json();
-
-                    // antar dasha
-                    const antarDasha = `${baseUrl}/dashas/antar-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const antarresponse = await fetch(antarDasha);
-                    if (!antarresponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const antarDashaData = await antarresponse.json();
-
-                    // char dasha
-                    const charDasha = `${baseUrl}/dashas/char-dasha-main?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const charresponse = await fetch(charDasha);
-                    if (!charresponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const charDashaData = await charresponse.json();
-
-                    // charsub dasha
-                    const charsubDasha = `${baseUrl}/dashas/char-dasha-sub?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const charsubresponse = await fetch(charsubDasha);
-                    if (!charsubresponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const charsubDashaData = await charsubresponse.json();
-
-                    // yoginiDasha dasha
-                    const yoginiDasha = `${baseUrl}/dashas/yogini-dasha-main?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const yoginiresponse = await fetch(yoginiDasha);
-                    if (!yoginiresponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const yoginiDashaData = await yoginiresponse.json();
-
-                    // yoginiDashasub dasha
-                    const yoginisubDasha = `${baseUrl}/dashas/yogini-dasha-sub?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const yoginisubresponse = await fetch(yoginisubDasha);
-                    if (!yoginisubresponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const yoginisubDashaData = await yoginisubresponse.json();
-
-                    // char paryantarDasha
-                    const paryantarDasha = `${baseUrl}/dashas/paryantar-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`
-                    const paryantarresponse = await fetch(paryantarDasha);
-                    if (!paryantarresponse.ok) throw new Error("Failed to fetch maharesponse data.");
-                    const paryantarDashaData = await paryantarresponse.json();
-
-                    let rashiData = {};
-
-                    try {
-                        const divisionalSelect = document.getElementById("divisional-select");
-                        const divisions = Array.from(divisionalSelect.options).map(opt => opt.value);
-
-                        for (const div of divisions) {
-                            const divisionalUrl = `${baseUrl}/horoscope/divisional-charts?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${div}&api_key=${params.api_key}&lang=${params.lang}&response_type=planet_object`;
-
-                            try {
-                                const response = await fetch(divisionalUrl);
-                                if (!response.ok) {
-                                    console.warn(`Failed to fetch data for ${div}`);
-                                    continue; // Skip this division if there's an error
-                                }
-
-                                const horoscopeData = await response.json();
-                                if (horoscopeData && horoscopeData.response) {
-                                    const mapPlanetData = (data) => {
-                                        if (Array.isArray(data)) {
-                                            return data.map((planet) => ({
-                                                name: planet.full_name,
-                                                zodiac: planet.zodiac,
-                                                house: planet.house,
-                                                retro: planet.retro,
-                                                rasi_no: planet.rasi_no,
-                                                local_degree: planet.local_degree,
-                                            }));
-                                        } else if (typeof data === "object" && data !== null) {
-                                            return Object.values(data).map((planet) => ({
-                                                name: planet.full_name,
-                                                zodiac: planet.zodiac,
-                                                house: planet.house,
-                                                retro: planet.retro,
-                                                rasi_no: planet.rasi_no,
-                                                local_degree: planet.local_degree,
-                                            }));
-                                        } else {
-                                            console.error(`Unexpected data format for ${div}:`, data);
-                                            return [];
-                                        }
-                                    };
-
-                                    rashiData[div] = mapPlanetData(horoscopeData.response).slice(0, 10);
-                                } else {
-                                    console.warn(`Invalid or missing data for ${div}`);
-                                }
-                            } catch (error) {
-                                console.error(`Error fetching horoscope data for ${div}:`, error);
-                            }
-                        }
-                    } catch (error) {
-                        console.log("error")
-                    }
-                    // const dataResponse = await fetch(`${host}/api/detail/adddetail`, {
-                    //     method: "POST",
-                    //     headers: {
-                    //         "Content-Type": "application/json",
-                    //         "auth-token": json.authToken
-                    //     },
-                    //     body: JSON.stringify({ horoscopeData, dashas, rashiData, chart1Url, chart2Url, mahaDashaData, antarDashaData, charDashaData, charsubDashaData, yoginiDashaData, yoginisubDashaData, paryantarDashaData })
-                    // });
-                    const horoData = await fetch(`${host}/api/detail/adddetail`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "auth-token": json.authToken
-                        },
-                        body: JSON.stringify({
-                            step: "horoscope",
-                            horoscopeData
-                        })
-                    });
-
-                    const dashaData = await fetch(`${host}/api/detail/adddetail`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "auth-token": json.authToken
-                        },
-                        body: JSON.stringify({
-                            step: "dashas",
-                            dashas,
-                            mahaDashaData,
-                            antarDashaData,
-                            charDashaData,
-                            charsubDashaData,
-                            yoginiDashaData,
-                            yoginisubDashaData,
-                            paryantarDashaData
-                        })
-                    });
-
-                    const cartData = await fetch(`${host}/api/detail/adddetail`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "auth-token": json.authToken
-                        },
-                        body: JSON.stringify({
-                            step: "rashi",
-                            rashiData,
-                            chart1Url: chartUrls["D1"],
-                            chart9Url: chartUrls["D9"],
-                            chart3Url: chartUrls["D3"],
-                            chart3sUrl: chartUrls["D3-s"],
-                            chart7Url: chartUrls["D7"],
-                        })
-                    });
-                    const cart2Data = await fetch(`${host}/api/detail/adddetail`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "auth-token": json.authToken
-                        },
-                        body: JSON.stringify({
-                            step: "chart",
-                            chart10Url: chartUrls["D10"],
-                            chart10rUrl: chartUrls["D10-R"],
-                            chart12Url: chartUrls["D12"],
-                            chart16Url: chartUrls["D16"],
-                            chart20Url: chartUrls["D20"],
-                            chart24Url: chartUrls["D24"],
-                            chart24rUrl: chartUrls["D24-R"],
-                            chart30Url: chartUrls["D30"],
-                            chart40Url: chartUrls["D40"],
-                            chart45Url: chartUrls["D45"],
-                            chart60Url: chartUrls["D60"],
-                        })
-                    });
-
-                    const result = await horoData.json();
-                    const result2 = await dashaData.json();
-                    const result3 = await cartData.json();
-                    const result4 = await cart2Data.json();
-                    console.log(result);
-                    console.log(result2);
-                    console.log(result3);
-                    console.log(result4);
-                }
-                catch (error) {
-                    console.log(error, "error")
-                }
-
                 document.querySelector(".login-reg-comp").classList.remove("formactive");
                 const loginForm = document.querySelector(".login-info");
                 loginForm.style.display = "none";
